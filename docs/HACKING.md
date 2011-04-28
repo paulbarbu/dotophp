@@ -13,6 +13,5 @@ Committing changes
 	* __FIX__ for fixing code errors or typos in documentation files 
 	* __ADDED__ for adding new files/directories, functions or variables
 	* __DEL__ for deleting files/directories, functions or variables
-	* __CHK__ for modifying variable names, functions or files/directories
 
 Example: _[DOC-CHK]all extensions changed to .md_
