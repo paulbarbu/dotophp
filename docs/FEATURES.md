@@ -10,6 +10,7 @@ Users Features
 
 Events Features
 ===============================
-* each event can have different attributions, example: -
-* events will have two types: public events and privates events
+* each event will be grouped in a category
+* each category can have different settings, different attributes
+* each event will take the category settings and each event can be editable to change these settings 
 
