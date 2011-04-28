@@ -1,3 +1,9 @@
+General Rules
+=============
+* all files should use Markdown syntax
+
+Committing changes
+==================
 * commit messages will be prefixed with these _tags_: 
 	* __[DOC]__ for documentation changes
 	* __[SRC]__ for code changes
@@ -10,5 +16,3 @@
 	* __CHK__ for modifying variable names, functions or files/directories
 
 Example: _[DOC-CHK]all extensions changed to .md_
-
-* all files should use Markdown syntax
