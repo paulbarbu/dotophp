@@ -11,6 +11,7 @@ Users Features
 Events Features
 ===============================
 * each event will be grouped in a category
-* each category can have different settings, different attributes
-* each event will take the category settings and each event can be editable to change these settings 
+* each category can have different settings(attributes)
+* each event will inherit the category's attributes
+* each event can have its attributes individually changed(we name this "an exception from the category")
 
