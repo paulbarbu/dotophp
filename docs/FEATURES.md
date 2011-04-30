@@ -14,6 +14,7 @@ Events Features
 * each category can have different settings(attributes)
 * each event will inherit the category's attributes
 * each event can have its attributes individually changed
+* find best meeting times, given two agendas
 
 Category properties
 ===================
@@ -26,7 +27,7 @@ Event properties
 ================
 * Name
 * Description
-* Due date
+* Start/Due date
 * Priority
 * Alarm(inherited, changeable): 
     * if On: set date/time to alert
