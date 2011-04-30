@@ -27,7 +27,7 @@ Event properties
 * Name
 * Description
 * Due date
-* Priority
+* Priority(low, medium, high, top)
 * Alarm(inherited, changeable): 
     * if On: set date/time to alert
     * if Off: no alert available
