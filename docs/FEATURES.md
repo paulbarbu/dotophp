@@ -9,14 +9,12 @@ Users Features
 * users can have a profile
 	* can set name
 	* can set birthday
-	* can set signature
 	* can set avatar (gavatar)
 	* can set a short description
 		
 Events Features
 ===============================
-* each event will belong to a category
-* each category can have different settings(attributes)
+* each event can belong to a category
 * each event will inherit the category's attributes
 * each event can have its attributes individually changed
 * find best meeting times, given two agendas
@@ -32,7 +30,6 @@ Event properties
 ===============================
 * Name
 * Description
-* Start/Due date
 * Priority
 * Alarm(inherited, changeable): 
     * if On: set date/time to alert
@@ -40,6 +37,7 @@ Event properties
 * Repeat(inherited, changeable):
     * if On: event will repeat together with the alarm 
     * if Off: when the event reaches its due date it's marked as done
+* Start/due date (optional)    
     
     
 
