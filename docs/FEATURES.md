@@ -1,7 +1,7 @@
 Features of the DoToPHP Project
 ===============================
 
-
+* plugin system
 
 Users Features
 =============================== 
