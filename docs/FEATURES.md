@@ -6,8 +6,13 @@ Features of the DoToPHP Project
 Users Features
 =============================== 
 * users will have an account, they will authentify using user & pass
-* each user can use an avatar (gravatar)
-
+* users can have a profile
+	* can set name
+	* can set birthday
+	* can set signature
+	* can set avatar (gavatar)
+	* can set a short description
+		
 Events Features
 ===============================
 * each event will belong to a category
@@ -17,14 +22,14 @@ Events Features
 * find best meeting times, given two agendas
 
 Category properties
-===================
+===============================
 * Name
 * Description
 * Alarm: On/Off
 * Repeat: daily/weekly/monthly/yearly/Off
 
 Event properties
-================
+===============================
 * Name
 * Description
 * Start/Due date
@@ -35,3 +40,6 @@ Event properties
 * Repeat(inherited, changeable):
     * if On: event will repeat together with the alarm 
     * if Off: when the event reaches its due date it's marked as done
+    
+    
+
