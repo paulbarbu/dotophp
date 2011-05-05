@@ -8,7 +8,6 @@
 	* can set a short description
 * Users will have an friend list
 * Users can put their phone number that will bi available to all his friens    
-* * *
 
 2 Category properties
 ===============================
@@ -16,7 +15,6 @@
 * Description
 * Alarm: On/Off
 * Repeat: daily/weekly/monthly/yearly/Off
-* * *
 
 3 Events Features
 ===============================
@@ -28,7 +26,6 @@
 * Each event can be set as an exception
 * Each event on movement from an category to another can inherit the setting from the new category
 * Each event can inherit the properties from an category
-* * *
 
 4 Event properties
 ===============================
@@ -42,15 +39,12 @@
     * if On: event will repeat together with the alarm 
     * if Off: when the event reaches its due date it's marked as done
 * Start/due date (optional)
-* * *
 
 5 Plugins Features
 ===============================
 * plugin system
-* * *
 
 6 ACP
 ===============================
-
 
 *NOTE*: The priority of the features is from top to bottom. The highest priority is 1 and the lowest is 6. 
