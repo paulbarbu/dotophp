@@ -6,7 +6,7 @@
 	* can set birthday
 	* can set avatar (gavatar)
 	* can set a short description
-* Users will have an friend list
+* Users will have a friends list
 * Users can put their phone number that will bi available to all his friens    
 
 2 Category properties
