@@ -39,11 +39,15 @@
     * if Off: when the event reaches its due date it's marked as done
 * Start/due date (optional)
 
-5 Plugins Features
+5 Setup
+===============================
+* allow users to install Do To PHP using a wizard
+
+6 Plugins Features
 ===============================
 * plugin system
 
-6 ACP
+7 ACP
 ===============================
 
 *NOTE*: The priority of the features is from top to bottom. The highest priority is 1 and the lowest is 6. 
