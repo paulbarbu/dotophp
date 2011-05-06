@@ -6,8 +6,8 @@
 	* can set birthday
 	* can set avatar (gavatar)
 	* can set a short description
-* Users will have an friend list
-* Users can put their phone number that will bi available to all his friens    
+* Users will have a friends list
+* Users can put their phone number that will be available to all of his friends    
 
 2 Category properties
 ===============================
@@ -24,8 +24,7 @@
 * Find best meeting times, given two agendas
 * Each event can be public, shared with a friend or private
 * Each event can be set as an exception
-* Each event on movement from an category to another can inherit the setting from the new category
-* Each event can inherit the properties from an category
+* Each event, on movement from an category to another, can inherit the settings from the new category only if that event is not an exception
 
 4 Event properties
 ===============================
@@ -44,7 +43,10 @@
 ===============================
 * plugin system
 
-6 ACP
+6 Administration Control Panel (ACP)
 ===============================
+* users log
+* posibility to ban/unban users
+
 
 *NOTE*: The priority of the features is from top to bottom. The highest priority is 1 and the lowest is 6. 
