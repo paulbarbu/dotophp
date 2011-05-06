@@ -45,13 +45,11 @@
 
 6 Plugins Features
 ===============================
-* plugin system
+* plugins can be either services or formats
+* _services_ will interact will external programs
+* _formats_ will import and convert foreign formats into ours
 
-<<<<<<< HEAD
-7 ACP
-=======
-6 Administration Control Panel (ACP)
->>>>>>> 905c5fc80934b6ae629a3fd021934e7af1edc081
+7 Administration Control Panel (ACP)
 ===============================
 * users log
 * posibility to ban/unban users
