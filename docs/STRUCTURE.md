@@ -13,6 +13,10 @@ DOTOPHP - FOLDER STRUCTURE
         * events.php    _events related functions: i.e. event_create()_
         * plugins.php    _this will handle plugin related functions: i.e. plugin_create()_
         * acp.php _acp related functions_
+    * actions/    _different parts of the BL (like "controllers")_
+        examples:
+        * new_category.php
+        * ...
     * plugins/    _all available plugins will lay here_
         * services/
         * formats/
