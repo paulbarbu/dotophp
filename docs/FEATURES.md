@@ -47,6 +47,6 @@
 ===============================
 * users log
 * posibility to ban/unban users
-
+* delete users
 
 *NOTE*: The priority of the features is from top to bottom. The highest priority is 1 and the lowest is 6. 
