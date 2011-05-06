@@ -43,7 +43,10 @@
 ===============================
 * plugin system
 
-6 ACP
+6 Administration Control Panel (ACP)
 ===============================
+* users log
+* posibility to ban/unban users
+
 
 *NOTE*: The priority of the features is from top to bottom. The highest priority is 1 and the lowest is 6. 
