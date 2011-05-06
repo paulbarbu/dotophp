@@ -1,6 +1,6 @@
 General Rules
 =============
-* all files should use Markdown syntax
+* all documentation files should use Markdown syntax
 
 Committing changes
 ==================
