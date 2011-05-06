@@ -25,7 +25,6 @@
 * Each event can be public, shared with a friend or private
 * Each event can be set as an exception
 * Each event on movement from an category to another can inherit the setting from the new category
-* Each event can inherit the properties from an category
 
 4 Event properties
 ===============================
