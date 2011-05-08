@@ -1,6 +1,6 @@
 Development mailing list
 ========================
-Go to:[dotophp mailing list](http://groups.google.com/group/dotophp)
+Go to: [dotophp mailing list](http://groups.google.com/group/dotophp)
 
 General Rules
 =============
