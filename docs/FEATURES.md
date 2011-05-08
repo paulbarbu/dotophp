@@ -7,7 +7,7 @@
 	* can set avatar (gavatar)
 	* can set a short description
 * Users will have a friends list
-* Users can put their phone number that will be available to all of his friends    
+* Users can put their phone number that will be available to all of his friends
 
 2 Category properties
 ===============================
@@ -24,7 +24,8 @@
 * Find best meeting times, given two agendas
 * Each event can be public, shared with a friend or private
 * Each event can be set as an exception
-* Each event, on movement from an category to another, can inherit the settings from the new category only if that event is not an exception
+* Each event, on movement from an category to another, can inherit the settings
+  from the new category only if that event is not an exception
 
 4 Event properties
 ===============================
@@ -55,4 +56,5 @@
 * posibility to ban/unban users
 * delete users
 
-*NOTE*: The priority of the features is from top to bottom. The highest priority is 1 and the lowest is 6. 
+*NOTE*: The priority of the features is from top to bottom. The highest
+ priority is 1 and the lowest is 6. 
