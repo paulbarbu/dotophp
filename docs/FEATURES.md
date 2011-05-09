@@ -1,6 +1,7 @@
 1 Users Features
 ===============================
 * Users will have an account, they will authentify using user & pass
+	* account recovery
 * Users can have a profile
 	* can set name
 	* can set birthday
