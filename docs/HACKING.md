@@ -7,7 +7,7 @@ Coding standards
 We've settled to [THESE](http://framework.zend.com/manual/en/coding-standard.overview.html)
 coding standards 
 
-Documentation standards
+Code documentation standards
 =======================
 According to our coding standards:
 > All documentation blocks ("docblocks") must be compatible with the 
