@@ -8,10 +8,10 @@ DOTOPHP - FOLDER STRUCTURE
         * css/    _style sheets for default template_
         * avatars/    _users avatars_
     * functions/    _WILL CONTAIN BUSNIESS LOGIC_
-        * users.php    _users related functions: i.e. userCreate()_
-        * category.php    _category related functions: i.e. catNew()_
-        * events.php    _events related functions: i.e. evDel()_
-        * plugins.php    _this will handle plugin related functions: i.e.
+        * users.php    _users related functions: e.g. userCreate()_
+        * category.php    _category related functions: e.g. catNew()_
+        * events.php    _events related functions: e.g. evDel()_
+        * plugins.php    _this will handle plugin related functions: e.g.
 	  plgNew()_
         * acp.php _acp related functions_
     * actions/    _different parts of the BL (like "controllers")_
@@ -21,7 +21,7 @@ DOTOPHP - FOLDER STRUCTURE
     * plugins/    _all available plugins will lay here_
         * services/
         * formats/
-    * config/    _configuration files: i.e. database configuration files_
+    * config/    _configuration files: e.g. database configuration files_
         * cfg_mysql.php _configuration file for mysql connection_
 
 **The functions names are not set yet, the names are used only for example.
