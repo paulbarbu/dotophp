@@ -15,6 +15,7 @@ According to our coding standards:
 
 * the command for generating the documentation: _phpdoc -o HTML:frames:earthli
 -d . -t docs/html -ti DoToPHP-docs_
+
 (Provided that you __cd__'ed in the project directory)
 
 Function names
