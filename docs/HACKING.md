@@ -7,16 +7,10 @@ Coding standards
 We've settled to [THESE](http://framework.zend.com/manual/en/coding-standard.overview.html)
 coding standards 
 
-Code documentation standards
+Documenting the code
 =======================
-According to our coding standards:
-> All documentation blocks ("docblocks") must be compatible with the 
-[phpDocumentor](http://phpdoc.org/) format.
-
-* the command for generating the documentation: _phpdoc -o HTML:frames:earthli
--d . -t docs/html -ti DoToPHP-docs_
-
-(Provided that you __cd__'ed in the project directory)
+Debate: [phpDocumentor alternative
+](https://groups.google.com/group/dotophp/browse_thread/thread/1d3fa6dc1ff316e?hl=ro)
 
 Function names
 ==============
