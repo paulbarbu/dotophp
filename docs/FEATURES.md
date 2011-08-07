@@ -6,7 +6,7 @@ popular web services as OpenID, Google or Facebook)
 * Users can have a profile
 	* can set name
 	* can set birthday
-	* can set avatar (gavatar)
+	* can set avatar (gravatar)
 	* can set a short description
 * Users will have a friends list
 * Users can put their phone number that will be available to all of his friends
