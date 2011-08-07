@@ -9,8 +9,7 @@ coding standards
 
 Documenting the code
 =======================
-Debate: [phpDocumentor alternative
-](https://groups.google.com/group/dotophp/browse_thread/thread/1d3fa6dc1ff316e?hl=ro)
+We will be using [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) to document the code
 
 Function names
 ==============
