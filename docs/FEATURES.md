@@ -25,7 +25,8 @@ popular web services as OpenID, Google or Facebook)
 * Each event can have its attributes individually changed
 * Find best meeting times, given two agendas
 * Each event can be public, shared with a friend or private
-* Each event can be set as an exception
+* Each event can be set as an exception and it won't inherit category properties
+on movement
 * Each event, on movement from an category to another, can inherit the settings
   from the new category only if that event is not an exception
 
