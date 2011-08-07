@@ -1,6 +1,7 @@
 1 Users Features
 ===============================
-* Users will have an account, they will authentify using user & pass
+* Users will have an account, they will authentify using user & pass(maybe using
+popular web services as OpenID, Google or Facebook)
 	* account recovery
 * Users can have a profile
 	* can set name
