@@ -22,7 +22,7 @@ Function names will be prefixed with:
 * ACP functions: __acp__
 
 And according to our coding standards the following letter will be capital.
-> _e.g.:_ catNew(), evDel()
+ > _e.g.:_ catNew(), evDel()
 
 General rules
 =============
