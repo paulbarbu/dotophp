@@ -50,7 +50,7 @@ on movement
 6 Plugins Features
 ===============================
 * plugins can be either services or formats
-* _services_ will interact will external programs
+* _services_ will interact with external programs
 * _formats_ will import and convert foreign formats into ours
 
 7 Administration Control Panel (ACP)
