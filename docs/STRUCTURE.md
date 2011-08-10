@@ -6,7 +6,6 @@ DOTOPHP - FOLDER STRUCTURE
         * index.php 
         * img/    _images for default template_
         * css/    _style sheets for default template_
-        * avatars/    _users avatars_
     * functions/    _WILL CONTAIN BUSNIESS LOGIC_
         * users.php    _users related functions: e.g. userCreate()_
         * category.php    _category related functions: e.g. catNew()_
