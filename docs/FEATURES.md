@@ -15,7 +15,6 @@ popular web services as OpenID, Google or Facebook)
 ===============================
 * Name
 * Description
-* Alarm: On/Off
 * Repeat: daily/weekly/monthly/yearly/Off
 
 3 Events Features
@@ -35,13 +34,15 @@ on movement
 * Name
 * Description
 * Priority
-* Alarm(inherited, changeable): 
-    * if On: set date/time to alert
-    * if Off: no alert available
+* Alarm: 
+    * On: set date/time to alert
+    * Off: no alert available
 * Repeat(inherited, changeable):
-    * if On: event will repeat together with the alarm 
-    * if Off: when the event reaches its due date it's marked as done
-* Start/due date (optional)
+    * On: event will repeat together with the alarm 
+    * Off:
+        * Start/Due date (optional): when the event reaches its due date it's marked as done
+            * if Start and/or Due dates are set then the alarm can be set only
+            between these dates
 
 5 Setup
 ===============================
