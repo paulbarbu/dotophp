@@ -205,7 +205,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `nick` (`nick`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `nick_2` (`nick`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
