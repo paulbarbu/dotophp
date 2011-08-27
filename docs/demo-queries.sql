@@ -67,4 +67,15 @@ SELECT 'Updating description, and setting avatar for the user with id=1' AS ' ';
 
 UPDATE user SET avatar='srv/http/avatars/img1.png', description='Me, jonny!' WHERE id=1;
 
+
+SELECT 'New \'Homework\' event!' AS ' ';
+
+INSERT INTO event(category_id, name, priority, repeat_interval, private, start, end, color) 
+    VALUES(2, 'Homework', 10, 1, 0, '2011-09-15 09:00:00', '2012-06-15 09:00:00', 255);
+
+SELECT 'Setting one alarm for \'Homework\' event!' AS ' ';
+
+INSERT INTO alarm(id, date) 
+    VALUES(2, '2011-10-03 20:00:00');
+
 SELECT '!!!FIREWORKS!!!' AS ' ';
