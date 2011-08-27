@@ -63,4 +63,8 @@ SELECT 'Deleting un-activated user accounts(7 days passed from the creation with
 
 DELETE FROM user WHERE activated='0000-00-00 00:00:00' AND (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created))/604799 >= 1;
 
+SELECT 'Updating description, and setting avatar for the user with id=1' AS ' ';
+
+UPDATE user SET avatar='srv/http/avatars/img1.png', description='Me, jonny!' WHERE id=1;
+
 SELECT '!!!FIREWORKS!!!' AS ' ';
