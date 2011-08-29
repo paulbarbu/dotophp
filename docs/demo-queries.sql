@@ -70,8 +70,8 @@ UPDATE user SET avatar='srv/http/avatars/img1.png', description='Me, jonny!' WHE
 
 SELECT 'New \'Homework\' event!' AS ' ';
 
-INSERT INTO event(category_id, name, priority, repeat_interval, private, start, end, color) 
-    VALUES(2, 'Homework', 10, 1, 0, '2011-09-15 09:00:00', '2012-06-15 09:00:00', 255);
+INSERT INTO event(category_id, name, priority, repeat_interval, private, start, end, color, exception) 
+    VALUES(2, 'Homework', 10, 1, 0, '2011-09-15 09:00:00', '2012-06-15 09:00:00', 255, 1);
 
 SELECT 'Setting one alarm for \'Homework\' event!' AS ' ';
 

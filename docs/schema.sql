@@ -109,6 +109,7 @@ CREATE TABLE `event` (
   `start` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `color` mediumint(8) unsigned NOT NULL,
+  `exception` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`event_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `event_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
@@ -226,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-24 21:28:44
+-- Dump completed on 2011-08-29 19:52:22
