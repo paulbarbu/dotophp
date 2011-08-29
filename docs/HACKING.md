@@ -11,20 +11,6 @@ Documenting the code
 =======================
 We will be using [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) to document the code
 
-Function names
-==============
-Function names will be prefixed with: 
-
-* User related functions: __user__
-* Category related functions: __cat__
-* Events related functions: __ev__
-* Plugins functions: __plg__
-* ACP functions: __acp__
-
-And according to our coding standards the following letter will be capital.
-
- > _e.g.:_ catNew(), evDel()
-
 General rules
 =============
 * all documentation files should use Markdown syntax
