@@ -74,7 +74,7 @@ CREATE TABLE `category` (
   `name` varchar(20) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `category_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `repeat_interval` tinyint(3) unsigned NOT NULL,
+  `repeat_interval` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `color` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`category_id`),
   KEY `id` (`id`),
@@ -102,14 +102,14 @@ CREATE TABLE `event` (
   `category_id` int(10) unsigned NOT NULL,
   `name` varchar(20) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
-  `priority` tinyint(3) unsigned NOT NULL,
+  `priority` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `event_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `repeat_interval` tinyint(3) unsigned NOT NULL,
-  `private` tinyint(4) NOT NULL,
+  `repeat_interval` tinyint(3) unsigned NOT NULL DEFAULT '0',
+  `private` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `start` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `color` mediumint(8) unsigned NOT NULL,
-  `exception` tinyint(4) DEFAULT NULL,
+  `exception` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`event_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `event_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
@@ -193,7 +193,7 @@ CREATE TABLE `user` (
   `answer` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `activated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `private` tinyint(4) NOT NULL,
+  `private` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `phone` varchar(20) DEFAULT NULL,
   `birthday` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `avatar` varchar(255) DEFAULT NULL,
@@ -227,4 +227,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-29 19:52:22
+-- Dump completed on 2011-08-29 21:31:23
