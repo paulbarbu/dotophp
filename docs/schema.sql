@@ -200,7 +200,7 @@ CREATE TABLE `user` (
   `city` varchar(30) NOT NULL,
   `phone` varchar(20) CHARACTER SET ascii DEFAULT NULL,
   `birthday` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `avatar` varchar(255) CHARACTER SET ascii DEFAULT NULL,
+  `avatar_path` varchar(255) CHARACTER SET ascii DEFAULT NULL,
   `sex` enum('M','F') CHARACTER SET ascii NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `nick` (`nick`),

@@ -64,7 +64,7 @@ DELETE FROM user WHERE activated='0000-00-00 00:00:00' AND (UNIX_TIMESTAMP(NOW()
 
 SELECT 'Updating description, and setting avatar for the user with id=1' AS ' ';
 
-UPDATE user SET avatar='srv/http/avatars/img1.png', description='Me, jonny!' WHERE id=1;
+UPDATE user SET avatar_path='srv/http/avatars/img1.png', description='Me, jonny!' WHERE id=1;
 
 
 SELECT 'New \'Homework\' event!' AS ' ';
