@@ -48,7 +48,7 @@ DROP TABLE IF EXISTS `bans`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bans` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `ip` int(11) NOT NULL,
+  `ip` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -184,9 +184,9 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `user` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `first_name` varchar(20) NOT NULL,
+  `last_name` varchar(20) NOT NULL,
+  `description` varchar(100) DEFAULT NULL,
   `nick` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` char(40) NOT NULL,
@@ -226,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-08-30 19:48:14
+-- Dump completed on 2011-09-01 15:34:20
