@@ -35,10 +35,7 @@
     * [a-z0-9]
     * fixed length: 10 chars
 * user.password:
-    * user input: \p{Ll} | \p{Lu} | \p{Nd} | \p{Sc} | \p{Sm} | \p{Pd} | \p{Pe} | \p{Po} | \p{Ps} | \p{Zs}
-        * max. length: 30 chars
-        * min. length: 6 chars
-    * SHA-1 encrypted string, fixed length: 40 chars
+    * SHA-1 sum
 * user.country: ISO-3166-1
 * user.sex: {'M', 'F'}
 * {category, event}.repeat_interval: {0, 1, 2, 3, 4} (Never, Daily, Weekly, Monthly, Yearly)
@@ -47,5 +44,10 @@
   {category, pending}.user_id: [0, 2^16)
 * bans.ip, category.category_id, event.{event_id, category_id},
   alarm.event_id: [0, 2^32)
+
+Discard:
+    * pass user input: \p{Ll} | \p{Lu} | \p{Nd} | \p{Sc} | \p{Sm} | \p{Pd} | \p{Pe} | \p{Po} | \p{Ps} | \p{Zs}
+        * max. length: 30 chars
+        * min. length: 6 chars
 
 

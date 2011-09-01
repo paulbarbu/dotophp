@@ -189,7 +189,7 @@ CREATE TABLE `user` (
   `description` varchar(100) DEFAULT NULL,
   `nick` varchar(20) CHARACTER SET ascii NOT NULL,
   `email` varchar(255) CHARACTER SET ascii NOT NULL,
-  `password` char(40) NOT NULL,
+  `password` char(40) CHARACTER SET ascii NOT NULL,
   `security_q` varchar(255) NOT NULL,
   `security_a` varchar(255) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -226,4 +226,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2011-09-01 23:31:36
+-- Dump completed on 2011-09-01 23:39:04
