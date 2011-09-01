@@ -1,44 +1,51 @@
-* User nicks, names, category and event names: 
+* user.{first_name, last_name}:
     * \p{Ll} | \p{Lu} | \p{Nd} | U+002D | U+005F
     * min. length: 1 char
     * max. length: 20 chars
-* Dates: timestamps
-* User, Category and Event Description: 
+* user.nick, {category, event}.name:
+    * [a-z0-9_-]
+    * min.length: 1 char
+    * max. length: 20 chars
+* user.{created, activated, birthday}, alarm.date, event.{start, end}: timestamp
+* {user, category, event}.description:
     * \p{Ll} | \p{Lu} | \p{Nd} | \p{Po} | \p{Ps} | \p{Pe} | \p{Sm} | \p{Pd}
     * max. length: 100
-* User emails: 
-    * \p{Ll} | \p{Nd} | U+0040 | U+002E
+* user.email:
+    * [a-z0-9_-@\.]
     * min. length: 5 chars
     * max. length: 255 chars
-* Security question and answer:
+* user.{security_q, security_a}:
     * \p{Ll} | \p{Lu} | \p{Po} | \p{Nd}
     * min. length: 8 chars
     * max. length: 255 chars
-* Private, exception: {0, 1} (FALSE, TRUE)
-* Timezones:
-    * \p{Ll} \p{Lu} | U+002F
+* {user, event}.private, event.exception: {0, 1} (FALSE, TRUE)
+* user.timezone:
+    * [a-z/]
     * max. length: 27 chars
-* City:
+* user.city:
     * \p{Lu} | \p{Ll}
     * max. length: 30 chars
-* Phone: 
-    * \p{Nd} | \p{Ps} | \p{Pe} | \p{Zs} | U+002B
+* user.phone:
+    * [0-9()-\s/]
     * max. length: 20 chars
-* Avatar: 
-    * \p{Ll} | \p{Lu} | \p{Nd} | U+002F
+* user.avatar:
+    * [a-z0-9_-/]
     * max. length: 255 chars
-* Activation code:
-    * \p{Ll} | \p{Nd}
+* pending.code:
+    * [a-z0-9]
     * fixed length: 10 chars
-* Password:
+* user.password:
     * user input: \p{Ll} | \p{Lu} | \p{Nd} | \p{Sc} | \p{Sm} | \p{Pd} | \p{Pe} | \p{Po} | \p{Ps} | \p{Zs}
         * max. length: 30 chars
         * min. length: 6 chars
     * SHA-1 encrypted string, fixed length: 40 chars
-* Country: ISO-3166-1
-* Sex: {'M', 'F'}
-* Repeat intervals: {0, 1, 2, 3, 4} (Never, Daily, Weekly, Monthly, Yearly)
-* Priority: {0, 1, 2, 3} (Low, Medium, High, Urgent)
-* Color, User and Initiator ID: [0, 2^16)
-* IP, Category and Event ID: [0, 2^32)
+* user.country: ISO-3166-1
+* user.sex: {'M', 'F'}
+* {category, event}.repeat_interval: {0, 1, 2, 3, 4} (Never, Daily, Weekly, Monthly, Yearly)
+* event.priority: {0, 1, 2, 3} (Low, Medium, High, Urgent)
+* {category, event}.color, user.id, {initiator, followee}_id, bans.id,
+  {category, pending}.user_id: [0, 2^16)
+* bans.ip, category.category_id, event.{event_id, category_id},
+  alarm.event_id: [0, 2^32)
+
 
