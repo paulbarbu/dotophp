@@ -4,8 +4,11 @@
  * @brief Globally used functions
  * @author Paul Barbu
  *
- * @defgroup globalFiles Global files
  * @ingroup globalFiles
+ */
+
+/**
+ * @defgroup globalFiles Global files
  */
 
 /**

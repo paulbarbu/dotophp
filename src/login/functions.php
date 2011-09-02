@@ -4,10 +4,9 @@
  * @brief Login functions
  * @author Paul Barbu
  *
- * @defgroup loginFiles Login module
  * @ingroup loginFiles
  */
 
 /**
- *
+ * @defgroup loginFiles Login module
  */

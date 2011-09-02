@@ -4,8 +4,11 @@
  * @brief Category and events home
  * @author Paul Barbu
  *
- * @defgroup agendaFiles Events and Categories
  * @ingroup agendaFiles
+ */
+
+/**
+ * @defgroup agendaFiles Events and Categories
  */
 
 /**
