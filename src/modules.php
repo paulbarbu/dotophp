@@ -1,12 +1,16 @@
 <?php
 return array(
     'home' => array(
-        'pre-process' => array(
-            'autologin' => 'login_user',
-        ),
         'VL' => array(
             'title' => 'Home',
             'content' => 'content.php',
+        ),
+    ),
+    'register' => array(
+        'VL' => array(
+            'title' => 'Register',
+            'content' => 'content.php',
+            'show_in_menu' => FALSE,
         ),
     ),
     '404' => array(
