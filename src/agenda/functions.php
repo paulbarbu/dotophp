@@ -21,8 +21,8 @@
  * allowed values: {0, 1, 2, 3, 4} (Never, Daily, Weekly, Monthly, Yearly), default: 0
  * @param int $color [1, 2^16) color code, base 10 representation
  * @param int $priority {0, 1, 2, 3} (Low, Medium, High, Urgent), default: 0
- * @param int $private allowed values: 1(private) or 0(public), default: 0
- * @param int $exception allowed values: 1(exception) or 0(normal), default: 0
+ * @param bool $private default: FALSE
+ * @param bool $exception default: FALSE
  * @param int $start timestamp representing the date and time the event should
  * start
  * @param int $end timestamp representing the date and time the event should
@@ -32,7 +32,7 @@
  * array(BOOL, string)
  */
 function addEvent($cat_id, $name, $desc = NULL, $repeat_interval = 0, $color = NULL,
-    $priority = 0, $private = 0, $exception = 0, $start = 0, $end = 0
+    $priority = 0, $private = FALSE, $exception = FALSE, $start = 0, $end = 0
     ){
 }
 
@@ -50,8 +50,8 @@ function addEvent($cat_id, $name, $desc = NULL, $repeat_interval = 0, $color = N
  * allowed values: {0, 1, 2, 3, 4} (Never, Daily, Weekly, Monthly, Yearly), default: 0
  * @param int $color [1, 2^16) color code, base 10 representation
  * @param int $priority {0, 1, 2, 3} (Low, Medium, High, Urgent), default: 0
- * @param int $private allowed values: 1(private) or 0(public), default: 0
- * @param int $exception allowed values: 1(exception) or 0(normal), default: 0
+ * @param bool $private default: FALSE
+ * @param bool $exception default: FALSE
  * @param int $start timestamp representing the date and time the event should
  * start
  * @param int $end timestamp representing the date and time the event should
