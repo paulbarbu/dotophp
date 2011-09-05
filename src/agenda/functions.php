@@ -34,6 +34,7 @@
 function addEvent($cat_id, $name, $desc = NULL, $repeat_interval = 0, $color = NULL,
     $priority = 0, $private = FALSE, $exception = FALSE, $start = 0, $end = 0
     ){
+    //GAP
 }
 
 /**
@@ -64,7 +65,7 @@ function updateEvent($event_id, $cat_id = NULL, $name = NULL, $desc = NULL,
     $repeat_interval = NULL, $color = NULL, $priority = NULL, $private = NULL,
     $exception = NULL, $start = NULL, $end = NULL
     ){
-
+    //GAP
 }
 
 /**
@@ -73,6 +74,7 @@ function updateEvent($event_id, $cat_id = NULL, $name = NULL, $desc = NULL,
  * @param int $event_id [1, 2^32) the event's ID the user intends to delete
  */
 function delEvent($event_id){
+    //GAP
 }
 
 /**
@@ -93,6 +95,7 @@ function delEvent($event_id){
 function addCat($user_id, $name, $description = NULL, $repeat_interval = 0,
     $color = NULL
     ){
+    //GAP
 }
 
 /**
@@ -110,6 +113,7 @@ function addCat($user_id, $name, $description = NULL, $repeat_interval = 0,
 function updateCat($category_id, $name = NULL, $description = NULL,
     $repeat_interval = NULL, $color = NULL
     ){
+    //GAP
 }
 
 /**
@@ -121,4 +125,5 @@ function updateCat($category_id, $name = NULL, $description = NULL,
  * array(BOOL, string)
  */
 function delCat($category_id){
+    //GAP
 }
