@@ -18,7 +18,7 @@
  *
  * @return BOOL TRUE if the nickname is valid, else FALSE
  */
-function checkNick($nick){
+function isValidNick($nick){
     //GAP
 }
 

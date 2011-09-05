@@ -53,18 +53,18 @@ function genACode($nick){
  * @return an array consisting of a BOOL value and a NULL or the error string,
  * array(BOOL, string)
  */
-function checkPostKeys(){
+function containsKeys($superglobal){
     //GAP
 }
 
 /**
- * Checks the name according to the name field
+ * Checks if the name is valid according to the name field
  *
  * @param string $name the name to be verified
  *
  * @return BOOL TRUE if the name is valid, else FALSE
  */
-function checkName($name){
+function isValidName($name){
     //GAP
 }
 
@@ -75,7 +75,7 @@ function checkName($name){
  *
  * @return BOOL TRUE if the email is valid, else FALSE
  */
-function checkMail($email){
+function isValidMail($email){
     //GAP
 }
 
@@ -86,7 +86,7 @@ function checkMail($email){
  *
  * @return BOOL TRUE if the city is valid, else FALSE
  */
-function checkCity($city){
+function isValidCity($city){
     //GAP
 }
 
@@ -97,7 +97,7 @@ function checkCity($city){
  *
  * @return BOOL TRUE if the phone number is valid, else, FALSE
  */
-function checkPhone($phone){
+function isValidPhone($phone){
     //GAP
 }
 
@@ -108,7 +108,7 @@ function checkPhone($phone){
  *
  * @return BOOL TRUE if the format is valid, else, FALSE
  */
-function checkBDate($bdate){
+function isValidBDate($bdate){
     //GAP
 }
 
