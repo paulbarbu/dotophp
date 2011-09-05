@@ -33,6 +33,19 @@ function sendMail(){
 }
 
 /**
+ * Generate the activation code
+ *
+ * Needed by the user on registration or account recovery
+ *
+ * @param string $nick user's nickname
+ *
+ * @return string activation code
+ */
+function genACode($nick){
+    //GAP
+}
+
+/**
  * Checks the $_POST superglobal array if contains the specified keys
  *
  * You can pass a variable number of strings as arguments
