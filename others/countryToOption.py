@@ -1,9 +1,10 @@
 #! /usr/bin/env python2.7
 
 options = ""
-template = '<option value="%(val)s">%(text)s</option>\n';
+#template = '<option value="%(val)s">%(text)s</option>\n';
+template = "'%(val)s' => '%(text)s',\n"
 
-with open('clist', 'r') as f:
+with open('/home/paullik/clist', 'r') as f:
     line = f.readline()
 
     while '' != line:

@@ -119,6 +119,36 @@ function checkBDate($bdate){
  *
  * @return BOOL TRUE if the description is valid, else, FALSE
  */
-function checkDesc($desc){
+function isValidDesc($desc){
     //GAP
+}
+
+/**
+ * Helper function
+ *
+ * Display array contents as HTML <option></option>
+ *
+ * @param array $text the text to be written
+ * @param mixed $values the values to assign the options
+ *
+ * @return BOOL TRUE on success, else, FALSE
+ */
+function arrayToHTML($text, $values, $template = '<option value="%s">%s</option>'){
+    if(is_array($values) && is_array($text)){
+
+        $text_count = count($text);
+        if($text_count == count($values)){
+            for($i=0; $i<$text_count; $i++){
+                printf($template . PHP_EOL, $values[$i], $text[$i]);
+            }
+        }
+        else{
+            return FALSE;
+        }
+    }
+    else{
+        return FALSE;
+    }
+
+    return TRUE;
 }
