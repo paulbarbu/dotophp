@@ -126,6 +126,18 @@ function isValidDesc($desc){
 }
 
 /**
+ * Check if the captcha code entered matches the generated one
+ *
+ * @param string $captcha the genereated captcha code
+ * @param string $captcha_input the code user entered
+ *
+ * @return BOOL TRUE if the two string match, else, FALSE
+ */
+function isValidCaptcha($captcha, $captcha_input){
+    //GAP
+}
+
+/**
  * Helper function
  *
  * Display array contents as HTML <option></option>
