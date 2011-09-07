@@ -41,8 +41,8 @@ function isValidNick($nick){
  * @return an array consisting of a BOOL value and a NULL or the error string,
  * array(BOOL, string)
  */
-function addUser($first_name, $last_name, $description = NULL, $nickname, $email,
-    $private, $tz, $country, $city, $phone = NULL, $birthday = NULL, $sex
+function addUser($first_name, $last_name, $nickname, $email, $private, $tz,
+    $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
     //GAP
 }

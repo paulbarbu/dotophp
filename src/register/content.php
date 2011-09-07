@@ -7,8 +7,15 @@
  * @ingroup registerFiles
  */
 
+/**
+ * Country list
+ */
 $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'countries.php';
+
+/**
+ * Time-zones list
+ */
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
 ?>
@@ -30,11 +37,11 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
     <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength=255 />
     </td></tr><tr><td>
     <label for="tz">Timezone:</label></td><td><select id="tz" name="timezone">
-        <?php arrayToHTML(array_values($tz), array_values($tz)); ?>
+        <?php arrayToOption(array_values($tz), array_values($tz)); ?>
     </select>
     </td></tr><tr><td>
     <label for="country">Country:</label></td><td><select id="country" name="country">
-        <?php arrayToHTML(array_values($countries), array_keys($countries)); ?>
+        <?php arrayToOption(array_values($countries), array_keys($countries)); ?>
     </select>
     </td></tr><tr><td>
     <label for="city">City:</label></td><td><input id="city" type="text" name="city" maxlength=30 />
@@ -78,10 +85,5 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 </fieldset>
 
 <input type="submit" name="register" value="Register" />
+</center>
 </form>
-
-<!--
-    <label for="">FOO:</label></td><td><input id="" type="" name="" maxlength=FOO />
-    </td></tr><tr><td>
-PASSWORD, SEC_Q and SEC_A on activation
--->
