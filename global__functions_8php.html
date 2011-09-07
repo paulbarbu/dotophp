@@ -86,34 +86,319 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#aa492afe07c534f744ce8ad1fa5f89594">filterInput</a> ($rawInput)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#afa3fa08307cdfd2fc7b79df9ae8fa77b">filterInput</a> ()</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a9957fbcb4742147dd967804ee3319b03">genACode</a> ($nick)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a491375b84866612b3598590e03fa3c91">containsKeys</a> ($superglobal)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#aa688e697bf73b43eb6f93f0e9c6a9632">isValidName</a> ($name)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#ab4018ad0c0b8a3704be23aa68edde33d">isValidMail</a> ($email)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a48ad6780be6f1ef3cb5bb52601f55895">isValidCity</a> ($city)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a74089bd565f52f46b8bd233f71008d10">isValidPhone</a> ($phone)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a2560994b30479cdf6c1e62bcc16dd5d7">isValidBDate</a> ($bdate)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#aaf5ced03ebad050a2768016a456502f6">isValidDesc</a> ($desc)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a7542a5072e9d36b538c248330d51c651">isValidCaptcha</a> ($captcha, $captcha_input)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a346286438acc30958afabd229f288a2d">arrayToOption</a> ($text, $values, $template= '&lt; option value=&quot;%s&quot;&gt;%s&lt;/option &gt;')</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Globally used functions. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Paul Barbu </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="aa492afe07c534f744ce8ad1fa5f89594"></a><!-- doxytag: member="global_functions.php::filterInput" ref="aa492afe07c534f744ce8ad1fa5f89594" args="($rawInput)" -->
+<a class="anchor" id="a346286438acc30958afabd229f288a2d"></a><!-- doxytag: member="global_functions.php::arrayToOption" ref="a346286438acc30958afabd229f288a2d" args="($text, $values, $template= '&lt; option value=&quot;%s&quot;&gt;%s&lt;/option &gt;')" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">arrayToOption </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>values</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>template</em> = <code>'&lt;option&#160;value=&quot;%s&quot;&gt;%s&lt;/option&gt;'</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Helper function</p>
+<p>Display array contents as HTML &lt;option&gt;&lt;/option&gt;</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$text</td><td>the text to be written </td></tr>
+    <tr><td class="paramtype">mixed</td><td class="paramname">$values</td><td>the values to assign the options</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE on success, else, FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a491375b84866612b3598590e03fa3c91"></a><!-- doxytag: member="global_functions.php::containsKeys" ref="a491375b84866612b3598590e03fa3c91" args="($superglobal)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">containsKeys </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>superglobal</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Tells whether the $_POST or $_GET superglobal arrays contain the specified keys</p>
+<p>You can pass a variable number of strings as arguments</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">array</td><td class="paramname">$superglobal</td><td>the superglobal array $_POST or $_GET to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>an array consisting of a BOOL value and a NULL or the error string, array(BOOL, string) </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afa3fa08307cdfd2fc7b79df9ae8fa77b"></a><!-- doxytag: member="global_functions.php::filterInput" ref="afa3fa08307cdfd2fc7b79df9ae8fa77b" args="()" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">filterInput </td>
           <td>(</td>
-          <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>rawInput</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div>
 <div class="memdoc">
 <p>Filters the user's input(sanitizes it) to avoid building an attack vector</p>
+<p>This functions accepts a variable number of arguments</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>array $filteredInput the sanitized input on the same position in the array as it's place in the args list </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9957fbcb4742147dd967804ee3319b03"></a><!-- doxytag: member="global_functions.php::genACode" ref="a9957fbcb4742147dd967804ee3319b03" args="($nick)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">genACode </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>nick</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Generate the activation code</p>
+<p>Needed by the user on registration or account recovery</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
-    <tr><td class="paramtype">string</td><td class="paramname">$rawInput</td><td>user's input to be filtered</td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$nick</td><td>user's nickname</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="return"><dt><b>Returns:</b></dt><dd>string $filteredInput the sanitized input </dd></dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string activation code </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2560994b30479cdf6c1e62bcc16dd5d7"></a><!-- doxytag: member="global_functions.php::isValidBDate" ref="a2560994b30479cdf6c1e62bcc16dd5d7" args="($bdate)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidBDate </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>bdate</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks if a birthdate was enetered in the required format</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$bdate</td><td>the string to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the format is valid, else, FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7542a5072e9d36b538c248330d51c651"></a><!-- doxytag: member="global_functions.php::isValidCaptcha" ref="a7542a5072e9d36b538c248330d51c651" args="($captcha, $captcha_input)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidCaptcha </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>captcha</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>captcha_input</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Check if the captcha code entered matches the generated one</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$captcha</td><td>the genereated captcha code </td></tr>
+    <tr><td class="paramtype">string</td><td class="paramname">$captcha_input</td><td>the code user entered</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the two string match, else, FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a48ad6780be6f1ef3cb5bb52601f55895"></a><!-- doxytag: member="global_functions.php::isValidCity" ref="a48ad6780be6f1ef3cb5bb52601f55895" args="($city)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidCity </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>city</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks the validity of a string representing a city</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$city</td><td>the string to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the city is valid, else FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aaf5ced03ebad050a2768016a456502f6"></a><!-- doxytag: member="global_functions.php::isValidDesc" ref="aaf5ced03ebad050a2768016a456502f6" args="($desc)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidDesc </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>desc</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks if a description is valid</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$desc</td><td>the string to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the description is valid, else, FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab4018ad0c0b8a3704be23aa68edde33d"></a><!-- doxytag: member="global_functions.php::isValidMail" ref="ab4018ad0c0b8a3704be23aa68edde33d" args="($email)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidMail </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>email</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks whether the given email is valid or not</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$email</td><td>string to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the email is valid, else FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="aa688e697bf73b43eb6f93f0e9c6a9632"></a><!-- doxytag: member="global_functions.php::isValidName" ref="aa688e697bf73b43eb6f93f0e9c6a9632" args="($name)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidName </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks if the name is valid according to the name field</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$name</td><td>the name to be verified</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the name is valid, else FALSE </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a74089bd565f52f46b8bd233f71008d10"></a><!-- doxytag: member="global_functions.php::isValidPhone" ref="a74089bd565f52f46b8bd233f71008d10" args="($phone)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidPhone </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>phone</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks if a phone number entered as a string is valid</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$phone</td><td>the string to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the phone number is valid, else, FALSE </dd></dl>
 
 </div>
 </div>
@@ -123,7 +408,7 @@ Functions</h2></td></tr>
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -135,7 +420,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Sep 2 2011 18:11:57 for DoToPHP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 7 2011 11:57:00 for DoToPHP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
