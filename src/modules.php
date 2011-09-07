@@ -17,6 +17,20 @@ return array(
         ),
         'BL' => array(
             'register' => 'register.php',
+            'functions' => 'functions.php',
+        ),
+    ),
+
+    /* activate or recover */
+    'activate' => array(
+        'VL' => array(
+            'title' => 'Activate',
+            'content' => 'content.php',
+            'show_in_menu' => FALSE,
+        ),
+        'BL' => array(
+            'activate' => 'activate.php',
+            'functions' => 'functions.php',
         ),
     ),
 
@@ -30,6 +44,16 @@ return array(
         ),
         'BL' => array(
             'notfound' => '404.php',
+        ),
+    ),
+
+    /* captcha image */
+    'captcha' => array(
+        'VL' => array(
+            'show_in_menu' => FALSE,
+        ),
+        'BL' => array(
+            'captcha' => 'captcha.php',
         ),
     ),
 );
