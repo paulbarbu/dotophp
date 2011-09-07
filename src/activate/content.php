@@ -1,3 +1,12 @@
+<?php
+/**
+ * @file src/activate/content.php
+ * @brief HTML for activate module
+ * @author Paul Barbu
+ *
+ * @ingroup activateFiles
+ */
+?>
 <form method="post" action="" >
 <table border=0 cellspacing=5>
 <tr><td>

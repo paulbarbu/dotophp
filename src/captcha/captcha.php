@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file src/captcha/captcha.php
+ * @brief Captcha module
+ * @author Paul Barbu
+ *
+ * @ingroup captchaFiles
+ */
+
+/**
+ * @defgroup captchaFiles Captcha module
+ */
 
 $chars = '0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
 $used = '!';
