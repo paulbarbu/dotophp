@@ -16,8 +16,8 @@ return array(
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
-            'register' => 'register.php',
             'functions' => 'functions.php',
+            'register' => 'register.php',
         ),
     ),
 
@@ -29,8 +29,20 @@ return array(
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
-            'activate' => 'activate.php',
             'functions' => 'functions.php',
+            'activate' => 'activate.php',
+        ),
+    ),
+
+    /* recover a lost account */
+    'recover' => array(
+        'VL' => array(
+            'title' => 'Recover account',
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'functions' => 'functions.php',
+            'recover' => 'recover.php',
         ),
     ),
 
