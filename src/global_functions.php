@@ -24,15 +24,6 @@ function filterInput(){
 }
 
 /**
- * Sends an email to a user
- *
- * TODO
- */
-function sendMail(){
-    //GAP
-}
-
-/**
  * Generate the activation code
  *
  * Needed by the user on registration or account recovery
@@ -147,7 +138,7 @@ function isValidCaptcha($captcha, $captcha_input){
  *
  * @return BOOL TRUE on success, else, FALSE
  */
-function arrayToHTML($text, $values, $template = '<option value="%s">%s</option>'){
+function arrayToOption($text, $values, $template = '<option value="%s">%s</option>'){
     if(is_array($values) && is_array($text)){
 
         $text_count = count($text);
