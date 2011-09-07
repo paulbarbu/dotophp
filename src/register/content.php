@@ -69,6 +69,14 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 
 </td></tr></table>
 
+<center>
+<fieldset>
+<legend>Security code</legend>
+<label for="captcha">Please enter the security code shown in the image</label><br />
+<img src="index.php?show=captcha" alt="Captcha"/><br />
+ <input id="captcha" type="text" name="captcha" />
+</fieldset>
+
 <input type="submit" name="register" value="Register" />
 </form>
 
