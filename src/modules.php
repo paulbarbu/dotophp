@@ -55,6 +55,22 @@ return array(
         ),
     ),
 
+    /* login module */
+    'login' => array(
+        'preprocess' => array(
+            'autologin' => 'autologin.php',
+        ),
+        'VL' => array(
+            'title' => 'Log in',
+            'content' => 'content.php',
+            'show_in_menu' => FALSE,
+        ),
+        'BL' => array(
+            'functions' => 'functions.php',
+            'login' => 'login.php',
+        ),
+    ),
+
     /* inexistent page */
     '404' => array(
         'VL' => array(
