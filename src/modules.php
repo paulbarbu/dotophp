@@ -1,4 +1,13 @@
 <?php
+/**
+ * @file src/modules.php
+ * @brief Modules declarations
+ * @author Paul Barbu
+ *
+ * @ingroup globalFiles
+ *
+ * All modules used by dotophp are set here
+ */
 return array(
     /* Home page */
     'home' => array(
