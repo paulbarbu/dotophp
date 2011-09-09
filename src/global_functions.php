@@ -62,6 +62,17 @@ function isValidName($name){
 }
 
 /**
+ * Checks if a given nickname is valid(according to the domain fileds)
+ *
+ * @param string $nick the nickname to be checked
+ *
+ * @return BOOL TRUE if the nickname is valid, else FALSE
+ */
+function isValidNick($nick){
+    //GAP
+}
+
+/**
  * Checks whether the given email is valid or not
  *
  * @param string $email string to be checked

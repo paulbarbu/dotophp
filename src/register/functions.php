@@ -12,17 +12,6 @@
  */
 
 /**
- * Checks if a given nickname is valid(according to the domain fileds)
- *
- * @param string $nick the nickname to be checked
- *
- * @return BOOL TRUE if the nickname is valid, else FALSE
- */
-function isValidNick($nick){
-    //GAP
-}
-
-/**
  * Add a new user into the database
  *
  * @param string $first_name user's first name
