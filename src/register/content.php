@@ -62,7 +62,7 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
     </td></tr><tr><td>
     <label for="sm">Male</label><br />
     <label for="sf"> Female</label></td><td>
-    <input type="radio" name="sex" value="M" id="sm" checked /><br />
+    <input type="radio" name="sex" value="M" id="sm" checked="checked" /><br />
     <input type="radio" name="sex" value="F" id="sf" />
     </td></tr><tr><td>
     <label for="phone">Phone:</label></td><td><input id="phone" type="text" name="phone" maxlength=20 />
