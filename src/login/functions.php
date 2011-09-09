@@ -6,7 +6,3 @@
  *
  * @ingroup loginFiles
  */
-
-/**
- * @defgroup loginFiles Login module
- */
