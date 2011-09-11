@@ -70,6 +70,17 @@ return array(
             'login' => 'login.php',
         ),
     ),
+    /* logout module */
+    'logout' => array(
+        'VL' => array(
+            'title' => 'Log out',
+            'content' => 'content.php',
+            'show_in_menu' => FALSE,
+        ),
+        'BL' => array(
+            'logout' => 'logout.php',
+        ),
+    ),
 
     /* inexistent page */
     '404' => array(
