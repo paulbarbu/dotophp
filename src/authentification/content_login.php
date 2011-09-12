@@ -1,10 +1,10 @@
 <?php
 /**
- * @file src/login/content.php
- * @brief content of the login module
+ * @file src/authentification/content_login.php
+ * @brief Content of the login part of the authentification module
  * @author Paul Barbu
  *
- * @ingroup loginFiles
+ * @ingroup authFiles
  */
 ?>
 <form action="" method="post">
