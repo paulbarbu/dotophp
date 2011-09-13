@@ -55,30 +55,22 @@ return array(
         ),
     ),
 
-    /* login module */
-    'login' => array(
+    'auth' => array(
         'preprocess' => array(
             'autologin' => 'autologin.php',
         ),
         'VL' => array(
-            'title' => 'Log in',
-            'content' => 'content.php',
+            'title' => 'Authentication',
+            'content_login' => 'content_login.php',
+            'content_logout' => 'content_logout.php',
+            'content' => 'content_auth.php',
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
             'functions' => 'functions.php',
             'login' => 'login.php',
-        ),
-    ),
-    /* logout module */
-    'logout' => array(
-        'VL' => array(
-            'title' => 'Log out',
-            'content' => 'content.php',
-            'show_in_menu' => FALSE,
-        ),
-        'BL' => array(
             'logout' => 'logout.php',
+            'auth' => 'auth.php',
         ),
     ),
 
