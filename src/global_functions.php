@@ -140,6 +140,18 @@ function isValidCaptcha($captcha, $captcha_input){
 }
 
 /**
+ * Get's the state of an user
+ *
+ * 'OUT' means not-logged in user
+ * 'IN' means logged in user
+ *
+ * @return string $state 'IN' or 'OUT'
+ */
+function getState(){
+    //GAP
+}
+
+/**
  * Helper function
  *
  * Display array contents as HTML <option></option>
