@@ -90,12 +90,14 @@ Functions</h2></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a9957fbcb4742147dd967804ee3319b03">genACode</a> ($nick)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a491375b84866612b3598590e03fa3c91">containsKeys</a> ($superglobal)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#aa688e697bf73b43eb6f93f0e9c6a9632">isValidName</a> ($name)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#af9a7175fbb088675fb98ef3092a9c6bb">isValidNick</a> ($nick)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#ab4018ad0c0b8a3704be23aa68edde33d">isValidMail</a> ($email)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a48ad6780be6f1ef3cb5bb52601f55895">isValidCity</a> ($city)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a74089bd565f52f46b8bd233f71008d10">isValidPhone</a> ($phone)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a2560994b30479cdf6c1e62bcc16dd5d7">isValidBDate</a> ($bdate)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#aaf5ced03ebad050a2768016a456502f6">isValidDesc</a> ($desc)</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a7542a5072e9d36b538c248330d51c651">isValidCaptcha</a> ($captcha, $captcha_input)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#afbf787ced76807989fb3093e1772c5a1">getState</a> ()</td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="global__functions_8php.html#a346286438acc30958afabd229f288a2d">arrayToOption</a> ($text, $values, $template= '&lt; option value=&quot;%s&quot;&gt;%s&lt;/option &gt;')</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
@@ -213,6 +215,25 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="return"><dt><b>Returns:</b></dt><dd>string activation code </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="afbf787ced76807989fb3093e1772c5a1"></a><!-- doxytag: member="global_functions.php::getState" ref="afbf787ced76807989fb3093e1772c5a1" args="()" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">getState </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Get's the state of an user</p>
+<p>'OUT' means not-logged in user 'IN' means logged in user</p>
+<dl class="return"><dt><b>Returns:</b></dt><dd>string $state 'IN' or 'OUT' </dd></dl>
 
 </div>
 </div>
@@ -377,6 +398,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="af9a7175fbb088675fb98ef3092a9c6bb"></a><!-- doxytag: member="global_functions.php::isValidNick" ref="af9a7175fbb088675fb98ef3092a9c6bb" args="($nick)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">isValidNick </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>nick</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+<p>Checks if a given nickname is valid(according to the domain fileds)</p>
+<dl><dt><b>Parameters:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">string</td><td class="paramname">$nick</td><td>the nickname to be checked</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="return"><dt><b>Returns:</b></dt><dd>BOOL TRUE if the nickname is valid, else FALSE </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a74089bd565f52f46b8bd233f71008d10"></a><!-- doxytag: member="global_functions.php::isValidPhone" ref="a74089bd565f52f46b8bd233f71008d10" args="($phone)" -->
 <div class="memitem">
 <div class="memproto">
@@ -420,7 +466,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 7 2011 11:57:00 for DoToPHP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Sep 13 2011 18:25:55 for DoToPHP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
