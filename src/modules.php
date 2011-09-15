@@ -66,9 +66,7 @@ return array(
         ),
         'BL' => array(
             //'functions' => 'functions.php',
-            'login' => 'login.php',
-            'logout' => 'logout.php',
-            'auth' => 'auth.php',
+            'auth' => getStrByState('logout.php', 'login.php'),
         ),
     ),
 
