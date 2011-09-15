@@ -1,6 +1,6 @@
 <?php
 /**
- * @file src/authentification/autologin.php
+ * @file src/auth/autologin.php
  * @brief Autologin functionality
  * @author Paul Barbu
  *
@@ -8,5 +8,5 @@
  */
 
 /**
- * @defgroup authFiles Authentification module
+ * @defgroup authFiles Authentication module
  */

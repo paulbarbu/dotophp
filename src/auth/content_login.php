@@ -1,7 +1,7 @@
 <?php
 /**
- * @file src/authentification/content_login.php
- * @brief Content of the login part of the authentification module
+ * @file src/auth/content_login.php
+ * @brief Content of the login part of the authentication module
  * @author Paul Barbu
  *
  * @ingroup authFiles
