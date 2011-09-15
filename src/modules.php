@@ -61,13 +61,11 @@ return array(
         ),
         'VL' => array(
             'title' => 'Authentication',
-            'content_login' => 'content_login.php',
-            'content_logout' => 'content_logout.php',
-            'content' => 'content_auth.php',
+            'content' => getStrByState('content_logout.php', 'content_login.php'),
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
-            'functions' => 'functions.php',
+            //'functions' => 'functions.php',
             'login' => 'login.php',
             'logout' => 'logout.php',
             'auth' => 'auth.php',
