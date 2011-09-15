@@ -86,13 +86,13 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="activate_2functions_8php.html#aeb82d2aac2fd6d8a4229548590f3181e">isValidACode</a> ($acode)</td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="activate_2functions_8php.html#a39284beb75baed286c1f8a5b7f64b803">isValidACode</a> ($link, $acode)</td></tr>
 </table>
 <hr/><a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Functions for activate module. </p>
 <dl class="author"><dt><b>Author:</b></dt><dd>Paul Barbu </dd></dl>
 </div><hr/><h2>Function Documentation</h2>
-<a class="anchor" id="aeb82d2aac2fd6d8a4229548590f3181e"></a><!-- doxytag: member="functions.php::isValidACode" ref="aeb82d2aac2fd6d8a4229548590f3181e" args="($acode)" -->
+<a class="anchor" id="a39284beb75baed286c1f8a5b7f64b803"></a><!-- doxytag: member="functions.php::isValidACode" ref="a39284beb75baed286c1f8a5b7f64b803" args="($link, $acode)" -->
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -100,8 +100,18 @@ Functions</h2></td></tr>
           <td class="memname">isValidACode </td>
           <td>(</td>
           <td class="paramtype">$&#160;</td>
-          <td class="paramname"><em>acode</em></td><td>)</td>
+          <td class="paramname"><em>link</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>acode</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div>
@@ -109,6 +119,7 @@ Functions</h2></td></tr>
 <p>Compare the user's activation code with the activation code in the DB</p>
 <dl><dt><b>Parameters:</b></dt><dd>
   <table class="params">
+    <tr><td class="paramtype"></td><td class="paramname">mysqli</td><td>a link identifier returned by mysqli_connect() or mysqli_init() </td></tr>
     <tr><td class="paramtype">string</td><td class="paramname">$acode</td><td>user supplied activation code</td></tr>
   </table>
   </dd>
@@ -135,7 +146,7 @@ Functions</h2></td></tr>
 
 
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 13 2011 18:25:55 for DoToPHP by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 15 2011 20:17:07 for DoToPHP by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.5.1
 </small></address>
