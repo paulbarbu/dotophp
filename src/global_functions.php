@@ -166,7 +166,7 @@ function isUser($link, $nickname = NULL, $email = NULL){
  */
 function getStrByState($in_str, $out_str){
     //GAP
-    return $out_file; //random :) - ignore this line
+    return $out_str; //random :) - ignore this line
 }
 
 /**
