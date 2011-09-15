@@ -140,15 +140,33 @@ function isValidCaptcha($captcha, $captcha_input){
 }
 
 /**
- * Get's the state of an user
+ * Query the DB to check if the email and/or nickname are supplied correctly
  *
- * 'OUT' means not-logged in user
- * 'IN' means logged in user
+ * @param mysqli a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $nickname user's nickname
+ * @param string $email user's email
  *
- * @return string $state 'IN' or 'OUT'
+ * @return BOOL TRUE if the user's credentials are found in the DB, else, FALSE
  */
-function getState(){
+function isUser($link, $nickname = NULL, $email = NULL){
     //GAP
+}
+
+/**
+ * Choose a string depending on the state of an user
+ *
+ * 'OUT' means not-logged in user \n
+ * 'IN' means logged in user \n
+ * This function should be useed in the configuration file \n
+ *
+ * @param string $in_str this string will be returned if the user's state is IN
+ * @param string $out_str this string will be returned if the user's state is OUT
+ *
+ * @return string $in_str or $out_str
+ */
+function getStrByState($in_str, $out_str){
+    //GAP
+    return $out_file; //random :) - ignore this line
 }
 
 /**
