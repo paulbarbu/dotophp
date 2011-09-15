@@ -14,6 +14,7 @@
 /**
  * Add a new user into the database
  *
+ * @param mysqli a link identifier returned by mysqli_connect() or mysqli_init()
  * @param string $first_name user's first name
  * @param string $last_name user's last name
  * @param string $description user's description
@@ -30,7 +31,7 @@
  * @return an array consisting of a BOOL value and a NULL or the error string,
  * array(BOOL, string)
  */
-function addUser($first_name, $last_name, $nickname, $email, $private, $tz,
+function addUser($link, $first_name, $last_name, $nickname, $email, $private, $tz,
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
     //GAP

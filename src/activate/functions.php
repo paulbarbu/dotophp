@@ -14,10 +14,11 @@
 /**
  * Compare the user's activation code with the activation code in the DB
  *
+ * @param mysqli a link identifier returned by mysqli_connect() or mysqli_init()
  * @param string $acode user supplied activation code
  *
  * @return BOOL TRUE if the strings match, else, FALSE
  */
-function isValidACode($acode){
+function isValidACode($link, $acode){
     //GAP
 }
