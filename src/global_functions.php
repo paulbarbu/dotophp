@@ -45,17 +45,26 @@ function genACode($nick){
 }
 
 /**
- * Tells whether the $_POST or $_GET superglobal arrays contain the specified keys
+ * Tells whether the given array contain the specified keys
  *
  * You can pass a variable number of strings as arguments
  *
- * @param array $superglobal the superglobal array $_POST or $_GET to be checked
+ * @param array $arr the array to be checked(can be a superglobal too)
  *
  * @return an array consisting of a BOOL value and a NULL or the error string,
  * array(BOOL, string)
  */
-function containsKeys($superglobal){
-    //GAP
+function containsKeys($arr){
+
+    $keys = array_slice(func_get_args(), 1);
+
+    foreach($keys as $key){
+        if(!array_key_exists($key, $arr)){
+            return array(FALSE, $key . " does not exists in " . $arr);
+        }
+    }
+
+    return array(TRUE, NULL);
 }
 
 /**
