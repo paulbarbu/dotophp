@@ -20,7 +20,14 @@
  * array as it's place in the args list
  */
 function filterInput(){
-    //GAP
+    $filteredInput = array();
+    $args = func_get_args();
+
+    foreach($args as $text){
+        $filteredInput[] = strip_tags($text);
+    }
+
+    return $filteredInput;
 }
 
 /**
@@ -33,7 +40,8 @@ function filterInput(){
  * @return string activation code
  */
 function genACode($nick){
-    //GAP
+
+    return implode('', array_slice(str_split(sha1($nick . time())), 0, 10));
 }
 
 /**
