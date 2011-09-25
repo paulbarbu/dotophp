@@ -75,7 +75,20 @@ function containsKeys($arr){
  * @return BOOL TRUE if the name is valid, else FALSE
  */
 function isValidName($name){
-    //GAP
+    $length = strlen($name);
+
+
+    if(1 <= $length && $length <= 20){
+        for($i=0; $i<$length; $i++){
+            if(!preg_match("/[\p{Ll}\p{Lu}\p{Nd}_-]/u", $name[$i])){
+                return FALSE;
+            }
+        }
+
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 /**
@@ -166,7 +179,26 @@ function isValidCaptcha($captcha, $captcha_input){
  * @return BOOL TRUE if the user's credentials are found in the DB, else, FALSE
  */
 function isUser($link, $nickname = NULL, $email = NULL){
-    //GAP
+    $query = 'SELECT nick, email FROM user WHERE 1';
+
+    if($nickname){
+        $query .= " AND nick = '" . $nickname . "'";
+    }
+
+
+    if($email){
+        $query .= " AND email = '" . $email . "'";
+    }
+
+    $result = mysqli_query($link, $query . ";");
+
+    $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    if(empty($user)){
+        return FALSE;
+    }
+
+    return TRUE;
 }
 
 /**
