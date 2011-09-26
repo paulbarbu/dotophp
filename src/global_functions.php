@@ -183,18 +183,23 @@ function isValidCaptcha($captcha, $captcha_input){
  * @return BOOL TRUE if the user's credentials are found in the DB, else, FALSE
  */
 function isUser($link, $nickname = NULL, $email = NULL){
-    $query = 'SELECT nick, email FROM user WHERE 1';
+    $query = 'SELECT nick, email FROM user WHERE ';
+    $query_conditions = array();
 
     if($nickname){
-        $query .= " AND nick = '" . $nickname . "'";
+        $query_conditions[] = "nick = '" . $nickname . "'";
     }
 
 
     if($email){
-        $query .= " AND email = '" . $email . "'";
+        $query_conditions[] = "email = '" . $email . "'";
     }
 
-    $result = mysqli_query($link, $query . ";");
+    if(empty($query_conditions)){
+        return FALSE;
+    }
+
+    $result = mysqli_query($link, $query . implode(" AND ", $query_conditions));
 
     $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
