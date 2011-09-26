@@ -74,19 +74,33 @@ function containsKeys($arr){
  *
  * @return BOOL TRUE if the name is valid, else FALSE
  */
+//function isValidName($name){
+
+    //$length = strlen($name);
+
+    //if(1 <= $length && $length <= 20){
+        //if(preg_match('/[\p{Nd}_-]/', $name[0])){
+            //return FALSE;
+        //}
+
+        //for($i=1; $i<$length; $i++){
+            //if(!preg_match("/[\p{Ll}\p{Lu}\p{Nd}_-]/u", $name[$i])){
+                //return FALSE;
+            //}
+        //}
+
+        //return TRUE;
+    //}
+
+    //return FALSE;
+//}
 function isValidName($name){
 
     $length = strlen($name);
 
     if(1 <= $length && $length <= 20){
-        if(preg_match('/[\p{Nd}_-]/', $name[0])){
+        if(!preg_match("/^[\p{Ll}\p{Lu}][\p{Ll}\p{Lu}\p{Nd}_-]+$/u", $name)){
             return FALSE;
-        }
-
-        for($i=1; $i<$length; $i++){
-            if(!preg_match("/[\p{Ll}\p{Lu}\p{Nd}_-]/u", $name[$i])){
-                return FALSE;
-            }
         }
 
         return TRUE;
@@ -148,7 +162,7 @@ function isValidPhone($phone){
  */
 function isValidBDate($bdate){
     if(10 == strlen($bdate)){
-        if(preg_match('/\d\d-\d\d-\d\d\d\d/', $bdate)){
+        if(preg_match('/\d{2}-\d{2}-\d{4}/', $bdate)){
             return TRUE;
         }
     }
