@@ -141,13 +141,7 @@ function isValidPhone($phone){
  * @return BOOL TRUE if the format is valid, else, FALSE
  */
 function isValidBDate($bdate){
-    if(10 == strlen($bdate)){
-        if(preg_match('/\d{2}-\d{2}-\d{4}/', $bdate)){
-            return TRUE;
-        }
-    }
-
-    return FALSE;
+    return (10 == strlen($bdate) && preg_match('/\d{2}-\d{2}-\d{4}/', $bdate));
 }
 
 /**
