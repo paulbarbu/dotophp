@@ -10,12 +10,13 @@
  * yaCMS
  */
 
-define('MODULES_ROOT', '/media/PauLLiK/localhost/github/dotophp/src/');
-define('LAYOUT_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'layout.php');
 
-include '/media/PauLLiK/localhost/github/dotophp/src/global_functions.php';
-$modules = require '/media/PauLLiK/localhost/github/dotophp/src/modules.php';
+if(!defined('YACMS_PATH')) {
+    die('YACMS not installed');
+}
+defined('MODULES_ROOT') or define('MODULES_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
+defined('LAYOUT_PATH') or define('LAYOUT_PATH', __DIR__ . 'layout.php');
 
-
-include '/media/PauLLiK/localhost/github/yaCMS/src/index.php';
-
+require_once MODULES_ROOT . 'global_functions.php';
+$modules = require MODULES_ROOT . 'modules.php';
+require_once YACMS_PATH . 'index.php';
