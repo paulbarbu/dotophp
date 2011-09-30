@@ -97,7 +97,18 @@ function isValidName($name){
  * @return BOOL TRUE if the nickname is valid, else FALSE
  */
 function isValidNick($nick){
-    //GAP
+
+    $length = strlen($nick);
+
+    if($length <= 20){
+        if(!preg_match("/^[a-z][a-z0-9_-]*$/", $nick)){
+            return FALSE;
+        }
+
+        return TRUE;
+    }
+
+    return FALSE;
 }
 
 /**
