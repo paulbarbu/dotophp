@@ -75,18 +75,7 @@ function containsKeys($arr){
  * @return BOOL TRUE if the name is valid, else FALSE
  */
 function isValidName($name){
-
-    $length = strlen($name);
-
-    if($length <= 20){
-        if(!preg_match("/^[\p{Ll}\p{Lu}][\p{Ll}\p{Lu}\p{Nd}_-]*$/u", $name)){
-            return FALSE;
-        }
-
-        return TRUE;
-    }
-
-    return FALSE;
+    return (strlen($name) <= 20 && preg_match("/^[\p{Ll}\p{Lu}][\p{Ll}\p{Lu}\p{Nd}_-]*$/u", $name));
 }
 
 /**
@@ -97,18 +86,7 @@ function isValidName($name){
  * @return BOOL TRUE if the nickname is valid, else FALSE
  */
 function isValidNick($nick){
-
-    $length = strlen($nick);
-
-    if($length <= 20){
-        if(!preg_match("/^[a-z][a-z0-9_-]*$/", $nick)){
-            return FALSE;
-        }
-
-        return TRUE;
-    }
-
-    return FALSE;
+    return (strlen($nick) <= 20 && preg_match("/^[a-z][a-z0-9_-]*$/", $nick));
 }
 
 /**
