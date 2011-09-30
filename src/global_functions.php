@@ -78,8 +78,8 @@ function isValidName($name){
 
     $length = strlen($name);
 
-    if(1 <= $length && $length <= 20){
-        if(!preg_match("/^[\p{Ll}\p{Lu}][\p{Ll}\p{Lu}\p{Nd}_-]+$/u", $name)){
+    if($length <= 20){
+        if(!preg_match("/^[\p{Ll}\p{Lu}][\p{Ll}\p{Lu}\p{Nd}_-]*$/u", $name)){
             return FALSE;
         }
 
