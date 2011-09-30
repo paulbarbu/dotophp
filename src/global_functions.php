@@ -97,6 +97,7 @@ function isValidNick($nick){
  * @return BOOL TRUE if the email is valid, else FALSE
  */
 function isValidMail($email){
+    //thanks to: http://www.regular-expressions.info/email.html
     return (bool)preg_match("/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/", $email);
 }
 
