@@ -109,7 +109,7 @@ function isValidMail($email){
  * @return BOOL TRUE if the city is valid, else FALSE
  */
 function isValidCity($city){
-    //GAP
+    return (strlen($city) <= 30 && preg_match("/^[\p{Lu}\p{Ll}]+$/u", $city));
 }
 
 /**
@@ -120,7 +120,7 @@ function isValidCity($city){
  * @return BOOL TRUE if the phone number is valid, else, FALSE
  */
 function isValidPhone($phone){
-    //GAP
+    return (strlen($phone) <= 20 && preg_match("/^[0-9()-\s\/]+$/", $phone));
 }
 
 /**
@@ -142,7 +142,7 @@ function isValidBDate($bdate){
  * @return BOOL TRUE if the description is valid, else, FALSE
  */
 function isValidDesc($desc){
-    //GAP
+    return (strlen($desc) <= 100 && preg_match("/^[\p{Ll}\p{Lu}\p{Nd}\p{Po}\p{Ps}\p{Pe}\p{Sm}\p{Pd}\s\$\^]+$/u", $desc));
 }
 
 /**
@@ -154,7 +154,7 @@ function isValidDesc($desc){
  * @return BOOL TRUE if the two string match, else, FALSE
  */
 function isValidCaptcha($captcha, $captcha_input){
-    //GAP
+    return strtolower($captcha_input) == $captcha;
 }
 
 /**
