@@ -6,6 +6,8 @@
  *
  * @ingroup activateFiles
  */
+
+//TODO: sequrity q. and answer
 ?>
 <form method="post" action="" >
 <table border=0 cellspacing=5>

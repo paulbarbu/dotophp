@@ -22,3 +22,6 @@
 function isValidACode($link, $acode){
     //GAP
 }
+
+
+//TODO: activation date
