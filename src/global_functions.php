@@ -170,12 +170,12 @@ function isUser($link, $nickname = NULL, $email = NULL){
     $query = 'SELECT nick, email FROM user WHERE ';
     $query_conditions = array();
 
-    if($nickname && isValidNick($nickname)){
+    if(isValidNick($nickname)){
         $query_conditions[] = "nick = '" . $nickname . "'";
     }
 
 
-    if($email && isValidMail($email)){
+    if(isValidMail($email)){
         $query_conditions[] = "email = '" . $email . "'";
     }
 
