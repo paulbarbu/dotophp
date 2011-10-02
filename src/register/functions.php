@@ -117,6 +117,6 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         return array(FALSE, mysqli_error($link));
     }
 
-    return TRUE;
+    return array(TRUE, NULL);
 
 }
