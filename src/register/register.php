@@ -8,5 +8,7 @@
  */
 
 if(isset($_POST['register'])){
+    //TODO: check captcha then call addUser and is it gives an error then report
+    //it to VL
     //GAP
 }
