@@ -34,5 +34,89 @@
 function addUser($link, $first_name, $last_name, $nickname, $email, $private, $tz,
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
-    //GAP
+    //TODO: created date, document error strings
+    $query = 'INSERT INTO user (first_name, last_name, nick, email,
+        tz, country, city, private, sex, description, phone, birthday) VALUES(';
+
+    $values = array();
+
+    if(isValidName($first_name) && isValidName($last_name)){
+        $values[] = "'" . $first_name . "'";
+        $values[] = "'" . $last_name . "'";
+    }
+    else{
+        return array(FALSE, 'ERR_NAME');
+    }
+
+    if(isValidNick($nickname)){
+        $values[] = "'" . $nickname . "'";
+    }
+    else{
+        return array(FALSE, 'ERR_NICK');
+    }
+
+    if(isValidMail($email)){
+        $values[] = "'" . $email . "'";
+    }
+    else{
+        return array(FALSE, 'ERR_EMAIL');
+    }
+
+    $values[] = "'" . $tz . "'";
+    $values[] = "'" . $country . "'";
+
+    if(isValidCity($city)){
+        $values[] = "'" . $city . "'";
+    }
+    else{
+        return array(FALSE, 'ERR_CITY');
+    }
+
+    $values[] = $private;
+    $values[] = "'" . $sex . "'";
+
+    if($description){
+        if(isValidDesc($description)){
+            $values[] = "'" . $description . "'";
+        }
+        else{
+            return array(FALSE, 'ERR_DESC');
+        }
+    }
+    else{
+        $values[] = 'NULL';
+    }
+
+    if($phone){
+        if(isValidPhone($phone)){
+            $values[] = "'" . $phone . "'";
+        }
+        else{
+            return array(FALSE, 'ERR_PHONE');
+        }
+    }
+    else{
+        $values[] = 'NULL';
+    }
+
+    if($birthday){
+        if(isValidBDate($birthday)){
+            $values[] = "'" . $birthday . "'";
+        }
+        else{
+            return array(FALSE, 'ERR_BDAY');
+        }
+    }
+    else{
+        $values[] = 'NULL';
+    }
+
+    $result = mysqli_query($link, $query . implode(',', $values) . ');');
+
+    if(!$result){
+        return array(FALSE, mysqli_error($link));
+    }
+
+    return TRUE;
+
 }
