@@ -62,7 +62,7 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
     <table border=0>
     <tr><td>
 
-    <label for="priv">Private account:</label></td><td><input id="priv" type="checkbox" name="private" />
+    <label for="priv">Private account:</label></td><td><input id="priv" type="checkbox" name="private" value="1" />
     </td></tr><tr><td>
     <label for="sm">Male</label><br />
     <label for="sf"> Female</label></td><td>
@@ -89,5 +89,6 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 </fieldset>
 
 <input type="submit" name="register" value="Register" />
+<input type="reset" name="reset" value="Reset" />
 </center>
 </form>
