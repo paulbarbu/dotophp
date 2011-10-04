@@ -39,6 +39,7 @@ if($im){
 
         imagechar($im, 5, $x, $y, $code[$i], $char_color);
     }
+
     $style = array($bg, $bg, $bg, $bg, $bg, $bg, $bg,
         $black, $black, $black, $black, $black, $black);
     imagesetstyle($im, $style);
