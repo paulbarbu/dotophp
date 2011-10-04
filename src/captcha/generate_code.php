@@ -1,7 +1,17 @@
 <?php
- //TODO document this
+/**
+ * @file src/captcha/generate_code.php
+ * @brief Random captcha code generator
+ * @author Paul Barbu
+ *
+ * @ingroup captchaFiles
+ */
 
-$chars = '0123456789qwertyuioplkjhgfdsazxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM';
+/**
+ * @defgroup captchaFiles Captcha module
+ */
+
+$chars = '0123456789qwertyuioplkjhgfdsazxcvbnm';
 $used = '!';
 $chars_array = array();
 $captcha = NULL;
@@ -20,6 +30,17 @@ while($i<5){
         $chars_array[$pos] = $used;
         $i++;
     }
+}
+
+/**
+ * Motivation: upon hitting submit the captcha is regenerated so the code won't
+ * match, so we keep the last captcha code to match with
+ */
+if(isset($_SESSION['captcha'])){
+    $_SESSION['last_captcha'] = $_SESSION['captcha'];
+}
+else{
+    $_SESSION['last_captcha'] = NULL;
 }
 
 $_SESSION['captcha'] = $captcha;
