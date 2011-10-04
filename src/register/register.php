@@ -22,10 +22,12 @@ if(isset($_POST['register'])){
             //TODO: ERR_DB_CONNECTION
         }
 
-        addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
+        //TODO: fileter the input
+
+        var_dump(addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
             $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
             $_POST['city'], $_POST['sex'], $_POST['description'], $_POST['phone'],
-            $_POST['birthday']);
+            $_POST['birthday']));
 
         //TODO: check the return value of addUser and take action accordignly
 
