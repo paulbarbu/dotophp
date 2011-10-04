@@ -34,7 +34,7 @@
 function addUser($link, $first_name, $last_name, $nickname, $email, $private, $tz,
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
-    //TODO: created date, document error strings
+    //TODO: document error strings
     $query = 'INSERT INTO user (first_name, last_name, nick, email,
         tz, country, city, private, sex, description, phone, birthday) VALUES(';
 
@@ -99,7 +99,7 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         $values[] = 'NULL';
     }
 
-    if($birthday){
+    if($birthday && $birthday != 'ZZ-LL-AAAA'){
         if(isValidBDate($birthday)){
             $values[] = "'" . $birthday . "'";
         }
@@ -110,6 +110,10 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
     else{
         $values[] = 'NULL';
     }
+
+    var_dump($query . implode(',', $values) . ');');
+
+    return NULL;
 
     $result = mysqli_query($link, $query . implode(',', $values) . ');');
 
