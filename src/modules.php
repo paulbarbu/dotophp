@@ -19,6 +19,10 @@ return array(
 
     /* sign up */
     'register' => array(
+        'pre-process' => array(
+            'sess_starter' => 'sess_starter.php',
+            'gen_code' => 'captcha',
+        ),
         'VL' => array(
             'title' => 'Register',
             'content' => 'content.php',
@@ -85,6 +89,9 @@ return array(
 
     /* captcha image */
     'captcha' => array(
+        'pre-process' => array(
+            'code_gen' => 'generate_code.php',
+        ),
         'VL' => array(
             'show_in_menu' => FALSE,
         ),
