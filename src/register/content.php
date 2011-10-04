@@ -5,6 +5,9 @@
  * @author Paul Barbu
  *
  * @ingroup registerFiles
+ *
+ *
+ * TODO: button to clear the fields
  */
 
 /**
@@ -18,6 +21,7 @@ $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
  */
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
+
 ?>
 
 <form action="" method="post">
