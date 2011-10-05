@@ -5,9 +5,6 @@
  * @author Paul Barbu
  *
  * @ingroup registerFiles
- *
- *
- * TODO: button to clear the fields
  */
 
 /**
@@ -22,6 +19,7 @@ $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
 
+if($feedback[$module]){
 ?>
 
 <form action="" method="post">
@@ -92,3 +90,20 @@ $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 <input type="reset" name="reset" value="Reset" />
 </center>
 </form>
+<?php
+    if(is_numeric($feedback[$module])){
+        echo '<h3>';
+
+        switch($feedback[$module]){
+            case L_ERR_CAPTCHA: printf('Captcha code entered is invalid! (#%d)', L_ERR_CAPTCHA);
+                break;
+            case L_DB_CONNECTION: printf('Error connecting to the database! (#%d)', L_ERR_DB_CONNECTION);
+                break;
+        }
+
+        echo '</h3>';
+    }
+}
+elseif(!$feedback[$module]){
+    echo '<h3>Registration complete, an activation email was sent to the submitted address!</h3>';
+}
