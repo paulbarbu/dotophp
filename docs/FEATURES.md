@@ -51,8 +51,8 @@ on movement
     * On: event will repeat together with the alarm 
     * Off:
         * Start/Due date (optional): when the event reaches its due date it's marked as done
-            * if Start and/or Due dates are set then the alarm can be set only
-            between these dates
+            * if Due date is set then the alarm can be set only
+            before this date
 
 5 Setup
 =======
