@@ -18,11 +18,10 @@ if(isset($_POST['register'])){
         $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE);
 
         if(!$link){
-            die('Connect error (' . mysqli_connect_errno() . '): ' . mysqli_connect_error());
-            //TODO: ERR_DB_CONNECTION
+            return L_ERR_DB_CONNECTION;
         }
 
-        //TODO: fileter the input
+        //TODO: filter the input
 
         var_dump(addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
             $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
@@ -36,7 +35,10 @@ if(isset($_POST['register'])){
         //TODO: do mail here
     }
     else{
-        var_dump("CAPTCHA");
-        //TODO: invent ERR_CAPTCHA and return it to the view
+        return L_ERR_CAPTCHA;
     }
+
+    return OK;
 }
+
+return TRUE;
