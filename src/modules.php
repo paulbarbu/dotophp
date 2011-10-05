@@ -29,6 +29,7 @@ return array(
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
+            'constants' => 'constants.php',
             'functions' => 'functions.php',
             'register' => 'register.php',
         ),
