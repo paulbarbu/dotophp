@@ -212,6 +212,35 @@ function getStrByState($in_str, $out_str){
 }
 
 /**
+ * Function to name the printf specifiers
+ *
+ * Credits: http://stackoverflow.com/questions/7435233/name-php-specifiers-in-printf-strings/7435397#7435397
+ * Usage:
+ @code
+ $foo = array('age' => 5, 'name' => 'john');
+ echo vsprintf_named("%(name)s is %(age)02d", $foo);
+ @endcode
+ *
+ * @param string $format the format of the resulting string
+ * @param array $args the array containing the specifiers as keys and the values
+ * the specifiers will be replaced with
+ *
+ * @return the string to be sent as output(e.g. echo)
+ */
+function vsprintf_named($format, $args) {
+    $names = preg_match_all('/%\((.*?)\)/', $format, $matches, PREG_SET_ORDER);
+
+    $values = array();
+    foreach($matches as $match) {
+        $values[] = $args[$match[1]];
+    }
+
+    $format = preg_replace('/%\((.*?)\)/', '%', $format);
+
+    return vsprintf($format, $values);
+}
+
+/**
  * Helper function
  *
  * Display array contents as HTML <option></option>
@@ -221,13 +250,14 @@ function getStrByState($in_str, $out_str){
  *
  * @return BOOL TRUE on success, else, FALSE
  */
-function arrayToOption($text, $values, $template = '<option value="%s">%s</option>'){
+function arrayToOption($text, $values, $template='<option value="%(value)s">%(text)s</option>'){
     if(is_array($values) && is_array($text)){
 
         $text_count = count($text);
         if($text_count == count($values)){
             for($i=0; $i<$text_count; $i++){
-                printf($template . PHP_EOL, $values[$i], $text[$i]);
+                echo vsprintf_named($template, array('text' => $text[$i],
+                                    'value' => $values[$i])) , PHP_EOL;
             }
         }
         else{
