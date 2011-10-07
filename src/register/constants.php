@@ -10,6 +10,6 @@
 
 const OK = 0;
 
-const L_ERR_CAPTCHA = 1;
-const L_ERR_DB_CONNECTION = 2;
+const R_ERR_CAPTCHA = 1;
+const R_ERR_DB_CONNECTION = 2;
 

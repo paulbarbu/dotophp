@@ -18,7 +18,7 @@ if(isset($_POST['register'])){
         $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE);
 
         if(!$link){
-            return L_ERR_DB_CONNECTION;
+            return R_ERR_DB_CONNECTION;
         }
 
         //TODO: filter the input
@@ -35,7 +35,7 @@ if(isset($_POST['register'])){
         //TODO: do mail here
     }
     else{
-        return L_ERR_CAPTCHA;
+        return R_ERR_CAPTCHA;
     }
 
     return OK;

@@ -95,9 +95,9 @@ if($feedback[$module]){
         echo '<h3>';
 
         switch($feedback[$module]){
-            case L_ERR_CAPTCHA: printf('Captcha code entered is invalid! (#%d)', L_ERR_CAPTCHA);
+            case R_ERR_CAPTCHA: printf('Captcha code entered is invalid! (#%d)', R_ERR_CAPTCHA);
                 break;
-            case L_DB_CONNECTION: printf('Error connecting to the database! (#%d)', L_ERR_DB_CONNECTION);
+            case R_DB_CONNECTION: printf('Error connecting to the database! (#%d)', R_ERR_DB_CONNECTION);
                 break;
         }
 
