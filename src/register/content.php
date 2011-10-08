@@ -81,8 +81,8 @@ if($feedback[$module]){
 <center>
 <fieldset>
 <legend>Security code</legend>
-<label for="captcha">Please enter the security code shown in the image</label><br />
-<img src="index.php?show=captcha" alt="Captcha"/><br />
+<label for="captcha">Please enter the security code shown in the image<br />
+<img src="index.php?show=captcha" alt="Captcha"/></label><br />
  <input id="captcha" type="text" name="captcha" />
 </fieldset>
 
