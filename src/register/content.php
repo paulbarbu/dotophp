@@ -64,7 +64,7 @@ if($feedback['register']){
     </td></tr><tr><td>
     <label for="sm">Male</label><br />
     <label for="sf"> Female</label></td><td>
-    <input type="radio" name="sex" value="M" id="sm" checked="checked" /><br />
+    <input type="radio" name="sex" value="M" id="sm" /><br />
     <input type="radio" name="sex" value="F" id="sf" />
     </td></tr><tr><td>
     <label for="phone">Phone:</label></td><td><input id="phone" type="text" name="phone" maxlength=20 />
@@ -114,6 +114,8 @@ if($feedback['register']){
             case R_ERR_BDATE: printf('The birthdate must have the following format: DD-MM-YYYY! (#%d)', R_ERR_BDATE);
                 break;
             case R_ERR_DB: printf('A database error occured, please contact the administrator! (#%d)', R_ERR_DB);
+                break;
+            case R_ERR_SEX: printf('Select your gender! (#%d)', R_ERR_SEX);
                 break;
         }
 

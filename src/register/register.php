@@ -15,32 +15,37 @@ if(isset($_POST['register'])){
     //add pending account, send mail with activation code
 
     if(isValidCaptcha($_SESSION['last_captcha'], $_POST['captcha'])){
-        //TODO: proceed registration
-        $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE);
+        if(isset($_POST['sex'])){
+            //TODO: proceed registration
+            $link = mysqli_connect(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DATABASE);
 
-        if(!$link){
-            return R_ERR_DB_CONNECTION;
-        }
+            if(!$link){
+                return R_ERR_DB_CONNECTION;
+            }
 
-        //TODO: filter the input
+            //TODO: filter the input
 
-        $result = addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
-            $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
-            $_POST['city'], $_POST['sex'], $_POST['description'], $_POST['phone'],
-            $_POST['birthday']);
+            $result = addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
+                $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
+                $_POST['city'], $_POST['sex'], $_POST['description'], $_POST['phone'],
+                $_POST['birthday']);
 
-        //TODO: check the return value of addUser and take action accordignly
+            //TODO: check the return value of addUser and take action accordignly
 
-        mysqli_close($link);
+            mysqli_close($link);
 
-        if(!$result[0]){
-            return $result[1];
+            if(!$result[0]){
+                return $result[1];
+            }
+            else{
+                return OK;
+            }
+
+            //TODO: do mail here
         }
         else{
-            return OK;
+            return R_ERR_SEX;
         }
-
-        //TODO: do mail here
     }
     else{
         return R_ERR_CAPTCHA;
