@@ -68,7 +68,7 @@ if($feedback[$module]){
     <input type="radio" name="sex" value="F" id="sf" />
     </td></tr><tr><td>
     <label for="phone">Phone:</label></td><td><input id="phone" type="text" name="phone" maxlength=20 />
-    </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" value="ZZ-LL-AAAA" name="birthday" maxlength=10 />
+    </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" value="DD-MM-YYYY" name="birthday" maxlength=10 />
     </td></tr><tr><td>
     <label for="desc">Description:</label></td><td><textarea rows="3" cols="23" name="description" maxlength=100 id="desc" ></textarea>
     </td></tr><tr><td>

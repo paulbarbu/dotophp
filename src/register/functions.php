@@ -97,7 +97,7 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         $values[] = 'NULL';
     }
 
-    if($birthday && $birthday != 'ZZ-LL-AAAA'){
+    if($birthday && $birthday != 'DD-MM-YYYY'){
         if(isValidBDate($birthday)){
             $values[] = "'" . $birthday . "'";
         }
