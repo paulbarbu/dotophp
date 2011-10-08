@@ -97,7 +97,23 @@ if($feedback[$module]){
         switch($feedback[$module]){
             case R_ERR_CAPTCHA: printf('Captcha code entered is invalid! (#%d)', R_ERR_CAPTCHA);
                 break;
-            case R_DB_CONNECTION: printf('Error connecting to the database! (#%d)', R_ERR_DB_CONNECTION);
+            case R_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', R_ERR_DB_CONNECTION);
+                break;
+            case R_ERR_NAME: printf('The eneterd name is invalid! (#%d)', R_ERR_NAME);
+                break;
+            case R_ERR_NICK: printf('The nickname must contain only letters, numbers, dashes or underscores! (#%d)', R_ERR_NICK);
+                break;
+            case R_ERR_EMAIL: printf('E-mail address entered is not valid! (#%d)', R_ERR_EMAIL);
+                break;
+            case R_ERR_CITY: printf('The city name can consist of letters only! (#%d)', R_ERR_CITY);
+                break;
+            case R_ERR_DESC: printf('Invalid symbols used in the description! (#%d)', R_ERR_DESC);
+                break;
+            case R_ERR_PHONE: printf('The phone field can contaion only numbers, parentheses, salshes or dashes! (#%d)', R_ERR_PHONE);
+                break;
+            case R_ERR_BDATE: printf('The birthdate must have the following format: DD-MM-YYYY! (#%d)', R_ERR_BDATE);
+                break;
+            case R_ERR_DB: printf('A database error occured, please contact the administrator! (#%d)', R_ERR_DB);
                 break;
         }
 

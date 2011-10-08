@@ -10,6 +10,7 @@
 var_dump($_SESSION['captcha']);
 
 if(isset($_POST['register'])){
+    $result = array();
     //TODO: check captcha then call addUser and is it gives an error then report it to view
     //add pending account, send mail with activation code
 
@@ -23,22 +24,27 @@ if(isset($_POST['register'])){
 
         //TODO: filter the input
 
-        var_dump(addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
+        $result = addUser($link, $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
             $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
             $_POST['city'], $_POST['sex'], $_POST['description'], $_POST['phone'],
-            $_POST['birthday']));
+            $_POST['birthday']);
 
         //TODO: check the return value of addUser and take action accordignly
 
         mysqli_close($link);
+
+        if(!$result[0]){
+            return $result[1];
+        }
+        else{
+            return OK;
+        }
 
         //TODO: do mail here
     }
     else{
         return R_ERR_CAPTCHA;
     }
-
-    return OK;
 }
 
 return TRUE;

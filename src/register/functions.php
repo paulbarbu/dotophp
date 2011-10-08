@@ -28,13 +28,11 @@
  * @param int $birthday unix timestamp
  * @param string $sex 'M' or 'F'
  *
- * @return an array consisting of a BOOL value and a NULL or the error string,
- * array(BOOL, string)
+ * @return an array consisting of a BOOL value and a NULL or the error, array(BOOL, string)
  */
 function addUser($link, $first_name, $last_name, $nickname, $email, $private, $tz,
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
-    //TODO: document error strings
     $query = 'INSERT INTO user (first_name, last_name, nick, email,
         tz, country, city, private, sex, description, phone, birthday) VALUES(';
 
@@ -45,21 +43,21 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         $values[] = "'" . $last_name . "'";
     }
     else{
-        return array(FALSE, 'ERR_NAME');
+        return array(FALSE, R_ERR_NAME);
     }
 
     if(isValidNick($nickname)){
         $values[] = "'" . $nickname . "'";
     }
     else{
-        return array(FALSE, 'ERR_NICK');
+        return array(FALSE, R_ERR_NICK);
     }
 
     if(isValidMail($email)){
         $values[] = "'" . $email . "'";
     }
     else{
-        return array(FALSE, 'ERR_EMAIL');
+        return array(FALSE, R_ERR_EMAIL);
     }
 
     $values[] = "'" . $tz . "'";
@@ -69,7 +67,7 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         $values[] = "'" . $city . "'";
     }
     else{
-        return array(FALSE, 'ERR_CITY');
+        return array(FALSE, R_ERR_CITY);
     }
 
     $values[] = $private;
@@ -80,7 +78,7 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
             $values[] = "'" . $description . "'";
         }
         else{
-            return array(FALSE, 'ERR_DESC');
+            return array(FALSE, R_ERR_DESC);
         }
     }
     else{
@@ -92,7 +90,7 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
             $values[] = "'" . $phone . "'";
         }
         else{
-            return array(FALSE, 'ERR_PHONE');
+            return array(FALSE, R_ERR_PHONE);
         }
     }
     else{
@@ -104,21 +102,21 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
             $values[] = "'" . $birthday . "'";
         }
         else{
-            return array(FALSE, 'ERR_BDAY');
+            return array(FALSE, R_ERR_BDATE);
         }
     }
     else{
         $values[] = 'NULL';
     }
 
-    var_dump($query . implode(',', $values) . ');');
-
-    return NULL;
+    //var_dump($query . implode(',', $values) . ');');
+    //TODO: remove these lines when not debugging!
+    //return NULL;
 
     $result = mysqli_query($link, $query . implode(',', $values) . ');');
 
     if(!$result){
-        return array(FALSE, mysqli_error($link));
+        return array(FALSE, R_ERR_DB);
     }
 
     return array(TRUE, NULL);
