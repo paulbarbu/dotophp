@@ -109,8 +109,8 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         $values[] = 'NULL';
     }
 
-    //var_dump($query . implode(',', $values) . ');');
     //TODO: remove these lines when not debugging!
+    //var_dump($query . implode(',', $values) . ');');
     //return NULL;
 
     $result = mysqli_query($link, $query . implode(',', $values) . ');');

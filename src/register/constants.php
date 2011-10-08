@@ -19,7 +19,6 @@ const R_ERR_CITY = 5;
 const R_ERR_DESC = 6;
 const R_ERR_PHONE = 7;
 const R_ERR_BDATE = 8;
-const R_ERR_SEX = 9;
 
-const R_ERR_DB = 10;
+const R_ERR_DB = 9;
 

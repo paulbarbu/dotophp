@@ -115,8 +115,6 @@ if($feedback['register']){
                 break;
             case R_ERR_DB: printf('A database error occured, please contact the administrator! (#%d)', R_ERR_DB);
                 break;
-            case R_ERR_SEX: printf('Select your gender! (#%d)', R_ERR_SEX);
-                break;
         }
 
         echo '</h3>';
