@@ -19,7 +19,7 @@ $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
 
-if($feedback[$module]){
+if($feedback['register']){
 ?>
 
 <form action="" method="post">
@@ -91,10 +91,10 @@ if($feedback[$module]){
 </center>
 </form>
 <?php
-    if(is_numeric($feedback[$module])){
+    if(is_numeric($feedback['register'])){
         echo '<h3>';
 
-        switch($feedback[$module]){
+        switch($feedback['register']){
             case R_ERR_CAPTCHA: printf('Captcha code entered is invalid! (#%d)', R_ERR_CAPTCHA);
                 break;
             case R_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', R_ERR_DB_CONNECTION);
@@ -120,6 +120,6 @@ if($feedback[$module]){
         echo '</h3>';
     }
 }
-elseif(!$feedback[$module]){
+elseif(!$feedback['register']){
     echo '<h3>Registration complete, an activation email was sent to the submitted address!</h3>';
 }
