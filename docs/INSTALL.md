@@ -3,4 +3,11 @@
 3. Create `index.php` inside your DocumentRoot, in which you define the
    constant YACMS_PATH with the right path to `yaCMS/src/` (with the trailing
    slash) and include `dotophp/src/index.php`
-4. That's it, access it through the web browser
+4. Create a new database
+5. `cd` into dotophp/docs and type the following command to populate the database:
+`source ./schema.sql`
+6. `cd` into dotophp/src and edit `mysql_config.php` according to your
+connection details
+7. That's it, access it through the web browser
+
+TODO: edit #6 when the special module is created
