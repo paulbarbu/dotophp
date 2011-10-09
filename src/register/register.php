@@ -40,7 +40,7 @@ if(isset($_POST['register'])){
             return $result[1];
         }
         else{
-            return OK;
+            return ERR_NONE;
         }
 
         //TODO: do mail here

@@ -120,5 +120,4 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
     }
 
     return array(TRUE, NULL);
-
 }
