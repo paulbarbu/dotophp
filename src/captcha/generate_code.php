@@ -16,9 +16,7 @@ $used = '!';
 $chars_array = array();
 $captcha = NULL;
 
-for($i=0;$i<strlen($chars);$i++){
-    $chars_array[$i] = $chars[$i];
-}
+$chars_array = str_split(CHARS);
 
 shuffle($chars_array);
 $i=0;
