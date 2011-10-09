@@ -99,7 +99,7 @@ if($feedback['register']){
                 break;
             case R_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', R_ERR_DB_CONNECTION);
                 break;
-            case R_ERR_NAME: printf('The eneterd name is invalid! (#%d)', R_ERR_NAME);
+            case R_ERR_NAME: printf('The entered name is invalid! (#%d)', R_ERR_NAME);
                 break;
             case R_ERR_NICK: printf('The nickname must contain only letters, numbers, dashes or underscores! (#%d)', R_ERR_NICK);
                 break;
@@ -113,7 +113,7 @@ if($feedback['register']){
                 break;
             case R_ERR_BDATE: printf('The birthdate must have the following format: DD-MM-YYYY! (#%d)', R_ERR_BDATE);
                 break;
-            case R_ERR_DB: printf('A database error occured, please contact the administrator! (#%d)', R_ERR_DB);
+            case R_ERR_DB: printf('A database related error occured, please contact the administrator! (#%d)', R_ERR_DB);
                 break;
         }
 
@@ -121,5 +121,5 @@ if($feedback['register']){
     }
 }
 elseif(!$feedback['register']){
-    echo '<h3>Registration complete, an activation email was sent to the submitted address!</h3>';
+    echo '<h3>Registration complete, an activation email was sent to the submitted e-mail address!</h3>';
 }
