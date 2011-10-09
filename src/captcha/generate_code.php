@@ -11,7 +11,7 @@
  * @defgroup captchaFiles Captcha module
  */
 
-$chars = '0123456789qwertyuioplkjhgfdsazxcvbnm';
+const CHARS = '0123456789qwertyuioplkjhgfdsazxcvbnm';
 $used = '!';
 $chars_array = array();
 $captcha = NULL;
