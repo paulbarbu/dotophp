@@ -60,8 +60,21 @@ function addUser($link, $first_name, $last_name, $nickname, $email, $private, $t
         return array(FALSE, R_ERR_EMAIL);
     }
 
-    $values[] = "'" . $tz . "'";
-    $values[] = "'" . $country . "'";
+    var_dump($tz, $country);
+        var_dump($tz != 'Please select your timezone!');
+    if($tz != 'Please select your timezone!'){
+        $values[] = "'" . $tz . "'";
+    }
+    else{
+        return array(FALSE, R_ERR_TZ);
+    }
+
+    if($country != 'Please select your country!'){
+        $values[] = "'" . $country . "'";
+    }
+    else{
+        return array(FALSE, R_ERR_COUNTRY);
+    }
 
     if(isValidCity($city)){
         $values[] = "'" . $city . "'";

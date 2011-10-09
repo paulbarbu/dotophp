@@ -1,5 +1,6 @@
 <?php
 return array(
+    'Please select your country!' => 'Please select your country!',
     'AF' => 'Afghanistan',
     'AX' => 'ÅLand Islands',
     'AL' => 'Albania',
@@ -54,7 +55,7 @@ return array(
     'CD' => 'Congo',
     'CK' => 'Cook Islands',
     'CR' => 'Costa Rica',
-    'CI' => 'CÔTe D\'Ivoire',
+    'CI' => 'CÔte D\'Ivoire',
     'HR' => 'Croatia',
     'CU' => 'Cuba',
     'CW' => 'CuraÇAo',

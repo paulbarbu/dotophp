@@ -1,5 +1,6 @@
 <?php
 return array(
+    'selected' => 'Please select your timezone!',
     0 => "America/Adak",
     1 => "America/Anchorage",
     2 => "America/Antigua",

@@ -39,11 +39,11 @@ if($feedback['register']){
     <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength=255 />
     </td></tr><tr><td>
     <label for="tz">Timezone:</label></td><td><select id="tz" name="timezone">
-        <?php arrayToOption(array_values($tz), array_values($tz)); ?>
+        <?php arrayToOption(array_values($tz), array_values($tz), 0); ?>
     </select>
     </td></tr><tr><td>
     <label for="country">Country:</label></td><td><select id="country" name="country">
-        <?php arrayToOption(array_values($countries), array_keys($countries)); ?>
+        <?php arrayToOption(array_values($countries), array_keys($countries), 0); ?>
     </select>
     </td></tr><tr><td>
     <label for="city">City:</label></td><td><input id="city" type="text" name="city" maxlength=30 />
@@ -114,6 +114,10 @@ if($feedback['register']){
             case R_ERR_BDATE: printf('The birthdate must have the following format: DD-MM-YYYY! (#%d)', R_ERR_BDATE);
                 break;
             case R_ERR_DB: printf('A database related error occured, please contact the administrator! (#%d)', R_ERR_DB);
+                break;
+            case R_ERR_TZ: printf('Please select your timezone! (#%d)', R_ERR_TZ);
+                break;
+            case R_ERR_COUNTRY: printf('Please select your country! (#%d)', R_ERR_COUNTRY);
                 break;
         }
 

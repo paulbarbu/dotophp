@@ -250,14 +250,21 @@ function vsprintf_named($format, $args) {
  *
  * @return BOOL TRUE on success, else, FALSE
  */
-function arrayToOption($text, $values, $template='<option value="%(value)s">%(text)s</option>'){
+function arrayToOption($text, $values, $selected = NULL, $template='<option value="%(value)s">%(text)s</option>',
+                       $selected_template='<option value="%(value)s" selected >%(text)s</option>'){
     if(is_array($values) && is_array($text)){
 
         $text_count = count($text);
         if($text_count == count($values)){
             for($i=0; $i<$text_count; $i++){
-                echo vsprintf_named($template, array('text' => $text[$i],
-                                    'value' => $values[$i])) , PHP_EOL;
+                if($selected == $i){
+                    echo vsprintf_named($selected_template, array('text' => $text[$i],
+                        'value' => $values[$i])) , PHP_EOL;
+                }
+                else{
+                    echo vsprintf_named($template, array('text' => $text[$i],
+                        'value' => $values[$i])) , PHP_EOL;
+                }
             }
         }
         else{
