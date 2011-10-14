@@ -247,6 +247,11 @@ function vsprintf_named($format, $args) {
  *
  * @param array $text the text to be written
  * @param mixed $values the values to assign the options
+ * @param int $selected (default: NULL) which element(0 indexed) to be selected in the
+ * options list, if NULL none will be selected, if(for example) 42 the 42nd
+ * element will be selected
+ * @param string $template template for the HTML <option> tag
+ * @param string $selected_template template for the HTML selected <option> tag
  *
  * @return BOOL TRUE on success, else, FALSE
  */
