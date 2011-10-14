@@ -109,7 +109,7 @@ function isValidMail($email){
  * @return BOOL TRUE if the city is valid, else FALSE
  */
 function isValidCity($city){
-    return (strlen($city) <= 30 && preg_match("/^[\p{Lu}\p{Ll}]+$/u", $city));
+    return (strlen($city) <= 30 && preg_match("/^[\p{Lu}\p{Ll}\s]+$/u", $city));
 }
 
 /**
