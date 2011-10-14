@@ -22,6 +22,7 @@ return array(
         'pre-process' => array(
             'sess_starter' => 'sess_starter.php',
             'gen_code' => 'captcha',
+            'db' => 'mysql',
         ),
         'VL' => array(
             'title' => 'Register',
@@ -32,6 +33,9 @@ return array(
             'constants' => 'constants.php',
             'functions' => 'functions.php',
             'register' => 'register.php',
+        ),
+        'post-process' => array(
+            'db' => 'mysql',
         ),
     ),
 
@@ -98,6 +102,19 @@ return array(
         ),
         'BL' => array(
             'captcha' => 'captcha.php',
+        ),
+    ),
+
+    /* MySQL connection */
+    'mysql' => array(
+        'pre-process' => array(
+            'connect' => 'connect.php',
+        ),
+        'VL' => array(
+            'show_in_menu' => FALSE,
+        ),
+        'post-process' => array(
+            'disconnect' => 'disconnect.php',
         ),
     ),
 );

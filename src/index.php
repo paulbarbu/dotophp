@@ -18,8 +18,6 @@ if(!defined('YACMS_PATH')) {
 defined('MODULES_ROOT') or define('MODULES_ROOT', __DIR__ . DIRECTORY_SEPARATOR);
 defined('LAYOUT_PATH') or define('LAYOUT_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'layout.php');
 
-require_once 'mysql_config.php';
-
 require_once MODULES_ROOT . 'global_functions.php';
 require_once MODULES_ROOT . 'global_constants.php';
 $modules = require MODULES_ROOT . 'modules.php';
