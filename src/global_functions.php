@@ -14,7 +14,7 @@
 /**
  * Filters the user's input(sanitizes it) to avoid building an attack vector
  *
- * This functions accepts a variable number of arguments
+ * This function accepts a variable number of arguments
  *
  * @return array $filteredInput the sanitized input on the same position in the
  * array as it's place in the args list
