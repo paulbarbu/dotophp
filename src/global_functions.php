@@ -183,7 +183,7 @@ function isUser($link, $nickname = NULL, $email = NULL){
         return FALSE;
     }
 
-    $result = mysqli_query($link, $query . implode(" AND ", $query_conditions));
+    $result = mysqli_query($link, $query . implode(" OR ", $query_conditions));
 
     $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
