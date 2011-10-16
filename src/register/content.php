@@ -119,6 +119,8 @@ if($feedback['register']){
                 break;
             case R_ERR_COUNTRY: printf('Please select your country! (#%d)', R_ERR_COUNTRY);
                 break;
+            case R_ERR_USER: printf('The nickname or the email is already in use! (#%d)', R_ERR_USER);
+                break;
         }
 
         echo '</h3>';

@@ -19,4 +19,5 @@ const R_ERR_BDATE = 8;
 const R_ERR_DB = 9;
 const R_ERR_TZ = 10;
 const R_ERR_COUNTRY = 11;
+const R_ERR_USER = 12;
 

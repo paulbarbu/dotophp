@@ -23,7 +23,11 @@ if(isset($_POST['register'])){
             return R_ERR_DB_CONNECTION;
         }
 
-        //TODO: filter the input
+        if(isUser($feedback_pre['connect'], $nick, $email)){
+            return R_ERR_USER;
+        }
+
+        isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
 
         $result = addUser($feedback_pre['connect'], $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
             $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
