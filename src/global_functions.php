@@ -195,6 +195,29 @@ function isUser($link, $nickname = NULL, $email = NULL){
 }
 
 /**
+ * Add the newly created user to the pending table
+ *
+ * This function and the one that adds the user must be used in a MySQL
+ * transaction to avoid user ID's mismatching.
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $code generated activation code
+ *
+ * @return BOOL TRUE on success, else FALSE
+ */
+function addPendingUser($link, $code){
+    $query = "INSERT INTO pending (user_id, code) VALUES(LAST_INSERT_ID(), '";
+
+    $result = mysqli_query($link, $query . $code . "');");
+
+    if(!$result){
+        return FALSE;
+    }
+
+    return TRUE;
+}
+
+/**
  * Choose a string depending on the state of an user
  *
  * 'OUT' means not-logged in user \n
