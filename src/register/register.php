@@ -11,7 +11,6 @@ var_dump($_SESSION['captcha']);
 
 if(isset($_POST['register'])){
     $result = array();
-    //TODO: add pending account, send mail with activation code
 
     list($captcha, $first_name, $last_name, $nick, $email, $city, $description,
         $phone, $birthday) = filterInput($_POST['captcha'], $_POST['first_name'],
@@ -31,6 +30,10 @@ if(isset($_POST['register'])){
 
         isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
 
+        if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
+            return R_ERR_DB;
+        }
+
         $result = addUser($feedback_pre['connect'], $first_name, $last_name, $nick,
             $email, isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
             $city, $sex, $description, $phone, $birthday);
@@ -39,10 +42,19 @@ if(isset($_POST['register'])){
             return $result[1];
         }
         else{
+            $activation_code = genACode($nick);
+
+            if(!addPendingUser($feedback_pre['connect'], $activation_code)){
+                return R_ERR_DB;
+            }
+
+            if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
+                return R_ERR_DB;
+            }
+
+            //TODO: do mail here
             return ERR_NONE;
         }
-
-        //TODO: do mail here
     }
     else{
         return R_ERR_CAPTCHA;
