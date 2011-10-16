@@ -13,11 +13,13 @@ if(isset($_POST['register'])){
     $result = array();
     //TODO: add pending account, send mail with activation code
 
-    if(isValidCaptcha($_SESSION['last_captcha'], $_POST['captcha'])){
+    list($captcha, $first_name, $last_name, $nick, $email, $city, $description,
+        $phone, $birthday) = filterInput($_POST['captcha'], $_POST['first_name'],
+                             $_POST['last_name'], $_POST['nick'], $_POST['email'],
+                             $_POST['city'], $_POST['description'], $_POST['phone'],
+                             $_POST['birthday']);
 
-        isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
-
-        //TODO: proceed registration, check isUser()
+    if(isValidCaptcha($_SESSION['last_captcha'], $captcha)){
 
         if(!$feedback_pre['connect']){
             return R_ERR_DB_CONNECTION;
@@ -29,10 +31,9 @@ if(isset($_POST['register'])){
 
         isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
 
-        $result = addUser($feedback_pre['connect'], $_POST['first_name'], $_POST['last_name'], $_POST['nick'],
-            $_POST['email'], isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
-            $_POST['city'], $sex, $_POST['description'], $_POST['phone'],
-            $_POST['birthday']);
+        $result = addUser($feedback_pre['connect'], $first_name, $last_name, $nick,
+            $email, isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
+            $city, $sex, $description, $phone, $birthday);
 
         if(!$result[0]){
             return $result[1];
