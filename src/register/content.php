@@ -121,6 +121,8 @@ if($feedback['register']){
                 break;
             case R_ERR_USER: printf('The nickname or the email is already in use! (#%d)', R_ERR_USER);
                 break;
+            case R_ERR_MAIL: printf('An error occurred while sending the email, please try again! (#%d)', R_ERR_MAIL);
+                break;
         }
 
         echo '</h3>';

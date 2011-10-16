@@ -48,11 +48,29 @@ if(isset($_POST['register'])){
                 return R_ERR_DB;
             }
 
+            $mail_data = require 'mail_data.php';
+            $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path() . '/index.php?show=activate';
+
+            $msg_specifiers = array(
+                'nick' => $nick,
+                'code_link' => $url . '&code=' . $activation_code,
+                'activation_link' => $url,
+                'code' => $activation_code,
+            );
+
+            if(!mail($email, vsprintf_named($mail_data['subject'], array('nick' => $nick)),
+                     vsprintf_named($mail_data['msg'], $msg_specifiers), $mail_data['header'])){
+
+                mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = LAST_INSERT_ID();');
+                mysqli_query($feedback_pre['connect'], 'DELETE FROM user WHERE id = LAST_INSERT_ID();');
+
+                return R_ERR_MAIL;
+            }
+
             if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
                 return R_ERR_DB;
             }
 
-            //TODO: do mail here
             return ERR_NONE;
         }
     }
