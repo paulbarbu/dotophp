@@ -160,7 +160,7 @@ function isValidCaptcha($captcha, $captcha_input){
 /**
  * Query the DB to check if the email and/or nickname are supplied correctly
  *
- * @param mysqli a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
  * @param string $nickname user's nickname
  * @param string $email user's email
  *

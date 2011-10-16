@@ -14,7 +14,7 @@
 /**
  * Add a new user into the database
  *
- * @param mysqli a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
  * @param string $first_name user's first name
  * @param string $last_name user's last name
  * @param string $description user's description
