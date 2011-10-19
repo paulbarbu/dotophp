@@ -12,15 +12,24 @@
  */
 
 /**
- * Compare the user's activation code with the activation code in the DB
+ * Compare the user's activation code with the activation codes in the DB
+ *
+ * This function could be considered as a validation function too, if NULL is
+ * returned then the code is invalid
  *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
  * @param string $acode user supplied activation code
  *
- * @return BOOL TRUE if the strings match, else, FALSE
+ * @return the user's ID(integer) to whom the code matches, else, NULL
  */
-function isValidACode($link, $acode){
-    //GAP
+function getUserIDByACode($link, $acode){
+    $query = "SELECT user_id AS id FROM pending WHERE code = '";
+
+    $result = mysqli_query($link, $query . $acode . "';");
+
+    list($id) = mysqli_fetch_array($result, MYSQLI_NUM);
+
+    return $id != NULL ? (int)$id : NULL;
 }
 
 
