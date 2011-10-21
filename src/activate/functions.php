@@ -58,6 +58,3 @@ function isValidSecurityData($data){
 
     return ($len >= 8 && $len <= 255 && preg_match('/^[\s\p{Ll}\p{Lu}\p{Po}\p{Nd}]+$/u', $data));
 }
-
-
-//TODO: activation date
