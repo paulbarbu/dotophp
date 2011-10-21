@@ -41,14 +41,21 @@ return array(
 
     /* activate or recover */
     'activate' => array(
+        'pre-process' => array(
+            'db' => 'mysql',
+        ),
         'VL' => array(
-            'title' => 'Activate',
+            'title' => 'Activate your account',
             'content' => 'content.php',
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
+            'constants' => 'constants.php',
             'functions' => 'functions.php',
             'activate' => 'activate.php',
+        ),
+        'post-process' => array(
+            'db' => 'mysql',
         ),
     ),
 
