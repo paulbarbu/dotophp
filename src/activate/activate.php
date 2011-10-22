@@ -10,59 +10,54 @@
 //TODO: check every 7 days for inactive accounts
 
 if(isset($_POST['activate'])){
+
+    $result = NULL;
+
     list($code, $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']) =
         filterInput($_POST['code'], $_POST['pass'], $_POST['passconfirm'],
                     $_POST['security_q'], $_POST['security_a']);
 
     if(!$feedback_pre['connect']){
-        return R_ERR_DB_CONNECTION;
+        $result = A_ERR_DB_CONNECTION;
     }
-
-    if(isValidPass($_POST['pass']) && $_POST['pass'] == $_POST['passconfirm']){
+    elseif(isValidPass($_POST['pass']) && $_POST['pass'] == $_POST['passconfirm']){
         if(isValidSecurityData($_POST['security_q']) && isValidSecurityData($_POST['security_a'])){
             $id = getUserIDByACode($feedback_pre['connect'], $code);
 
             if($id != NULL){
                 if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
-                    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-                    return A_ERR_DB;
+                    $result = A_ERR_DB;
                 }
-
-                if(!mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = ' . $id . ';')){
-                    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-                    return A_ERR_DB;
+                elseif(!mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = ' . $id . ';')){
+                    $result = A_ERR_DB;
                 }
-
-                if(!mysqli_query($feedback_pre['connect'],"UPDATE user SET password = SHA1('" .
+                elseif(!mysqli_query($feedback_pre['connect'],"UPDATE user SET password = SHA1('" .
                     $_POST['pass'] . "'), security_q = '" . $_POST['security_q'] . "', security_a = '" .
                     $_POST['security_a'] . "', activated = NOW() WHERE id = " . $id . ";"
                 )){
-                    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-                    return A_ERR_DB;
+                    $result = A_ERR_DB;
                 }
-
-                if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
-                    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-                    return R_ERR_DB;
+                elseif(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
+                    $result = A_ERR_DB;
                 }
-
-                unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-                return ERR_NONE;
+                else{
+                    $result = ERR_NONE;
+                }
             }
             else{
-                unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-                return A_ERR_CODE;
+                $result = A_ERR_CODE;
             }
         }
         else{
-            unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-            return A_ERR_SECURITY_DATA;
+            $result = A_ERR_SECURITY_DATA;
         }
     }
     else{
-        unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
-        return A_ERR_PASS;
+        $result = A_ERR_PASS;
     }
+
+    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
+    return $result;
 }
 
 return TRUE;
