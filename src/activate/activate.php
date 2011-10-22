@@ -24,7 +24,7 @@ if(isset($_POST['activate'])){
         if(isValidSecurityData($_POST['security_q']) && isValidSecurityData($_POST['security_a'])){
             $id = getUserIDByCode($feedback_pre['connect'], $code);
 
-            if($id != NULL){
+            if($id !== NULL){
                 if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
                     $result = A_ERR_DB;
                 }
