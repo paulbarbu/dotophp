@@ -24,8 +24,12 @@ if(isset($_POST['register'])){
             return R_ERR_DB_CONNECTION;
         }
 
-        if(isUser($feedback_pre['connect'], $nick, $email)){
-            return R_ERR_USER;
+        $existing_user = isUser($feedback_pre['connect'], $nick, $email);
+        if($existing_user == 1){
+            return R_ERR_USED_NICK;
+        }
+        elseif($existing_user == 2){
+            return R_ERR_USED_MAIL;
         }
 
         isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
