@@ -164,7 +164,8 @@ function isValidCaptcha($captcha, $captcha_input){
  * @param string $nickname user's nickname
  * @param string $email user's email
  *
- * @return BOOL TRUE if the user's credentials are found in the DB, else, FALSE
+ * @return 1 if the user's nick is found in the DB, 2 if the email is found, else(the
+ * nick and the email are not found) 0
  */
 function isUser($link, $nickname = NULL, $email = NULL){
     $query = 'SELECT nick, email FROM user WHERE ';
@@ -188,10 +189,17 @@ function isUser($link, $nickname = NULL, $email = NULL){
     $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     if(empty($user)){
-        return FALSE;
+        return 0;
     }
 
-    return TRUE;
+    foreach($user as $candidate){
+        if($candidate['nick'] == $nickname){
+            return 1;
+        }
+        elseif($candidate['email'] == $email){
+            return 2;
+        }
+    }
 }
 
 /**
