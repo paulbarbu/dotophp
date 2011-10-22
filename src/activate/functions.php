@@ -18,14 +18,14 @@
  * returned then the code is invalid
  *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
- * @param string $acode user supplied activation code
+ * @param string $code user supplied activation code
  *
  * @return the user's ID(integer) to whom the code matches, else, NULL
  */
-function getUserIDByACode($link, $acode){
+function getUserIDByCode($link, $code){
     $query = "SELECT user_id AS id FROM pending WHERE code = '";
 
-    $result = mysqli_query($link, $query . $acode . "';");
+    $result = mysqli_query($link, $query . $code . "';");
 
     list($id) = mysqli_fetch_array($result, MYSQLI_NUM);
 

@@ -39,7 +39,7 @@ function filterInput(){
  *
  * @return string activation code
  */
-function genACode($nick){
+function genCode($nick){
 
     return implode('', array_slice(str_split(sha1($nick . time())), 0, 10));
 }

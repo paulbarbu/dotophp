@@ -42,7 +42,7 @@ if(isset($_POST['register'])){
             return $result[1];
         }
         else{
-            $activation_code = genACode($nick);
+            $activation_code = genCode($nick);
 
             if(!addPendingUser($feedback_pre['connect'], $activation_code)){
                 return R_ERR_DB;

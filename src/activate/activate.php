@@ -22,7 +22,7 @@ if(isset($_POST['activate'])){
     }
     elseif(isValidPass($_POST['pass']) && $_POST['pass'] == $_POST['passconfirm']){
         if(isValidSecurityData($_POST['security_q']) && isValidSecurityData($_POST['security_a'])){
-            $id = getUserIDByACode($feedback_pre['connect'], $code);
+            $id = getUserIDByCode($feedback_pre['connect'], $code);
 
             if($id != NULL){
                 if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
