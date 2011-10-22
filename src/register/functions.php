@@ -28,7 +28,7 @@
  * @param int $birthday unix timestamp
  * @param string $sex 'M' or 'F'
  *
- * @return an array consisting of a BOOL value and a NULL or the error, array(BOOL, string)
+ * @return an array consisting of a BOOL value and a NULL or the error code, array(BOOL, int)
  */
 function addUser($link, $first_name, $last_name, $nickname, $email, $private, $tz,
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
