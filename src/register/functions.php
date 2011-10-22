@@ -33,100 +33,98 @@
 function addUser($link, $first_name, $last_name, $nickname, $email, $private, $tz,
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
-    $query = 'INSERT INTO user (first_name, last_name, nick, email,
-        tz, country, city, private, sex, description, phone, birthday) VALUES(';
 
     $values = array();
 
     if(isValidName($first_name) && isValidName($last_name)){
-        $values[] = "'" . $first_name . "'";
-        $values[] = "'" . $last_name . "'";
+        $values['first_name'] = "'" . $first_name . "'";
+        $values['last_name'] = "'" . $last_name . "'";
     }
     else{
         return array(FALSE, R_ERR_NAME);
     }
 
     if(isValidNick($nickname)){
-        $values[] = "'" . $nickname . "'";
+        $values['nick'] = "'" . $nickname . "'";
     }
     else{
         return array(FALSE, R_ERR_NICK);
     }
 
     if(isValidMail($email)){
-        $values[] = "'" . $email . "'";
+        $values['email'] = "'" . $email . "'";
     }
     else{
         return array(FALSE, R_ERR_EMAIL);
     }
 
-    var_dump($tz, $country);
-        var_dump($tz != 'Please select your timezone!');
     if($tz != 'Please select your timezone!'){
-        $values[] = "'" . $tz . "'";
+        $values['tz'] = "'" . $tz . "'";
     }
     else{
         return array(FALSE, R_ERR_TZ);
     }
 
     if($country != 'Please select your country!'){
-        $values[] = "'" . $country . "'";
+        $values['country'] = "'" . $country . "'";
     }
     else{
         return array(FALSE, R_ERR_COUNTRY);
     }
 
     if(isValidCity($city)){
-        $values[] = "'" . $city . "'";
+        $values['city'] = "'" . $city . "'";
     }
     else{
         return array(FALSE, R_ERR_CITY);
     }
 
-    $values[] = $private;
-    $values[] = "'" . $sex . "'";
+    $values['private'] = $private;
+    $values['sex'] = "'" . $sex . "'";
 
     if($description){
         if(isValidDesc($description)){
-            $values[] = "'" . $description . "'";
+            $values['description'] = "'" . $description . "'";
         }
         else{
             return array(FALSE, R_ERR_DESC);
         }
     }
     else{
-        $values[] = 'NULL';
+        $values['description'] = 'NULL';
     }
 
     if($phone){
         if(isValidPhone($phone)){
-            $values[] = "'" . $phone . "'";
+            $values['phone'] = "'" . $phone . "'";
         }
         else{
             return array(FALSE, R_ERR_PHONE);
         }
     }
     else{
-        $values[] = 'NULL';
+        $values['phone'] = 'NULL';
     }
 
     if($birthday && $birthday != 'DD-MM-YYYY'){
         if(isValidBDate($birthday)){
-            $values[] = "'" . $birthday . "'";
+            $values['birthday'] = "'" . $birthday . "'";
         }
         else{
             return array(FALSE, R_ERR_BDATE);
         }
     }
     else{
-        $values[] = 'NULL';
+        $values['birthday'] = 'NULL';
     }
 
     //TODO: remove these lines when not debugging!
-    //var_dump($query . implode(',', $values) . ');');
+    //var_dump('INSERT INTO user(' . implode(', ', array_keys($values)) . ') VALUES(' .
+       //implode(', ', $values) . ';');
     //return NULL;
 
-    $result = mysqli_query($link, $query . implode(',', $values) . ');');
+    $result = mysqli_query($link, 'INSERT INTO user(' . implode(', ',
+        array_keys($values)) . ') VALUES(' . implode(', ', $values) . ');');
 
     if(!$result){
         return array(FALSE, R_ERR_DB);
