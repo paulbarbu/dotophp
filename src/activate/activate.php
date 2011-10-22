@@ -14,7 +14,7 @@ if(isset($_POST['activate'])){
     $result = NULL;
 
     list($code, $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']) =
-        filterInput($_POST['code'], $_POST['pass'], $_POST['passconfirm'],
+        filterInput(isset($_POST['code']) ? $_POST['code'] : $_GET['code'], $_POST['pass'], $_POST['passconfirm'],
                     $_POST['security_q'], $_POST['security_a']);
 
     if(!$feedback_pre['connect']){
