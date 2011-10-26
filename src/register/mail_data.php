@@ -23,6 +23,8 @@ OR
 
 Access %(activation_link)s and use the activation code: %(code)s
 
+If you do not activate your account whitin a week from the activation date the account will be deleted!
+
 Thank you!';
 
 return $mail_data;
