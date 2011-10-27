@@ -9,3 +9,5 @@
 6. `cd` into dotophp/src/mysql and edit `connect.php` according to your
 connection details
 7. That's it, access it through the web browser
+
+TODO: configure cron and expired.php
