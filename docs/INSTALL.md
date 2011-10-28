@@ -8,6 +8,5 @@
 `source ./schema.sql`
 6. `cd` into dotophp/src/mysql and edit `connect.php` according to your
 connection details
-7. That's it, access it through the web browser
-
-TODO: configure cron and expired.php
+7. `crontab -e` add `@weekly ID=dotophp_expired_cleanup php -f dotophp/bin/expired.php`
+8. That's it, access it through the web browser
