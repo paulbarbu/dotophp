@@ -16,13 +16,15 @@
 
 $feedback_pre['connect'] = require '../src/mysql/connect.php';
 
-//TODO:
-//get pending accounts
-//check creation date for pending accounts
-//delete the ones older than 7 days
+if($feedback_pre['connect']){
+    mysqli_query($feedback_pre['connect'],
+        "DELETE FROM user WHERE activated='0000-00-00 00:00:00' AND (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created))/604799 >= 1;");
 
-$pending = mysqli_query($feedback_pre['connect'], 'SELECT * FROM pending;');
+    require '../src/mysql/disconnect.php';
+}
+else{
+    require '../src/global_functions.php';
 
-var_dump(mysqli_fetch_all($pending, MYSQLI_ASSOC));
-
-require '../src/mysql/disconnect.php';
+    writeLog('../logs/expired.log', date('d.m.Y H:i:s') . ' - Connection error: ('
+        . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
+}
