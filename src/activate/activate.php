@@ -7,13 +7,11 @@
  * @ingroup activateFiles
  */
 
-//TODO: check every 7 days for inactive accounts
-
 if(isset($_POST['activate'])){
 
     $result = NULL;
 
-    list($code, $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']) =
+    list($activationCode, $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']) =
         filterInput(isset($_POST['code']) ? $_POST['code'] : $_GET['code'], $_POST['pass'], $_POST['passconfirm'],
                     $_POST['security_q'], $_POST['security_a']);
 
@@ -22,7 +20,7 @@ if(isset($_POST['activate'])){
     }
     elseif(isValidPass($_POST['pass']) && $_POST['pass'] == $_POST['passconfirm']){
         if(isValidSecurityData($_POST['security_q']) && isValidSecurityData($_POST['security_a'])){
-            $id = getUserIDByCode($feedback_pre['connect'], $code);
+            $id = getPendingUser($feedback_pre['connect'], $activationCode);
 
             if($id !== NULL){
                 if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
