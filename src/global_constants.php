@@ -8,3 +8,6 @@
  */
 
 const ERR_NONE = 0;
+const NO_MATCH = 0;
+const MATCHING_NICK = 1;
+const MATCHING_MAIL = 2;

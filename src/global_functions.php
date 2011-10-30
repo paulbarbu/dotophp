@@ -189,15 +189,15 @@ function isUser($link, $nickname = NULL, $email = NULL){
     $user = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
     if(empty($user)){
-        return 0;
+        return NO_MATCH;
     }
 
     foreach($user as $candidate){
         if($candidate['nick'] == $nickname){
-            return 1;
+            return MATCHING_NICK;
         }
         elseif($candidate['email'] == $email){
-            return 2;
+            return MATCHING_MAIL;
         }
     }
 }

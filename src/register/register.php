@@ -25,10 +25,10 @@ if(isset($_POST['register'])){
         }
 
         $existing_user = isUser($feedback_pre['connect'], $nick, $email);
-        if($existing_user == 1){
+        if($existing_user == MATCHING_NICK){
             return R_ERR_USED_NICK;
         }
-        elseif($existing_user == 2){
+        elseif($existing_user == MATCHING_MAIL){
             return R_ERR_USED_MAIL;
         }
 
