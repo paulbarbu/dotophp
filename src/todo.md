@@ -54,7 +54,7 @@ do not add a user twice in the pending table when resetting passwords
 
 doxygen: document dotophp/bin also
 
-mysql_str_escape
+mysql_real_escape_string()
 
 
 writeLog when connection fails in other modules too
@@ -105,3 +105,7 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 22:58:52 +misterjinx | păi cred că soluția cea mai simplă în acest caz ar fi să reții într-o variabilă din sesiune toate valorile introduse în   │
                      | formular iarîn caz de erori să precompletezi formularul cu ce ai salvat acolo                                             │
 22:59:22 +misterjinx | iar dacă este totul în regulă, de exemplu după ce ai făcut insertul în baza de date, golsești această variabilă (unset)
+
+#10 register.php
+
+modify arrayToOption() to use a VALUE not an index
