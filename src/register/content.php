@@ -19,6 +19,8 @@ $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
 
+var_dump($_POST);
+
 if($feedback['register']){
 ?>
 
@@ -30,13 +32,17 @@ if($feedback['register']){
     <table border=0>
     <tr><td>
 
-    <label for="f_n">First name:</label></td><td><input id="f_n" type="text" name="first_name" maxlength=10 />
+    <label for="f_n">First name:</label></td><td><input id="f_n" type="text" name="first_name" maxlength=10
+ <?php echo isset($_POST['first_name']) ? 'value="' . $_POST['first_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="l_n">Last name:</label></td><td><input id="l_n" type="text" name="last_name" maxlength=10 />
+    <label for="l_n">Last name:</label></td><td><input id="l_n" type="text" name="last_name" maxlength=10
+ <?php echo isset($_POST['last_name']) ? 'value="' . $_POST['last_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="nick">Nickname:</label></td><td><input id="nick" type="text" name="nick" maxlength=20 />
+    <label for="nick">Nickname:</label></td><td><input id="nick" type="text" name="nick" maxlength=20
+ <?php echo isset($_POST['nick']) ? 'value="' . $_POST['nick'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength=255 />
+    <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength=255
+ <?php echo isset($_POST['email']) ? 'value="' . $_POST['email'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="tz">Timezone:</label></td><td><select id="tz" name="timezone">
         <?php arrayToOption(array_values($tz), array_values($tz), 0); ?>
