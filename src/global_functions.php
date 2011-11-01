@@ -293,7 +293,7 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
         $text_count = count($text);
         if($text_count == count($values)){
             for($i=0; $i<$text_count; $i++){
-                if($selected == $i){
+                if($selectedValue == $values[$i]){
                     echo vsprintf_named($selected_template, array('text' => $text[$i],
                         'value' => $values[$i])) , PHP_EOL;
                 }
