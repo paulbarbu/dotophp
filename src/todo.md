@@ -111,3 +111,9 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 modify arrayToOption() to use a VALUE not an index
 
 on not recovering fields show all errors at once
+
+rem|phpro | paullik in register/functions aseara m-am legat de  = "'" . $first_name . "'" si toate atribuirile de genu                │
+20:48:27     paullik | rem|phpro, dap                                                                                                            │
+20:48:43   rem|phpro | mi s-ar parea mai curat sa adaugi apostrofurile undeva chiar inainte sa faci query-ul                                     │
+20:49:05   rem|phpro | practic pui datele in forma corecta                                                                                       │
+20:49:29   rem|phpro | pana atunci ar trebui sa ramane curate, cel putin asa as face eu:)
