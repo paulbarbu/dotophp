@@ -19,8 +19,6 @@ $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
 
-var_dump($_POST);
-
 if($feedback['register']){
 ?>
 
