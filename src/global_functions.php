@@ -286,8 +286,8 @@ function vsprintf_named($format, $args) {
  *
  * @return BOOL TRUE on success, else, FALSE
  */
-function arrayToOption($text, $values, $selected = NULL, $template='<option value="%(value)s">%(text)s</option>',
-                       $selected_template='<option value="%(value)s" selected >%(text)s</option>'){
+function arrayToOption($text, $values, $selectedValue = NULL, $template='<option value="%(value)s">%(text)s</option>',
+                       $selected_template='<option value="%(value)s" selected="selected" >%(text)s</option>'){
     if(is_array($values) && is_array($text)){
 
         $text_count = count($text);
