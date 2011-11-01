@@ -45,14 +45,15 @@ if($feedback['register']){
  <?php echo isset($_POST['email']) ? 'value="' . $_POST['email'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="tz">Timezone:</label></td><td><select id="tz" name="timezone">
-        <?php arrayToOption(array_values($tz), array_values($tz), 0); ?>
+        <?php arrayToOption(array_values($tz), array_values($tz), isset($_POST['timezone']) ? $_POST['timezone'] : 'Please select your timezone!'); ?>
     </select>
     </td></tr><tr><td>
     <label for="country">Country:</label></td><td><select id="country" name="country">
-        <?php arrayToOption(array_values($countries), array_keys($countries), 0); ?>
+        <?php arrayToOption(array_values($countries), array_keys($countries), isset($_POST['country']) ? $_POST['country'] : 'Please select your country!'); ?>
     </select>
     </td></tr><tr><td>
-    <label for="city">City:</label></td><td><input id="city" type="text" name="city" maxlength=30 />
+    <label for="city">City:</label></td><td><input id="city" type="text" name="city" maxlength=30
+ <?php echo isset($_POST['city']) ? 'value="' . $_POST['city'] . '"' : NULL ?> />
     </td></tr><tr><td>
 
     </td></tr>
@@ -66,17 +67,23 @@ if($feedback['register']){
     <table border=0>
     <tr><td>
 
-    <label for="priv">Private account:</label></td><td><input id="priv" type="checkbox" name="private" value="1" />
+    <label for="priv">Private account:</label></td><td><input id="priv" type="checkbox" name="private" value="1"
+ <?php echo isset($_POST['private']) ? 'checked="checked"' : NULL ?> />
     </td></tr><tr><td>
     <label for="sm">Male</label><br />
     <label for="sf"> Female</label></td><td>
-    <input type="radio" name="sex" value="M" id="sm" /><br />
-    <input type="radio" name="sex" value="F" id="sf" />
+    <input type="radio" name="sex" value="M" id="sm"
+ <?php echo isset($_POST['sex']) && $_POST['sex'] == 'M'? 'checked="checked"' : NULL ?> /><br />
+    <input type="radio" name="sex" value="F" id="sf"
+ <?php echo isset($_POST['sex']) && $_POST['sex'] == 'F'? 'checked="checked"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="phone">Phone:</label></td><td><input id="phone" type="text" name="phone" maxlength=20 />
-    </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" value="DD-MM-YYYY" name="birthday" maxlength=10 />
+    <label for="phone">Phone:</label></td><td><input id="phone" type="text" name="phone" maxlength=20
+ <?php echo isset($_POST['phone']) ? 'value="' . $_POST['phone'] . '"' : NULL ?> />
+    </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" name="birthday" maxlength=10
+ <?php echo isset($_POST['birthday']) ? 'value="' . $_POST['birthday'] . '"' : 'value="DD-MM-YYYY"' ?> />
     </td></tr><tr><td>
-    <label for="desc">Description:</label></td><td><textarea rows="3" cols="23" name="description" maxlength=100 id="desc" ></textarea>
+    <label for="desc">Description:</label></td><td><textarea rows="3" cols="23" name="description" maxlength=100 id="desc">
+<?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea>
     </td></tr><tr><td>
 
     </table>
