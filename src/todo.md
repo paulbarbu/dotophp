@@ -109,3 +109,5 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 #10 register.php
 
 modify arrayToOption() to use a VALUE not an index
+
+on not recovering fields show all errors at once
