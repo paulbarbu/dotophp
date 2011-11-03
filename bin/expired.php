@@ -21,11 +21,11 @@ if($feedback_pre['connect']){
     mysqli_query($feedback_pre['connect'],
         "DELETE FROM user WHERE activated='0000-00-00 00:00:00' AND (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created))/604799 >= 1;");
 
-    writeLog('../logs/expired.log', date('d.m.Y H:i:s') . ' - Expired accounts: ' . mysqli_affected_rows($feedback_pre['connect']) . PHP_EOL);
+    writeLog('../logs/expired.log', 'Expired accounts: ' . mysqli_affected_rows($feedback_pre['connect']) . PHP_EOL);
 
     require '../src/mysql/disconnect.php';
 }
 else{
-    writeLog('../logs/expired.log', date('d.m.Y H:i:s') . ' - Connection error: ('
+    writeLog('../logs/expired.log', 'Connection error: ('
         . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
 }
