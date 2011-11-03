@@ -317,6 +317,7 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * Create(or open) a log file and write(or append) a message
  *
  * A log file must have the 'log' extension
+ * In front of every message the date will be appended.
  *
  * @param string $path path to the file to be written
  * @param mixed $data the exact message to be written(no new lines are added
@@ -328,6 +329,5 @@ function writeLog($path, $data){
 
     strpos($path, '.log') !== strlen($path)-4 ? $path .= '.log' : NULL;
 
-    return error_log($data, 3, $path);
-
+    return error_log(date('d.m.Y H:i:s') . ' - ' . $data, 3, $path);
 }
