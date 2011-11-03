@@ -55,6 +55,11 @@ if(isset($_POST['activate'])){
     }
 
     unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
+
+    if($result == A_ERR_DB){
+        writeLog('../../logs/activate.log', '(' . mysqli_errno($link) . ') ' . mysqli_error($link) . PHP_EOL);
+    }
+
     return $result;
 }
 
