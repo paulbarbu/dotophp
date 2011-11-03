@@ -278,22 +278,21 @@ function vsprintf_named($format, $args) {
  *
  * @param array $text the text to be written
  * @param mixed $values the values to assign the options
- * @param int $selected (default: NULL) which element(0 indexed) to be selected in the
- * options list, if NULL none will be selected, if(for example) 42 the 42nd
- * element will be selected
+ * @param string $selected (default: NULL) which element(matching the value) to be selected in the
+ * options list, if NULL none will be selected
  * @param string $template template for the HTML <option> tag
  * @param string $selected_template template for the HTML selected <option> tag
  *
  * @return BOOL TRUE on success, else, FALSE
  */
-function arrayToOption($text, $values, $selected = NULL, $template='<option value="%(value)s">%(text)s</option>',
-                       $selected_template='<option value="%(value)s" selected >%(text)s</option>'){
+function arrayToOption($text, $values, $selectedValue = NULL, $template='<option value="%(value)s">%(text)s</option>',
+                       $selected_template='<option value="%(value)s" selected="selected" >%(text)s</option>'){
     if(is_array($values) && is_array($text)){
 
         $text_count = count($text);
         if($text_count == count($values)){
             for($i=0; $i<$text_count; $i++){
-                if($selected == $i){
+                if($selectedValue == $values[$i]){
                     echo vsprintf_named($selected_template, array('text' => $text[$i],
                         'value' => $values[$i])) , PHP_EOL;
                 }
