@@ -319,7 +319,8 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * A log file must have the 'log' extension
  *
  * @param string $path path to the file to be written (relative to DOTOPHP_ROOT/logs/)
- * @param mixed $data the message to be written
+ * @param mixed $data the exact message to be written(no new lines are added
+ * automatically)
  *
  * @return TRUE if the operation has succedded, else FALSE
  */
@@ -327,13 +328,6 @@ function writeLog($path, $data){
 
     strpos($path, '.log') !== strlen($path)-4 ? $path .= '.log' : NULL;
 
-    if(file_exists($path)){
-        if(is_file($path) && is_writable($path)){
-            return file_put_contents($path, $data, FILE_APPEND);
-        }
-    }
-    else{
-        return file_put_contents($path, $data);
-    }
+    return error_log($data, 3, $path);
 
 }
