@@ -108,8 +108,6 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 
 #10 register.php
 
-modify arrayToOption() to use a VALUE not an index
-
 on not recovering fields show all errors at once
 
 rem|phpro | paullik in register/functions aseara m-am legat de  = "'" . $first_name . "'" si toate atribuirile de genu                │
