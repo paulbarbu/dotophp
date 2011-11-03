@@ -1,2 +1,4 @@
 *.swp
 *~
+logs/*.log
+src/test.php
