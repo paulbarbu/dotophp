@@ -319,7 +319,7 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * A log file must have the 'log' extension
  * In front of every message the date will be appended.
  *
- * @param string $path path to the file to be written
+ * @param string $path path to the file to be written(relative to MODULES_ROOT)
  * @param mixed $data the exact message to be written(no new lines are added
  * automatically)
  *
