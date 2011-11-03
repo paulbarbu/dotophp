@@ -318,7 +318,7 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  *
  * A log file must have the 'log' extension
  *
- * @param string $path path to the file to be written (relative to DOTOPHP_ROOT/logs/)
+ * @param string $path path to the file to be written
  * @param mixed $data the exact message to be written(no new lines are added
  * automatically)
  *
