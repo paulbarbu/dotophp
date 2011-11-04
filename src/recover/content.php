@@ -12,11 +12,11 @@
  */
 ?>
 <form action="" method="post">
-<table border=0 cellspacing=5>
+<table border="0" cellspacing="5">
 <tr><td>
-    <label for="nick">Nickname:</label></td><td><input id="nick" type="text" name="nick" maxlength=20 />
+    <label for="nick">Nickname:</label></td><td><input id="nick" type="text" name="nick" maxlength="20" />
     </td></tr><tr><td>
-    <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength=255 />
+    <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength="255" />
     </td></tr>
 </table>
 <input type="submit" name="recover" value="Recover" />
