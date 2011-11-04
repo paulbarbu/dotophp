@@ -7,8 +7,6 @@
  * @ingroup registerFiles
  */
 
-var_dump($_SESSION['captcha']);
-
 if(isset($_POST['register'])){
     $result = array();
     $retval = NULL;
