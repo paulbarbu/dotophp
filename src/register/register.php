@@ -33,55 +33,56 @@ if(isset($_POST['register'])){
             else{
                 isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
 
-                if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
+                $result = validateUserData($first_name, $last_name, $nick, $email,
+                    isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
+                    $city, $sex, $description, $phone, $birthday);
+
+                if(isset($result[0]) && $result[0] === FALSE){
+                    $retval = $result[1];
+                }
+                elseif(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
                     $retval = R_ERR_DB;
                 }
-                else{
+                elseif(insertIntoDB($feedback_pre['connect'], 'user', $result)){
 
-                    $result = addUser($feedback_pre['connect'], $first_name, $last_name, $nick,
-                        $email, isset($_POST['private']) ? 1 : 0, $_POST['timezone'], $_POST['country'],
-                        $city, $sex, $description, $phone, $birthday);
+                    $activation_code = genActivationCode($nick);
 
-                    if(!$result[0]){
-                        $retval = $result[1];
+                    if(!addPendingUser($feedback_pre['connect'], $activation_code)){
+                        $retval = R_ERR_DB;
                     }
                     else{
-                        $activation_code = genActivationCode($nick);
 
-                        if(!addPendingUser($feedback_pre['connect'], $activation_code)){
-                            $retval = R_ERR_DB;
+                        $mail_data = require 'mail_data.php';
+                        $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path() . '/index.php?show=activate';
+
+                        $msg_specifiers = array(
+                            'nick' => $nick,
+                            'code_link' => $url . '&code=' . $activation_code,
+                            'activation_link' => $url,
+                            'code' => $activation_code,
+                        );
+
+                        if(!mail($email, vsprintf_named($mail_data['subject'], array('nick' => $nick)),
+                                 vsprintf_named($mail_data['msg'], $msg_specifiers), $mail_data['header'])){
+
+                            mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = LAST_INSERT_ID();');
+                            mysqli_query($feedback_pre['connect'], 'DELETE FROM user WHERE id = LAST_INSERT_ID();');
+
+                            $retval = R_ERR_MAIL;
                         }
                         else{
 
-                            $mail_data = require 'mail_data.php';
-                            $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path() . '/index.php?show=activate';
-
-                            $msg_specifiers = array(
-                                'nick' => $nick,
-                                'code_link' => $url . '&code=' . $activation_code,
-                                'activation_link' => $url,
-                                'code' => $activation_code,
-                            );
-
-                            if(!mail($email, vsprintf_named($mail_data['subject'], array('nick' => $nick)),
-                                     vsprintf_named($mail_data['msg'], $msg_specifiers), $mail_data['header'])){
-
-                                mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = LAST_INSERT_ID();');
-                                mysqli_query($feedback_pre['connect'], 'DELETE FROM user WHERE id = LAST_INSERT_ID();');
-
-                                $retval = R_ERR_MAIL;
+                            if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
+                                $retval = R_ERR_DB;
                             }
                             else{
-
-                                if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
-                                    $retval = R_ERR_DB;
-                                }
-                                else{
-                                    $retval = ERR_NONE;
-                                }
+                                $retval = ERR_NONE;
                             }
                         }
                     }
+                }
+                else{
+                    $retval = R_ERR_DB;
                 }
             }
         }
