@@ -19,15 +19,6 @@ mysql_real_escape_string()
 starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                                                                             │ flavius  
 22:36:56 +misterjinx | după ce-l instalezi încearcă un simplu echo "test mail" | sendmail mailultău@domain.com
 
-+misterjinx | tu ai o funcție addUser unde am văzut că faci atât verificarea formularului cât și construirea query-ului                 │
-22:39:17    starlays | paullik: ooook.                                                                                                           │
-22:39:26 +misterjinx | nu-mi prea place acest lucru, este cam inestetic                                                                          │
-22:39:54     paullik | misterjinx, da, verific un camp si il bag in query daca e ok si tot asa                                                   │
-22:39:55 +misterjinx | propunerea mea arfi să faci întâi o funcție la modul validateUser unde să te ocupi doar de validarea formularului și să   │
-                     | întorci erorile                                                                                                           │
-22:40:11 +misterjinx | și pe urmă faci funcția addUser unde direct construiești query-ul                                                         │
-22:40:23     paullik | inteleg ce-mi zici
-
  +misterjinx | tot la partea de înregistrare, dacă nu-ți reușește trimiterea mail-ului de activare tu ștergi userul abia creat  ?        │
 22:46:39     paullik | da                                                                                                                        │
 22:46:56    starlays | paullik: daca pentru todo: comment linia #10 din register.php                                                             │
@@ -39,12 +30,4 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 22:48:44 +misterjinx | *retrimită                                                                                                                │
 22:49:09     paullik | da, suna bine
 
-#10 register.php
-
 on not recovering fields show all errors at once
-
-rem|phpro | paullik in register/functions aseara m-am legat de  = "'" . $first_name . "'" si toate atribuirile de genu                │
-20:48:27     paullik | rem|phpro, dap                                                                                                            │
-20:48:43   rem|phpro | mi s-ar parea mai curat sa adaugi apostrofurile undeva chiar inainte sa faci query-ul                                     │
-20:49:05   rem|phpro | practic pui datele in forma corecta                                                                                       │
-20:49:29   rem|phpro | pana atunci ar trebui sa ramane curate, cel putin asa as face eu:)
