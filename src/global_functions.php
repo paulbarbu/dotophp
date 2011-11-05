@@ -331,3 +331,24 @@ function writeLog($path, $data){
 
     return error_log(date('d.m.Y H:i:s') . ' - ' . $data, 3, $path);
 }
+
+/**
+ * Creates a query and inserts data into a database
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $table the name of the table where the insert must be made
+ * @param array $data associative array, the keys will be used for the column
+ * names and the values will be used in VALUES()
+ *
+ * @return TRUE is the insert was made successfully, else FALSE
+ */
+function insertIntoDB($link, $table, $data){
+    $result = mysqli_query($link, 'INSERT INTO ' . $table . '(' . implode(',',
+                array_keys($data)) . ') VALUES(\'' . implode("', '", $data) . '\');');
+
+    if(!$result){
+        return FALSE;
+    }
+
+    return TRUE;
+}
