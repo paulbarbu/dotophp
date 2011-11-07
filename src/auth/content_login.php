@@ -19,3 +19,4 @@
 </table>
 <input type="submit" name="login" value="Log in" />
 </form>
+<p>Activation email not received? <a href="index.php?show=notreceived" >Click here</a> to have it resent!</p>
