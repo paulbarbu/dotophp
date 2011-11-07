@@ -21,7 +21,6 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 
  +misterjinx | tot la partea de înregistrare, dacă nu-ți reușește trimiterea mail-ului de activare tu ștergi userul abia creat  ?        │
 22:46:39     paullik | da                                                                                                                        │
-22:46:56    starlays | paullik: daca pentru todo: comment linia #10 din register.php                                                             │
 22:47:00     paullik | m-am gandit asa: sa nu am leftovers                                                                                       │
 22:47:48 +misterjinx | nu e în regulă asta, adică eu ca user aș fi supărat să se întâmple asta                                                   │
 22:48:20 +misterjinx | propunerea mea ar fi să nu ștergi respectivul user ci să faci o funcționalitate de tipul „nu ai primit mail-ul de         │
