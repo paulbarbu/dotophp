@@ -39,6 +39,24 @@ return array(
         ),
     ),
 
+    'notreceived' => array(
+        'pre-process' => array(
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'title' => 'Activation email not received',
+            'content' => 'content.php',
+            'show_in_menu' => FALSE,
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'notreceived' => 'notreceived.php',
+        ),
+        'post-process' => array(
+            'db' => 'mysql',
+        ),
+    ),
+
     /* activate or recover */
     'activate' => array(
         'pre-process' => array(
