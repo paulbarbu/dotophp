@@ -20,5 +20,5 @@ const R_ERR_DB = 10;
 const R_ERR_TZ = 11;
 const R_ERR_COUNTRY = 12;
 const R_ERR_USED_NICK = 13;
-const R_ERR_MAIL = 14;
+const R_ERR_NOT_SENT = 14;
 const R_ERR_USED_MAIL = 15;
