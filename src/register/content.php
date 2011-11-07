@@ -132,7 +132,8 @@ if($feedback['register']){
                 break;
             case R_ERR_USED_MAIL: printf('The e-mail is already in use! (#%d)', R_ERR_USED_MAIL);
                 break;
-            case R_ERR_MAIL: printf('An error occurred while sending the email, please try again! (#%d)', R_ERR_MAIL);
+            case R_ERR_NOT_SENT: printf('An error occurred while sending the email! (#%d)
+                <br /> Please <a href="index.php?show=notreceived" >click here</a> do resend it!', R_ERR_NOT_SENT);
                 break;
         }
 
