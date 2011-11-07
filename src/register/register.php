@@ -65,10 +65,7 @@ if(isset($_POST['register'])){
                         if(!mail($email, vsprintf_named($mail_data['subject'], array('nick' => $nick)),
                                  vsprintf_named($mail_data['msg'], $msg_specifiers), $mail_data['header'])){
 
-                            mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = LAST_INSERT_ID();');
-                            mysqli_query($feedback_pre['connect'], 'DELETE FROM user WHERE id = LAST_INSERT_ID();');
-
-                            $retval = R_ERR_MAIL;
+                            $retval = R_ERR_NOT_SENT;
                         }
                         else{
 
