@@ -319,8 +319,8 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * A log file must have the 'log' extension
  * In front of every message the date will be appended.
  *
- * @param string $path path to the file to be written(relative to MODULES_ROOT)
- * @param mixed $data the exact message to be written(no new lines are added
+ * @param string $path path to the file to be written (relative to MODULES_ROOT)
+ * @param mixed $data the exact message to be written (no new lines are added
  * automatically)
  *
  * @return TRUE if the operation has succedded, else FALSE
@@ -329,7 +329,7 @@ function writeLog($path, $data){
 
     strpos($path, '.log') !== strlen($path)-4 ? $path .= '.log' : NULL;
 
-    return error_log(date('d.m.Y H:i:s') . ' - ' . $data, 3, $path);
+    return error_log(date(DATE_FORMAT) . ' - ' . $data, 3, $path);
 }
 
 /**
