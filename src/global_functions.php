@@ -327,7 +327,7 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  */
 function writeLog($path, $data){
 
-    strpos($path, '.log') !== strlen($path)-4 ? $path .= '.log' : NULL;
+    $path .= strpos($path, '.log') !== strlen($path)-4 ? '.log' : NULL;
 
     return error_log(date(DATE_FORMAT) . ' - ' . $data, 3, $path);
 }
