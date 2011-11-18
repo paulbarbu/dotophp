@@ -79,13 +79,21 @@ return array(
 
     /* recover a lost account */
     'recover' => array(
+        'pre-process' => array(
+            'db' => 'mysql',
+            'sess_starter' => 'sess_starter.php',
+        ),
         'VL' => array(
             'title' => 'Recover account',
             'content' => 'content.php',
         ),
         'BL' => array(
+            'constants' => 'constants.php',
             'functions' => 'functions.php',
             'recover' => 'recover.php',
+        ),
+        'post-process' => array(
+            'db' => 'mysql',
         ),
     ),
 
