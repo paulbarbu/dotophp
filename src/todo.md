@@ -20,3 +20,5 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 22:36:56 +misterjinx | după ce-l instalezi încearcă un simplu echo "test mail" | sendmail mailultău@domain.com
 
 when the view content is too large an alignment problem occurs
+
+session handler module
