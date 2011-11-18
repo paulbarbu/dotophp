@@ -164,8 +164,8 @@ function isValidCaptcha($captcha, $captcha_input){
  * @param string $nickname user's nickname
  * @param string $email user's email
  *
- * @return 1 if the user's nick is found in the DB, 2 if the email is found, else(the
- * nick and the email are not found) 0
+ * @return MATCHING_NICK if the user's nick is found in the DB, MATCHING_MAIL if the email
+ * is found, else(the nick and the email are not found) NO_MATCH
  */
 function isUser($link, $nickname = NULL, $email = NULL){
     $query = 'SELECT nick, email FROM user WHERE ';
