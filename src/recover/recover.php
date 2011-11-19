@@ -33,6 +33,18 @@ if(isset($_POST['proceed'])){
 
     return RECOVER_PROCESSED;
 }
+elseif(isset($_POST['recover'])){
+    list($answer) = filterInput($_POST['security_a']);
+
+    if(!(isValidSecurityData($answer) &&
+         strcmp($answer, $_SESSION['security_a']) == 0)){
+        return array('recover' => RECOVER_ERR_ANSWER);
+    }
+
+    //continue here
+    ////think about transactions
+
+}
 //else if the security answer has been submitted, check it and recover the
 //account
 
