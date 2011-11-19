@@ -158,6 +158,19 @@ function isValidCaptcha($captcha, $captcha_input){
 }
 
 /**
+ * Check the security data (question and answer)
+ *
+ * @param string $data the question or the answer to be checked
+ *
+ * @return BOOL TRUE if the data is valid, else FALSE
+ */
+function isValidSecurityData($data){
+    $len = strlen($data);
+
+    return ($len >= 8 && $len <= 255 && preg_match('/^[\s\p{Ll}\p{Lu}\p{Po}\p{Nd}]+$/u', $data));
+}
+
+/**
  * Query the DB to check if the email and/or nickname are supplied correctly
  *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()

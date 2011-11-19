@@ -45,16 +45,3 @@ function isValidPass($pass){
     return ($len >= 6 && $len <= 30 &&
         preg_match("/^[`_\^\p{Ll}\p{Lu}\p{Nd}\p{Sc}\p{Sm}\p{Pd}\p{Pe}\p{Po}\p{Ps}\p{Zs}]+$/u", $pass));
 }
-
-/**
- * Check the security data (question and answer)
- *
- * @param string $data the question or the answer to be checked
- *
- * @return BOOL TRUE if the data is valid, else FALSE
- */
-function isValidSecurityData($data){
-    $len = strlen($data);
-
-    return ($len >= 8 && $len <= 255 && preg_match('/^[\s\p{Ll}\p{Lu}\p{Po}\p{Nd}]+$/u', $data));
-}
