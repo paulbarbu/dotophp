@@ -20,7 +20,7 @@ return array(
     /* sign up */
     'register' => array(
         'pre-process' => array(
-            'sess_starter' => 'sess_starter.php',
+            'sess' => 'session-handler',
             'gen_code' => 'captcha',
             'db' => 'mysql',
         ),
@@ -80,8 +80,8 @@ return array(
     /* recover a lost account */
     'recover' => array(
         'pre-process' => array(
+            'sess' => 'session-handler',
             'db' => 'mysql',
-            'sess_starter' => 'sess_starter.php',
         ),
         'VL' => array(
             'title' => 'Recover account',
@@ -148,6 +148,19 @@ return array(
         ),
         'post-process' => array(
             'disconnect' => 'disconnect.php',
+        ),
+    ),
+
+    /* Session handler */
+    'session-handler' => array (
+        'pre-process' => array(
+            'start' => 'start.php',
+        ),
+        'VL' => array(
+            'show_in_menu' => FALSE,
+        ),
+        'post-process' => array(
+            'destroy' => 'destroy.php',
         ),
     ),
 );
