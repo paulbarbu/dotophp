@@ -32,6 +32,15 @@ if(isset($feedback['recover']['recover']) || $feedback['recover'] === RECOVER_PR
         switch($feedback['recover']['recover']){
             case RECOVER_ERR_ANSWER: printf("Invalid answer! (#%d)", RECOVER_ERR_ANSWER);
                 break;
+            case RECOVER_ERR_NOT_SENT: printf('An error occurred while sending the email! (#%d)
+                <br /> Please <a href="index.php?show=notreceived" >click here</a> to resend it!', RECOVER_ERR_NOT_SENT);
+                break;
+            case RECOVER_ERR_DB_C: printf('Error connecting to the database! (#%d)', RECOVER_ERR_DB_C);
+                break;
+            case RECOVER_ERR_DB: printf('A database related error occured, please contact the administrator! (#%d)', RECOVER_ERR_DB);
+                break;
+            case RECOVERED: printf('An email was sent to your address in order to re-activate your recovered account! (#%d)', RECOVERED);
+                break;
         }
         echo '</h3>';
     }
@@ -57,6 +66,10 @@ else{
             case RECOVER_ERR_NOUSER: printf("This email is not associated to any account! (#%d)", RECOVER_ERR_NOUSER);
                 break;
             case RECOVER_ERR_INACTIVE: printf("The account you're trying to recover has not been activated yet! (#%d)", RECOVER_ERR_INACTIVE);
+                break;
+            case RECOVER_ERR_DB_C: printf('Error connecting to the database! (#%d)', RECOVER_ERR_DB_C);
+                break;
+            case RECOVER_ERR_DB: printf('A database related error occured, please contact the administrator! (#%d)', RECOVER_ERR_DB);
                 break;
         }
         echo '</h3>';
