@@ -17,7 +17,7 @@ return array(
         ),
     ),
 
-    /* sign up */
+    /* Sign up */
     'register' => array(
         'pre-process' => array(
             'sess' => 'session-handler',
@@ -57,7 +57,7 @@ return array(
         ),
     ),
 
-    /* activate or recover */
+    /* Activate or recover */
     'activate' => array(
         'pre-process' => array(
             'db' => 'mysql',
@@ -77,7 +77,7 @@ return array(
         ),
     ),
 
-    /* recover a lost account */
+    /* Recover a lost account */
     'recover' => array(
         'pre-process' => array(
             'sess' => 'session-handler',
@@ -112,7 +112,7 @@ return array(
         ),
     ),
 
-    /* inexistent page */
+    /* Inexistent page */
     '404' => array(
         'VL' => array(
             'title' => 'Inexistent page',
@@ -125,7 +125,7 @@ return array(
         ),
     ),
 
-    /* captcha image */
+    /* Captcha image */
     'captcha' => array(
         'pre-process' => array(
             'code_gen' => 'generate_code.php',
