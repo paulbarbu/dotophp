@@ -53,7 +53,8 @@ if(isset($_POST['register'])){
                     else{
 
                         $mail_data = require 'mail_data.php';
-                        $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path() . '/index.php?show=activate';
+                        $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path()
+                             . '/index.php?show=activate';
 
                         $msg_specifiers = array(
                             'nick' => $nick,
@@ -89,7 +90,8 @@ if(isset($_POST['register'])){
     }
 
     if($retval == R_ERR_DB || $retval == R_ERR_DB_CONNECTION){
-        writeLog('../logs/register.log', '(' . mysqli_errno($feedback_pre['connect']) . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+        writeLog('../logs/register.log', '(' . mysqli_errno($feedback_pre['connect'])
+                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
 
     return $retval;

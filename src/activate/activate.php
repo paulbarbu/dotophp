@@ -12,21 +12,23 @@ if(isset($_POST['activate'])){
     $result = NULL;
 
     list($activationCode, $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']) =
-        filterInput(isset($_POST['code']) ? $_POST['code'] : $_GET['code'], $_POST['pass'], $_POST['passconfirm'],
-                    $_POST['security_q'], $_POST['security_a']);
+        filterInput(isset($_POST['code']) ? $_POST['code'] : $_GET['code'],
+            $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
 
     if(!$feedback_pre['connect']){
         $result = A_ERR_DB_CONNECTION;
     }
     elseif(isValidPass($_POST['pass']) && $_POST['pass'] == $_POST['passconfirm']){
-        if(isValidSecurityData($_POST['security_q']) && isValidSecurityData($_POST['security_a'])){
+        if(isValidSecurityData($_POST['security_q']) &&
+           isValidSecurityData($_POST['security_a'])){
             $id = getPendingUser($feedback_pre['connect'], $activationCode);
 
             if($id !== NULL){
                 if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
                     $result = A_ERR_DB;
                 }
-                elseif(!mysqli_query($feedback_pre['connect'], 'DELETE FROM pending WHERE user_id = ' . $id . ';')){
+                elseif(!mysqli_query($feedback_pre['connect'],
+                       'DELETE FROM pending WHERE user_id = ' . $id . ';')){
                     $result = A_ERR_DB;
                 }
                 elseif(!mysqli_query($feedback_pre['connect'],"UPDATE user SET password = SHA1('" .
@@ -57,7 +59,8 @@ if(isset($_POST['activate'])){
     unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
 
     if($result == A_ERR_DB || $result == A_ERR_DB_CONNECTION){
-        writeLog('../logs/activate.log', '(' . mysqli_errno($feedback_pre['connect']) . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+        writeLog('../logs/activate.log', '(' . mysqli_errno($feedback_pre['connect'])
+                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
 
     return $result;

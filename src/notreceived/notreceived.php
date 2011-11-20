@@ -15,7 +15,7 @@ if(isset($_POST['resend'])){
 
     if(!$feedback_pre['connect']){
         writeLog('../logs/register.log', '(' . mysqli_errno($feedback_pre['connect'])
-            . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         return NR_ERR_DB_CONNECTION;
     }
 
@@ -29,7 +29,8 @@ if(isset($_POST['resend'])){
         return NR_ERR_MAIL;
     }
 
-    $result = mysqli_query($feedback_pre['connect'], "SELECT id, nick FROM user WHERE email = '" . $email . "';");
+    $result = mysqli_query($feedback_pre['connect'],
+                    "SELECT id, nick FROM user WHERE email = '" . $email . "';");
 
     list($id, $nick) = mysqli_fetch_array($result, MYSQLI_NUM);
 
@@ -37,7 +38,8 @@ if(isset($_POST['resend'])){
         return NR_ERR_MAIL;
     }
 
-    $result = mysqli_query($feedback_pre['connect'], "SELECT code FROM pending WHERE user_id = " . $id . ";");
+    $result = mysqli_query($feedback_pre['connect'],
+                    "SELECT code FROM pending WHERE user_id = " . $id . ";");
 
     list($activation_code) = mysqli_fetch_array($result, MYSQLI_NUM);
 
@@ -46,7 +48,8 @@ if(isset($_POST['resend'])){
     }
 
     $mail_data = require 'mail_data.php';
-    $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path() . '/index.php?show=activate';
+    $url = 'http://' . $_SERVER['SERVER_NAME'] . app_path()
+         . '/index.php?show=activate';
 
     $msg_specifiers = array(
         'nick' => $nick,
