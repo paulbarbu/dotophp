@@ -63,19 +63,18 @@ if(isset($_POST['register'])){
                             'code' => $activation_code,
                         );
 
-                        if(!mail($email, vsprintf_named($mail_data['subject'], array('nick' => $nick)),
-                                 vsprintf_named($mail_data['msg'], $msg_specifiers), $mail_data['header'])){
+                        if(!mail($email, vsprintf_named($mail_data['subject'],
+                                 array('nick' => $nick)), vsprintf_named($mail_data['msg'],
+                                 $msg_specifiers), $mail_data['header'])){
 
                             $retval = R_ERR_NOT_SENT;
                         }
                         else{
+                            $retval = ERR_NONE;
+                        }
 
-                            if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
-                                $retval = R_ERR_DB;
-                            }
-                            else{
-                                $retval = ERR_NONE;
-                            }
+                        if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
+                            $retval = R_ERR_DB;
                         }
                     }
                 }
