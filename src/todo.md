@@ -1,10 +1,8 @@
-do not add a user twice in the pending table when resetting passwords
-
 2011-10-22 12:23:38	+flavius	daca pui folding markers face vim treaba
 2011-10-22 12:23:57	+flavius	vezi ca mai trebuie ceva setari si la sfarsitul fiecarui fisier
 2011-10-22 12:24:09	+flavius	ai exemplu prin phpmeta
 
-doxygen: document dotophp/bin also
+doxygen: check the error/warnings
 
 mysqli_real_escape_string()
 
@@ -20,5 +18,3 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 22:36:56 +misterjinx | după ce-l instalezi încearcă un simplu echo "test mail" | sendmail mailultău@domain.com
 
 when the view content is too large an alignment problem occurs
-
-session handler module
