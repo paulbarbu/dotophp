@@ -35,6 +35,8 @@ if($feedback['auth']){
                 break;
             case L_ERR_PASS: printf('Incorrect password! (#%d)', L_ERR_PASS);
                 break;
+            case L_ERR_SESS_START: printf('Cound notr start session! (#%d)', L_ERR_START);
+                break;
         }
 
         echo '</h3>';
