@@ -98,7 +98,8 @@ return array(
     ),
 
     'auth' => array(
-        'preprocess' => array(
+        'pre-process' => array(
+            'db' => 'mysql',
             'autologin' => 'autologin.php',
         ),
         'VL' => array(
@@ -107,6 +108,7 @@ return array(
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
+            'constants' => 'constants.php',
             //'functions' => 'functions.php',
             'auth' => getStrByState('logout.php', 'login.php'),
         ),

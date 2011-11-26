@@ -6,7 +6,10 @@
  *
  * @ingroup authFiles
  */
+
+if($feedback['auth']){
 ?>
+
 <form action="" method="post">
 <table border="0" cellspacing="5">
 <tr><td>
@@ -20,3 +23,23 @@
 <input type="submit" name="login" value="Log in" tabindex="4"/>
 </form>
 <p>Activation email not received? <a href="index.php?show=notreceived" tabindex="5" >Click here</a> to have it resent!</p>
+
+<?php
+    if(is_numeric($feedback['auth'])){
+        echo '<h3>';
+
+        switch($feedback['auth']){
+            case L_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', L_ERR_DB_CONNECTION);
+                break;
+            case L_ERR_NO_USER: printf('This user is inexistent! (#%d)', L_ERR_NO_USER);
+                break;
+            case L_ERR_PASS: printf('Incorrect password! (#%d)', L_ERR_PASS);
+                break;
+        }
+
+        echo '</h3>';
+    }
+}
+else if($feedback['auth'] == ERR_NONE){
+    echo '<h3>You\'re now logged in!</h3>';
+}
