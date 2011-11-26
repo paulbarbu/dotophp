@@ -109,8 +109,10 @@ return array(
         ),
         'BL' => array(
             'constants' => 'constants.php',
-            //'functions' => 'functions.php',
             'auth' => getStrByState('logout.php', 'login.php'),
+        ),
+        'post-process' => array(
+            'db' => 'mysql',
         ),
     ),
 
