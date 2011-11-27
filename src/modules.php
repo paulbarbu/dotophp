@@ -11,6 +11,9 @@
 return array(
     /* Home page */
     'home' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+        ),
         'VL' => array(
             'title' => 'Home',
             'content' => 'content.php',
@@ -89,7 +92,6 @@ return array(
         ),
         'BL' => array(
             'constants' => 'constants.php',
-            'functions' => 'functions.php',
             'recover' => 'recover.php',
         ),
         'post-process' => array(
@@ -97,22 +99,39 @@ return array(
         ),
     ),
 
-    'auth' => array(
+    /* Authentify */
+    'login' => array(
         'pre-process' => array(
-            'db' => 'mysql',
             'autologin' => 'autologin.php',
+            'db' => 'mysql',
         ),
         'VL' => array(
-            'title' => 'Authentication',
-            'content' => getStrByState('content_logout.php', 'content_login.php'),
+            'title' => 'Log in',
+            'content' => 'content.php',
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
             'constants' => 'constants.php',
-            'auth' => getStrByState('logout.php', 'login.php'),
+            'login' => 'login.php',
         ),
         'post-process' => array(
             'db' => 'mysql',
+        ),
+    ),
+
+    /* Log out */
+    'logout' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+        ),
+        'VL' => array(
+            'title' => 'Log out',
+            'content' => 'content.php',
+            'show_in_menu' => FALSE,
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'logout' => 'logout.php',
         ),
     ),
 
