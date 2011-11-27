@@ -41,7 +41,14 @@ if(isset($_POST['login'])){
                     session_set_cookie_params(0, app_path());
                 }
 
-                if(!session_start()){
+                if(isset($_SESSION)){
+                    $start = TRUE;
+                }
+                else{
+                    $start = session_start();
+                }
+
+                if(!$start){
                     $retval = L_ERR_SESS_START;
                 }
                 else{
