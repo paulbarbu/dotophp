@@ -30,3 +30,8 @@ the model cannot include a file related to the controller, besides this would
 cause another problem, having to duplicate app_path() from yaCMS, because the
 autologin script needs it and it is not available in the early phase)
 and problem causing(double checking for cookies - affects speed)
+
+remember me over reboot
+steal my own cookie
+
+recursive dependency function - yaCMS(pre and post)
