@@ -1,13 +1,13 @@
 <?php
 /**
- * @file src/auth/content_login.php
- * @brief Content of the login part of the authentication module
+ * @file src/login/content.php
+ * @brief Content of the login module
  * @author Paul Barbu
  *
- * @ingroup authFiles
+ * @ingroup loginFiles
  */
 
-if($feedback['auth']){
+if($feedback['login']){
 ?>
 
 <form action="" method="post">
@@ -25,23 +25,25 @@ if($feedback['auth']){
 <p>Activation email not received? <a href="index.php?show=notreceived" tabindex="5" >Click here</a> to have it resent!</p>
 
 <?php
-    if(is_numeric($feedback['auth'])){
+    if(is_numeric($feedback['login'])){
         echo '<h3>';
 
-        switch($feedback['auth']){
+        switch($feedback['login']){
             case L_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', L_ERR_DB_CONNECTION);
                 break;
             case L_ERR_NO_USER: printf('This user is inexistent! (#%d)', L_ERR_NO_USER);
                 break;
             case L_ERR_PASS: printf('Incorrect password! (#%d)', L_ERR_PASS);
                 break;
-            case L_ERR_SESS_START: printf('Cound notr start session! (#%d)', L_ERR_START);
+            case L_ERR_SESS_START: printf('Cound not start session! (#%d)', L_ERR_SESS_START);
+                break;
+            case L_ERR_INACTIVE: printf ('This account is inactive, please activate it! (#%d)', L_ERR_INACTIVE);
                 break;
         }
 
         echo '</h3>';
     }
 }
-else if($feedback['auth'] == ERR_NONE){
+else if($feedback['login'] == ERR_NONE){
     echo '<h3>You\'re now logged in!</h3>';
 }
