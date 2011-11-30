@@ -34,4 +34,4 @@ and problem causing(double checking for cookies - affects speed)
 remember me over reboot
 steal my own cookie
 
-recursive dependency function - yaCMS(pre and post)
+recursive dependency function - yaCMS(pre and post)(done) - think about circular deps

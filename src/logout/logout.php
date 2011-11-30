@@ -9,7 +9,7 @@
 
 $_SESSION = array();
 
-if (ini_get("session.use_cookies")) {
+if(ini_get("session.use_cookies")){
     $params = session_get_cookie_params();
 
     if(!setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"],
