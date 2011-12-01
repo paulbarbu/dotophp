@@ -8,5 +8,6 @@
 `source ./schema.sql`
 6. `cd` into dotophp/src/mysql and edit `connect.php` according to your
 connection details
-7. `crontab -e` add `@weekly ID=dotophp_expired_cleanup php -f dotophp/bin/expired.php`
-8. That's it, access it through the web browser
+7. in dotophp/bin/expired.php assign to ROOT the absolute path to dotophp
+8. `crontab -e` add `@weekly ID=dotophp_expired_cleanup php -f dotophp/bin/expired.php`
+9. That's it, access it through the web browser
