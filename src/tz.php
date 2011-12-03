@@ -239,4 +239,4 @@ return array(
     235 => "Pacific/Wake",
     236 => "Pacific/Wallis",
 );
-
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

@@ -22,3 +22,4 @@ const R_ERR_COUNTRY = 12;
 const R_ERR_USED_NICK = 13;
 const R_ERR_NOT_SENT = 14;
 const R_ERR_USED_MAIL = 15;
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

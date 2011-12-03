@@ -19,7 +19,7 @@
  * @return array $filteredInput the sanitized input on the same position in the
  * array as it's place in the args list
  */
-function filterInput(){
+function filterInput(){/*{{{*/
     $filteredInput = array();
     $args = func_get_args();
 
@@ -28,7 +28,7 @@ function filterInput(){
     }
 
     return $filteredInput;
-}
+}/*}}}*/
 
 /**
  * Generate the activation code
@@ -39,10 +39,10 @@ function filterInput(){
  *
  * @return string activation code
  */
-function genActivationCode($nick){
+function genActivationCode($nick){/*{{{*/
 
     return implode('', array_slice(str_split(sha1($nick . time())), 0, 10));
-}
+}/*}}}*/
 
 /**
  * Tells whether the given array contain the specified keys
@@ -54,7 +54,7 @@ function genActivationCode($nick){
  * @return an array consisting of a BOOL value and a NULL or the error string,
  * array(BOOL, string)
  */
-function containsKeys($arr){
+function containsKeys($arr){/*{{{*/
 
     $keys = array_slice(func_get_args(), 1);
 
@@ -65,7 +65,7 @@ function containsKeys($arr){
     }
 
     return array(TRUE, NULL);
-}
+}/*}}}*/
 
 /**
  * Checks if the name is valid according to the name field
@@ -74,9 +74,9 @@ function containsKeys($arr){
  *
  * @return BOOL TRUE if the name is valid, else FALSE
  */
-function isValidName($name){
+function isValidName($name){/*{{{*/
     return (strlen($name) <= 20 && preg_match("/^[\p{Ll}\p{Lu}][\p{Ll}\p{Lu}\p{Nd}_-]*$/u", $name));
-}
+}/*}}}*/
 
 /**
  * Checks if a given nickname is valid(according to the domain fileds)
@@ -85,9 +85,9 @@ function isValidName($name){
  *
  * @return BOOL TRUE if the nickname is valid, else FALSE
  */
-function isValidNick($nick){
+function isValidNick($nick){/*{{{*/
     return (strlen($nick) <= 20 && preg_match("/^[a-z][a-z0-9_-]*$/", $nick));
-}
+}/*}}}*/
 
 /**
  * Checks whether the given email is valid or not
@@ -96,10 +96,10 @@ function isValidNick($nick){
  *
  * @return BOOL TRUE if the email is valid, else FALSE
  */
-function isValidMail($email){
+function isValidMail($email){/*{{{*/
     //thanks to: http://www.regular-expressions.info/email.html
     return (bool)preg_match("/[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/", $email);
-}
+}/*}}}*/
 
 /**
  * Checks the validity of a string representing a city
@@ -108,9 +108,9 @@ function isValidMail($email){
  *
  * @return BOOL TRUE if the city is valid, else FALSE
  */
-function isValidCity($city){
+function isValidCity($city){/*{{{*/
     return (strlen($city) <= 30 && preg_match("/^[\p{Lu}\p{Ll}\s]+$/u", $city));
-}
+}/*}}}*/
 
 /**
  * Checks if a phone number entered as a string is valid
@@ -119,20 +119,20 @@ function isValidCity($city){
  *
  * @return BOOL TRUE if the phone number is valid, else, FALSE
  */
-function isValidPhone($phone){
+function isValidPhone($phone){/*{{{*/
     return (strlen($phone) <= 20 && preg_match("/^[0-9()-\s\/]+$/", $phone));
-}
+}/*}}}*/
 
 /**
- * Checks if a birthdate was enetered in the required format
+ * Checks if a birthdate was entered in the required format
  *
  * @param string $bdate the string to be checked
  *
  * @return BOOL TRUE if the format is valid, else, FALSE
  */
-function isValidBDate($bdate){
+function isValidBDate($bdate){/*{{{*/
     return (10 == strlen($bdate) && preg_match('/\d{2}-\d{2}-\d{4}/', $bdate));
-}
+}/*}}}*/
 
 /**
  * Checks if a description is valid
@@ -141,9 +141,9 @@ function isValidBDate($bdate){
  *
  * @return BOOL TRUE if the description is valid, else, FALSE
  */
-function isValidDesc($desc){
+function isValidDesc($desc){/*{{{*/
     return (strlen($desc) <= 100 && preg_match("/^[\p{Ll}\p{Lu}\p{Nd}\p{Po}\p{Ps}\p{Pe}\p{Sm}\p{Pd}\s\$\^]+$/u", $desc));
-}
+}/*}}}*/
 
 /**
  * Check if the captcha code entered matches the generated one
@@ -153,9 +153,9 @@ function isValidDesc($desc){
  *
  * @return BOOL TRUE if the two string match, else, FALSE
  */
-function isValidCaptcha($captcha, $captcha_input){
+function isValidCaptcha($captcha, $captcha_input){/*{{{*/
     return strtolower($captcha_input) == $captcha;
-}
+}/*}}}*/
 
 /**
  * Check the security data (question and answer)
@@ -164,11 +164,11 @@ function isValidCaptcha($captcha, $captcha_input){
  *
  * @return BOOL TRUE if the data is valid, else FALSE
  */
-function isValidSecurityData($data){
+function isValidSecurityData($data){/*{{{*/
     $len = strlen($data);
 
     return ($len >= 8 && $len <= 255 && preg_match('/^[\s\p{Ll}\p{Lu}\p{Po}\p{Nd}]+$/u', $data));
-}
+}/*}}}*/
 
 /**
  * Query the DB to check if the email and/or nickname are supplied correctly
@@ -180,7 +180,7 @@ function isValidSecurityData($data){
  * @return MATCHING_NICK if the user's nick is found in the DB, MATCHING_MAIL if the email
  * is found, else(the nick and the email are not found) NO_MATCH
  */
-function isUser($link, $nickname = NULL, $email = NULL){
+function isUser($link, $nickname = NULL, $email = NULL){/*{{{*/
     $query = 'SELECT nick, email FROM user WHERE ';
     $query_conditions = array();
 
@@ -213,7 +213,7 @@ function isUser($link, $nickname = NULL, $email = NULL){
             return MATCHING_MAIL;
         }
     }
-}
+}/*}}}*/
 
 /**
  * Add the newly created user to the pending table
@@ -226,7 +226,7 @@ function isUser($link, $nickname = NULL, $email = NULL){
  *
  * @return BOOL TRUE on success, else FALSE
  */
-function addPendingUser($link, $code){
+function addPendingUser($link, $code){/*{{{*/
     $query = "INSERT INTO pending (user_id, code) VALUES(LAST_INSERT_ID(), '";
 
     $result = mysqli_query($link, $query . $code . "');");
@@ -236,7 +236,7 @@ function addPendingUser($link, $code){
     }
 
     return TRUE;
-}
+}/*}}}*/
 
 /**
  * Choose a string depending on the state of an user
@@ -250,13 +250,13 @@ function addPendingUser($link, $code){
  *
  * @return string $in_str or $out_str
  */
-function getStrByState($in_str, $out_str){
+function getStrByState($in_str, $out_str){/*{{{*/
     if(isset($_SESSION['uid'])){
         return $in_str;
     }
 
     return $out_str;
-}
+}/*}}}*/
 
 /**
  * Function to name the printf specifiers
@@ -274,7 +274,7 @@ function getStrByState($in_str, $out_str){
  *
  * @return the string to be sent as output(e.g. echo)
  */
-function vsprintf_named($format, $args) {
+function vsprintf_named($format, $args) {/*{{{*/
     $names = preg_match_all('/%\((.*?)\)/', $format, $matches, PREG_SET_ORDER);
 
     $values = array();
@@ -285,12 +285,12 @@ function vsprintf_named($format, $args) {
     $format = preg_replace('/%\((.*?)\)/', '%', $format);
 
     return vsprintf($format, $values);
-}
+}/*}}}*/
 
 /**
- * Helper function
- *
  * Display array contents as HTML <option></option>
+ *
+ * Helper function
  *
  * @param array $text the text to be written
  * @param mixed $values the values to assign the options
@@ -301,7 +301,7 @@ function vsprintf_named($format, $args) {
  *
  * @return BOOL TRUE on success, else, FALSE
  */
-function arrayToOption($text, $values, $selectedValue = NULL, $template='<option value="%(value)s">%(text)s</option>',
+function arrayToOption($text, $values, $selectedValue = NULL, $template='<option value="%(value)s">%(text)s</option>',/*{{{*/
                        $selected_template='<option value="%(value)s" selected="selected" >%(text)s</option>'){
     if(is_array($values) && is_array($text)){
 
@@ -327,7 +327,7 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
     }
 
     return TRUE;
-}
+}/*}}}*/
 
 /**
  * Create(or open) a log file and write(or append) a message
@@ -341,12 +341,12 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  *
  * @return TRUE if the operation has succedded, else FALSE
  */
-function writeLog($path, $data){
+function writeLog($path, $data){/*{{{*/
 
     $path .= strpos($path, '.log') !== strlen($path)-4 ? '.log' : NULL;
 
     return error_log(date(DATE_FORMAT) . ' - ' . $data, 3, $path);
-}
+}/*}}}*/
 
 /**
  * Creates a query and inserts data into a database
@@ -358,7 +358,7 @@ function writeLog($path, $data){
  *
  * @return TRUE is the insert was made successfully, else FALSE
  */
-function insertIntoDB($link, $table, $data){
+function insertIntoDB($link, $table, $data){/*{{{*/
     $result = mysqli_query($link, 'INSERT INTO ' . $table . '(' . implode(',',
                 array_keys($data)) . ') VALUES(\'' . implode("', '", $data) . '\');');
 
@@ -367,4 +367,5 @@ function insertIntoDB($link, $table, $data){
     }
 
     return TRUE;
-}
+}/*}}}*/
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

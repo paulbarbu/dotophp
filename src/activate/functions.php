@@ -22,7 +22,7 @@
  *
  * @return the user's ID(integer) to whom the code matches, else, NULL
  */
-function getPendingUser($link, $activationCode){
+function getPendingUser($link, $activationCode){/*{{{*/
     $query = "SELECT user_id AS id FROM pending WHERE code = '";
 
     $result = mysqli_query($link, $query . $activationCode . "';");
@@ -30,7 +30,7 @@ function getPendingUser($link, $activationCode){
     list($id) = mysqli_fetch_array($result, MYSQLI_NUM);
 
     return $id != NULL ? (int)$id : NULL;
-}
+}/*}}}*/
 
 /**
  * Checks whether the given password matches the requirements
@@ -39,9 +39,10 @@ function getPendingUser($link, $activationCode){
  *
  * @return BOOL TRUE if the password is ok, else FALSE
  */
-function isValidPass($pass){
+function isValidPass($pass){/*{{{*/
     $len = strlen($pass);
 
     return ($len >= 6 && $len <= 30 &&
         preg_match("/^[`_\^\p{Ll}\p{Lu}\p{Nd}\p{Sc}\p{Sm}\p{Pd}\p{Pe}\p{Po}\p{Ps}\p{Zs}]+$/u", $pass));
-}
+}/*}}}*/
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

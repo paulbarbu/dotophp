@@ -52,3 +52,4 @@ echo isset($_GET['code']) && !empty($_GET['code']) ? 'value="' . $_GET['code'] .
 elseif(!$feedback['activate']){
     echo '<h3>Account activated!</h3>';
 }
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

@@ -143,3 +143,4 @@ if($feedback['register']){
 elseif(!$feedback['register']){
     echo '<h3>Registration complete, an activation email was sent to the submitted e-mail address!</h3>';
 }
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

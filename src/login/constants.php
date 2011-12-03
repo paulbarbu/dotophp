@@ -14,3 +14,4 @@ const L_ERR_NO_USER = 2;
 const L_ERR_PASS = 3;
 const L_ERR_SESS_START = 4;
 const L_ERR_INACTIVE = 5;
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

@@ -47,3 +47,4 @@ if($feedback['login']){
 else if($feedback['login'] == ERR_NONE){
     echo '<h3>You\'re now logged in!</h3>';
 }
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

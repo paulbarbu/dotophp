@@ -22,3 +22,4 @@ require_once MODULES_ROOT . 'global_functions.php';
 require_once MODULES_ROOT . 'global_constants.php';
 $modules = require MODULES_ROOT . 'modules.php';
 require_once YACMS_PATH . 'index.php';
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

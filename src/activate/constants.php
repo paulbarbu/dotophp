@@ -12,3 +12,4 @@
  const A_ERR_DB_CONNECTION = 3;
  const A_ERR_SECURITY_DATA = 4;
  const A_ERR_DB = 5;
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

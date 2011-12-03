@@ -28,3 +28,4 @@ If you do not activate your account within a week from the activation date the a
 Thank you!';
 
 return $mail_data;
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

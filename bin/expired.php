@@ -32,3 +32,4 @@ else{
     writeLog(ROOT . 'logs/expired.log', 'Connection error: ('
         . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
 }
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

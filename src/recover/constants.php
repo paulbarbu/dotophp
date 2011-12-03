@@ -18,3 +18,4 @@ const RECOVER_ERR_DB_C = 6;
 const RECOVER_ERR_NOT_SENT = 7;
 
 const RECOVERED = 8;
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

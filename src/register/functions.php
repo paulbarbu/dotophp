@@ -30,7 +30,7 @@
  * @return a dictionary containing meta-data in association with the user's data
  * or an array containing FALSE and the error code, array(FALSE, int)
  */
-function validateUserData($first_name, $last_name, $nickname, $email, $private, $tz,
+function validateUserData($first_name, $last_name, $nickname, $email, $private, $tz,/*{{{*/
     $country, $city, $sex, $description = NULL, $phone = NULL, $birthday = NULL
     ){
 
@@ -119,4 +119,5 @@ function validateUserData($first_name, $last_name, $nickname, $email, $private, 
     }
 
     return $values;
-}
+}/*}}}*/
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
