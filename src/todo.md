@@ -19,19 +19,6 @@ starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                        
 
 when the view content is too large an alignment problem occurs
 
-check cron errors(expired.php)
-
-split the auth module in login and logout, this change is needed because the
-module array is set before any session and processing is made, so the app cannot
-determine if the user is logged in or not, getting this information before
-any processing is made(ie: including autologin.php on index.php) is just
-wrong(the index links the view and the controller, doesn't makes processing so
-the model cannot include a file related to the controller, besides this would
-cause another problem, having to duplicate app_path() from yaCMS, because the
-autologin script needs it and it is not available in the early phase)
-and problem causing(double checking for cookies - affects speed)
-
-remember me over reboot
 steal my own cookie
 
-recursive dependency function - yaCMS(pre and post)(done) - think about circular deps
+recursive dependency function - think about circular deps
