@@ -251,8 +251,11 @@ function addPendingUser($link, $code){
  * @return string $in_str or $out_str
  */
 function getStrByState($in_str, $out_str){
-    //GAP
-    return $out_str; //random :) - ignore this line
+    if(isset($_SESSION['uid'])){
+        return $in_str;
+    }
+
+    return $out_str;
 }
 
 /**
