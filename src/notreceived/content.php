@@ -7,6 +7,9 @@
  * @ingroup notreceivedFiles
  */
 
+/**
+ * If nothing happened just display the form
+ */
 if($feedback['notreceived']){
 ?>
 <p>You didn't receive the activation email?<br />

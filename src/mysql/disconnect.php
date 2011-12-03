@@ -1,6 +1,6 @@
 <?php
 /**
- * @file src/mysql_connection/disconnect.php
+ * @file src/mysql/disconnect.php
  * @brief Close a connection
  * @author Paul Barbu
  *

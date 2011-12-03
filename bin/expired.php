@@ -14,10 +14,19 @@
  * @defgroup otherFiles Other files
  */
 
-const ROOT = ''; //must have trailing slash
+/**
+ * Absolute path to the app
+ *
+ * must have trailing slash
+ */
+const ROOT = '';
 
 require ROOT . 'src/global_constants.php';
 require ROOT . 'src/global_functions.php';
+
+/**
+ * MySQL link
+ */
 $feedback_pre['connect'] = require ROOT . 'src/mysql/connect.php';
 
 if($feedback_pre['connect']){

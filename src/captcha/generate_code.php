@@ -11,9 +11,21 @@
  * @defgroup captchaFiles Captcha module
  */
 
+/**
+ * Possible chars for the captcha image
+ */
 const CHARS = '0123456789qwertyuioplkjhgfdsazxcvbnm';
+/**
+ * Flag for already used char
+ */
 $used = '!';
+/**
+ * Array of possible chars
+ */
 $chars_array = array();
+/**
+ * The captcha string
+ */
 $captcha = NULL;
 
 $chars_array = str_split(CHARS);

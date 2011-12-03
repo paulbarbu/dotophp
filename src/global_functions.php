@@ -288,16 +288,16 @@ function vsprintf_named($format, $args) {/*{{{*/
 }/*}}}*/
 
 /**
- * Display array contents as HTML <option></option>
+ * Display array contents as HTML @code<option></option>@endcode
  *
  * Helper function
  *
  * @param array $text the text to be written
  * @param mixed $values the values to assign the options
- * @param string $selected (default: NULL) which element(matching the value) to be selected in the
+ * @param string $selectedValue (default: NULL) which element(matching the value) to be selected in the
  * options list, if NULL none will be selected
- * @param string $template template for the HTML <option> tag
- * @param string $selected_template template for the HTML selected <option> tag
+ * @param string $template template for the HTML @code<option>@endcode tag
+ * @param string $selected_template template for the HTML selected @code<option>@endcode tag
  *
  * @return BOOL TRUE on success, else, FALSE
  */

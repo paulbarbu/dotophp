@@ -12,6 +12,9 @@
  */
 session_start();
 
+/**
+ * The captcha image
+ */
 $im = imagecreatetruecolor(141, 50);
 
 if($im){

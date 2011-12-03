@@ -1,14 +1,23 @@
 <?php
 /**
- * @file src/register/mail_data.php
+ * @file src/mail_data.php
  * @brief Helper file that contains the mail details
  * @author Paul Barbu
  *
  * @ingroup registerFiles
  */
 
+/**
+ * Mail header
+ */
 $mail_data['header'] = 'From: noreply@dotophp.com';
+/**
+ * Mail subject
+ */
 $mail_data['subject'] = '[dotophp] Account registration for %(nick)s';
+/**
+ * Mail body
+ */
 $mail_data['msg'] =
 'Hello, %(nick)s!
 

@@ -1,9 +1,3 @@
-2011-10-22 12:23:38	+flavius	daca pui folding markers face vim treaba
-2011-10-22 12:23:57	+flavius	vezi ca mai trebuie ceva setari si la sfarsitul fiecarui fisier
-2011-10-22 12:24:09	+flavius	ai exemplu prin phpmeta
-
-doxygen: check the error/warnings
-
 mysqli_real_escape_string()
 
  starlays | paullik: ca sa poata php sa trimita e-mail trebuie sa imi configurez ceva anume?                                          │

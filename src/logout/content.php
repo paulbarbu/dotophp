@@ -1,6 +1,6 @@
 <?php
 /**
- * @file src/logout/content_logout.php
+ * @file src/logout/content.php
  * @brief HTML for the logout part of the logoutentication module
  * @author Paul Barbu
  *

@@ -10,6 +10,10 @@
  * yaCMS
  */
 
+/**
+ * Path to the yaCMS, the "backend" of this project
+ */
+define('YACMS_PATH', '');
 
 if(!defined('YACMS_PATH')) {
     die('YACMS not installed');
@@ -20,6 +24,10 @@ defined('LAYOUT_PATH') or define('LAYOUT_PATH', __DIR__ . DIRECTORY_SEPARATOR . 
 
 require_once MODULES_ROOT . 'global_functions.php';
 require_once MODULES_ROOT . 'global_constants.php';
+
+/**
+ * The module list
+ */
 $modules = require MODULES_ROOT . 'modules.php';
 require_once YACMS_PATH . 'index.php';
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
