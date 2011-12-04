@@ -71,6 +71,15 @@ if(isset($_POST['login'])){
                         setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
                     }
 
+                    if(hasEvents($feedback_pre['connect'], $data['id'])){
+                        $module = 'upcoming';
+                    }
+                    else{
+                        $module = 'event';
+                    }
+
+                    $reload = TRUE;
+
                     $retval = ERR_NONE;
                 }
             }
