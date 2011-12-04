@@ -21,7 +21,7 @@
 
     </div>
     <div id="menu">
-        <?php echo build_menu_from_modules($modules, $module)?>
+        <?php echo build_menu_from_modules($modules, $module, 'isLoggedIn')?>
     </div>
 
     <div id="content">

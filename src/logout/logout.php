@@ -7,6 +7,14 @@
  * @ingroup logoutFiles
  */
 
+if(!isLoggedIn()){
+    $module = 'home';
+
+    $reload = TRUE;
+
+    return ERR_NONE;
+}
+
 $_SESSION = array();
 
 if(ini_get("session.use_cookies")){
