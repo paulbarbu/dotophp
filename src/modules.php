@@ -8,6 +8,7 @@
  *
  * All modules used by dotophp are set here
  */
+
 return array(
     /* Home page */
     'home' => array(
@@ -119,22 +120,6 @@ return array(
         ),
     ),
 
-    /* Log out */
-    'logout' => array(
-        'pre-process' => array(
-            'autologin' => 'login',
-        ),
-        'VL' => array(
-            'title' => 'Log out',
-            'content' => 'content.php',
-            'show_in_menu' => FALSE,
-        ),
-        'BL' => array(
-            'constants' => 'constants.php',
-            'logout' => 'logout.php',
-        ),
-    ),
-
     /* Inexistent page */
     '404' => array(
         'VL' => array(
@@ -184,6 +169,94 @@ return array(
         ),
         'post-process' => array(
             'destroy' => 'destroy.php',
+        ),
+    ),
+
+    /* Upcoming events */
+    'upcoming' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'title' => 'Upcoming',
+            'login_need' => TRUE,
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'functions' => 'functions.php',
+            'upcoming' => 'upcoming.php',
+        ),
+    ),
+
+    /* Manage categories */
+    'category' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'title' => 'Manage categories',
+            'login_need' => TRUE,
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'functions' => 'functions.php',
+            'category' => 'category.php',
+        ),
+    ),
+
+    /* Manage events */
+    'event' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'title' => 'Manage events',
+            'login_need' => TRUE,
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'functions' => 'functions.php',
+            'event' => 'event.php',
+        ),
+    ),
+
+    /* Manage user profile */
+    'profile' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'title' => 'Profile',
+            'login_need' => TRUE,
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'functions' => 'functions.php',
+            'profile' => 'profile.php',
+        ),
+    ),
+
+    /* Log out */
+    'logout' => array(
+        'pre-process' => array(
+            'autologin' => 'login',
+        ),
+        'VL' => array(
+            'title' => 'Log out',
+            'content' => 'content.php',
+            'login_need' => TRUE,
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'logout' => 'logout.php',
         ),
     ),
 );
