@@ -239,6 +239,19 @@ function addPendingUser($link, $code){/*{{{*/
 }/*}}}*/
 
 /**
+ * Get the state of an user
+ *
+ * @return TRUE if the user is logged in, else FALSE
+ */
+function isLoggedIn(){/*{{{*/
+    if(isset($_SESSION['uid'])){
+        return TRUE;
+    }
+
+    return FALSE;
+}/*}}}*/
+
+/**
  * Choose a string depending on the state of an user
  *
  * 'OUT' means not-logged in user \n
@@ -367,5 +380,26 @@ function insertIntoDB($link, $table, $data){/*{{{*/
     }
 
     return TRUE;
+}/*}}}*/
+
+/**
+ * Check if the user has created any events
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param int $id user's id
+ *
+ * @return TRUE if the user has events, else FALSE
+ */
+function hasEvents($link, $id){/*{{{*/
+    $result = mysqli_query($link, "SELECT event_id FROM event WHERE user_id='" .
+                           $id . "'");
+
+    $events = count(mysqli_fetch_array($result, MYSQLI_NUM));
+
+    if($events > 0){
+        return TRUE;
+    }
+
+    return FALSE;
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
