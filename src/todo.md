@@ -16,3 +16,23 @@ when the view content is too large an alignment problem occurs
 steal my own cookie
 
 recursive dependency function - think about circular deps
+check constants for having the same value
+
+do not show login page to already logged in users(done)
+same with log out(done)
+
+redirect users after login to upcoming or to event modules(done)
+
+design the ERD
+
+think about user_id in event table
+
+look over the conditions in build_menu_from_modules, and make recover module to
+show up in menu just for not logged in users
+
+replace getStrByState()
+
+if not logged in show login in menu
+
+maybe after login because of the $_GET['show'] remaining 'login'(considering
+that i'm redirected) I will have problems, please investigate this early
