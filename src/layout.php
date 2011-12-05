@@ -17,28 +17,25 @@
 
 </head>
 <body>
-    <div id="header">
+<div id="menu">
+<?php echo build_menu_from_modules($modules, $module, 'isLoggedIn')?>
+</div>
 
-    </div>
-    <div id="menu">
-        <?php echo build_menu_from_modules($modules, $module, 'isLoggedIn')?>
-    </div>
+<div id="content">
+    <h3><?php echo $modules[$module]['VL']['title'];?></h3>
+    <?php
+        if(file_exists(MODULES_ROOT . $module . DIRECTORY_SEPARATOR
+                        . $modules[$module]['VL']['content']) &&
+            is_readable(MODULES_ROOT . $module . DIRECTORY_SEPARATOR
+            . $modules[$module]['VL']['content'])){
 
-    <div id="content">
-        <h3><?php echo $modules[$module]['VL']['title'];?></h3>
-        <?php
-            if(file_exists(MODULES_ROOT . $module . DIRECTORY_SEPARATOR
-                            . $modules[$module]['VL']['content']) &&
-                is_readable(MODULES_ROOT . $module . DIRECTORY_SEPARATOR
-                . $modules[$module]['VL']['content'])){
-
-                    include MODULES_ROOT . $module . DIRECTORY_SEPARATOR
-                        . $modules[$module]['VL']['content'];
-            }
-            else{
-                echo '<h3>' , ERR_LOAD_FILE , '</h3>';
-            }
-        ?>
-    </div>
+                include MODULES_ROOT . $module . DIRECTORY_SEPARATOR
+                    . $modules[$module]['VL']['content'];
+        }
+        else{
+            echo '<h3>' , ERR_LOAD_FILE , '</h3>';
+        }
+    ?>
+</div>
 </body>
 </html>
