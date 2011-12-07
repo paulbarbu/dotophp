@@ -252,26 +252,6 @@ function isLoggedIn(){/*{{{*/
 }/*}}}*/
 
 /**
- * Choose a string depending on the state of an user
- *
- * 'OUT' means not-logged in user \n
- * 'IN' means logged in user \n
- * This function should be useed in the configuration file \n
- *
- * @param string $in_str this string will be returned if the user's state is IN
- * @param string $out_str this string will be returned if the user's state is OUT
- *
- * @return string $in_str or $out_str
- */
-function getStrByState($in_str, $out_str){/*{{{*/
-    if(isset($_SESSION['uid'])){
-        return $in_str;
-    }
-
-    return $out_str;
-}/*}}}*/
-
-/**
  * Function to name the printf specifiers
  *
  * Credits: http://stackoverflow.com/questions/7435233/name-php-specifiers-in-printf-strings/7435397#7435397
