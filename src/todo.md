@@ -18,12 +18,7 @@ check constants for having the same value
 
 design the ERD
 
-look over the conditions in build_menu_from_modules, and make recover module to
-show up in menu just for not logged in users
-
 if not logged in show login in menu
 
 maybe after login because of the $_GET['show'] remaining 'login'(considering
 that i'm redirected) I will have problems, please investigate this early
-
-is it ok to acces a table via another one? user > cat >event or user>event>alarm
