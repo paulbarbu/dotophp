@@ -27,4 +27,9 @@ const MATCHING_MAIL = 2;
  * Globally used date format
  */
 const DATE_FORMAT = 'd.m.Y H:i:s';
+/**
+ * Date format shown in form toi the user
+ * Change this according to the above DATE_FORMAT
+ */
+const DATE_TOUSER = 'DD-MM-YYYY';
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
