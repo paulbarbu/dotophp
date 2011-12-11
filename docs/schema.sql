@@ -101,7 +101,6 @@ DROP TABLE IF EXISTS `event`;
 CREATE TABLE `event` (
   `event_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `category_id` int(10) unsigned NOT NULL,
-  `user_id` mediumint(8) unsigned NOT NULL,
   `name` varchar(20) CHARACTER SET ascii NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `repeat_interval` tinyint(3) unsigned NOT NULL DEFAULT '0',
@@ -113,8 +112,6 @@ CREATE TABLE `event` (
   `end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`event_id`),
   KEY `category_id` (`category_id`),
-  KEY `user_id` (`user_id`),
-  CONSTRAINT `event_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE,
   CONSTRAINT `event_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
