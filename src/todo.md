@@ -18,7 +18,9 @@ check constants for having the same value
 
 design the ERD
 
-if not logged in show login in menu
+delete the sessions upon expiring
+
+modify hasEvents query using JOIN
 
 maybe after login because of the $_GET['show'] remaining 'login'(considering
 that i'm redirected) I will have problems, please investigate this early

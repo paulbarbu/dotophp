@@ -40,7 +40,7 @@ echo isset($_GET['code']) && !empty($_GET['code']) ? 'value="' . $_GET['code'] .
                 break;
             case A_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', A_ERR_DB_CONNECTION);
                 break;
-            case A_ERR_SECURITY_DATA: printf('The question and the answer bust be between 8 and 255 valid characters long! (#%d)', A_ERR_SECURITY_DATA);
+            case A_ERR_SECURITY_DATA: printf('The question and the answer must be between 8 and 255 valid characters long! (#%d)', A_ERR_SECURITY_DATA);
                 break;
             case A_ERR_DB: printf('A database related error occured, please contact the administrator! (#%d)', A_ERR_DB);
                 break;
