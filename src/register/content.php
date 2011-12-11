@@ -78,7 +78,7 @@ if($feedback['register']){
     </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" name="birthday" maxlength="10"
  <?php echo isset($_POST['birthday']) ? 'value="' . $_POST['birthday'] . '"' : 'value="' . DATE_TOUSER . '"' ?> />
     </td></tr><tr><td>
-    <label for="desc">Description:</label></td><td><textarea rows="3" cols="23" name="description" id="desc">
+    <label for="desc">Description:</label></td><td><textarea rows="4" cols="23" name="description" id="desc">
 <?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea>
     </td></tr>
 
