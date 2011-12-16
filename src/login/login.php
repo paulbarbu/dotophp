@@ -64,6 +64,7 @@ if(isset($_POST['login'])){
                     }
                     else{
                         $expiry_offset = ONETIME_SESS;
+                        $_SESSION['one-time'] = TRUE;
                     }
 
                     $result = session_set_expiry_offset($feedback_pre['connect'],
