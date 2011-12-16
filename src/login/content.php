@@ -39,6 +39,8 @@ if($feedback['login']){
                 break;
             case L_ERR_INACTIVE: printf ('This account is inactive, please activate it! (#%d)', L_ERR_INACTIVE);
                 break;
+            case L_ERR_DB: printf('A database related error occured, please contact the administrator! (#%d)', L_ERR_DB);
+                break;
         }
 
         echo '</h3>';

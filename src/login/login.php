@@ -11,6 +11,11 @@ if(isset($_POST['login'])){
     list($nick, $_POST['pass']) = filterInput($_POST['nick'], $_POST['pass']);
     $remember = isset($_POST['remember']) ? TRUE : FALSE;
 
+    /**
+     * Session expiry offset from current time
+     */
+    $expiry_offset = NULL;
+
     if(!$feedback_pre['connect']){
         $retval = L_ERR_DB_CONNECTION;
     }
@@ -55,10 +60,27 @@ if(isset($_POST['login'])){
                     $_SESSION['uid'] = $data['id'];
 
                     if($remember){
-                        setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
+                        $expiry_offset = LIFETIME;
+                    }
+                    else{
+                        $expiry_offset = ONETIME_SESS;
                     }
 
-                    $retval = ERR_NONE;
+                    $result = mysqli_query($feedback_pre['connect'],
+                        "INSERT INTO session VALUES('" . session_id() .
+                        "', DATE_ADD(CURRENT_TIMESTAMP, INTERVAL " . $expiry_offset .  ' SECOND));');
+
+                    if(FALSE === $result){
+                        $retval = L_ERR_DB ;
+                    }
+                    else{
+
+                        if($remember){
+                            setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
+                        }
+
+                        $retval = ERR_NONE;
+                    }
                 }
             }
         }
@@ -67,7 +89,7 @@ if(isset($_POST['login'])){
         }
     }
 
-    if($retval == L_ERR_DB_CONNECTION){
+    if($retval == L_ERR_DB_CONNECTION || $retval == L_ERR_DB){
         writeLog('../logs/login.log', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
