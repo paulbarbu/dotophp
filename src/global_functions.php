@@ -373,6 +373,7 @@ function insertIntoDB($link, $table, $data){/*{{{*/
 function hasEvents($link, $id){/*{{{*/
     $result = mysqli_query($link, "SELECT event_id FROM event WHERE user_id='" .
                            $id . "'");
+    //TODO: modify this query!
 
     $events = count(mysqli_fetch_array($result, MYSQLI_NUM));
 

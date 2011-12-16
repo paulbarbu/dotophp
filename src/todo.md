@@ -28,5 +28,8 @@ make a little quick-add syntax(start, due, color, priority, repeat)
 
 tooltips for explaining things
 
+on autologin after sess_set_cookie_params() check on the client if the initial
+30 days cookie wasn't overwritten by a one-time-only cookie
+
 maybe after login because of the $_GET['show'] remaining 'login'(considering
 that i'm redirected) I will have problems, please investigate this early
