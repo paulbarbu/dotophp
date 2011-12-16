@@ -11,6 +11,7 @@
  * Lifetime of the cookie
  */
 define('LIFETIME', 60*60*24*30);
+define('ONETIME_SESS', 1440);
 
 /**
  * Coudn't establish a connection to the database
@@ -32,4 +33,5 @@ const L_ERR_SESS_START = 4;
  * Inactive accounts cannot login
  */
 const L_ERR_INACTIVE = 5;
+const L_ERR_DB = 6;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
