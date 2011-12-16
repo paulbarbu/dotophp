@@ -66,9 +66,8 @@ if(isset($_POST['login'])){
                         $expiry_offset = ONETIME_SESS;
                     }
 
-                    $result = mysqli_query($feedback_pre['connect'],
-                        "INSERT INTO session VALUES('" . session_id() .
-                        "', DATE_ADD(CURRENT_TIMESTAMP, INTERVAL " . $expiry_offset .  ' SECOND));');
+                    $result = session_set_expiry_offset($feedback_pre['connect'],
+                                session_id(), $expiry_offset);
 
                     if(FALSE === $result){
                         $retval = L_ERR_DB ;

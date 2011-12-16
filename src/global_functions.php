@@ -370,6 +370,23 @@ function insertIntoDB($link, $table, $data){
 }
 
 /**
+ * Insert or update a session's expiry timestamp
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $id the session's id to be inserted or updated
+ * @param int $offset number of seconds starting from now until the session
+ * expires
+ *
+ * @return TRUE if the insert succeeded else FALSE
+ */
+function session_set_expiry_offset($link, $id, $offset){
+    $result = mysqli_query($link, "REPLACE INTO session VALUES('" . $id .
+        "', DATE_ADD(CURRENT_TIMESTAMP, INTERVAL " . $offset .  ' SECOND));');
+
+    return $result;
+}
+
+/**
  * Clean up the expired sessions in the DB
  *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
