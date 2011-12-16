@@ -18,6 +18,8 @@ else{
             break;
         case LO_ERR_DESTROY: printf('Could not destroy the session! (#%d)', LO_ERR_DESTROY);
             break;
+        case LO_ERR_INIT: printf('Could not initialize the session! (#%d)', LO_ERR_INIT);
+            break;
     }
 
     echo '</h3>';

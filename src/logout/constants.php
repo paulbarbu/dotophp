@@ -9,3 +9,4 @@
 
 const LO_ERR_DEL = 1;
 const LO_ERR_DESTROY = 2;
+const LO_ERR_INIT = 3;
