@@ -12,3 +12,4 @@ const NO_MATCH = 0;
 const MATCHING_NICK = 1;
 const MATCHING_MAIL = 2;
 const DATE_FORMAT = 'd.m.Y H:i:s';
+const ONETIME_SESS = 1440;
