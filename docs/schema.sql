@@ -92,6 +92,24 @@ LOCK TABLES `category` WRITE;
 UNLOCK TABLES;
 
 --
+-- Temporary table structure for view `descuser`
+--
+
+DROP TABLE IF EXISTS `descuser`;
+/*!50001 DROP VIEW IF EXISTS `descuser`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `descuser` (
+  `Field` varchar(64),
+  `Type` longtext,
+  `Null` varchar(3),
+  `Key` varchar(3),
+  `Default` longtext,
+  `Extra` varchar(27)
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `event`
 --
 
@@ -176,6 +194,29 @@ LOCK TABLES `pending` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `session`
+--
+
+DROP TABLE IF EXISTS `session`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `session` (
+  `id` varchar(40) NOT NULL,
+  `expiry_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `session`
+--
+
+LOCK TABLES `session` WRITE;
+/*!40000 ALTER TABLE `session` DISABLE KEYS */;
+/*!40000 ALTER TABLE `session` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `user`
 --
 
@@ -216,6 +257,25 @@ LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Final view structure for view `descuser`
+--
+
+/*!50001 DROP TABLE IF EXISTS `descuser`*/;
+/*!50001 DROP VIEW IF EXISTS `descuser`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `descuser` AS select `information_schema`.`columns`.`COLUMN_NAME` AS `Field`,`information_schema`.`columns`.`COLUMN_TYPE` AS `Type`,`information_schema`.`columns`.`IS_NULLABLE` AS `Null`,`information_schema`.`columns`.`COLUMN_KEY` AS `Key`,`information_schema`.`columns`.`COLUMN_DEFAULT` AS `Default`,`information_schema`.`columns`.`EXTRA` AS `Extra` from `INFORMATION_SCHEMA`.`columns` where ((`information_schema`.`columns`.`TABLE_SCHEMA` = 'dotophp') and (`information_schema`.`columns`.`COLUMN_NAME` not in ('tz','country')) and (`information_schema`.`columns`.`TABLE_NAME` = 'user')) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
