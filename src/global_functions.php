@@ -396,3 +396,50 @@ function session_set_expiry_offset($link, $id, $offset){
 function clean_expired_sess($link){
     return mysqli_query($link, "DELETE FROM session WHERE expiry_ts < CURRENT_TIMESTAMP;");
 }
+
+/**
+ * Searches recursively a directory the files which match a name
+ *
+ * @param string $path path to a directory
+ * @param string $name file's name to be matched, using glob matching
+ * @param bool $recursive searches recursively when TRUE
+ * @param int $flags flags used by php glob(), see: http://php.net/glob
+ * default: GLOB_MARK
+ *
+ * @return array $files containing the path to the matching files
+ */
+function find_files_by_name($path, $name, $recursive = TRUE, $flags = GLOB_MARK){
+    $files = array();
+
+    if(DIRECTORY_SEPARATOR != substr($path, -1)){
+        $path .= DIRECTORY_SEPARATOR;
+    }
+
+    if(is_dir($path)){
+        $d = opendir($path);
+
+        $f = glob($path . $name, $flags);
+
+        if($f !== FALSE){
+            foreach($f as $file){
+                if(DIRECTORY_SEPARATOR != $file[strlen($file)-1]){
+                    $files[] = $file;
+                }
+            }
+        }
+
+        while($entry = readdir($d)){
+            if('.' != $entry && '..' != $entry){
+
+                if(is_dir($path . $entry) && $recursive){
+                    $files =  array_unique(array_merge(find_files_by_name(
+                        $path . $entry, $name, $recursive, $flags), $files));
+                }
+            }
+        }
+
+        closedir($d);
+    }
+
+    return $files;
+}
