@@ -368,3 +368,14 @@ function insertIntoDB($link, $table, $data){
 
     return TRUE;
 }
+
+/**
+ * Clean up the expired sessions in the DB
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ *
+ * @return number of cleaned sessions or FALSE on error
+ */
+function clean_expired_sess($link){
+    return mysqli_query($link, "DELETE FROM session WHERE expiry_ts < CURRENT_TIMESTAMP;");
+}
