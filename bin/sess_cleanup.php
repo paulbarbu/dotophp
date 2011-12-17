@@ -7,30 +7,49 @@
  * @ingroup otherFiles
  */
 
-require '../src/global_functions.php';
-require '';
-$mysql_link = require '../src/mysql/connect.php';
+/**
+ * Absolute path to the app
+ *
+ * must have trailing slash
+ */
+const ROOT = '';
+
+require ROOT . 'src/global_constants.php';
+require ROOT . 'src/global_functions.php';
+
+$mysql_link = require ROOT . 'src/mysql/connect.php';
 
 if($mysql_link !== FALSE){
-
-//sterg sesiunile de pe disc ce nu au corespondent in DB
-//iau toate sesiuniele din DB intr-un array $foo
-//pt fiecare fisier de sesiune verific sa existe acel id in $foo, daca exista e
-//ok, daca nu atunci sterg fisierul si trec mai departe
+    $count = 0;
+    $err = 0;
 
     $result = mysqli_query($mysql_link, "SELECT id FROM session;");
 
     $sessids = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    $files = find_files_by_mime(session_save_path(), '', TRUE);
+    $files = find_files_by_name(session_save_path(), 'sess_*');
 
-    foreach($sessids as $num => $sess){
-        var_dump($sess['id']);
-        //TODO continue here
+    foreach($files as $sess){
+        $id = substr($sess, strrpos($sess, '_')+1);
+
+        $found = 0;
+        foreach($sessids as $s){
+            if($id == $s['id']){
+                $found = 1;
+                break;
+            }
+        }
+
+        if(!$found){
+            unlink($sess) ? $count++ : $err++;
+        }
     }
+
+    writeLog(ROOT . 'logs/sess_cleanup.log', 'Deleted ' . $count . ' session files, '
+            . $err . ' errors occured!' . PHP_EOL);
 }
 else{
-    writeLog('../logs/sess_cleanup.log', 'Connection error: ('
+    writeLog(ROOT . 'logs/sess_cleanup.log', 'Connection error: ('
         . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
