@@ -27,4 +27,5 @@ const MATCHING_MAIL = 2;
  * Globally used date format
  */
 const DATE_FORMAT = 'd.m.Y H:i:s';
+const ONETIME_SESS = 1440;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
