@@ -61,6 +61,7 @@ if(isset($_POST['activate'])){
     if($result == A_ERR_DB || $result == A_ERR_DB_CONNECTION){
         writeLog('../logs/activate.log', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+        mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
     }
 
     return $result;
