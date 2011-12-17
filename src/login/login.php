@@ -24,6 +24,11 @@ if(isset($_POST['login'])){
     list($nick, $_POST['pass']) = filterInput($_POST['nick'], $_POST['pass']);
     $remember = isset($_POST['remember']) ? TRUE : FALSE;
 
+    /**
+     * Session expiry offset from current time
+     */
+    $expiry_offset = NULL;
+
     if(!$feedback_pre['connect']){
         $retval = L_ERR_DB_CONNECTION;
     }
@@ -68,19 +73,36 @@ if(isset($_POST['login'])){
                     $_SESSION['uid'] = $data['id'];
 
                     if($remember){
-                        setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
-                    }
-
-                    if(hasEvents($feedback_pre['connect'], $data['id'])){
-                        $module = 'upcoming';
+                        $expiry_offset = LIFETIME;
                     }
                     else{
-                        $module = 'event';
+                        $expiry_offset = ONETIME_SESS;
+                        $_SESSION['one-time'] = TRUE;
                     }
 
-                    $reload = TRUE;
+                    $result = session_set_expiry_offset($feedback_pre['connect'],
+                                session_id(), $expiry_offset);
 
-                    $retval = ERR_NONE;
+                    if(FALSE === $result){
+                        $retval = L_ERR_DB ;
+                    }
+                    else{
+
+                        if($remember){
+                            setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
+                        }
+
+                        if(hasEvents($feedback_pre['connect'], $data['id'])){
+                            $module = 'upcoming';
+                        }
+                        else{
+                            $module = 'event';
+                        }
+
+                        $reload = TRUE;
+
+                        $retval = ERR_NONE;
+                    }
                 }
             }
         }
@@ -89,7 +111,7 @@ if(isset($_POST['login'])){
         }
     }
 
-    if($retval == L_ERR_DB_CONNECTION){
+    if($retval == L_ERR_DB_CONNECTION || $retval == L_ERR_DB){
         writeLog('../logs/login.log', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }

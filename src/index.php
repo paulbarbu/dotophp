@@ -15,7 +15,7 @@
  */
 define('YACMS_PATH', '');
 
-if(!defined('YACMS_PATH')) {
+if(!defined('YACMS_PATH') || NULL == YACMS_PATH){
     die('YACMS not installed');
 }
 

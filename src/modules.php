@@ -103,8 +103,8 @@ return array(
     /* Authentify */
     'login' => array(
         'pre-process' => array(
-            'autologin' => 'autologin.php',
             'db' => 'mysql',
+            'autologin' => 'autologin.php',
         ),
         'VL' => array(
             'title' => 'Log in',

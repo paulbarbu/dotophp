@@ -8,6 +8,10 @@
 `source ./schema.sql`
 6. `cd` into dotophp/src/mysql and edit `connect.php` according to your
 connection details
-7. in dotophp/bin/expired.php assign to ROOT the absolute path to dotophp
-8. `crontab -e` add `@weekly ID=dotophp_expired_cleanup php -f dotophp/bin/expired.php`
+7. You must edit the user's crontab under which LAMP will be run otherwise
+permission errors will occur:
+`crontab -e -u http` add `@weekly ID=dotophp_expired_cleanup php -f dotophp/bin/expired.php` 
+and `@daily ID=dotophp_sess_cleanup php -f dotophp/bin/sess_cleanup.php`
+8. For security change your `session.save_path` setting in php.ini to a directory
+where only the LAMP user will have privileges.
 9. That's it, access it through the web browser
