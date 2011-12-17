@@ -11,7 +11,6 @@
  * Lifetime of the cookie
  */
 define('LIFETIME', 60*60*24*30);
-define('ONETIME_SESS', 1440);
 
 /**
  * Coudn't establish a connection to the database
