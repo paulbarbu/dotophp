@@ -21,7 +21,12 @@ if(isset($_COOKIE[session_name()])){
             session_start();
 
             if(isset($_SESSION['one-time']) && $_SESSION['one-time'] == TRUE){
-                session_set_expiry_offset($result['connect'], session_id(), ONETIME_SESS);
+                $updated = session_set_expiry_offset($result['connect'], session_id(), ONETIME_SESS, $_SESSION['uid']);
+
+                if(!$updated){
+                writeLog('../logs/autologin.log', 'Connection error: ('
+                    . mysqli_errno($result['connect']) . ') ' . mysqli_error($result['connect']) . PHP_EOL);
+                }
             }
         }
     }
