@@ -68,7 +68,7 @@ if(isset($_POST['login'])){
                     }
 
                     $result = session_set_expiry_offset($feedback_pre['connect'],
-                                session_id(), $expiry_offset);
+                                session_id(), $expiry_offset, $data['id']);
 
                     if(FALSE === $result){
                         $retval = L_ERR_DB ;
