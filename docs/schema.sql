@@ -202,8 +202,11 @@ DROP TABLE IF EXISTS `session`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `session` (
   `id` varchar(40) NOT NULL,
-  `expiry_ts` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  UNIQUE KEY `id` (`id`)
+  `user_id` mediumint(8) unsigned NOT NULL,
+  `expiry_ts` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  UNIQUE KEY `id` (`id`),
+  KEY `user_id` (`user_id`),
+  CONSTRAINT `session_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
