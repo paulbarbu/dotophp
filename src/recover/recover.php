@@ -43,7 +43,7 @@ if(isset($_POST['proceed'])){
     }
 
     if($retval == RECOVER_ERR_DB || $retval == RECOVER_ERR_DB_C){
-        writeLog('../logs/recover.log', '(' . mysqli_errno($feedback_pre['connect'])
+        writeLog($config['logger']['recover'], '(' . mysqli_errno($feedback_pre['connect'])
                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
 
@@ -107,7 +107,7 @@ elseif(isset($_POST['recover'])){
     }
 
     if($retval == RECOVER_ERR_DB || $retval == RECOVER_ERR_DB_C){
-        writeLog('../logs/recover.log', '(' . mysqli_errno($feedback_pre['connect'])
+        writeLog($config['logger']['recover'], '(' . mysqli_errno($feedback_pre['connect'])
                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
     }

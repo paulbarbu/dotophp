@@ -19,6 +19,8 @@ require ROOT . 'src/global_functions.php';
 
 $mysql_link = require ROOT . 'src/mysql/connect.php';
 
+$config = require ROOT . 'src/config.php';
+
 if($mysql_link !== FALSE){
     $count = 0;
     $err = 0;
@@ -45,11 +47,11 @@ if($mysql_link !== FALSE){
         }
     }
 
-    writeLog(ROOT . 'logs/sess_cleanup.log', 'Deleted ' . $count . ' session files, '
+    writeLog($config['logger']['sess_cleanup'], 'Deleted ' . $count . ' session files, '
             . $err . ' errors occured!' . PHP_EOL);
 }
 else{
-    writeLog(ROOT . 'logs/sess_cleanup.log', 'Connection error: ('
+    writeLog($config['logger']['sess_cleanup'], 'Connection error: ('
         . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

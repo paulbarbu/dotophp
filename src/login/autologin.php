@@ -24,8 +24,10 @@ if(isset($_COOKIE[session_name()])){
                 $updated = session_set_expiry_offset($result['connect'], session_id(), ONETIME_SESS, $_SESSION['uid']);
 
                 if(!$updated){
-                writeLog('../logs/autologin.log', 'Connection error: ('
-                    . mysqli_errno($result['connect']) . ') ' . mysqli_error($result['connect']) . PHP_EOL);
+                    $config = require MODULES_ROOT . 'config.php';
+
+                    writeLog($config['logger']['autologin'], 'Connection error: ('
+                        . mysqli_errno($result['connect']) . ') ' . mysqli_error($result['connect']) . PHP_EOL);
                 }
             }
         }

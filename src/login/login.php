@@ -90,7 +90,7 @@ if(isset($_POST['login'])){
     }
 
     if($retval == L_ERR_DB_CONNECTION || $retval == L_ERR_DB){
-        writeLog('../logs/login.log', '(' . mysqli_errno($feedback_pre['connect'])
+        writeLog($config['logger']['login'], '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
 

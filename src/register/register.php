@@ -89,7 +89,7 @@ if(isset($_POST['register'])){
     }
 
     if($retval == R_ERR_DB || $retval == R_ERR_DB_CONNECTION){
-        writeLog('../logs/register.log', '(' . mysqli_errno($feedback_pre['connect'])
+        writeLog($config['logger']['register'], '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
     }

@@ -47,7 +47,7 @@ if($mysql_link !== FALSE){
     $num_cleaned = clean_expired_sess($mysql_link);
 
     if($num_cleaned === FALSE){
-        writeLog('../logs/sess_cleanup.log', '(' . mysqli_errno($mysql_link)
+        writeLog($config['logger']['sess_cleanup'], '(' . mysqli_errno($mysql_link)
                  . ') ' . mysqli_error($mysql_link) . PHP_EOL);
     }
 }
