@@ -32,5 +32,9 @@ const DATE_FORMAT = 'd.m.Y H:i:s';
  * Change this according to the above DATE_FORMAT
  */
 const DATE_TOUSER = 'DD-MM-YYYY';
+/**
+ * Time an one-time session is valid
+ */
 const ONETIME_SESS = 1440;
+
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
