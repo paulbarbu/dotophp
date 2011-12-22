@@ -17,3 +17,7 @@ $REPEATS = array(
     '3' => 'Monthly',
     '4' => 'Yearly',
 );
+
+const C_ERR_NO_NAME = 1;
+const C_ERR_DESC = 2;
+const C_ERR_COLOR = 3;

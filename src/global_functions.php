@@ -459,4 +459,15 @@ function find_files_by_name($path, $name, $recursive = TRUE, $flags = GLOB_MARK)
 
     return $files;
 }/*}}}*/
+
+/**
+ * Check whether a color is in #RRGGBB format
+ *
+ * @param $color the color code
+ *
+ * @return TRUE if the code is valid, else FALSE
+ */
+function isValidColor($color){/*{{{*/
+    return (bool)preg_match('/^#[a-f0-9]{6}$/i', $color);
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
