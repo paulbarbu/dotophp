@@ -59,7 +59,7 @@ if(isset($_POST['activate'])){
     unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
 
     if($result == A_ERR_DB || $result == A_ERR_DB_CONNECTION){
-        writeLog('../logs/activate.log', '(' . mysqli_errno($feedback_pre['connect'])
+        writeLog($config['logger']['activate'], '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
     }
