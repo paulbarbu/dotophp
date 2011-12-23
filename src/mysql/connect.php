@@ -21,15 +21,15 @@
 /**
  * MySQL host to connect to
  */
-const MYSQL_HOST = '';
+defined('MYSQL_HOST') or define('MYSQL_HOST', '');
 /**
  * Login name for MySQL
  */
-const MYSQL_USER = '';
+defined('MYSQL_USER') or define('MYSQL_USER', '');
 /**
  * Name of the database to use
  */
-const MYSQL_DATABASE = '';
+defined('MYSQL_DATABASE') or define('MYSQL_DATABASE', '');
 
 /**
  * Password for the MySQL user

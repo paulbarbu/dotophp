@@ -1,10 +1,10 @@
 <?php
 /**
- * @file src/login/login.php
- * @brief Main file for the login part of the login module
+ * @file src/auth/login.php
+ * @brief Login part of the auth module
  * @author Paul Barbu
  *
- * @ingroup loginFiles
+ * @ingroup authFiles
  */
 
 if(isset($_POST['login'])){
