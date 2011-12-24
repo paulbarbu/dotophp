@@ -79,7 +79,7 @@ if(isset($_POST['login'])){
                             setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
                         }
 
-                        $retval = ERR_NONE;
+                        $retval = array('reload' => TRUE, 'module' => 'event');
                     }
                 }
             }
