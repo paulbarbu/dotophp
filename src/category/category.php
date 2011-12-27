@@ -36,10 +36,12 @@ if(isset($_POST['add'])){
         if(!isValidColor($color)){
             $err[] = C_ERR_COLOR;
         }
-        else{
-            $data['color'] = str_replace('#', '', $color);
-        }
     }
+    else{
+        $color = str_replace('#', '', DEFAULT_COLOR);
+    }
+
+    $data['color'] = base_convert(str_replace('#', '', $color), 16,10);
 
     if(!empty($err)){
         return $err;
