@@ -175,7 +175,7 @@ return array(
     /* Upcoming events */
     'upcoming' => array(
         'pre-process' => array(
-            'autologin' => 'login',
+            'autologin' => 'auth',
             'db' => 'mysql',
         ),
         'VL' => array(
@@ -193,7 +193,7 @@ return array(
     /* Manage categories */
     'category' => array(
         'pre-process' => array(
-            'autologin' => 'login',
+            'autologin' => 'auth',
             'db' => 'mysql',
         ),
         'VL' => array(
@@ -211,7 +211,7 @@ return array(
     /* Manage events */
     'event' => array(
         'pre-process' => array(
-            'autologin' => 'login',
+            'autologin' => 'auth',
             'db' => 'mysql',
         ),
         'VL' => array(
@@ -241,22 +241,6 @@ return array(
             'constants' => 'constants.php',
             'functions' => 'functions.php',
             'profile' => 'profile.php',
-        ),
-    ),
-
-    /* Log out */
-    'logout' => array(
-        'pre-process' => array(
-            'autologin' => 'login',
-        ),
-        'VL' => array(
-            'title' => 'Log out',
-            'content' => 'content.php',
-            'login_need' => TRUE,
-        ),
-        'BL' => array(
-            'constants' => 'constants.php',
-            'logout' => 'logout.php',
         ),
     ),
 );
