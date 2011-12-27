@@ -14,7 +14,7 @@
 if(isset($_POST['resend'])){
 
     if(!$feedback_pre['connect']){
-        writeLog('../logs/register.log', '(' . mysqli_errno($feedback_pre['connect'])
+        writeLog($config['logger']['notreceived'], '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         return NR_ERR_DB_CONNECTION;
     }
