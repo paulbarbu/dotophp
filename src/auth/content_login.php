@@ -1,13 +1,13 @@
 <?php
 /**
- * @file src/login/content.php
- * @brief Content of the login module
+ * @file src/auth/content_login.php
+ * @brief HTML for the login part of the autentication module
  * @author Paul Barbu
  *
- * @ingroup loginFiles
+ * @ingroup authFiles
  */
 
-if($feedback['login']){
+if($feedback['auth']){
 ?>
 
 <form action="" method="post">
@@ -25,10 +25,10 @@ if($feedback['login']){
 <p>Activation email not received? <a href="index.php?show=notreceived" tabindex="5" >Click here</a> to have it resent!</p>
 
 <?php
-    if(is_numeric($feedback['login'])){
+    if(is_numeric($feedback['auth'])){
         echo '<h3>';
 
-        switch($feedback['login']){
+        switch($feedback['auth']){
             case L_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', L_ERR_DB_CONNECTION);
                 break;
             case L_ERR_NO_USER: printf('This user is inexistent! (#%d)', L_ERR_NO_USER);
@@ -46,7 +46,7 @@ if($feedback['login']){
         echo '</h3>';
     }
 }
-else if($feedback['login'] == ERR_NONE){
+else if($feedback['auth'] == ERR_NONE){
     echo '<h3>You\'re now logged in!</h3>';
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

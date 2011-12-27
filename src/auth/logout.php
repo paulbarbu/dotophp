@@ -1,10 +1,10 @@
 <?php
 /**
- * @file src/logout/logout.php
- * @brief Main file for the logout module
+ * @file src/auth/logout.php
+ * @brief Logout part of the auth module
  * @author Paul Barbu
  *
- * @ingroup logoutFiles
+ * @ingroup authFiles
  */
 
 if(!isLoggedIn()){
