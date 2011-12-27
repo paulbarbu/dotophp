@@ -51,35 +51,26 @@ if(isset($_POST['add'])){
         $retval = C_ERR_DB_CONN;
     }
     else{
-        $result = mysqli_query($feedback_pre['connect'],
-                'SELECT category_id FROM category WHERE user_id=' . $_SESSION['uid'] .
-                " AND name='" . $name . "';");
+        $duplicates = count(get_categories($feedback_pre['connect'], $_SESSION['uid'], $name));
 
-        if(!$result){
-            $retval = C_ERR_DB;
+        if($duplicates){
+            $retval = C_ERR_DUPLICATE;
         }
         else{
-            $duplicates = count(mysqli_fetch_all($result, MYSQLI_ASSOC));
+            $data['user_id'] = $_SESSION['uid'];
+            $data['name'] = $name;
+            $data['repeat_interval'] = $repeat;
 
-            if(!$duplicates){
-                $data['user_id'] = $_SESSION['uid'];
-                $data['name'] = $name;
-                $data['repeat_interval'] = $repeat;
-
-                if(insertIntoDB($feedback_pre['connect'], 'category', $data)){
-                    $retval = ERR_NONE;
-                }
-                else{
-                    $retval = C_ERR_DB;
-                }
+            if(insertIntoDB($feedback_pre['connect'], 'category', $data)){
+                $retval = ERR_NONE;
             }
             else{
-                $retval = C_ERR_DUPLICATE;
+                $retval = C_ERR_DB;
             }
         }
     }
 
-    if(C_RRR_DB == $retval || C_ERR_DB_CONN == $retval){
+    if(C_ERR_DB == $retval || C_ERR_DB_CONN == $retval){
         writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
