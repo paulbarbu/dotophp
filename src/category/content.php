@@ -64,6 +64,6 @@ else if(is_numeric($feedback['category'])){
     echo '</h3>';
 }
 
-//TODO show categories
+echo '<hr /><h4>Your categories:</h4>';
 
-echo 'Many categories down here!';
+arrayToDiv(get_categories($feedback_pre['connect'], $_SESSION['uid']), 'format_cat', NULL, 'cat');
