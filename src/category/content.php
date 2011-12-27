@@ -21,7 +21,7 @@ require 'constants.php';
 
 <tr><td>
 <label for="color">Color:</label></td><td><input type="text" maxlength="7" tabindex="3" name="color" id="color"
-value="<?php echo isset($_POST['color']) ? $_POST['color'] : '#RRGGBB' ?>" /></td><td>
+value="<?php echo isset($_POST['color']) ? $_POST['color'] : COLOR_CODE ?>" /></td><td>
 
 <label for="repeat">Repeat:</label></td><td><select tabindex="4" name="repeat" id="repeat">
  <?php echo arrayToOption(array_values($REPEATS), array_keys($REPEATS), isset($_POST['repeat']) ? $_POST['repeat'] : NULL); ?>

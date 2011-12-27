@@ -18,6 +18,6 @@ $REPEATS = array(
     '4' => 'Yearly',
 );
 
-const C_ERR_NO_NAME = 1;
-const C_ERR_DESC = 2;
-const C_ERR_COLOR = 3;
+defined('C_ERR_NO_NAME') or define('C_ERR_NO_NAME', 1);
+defined('C_ERR_DESC') or define('C_ERR_DESC', 2);
+defined('C_ERR_COLOR') or define('C_ERR_COLOR', 3);

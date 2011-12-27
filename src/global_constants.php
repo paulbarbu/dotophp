@@ -37,4 +37,9 @@ const DATE_TOUSER = 'DD-MM-YYYY';
  */
 const ONETIME_SESS = 1440;
 
+/**
+ * Color code template
+ */
+const COLOR_CODE = '#RRGGBB';
+
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
