@@ -470,4 +470,50 @@ function find_files_by_name($path, $name, $recursive = TRUE, $flags = GLOB_MARK)
 function isValidColor($color){/*{{{*/
     return (bool)preg_match('/^#[a-f0-9]{6}$/i', $color);
 }/*}}}*/
+
+/**
+ * Helper function to echo divs from an array
+ *
+ * @param array $data the data to be displayed as divs
+ * @param callback $format a callback to format the contents of the div,
+ * optional, if not provided the elements will be displayed as text, the
+ * callback must accept as argument the contents of an element in $data and to
+ * return a string
+ * @param string $class div's class, optional
+ * @param string $id div's id, optional
+ *
+ * @return void
+ */
+function arrayToDiv($data, $format = NULL, $id = NULL, $class = NULL, $style = NULL){/*{{{*/
+    $start_str = '<div';
+
+    if(isset($id)){
+        $start_str .= ' id="' . $id . '"';
+    }
+
+    if(isset($class)){
+        $start_str .= ' class="' . $class . '"';
+    }
+
+    if(isset($style)){
+        $start_str .= ' style="' . $style . '"';
+    }
+
+    $start_str .= '>' . PHP_EOL;
+
+    $end_str = '</div>' . PHP_EOL;
+
+    foreach($data as $meta => $element){
+        echo $start_str;
+
+        if(isset($format)){
+            echo $format($element);
+        }
+        else{
+            echo $element;
+        }
+
+        echo $end_str;
+    }
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
