@@ -37,7 +37,7 @@ if(isset($_POST['add'])){
             $err[] = C_ERR_COLOR;
         }
         else{
-            $data['color'] = $color;
+            $data['color'] = str_replace('#', '', $color);
         }
     }
 
@@ -45,24 +45,44 @@ if(isset($_POST['add'])){
         return $err;
     }
 
-    $data['user_id'] = $_SESSION['uid'];
-    $data['name'] = $name;
-    $data['repeat_interval'] = $repeat;
-
     if(!$feedback_pre['connect']){
         $retval = C_ERR_DB_CONN;
     }
-    else if(insertIntoDB($feedback_pre['connect'], 'category', array())){
-        $retval = ERR_NONE;
-    }
     else{
-        $retval = C_ERR_DB;
+        $result = mysqli_query($feedback_pre['connect'],
+                'SELECT category_id FROM category WHERE user_id=' . $_SESSION['uid'] .
+                " AND name='" . $name . "';");
+
+        if(!$result){
+            $retval = C_ERR_DB;
+        }
+        else{
+            $duplicates = count(mysqli_fetch_all($result, MYSQLI_ASSOC));
+
+            if(!$duplicates){
+                $data['user_id'] = $_SESSION['uid'];
+                $data['name'] = $name;
+                $data['repeat_interval'] = $repeat;
+
+                if(insertIntoDB($feedback_pre['connect'], 'category', $data)){
+                    $retval = ERR_NONE;
+                }
+                else{
+                    $retval = C_ERR_DB;
+                }
+            }
+            else{
+                $retval = C_ERR_DUPLICATE;
+            }
+        }
     }
 
-    if($retval == C_ERR_DB || $retval == C_ERR_DB_CONN){
+    if(C_RRR_DB == $retval || C_ERR_DB_CONN == $retval){
         writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
     }
+
+    return $retval;
 }
 
 return TRUE;
