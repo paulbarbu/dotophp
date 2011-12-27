@@ -42,4 +42,10 @@ const ONETIME_SESS = 1440;
  */
 const COLOR_CODE = '#RRGGBB';
 
+/**
+ * Default color to be used for events and categories
+ * Maybe you want to match this with the background
+ */
+const DEFAULT_COLOR = '#FFFFFF';
+
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
