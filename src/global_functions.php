@@ -516,4 +516,15 @@ function arrayToDiv($data, $format = NULL, $id = NULL, $class = NULL, $style = N
         echo $end_str;
     }
 }/*}}}*/
+
+/**
+ * Get the contrast color
+ *
+ * @param string $color the color code in hex representation as needed by hexdec()
+ *
+ * @return '000000' if the color is light, else 'FFFFFF' is the color is dark
+ */
+function getContrastColor($color){/*{{{*/
+    return (hexdec($color) > 0xFFFFFF/2) ? '000000' : 'FFFFFF';
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
