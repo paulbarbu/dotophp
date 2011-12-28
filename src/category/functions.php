@@ -46,12 +46,12 @@ function get_categories($link, $user_id, $name = NULL, $resulttype = MYSQLI_ASSO
  * @return string the formatted output
  */
 function format_cat($element){/*{{{*/
-
     require 'constants.php';
 
-    $out = '<div style="background-color:#' . str_pad(base_convert($element['color'], 10, 16), 6, '0')
-        . ';color:' . (base_convert($element['color'], 16, 10) >= base_convert('#999967', 16, 10) ? '#000000' : '#FFFFFF') . '">' .
-        $element['name'];
+    $hexcolor = str_pad(dechex($element['color']), 6, '0', STR_PAD_LEFT);
+
+    $out = '<div style="background-color:#' . $hexcolor . ';color:#' .
+        getContrastColor($hexcolor) . '">' . $element['name'];
 
     $out .= '<span class="toRight">' . $REPEATS[$element['repeat_interval']] . '</span>';
 
