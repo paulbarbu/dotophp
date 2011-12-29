@@ -24,7 +24,7 @@ if(isset($_COOKIE[session_name()])){
 
             $loggedin = TRUE;
 
-            if($module == 'auth'){
+            if('auth' == $module){
                 $_GET['action'] = 'logout';
             }
 
@@ -42,7 +42,8 @@ if(isset($_COOKIE[session_name()])){
     }
 }
 
-if(!$loggedin && isset($modules[$module]['VL']['login_need']) && $modules[$module]['VL']['login_need']){
+if(!$loggedin && (isset($modules[$module]['VL']['login_need']) && $modules[$module]['VL']['login_need'] ||
+    ('auth' == $module && isset($_GET['action']) && 'logout' == $_GET['action']))){
     $_GET['action'] = 'login';
 
     return array('reload' => TRUE, 'module' => 'auth');

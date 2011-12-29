@@ -17,7 +17,9 @@ if(isset($feedback['recover']['recover']) || $feedback['recover'] === RECOVER_PR
 <form action="" method="post">
 <table border="0" cellspacing="5">
 <tr><td colspan="2"><center><h4><?php echo $_SESSION['security_q']; ?></h4></center></td></tr>
-<tr><td><label for="answer">Answer:</label></td><td><input tabindex="1" type="text" maxlength="255" id="answer" name="security_a" />
+<tr><td><label for="answer" title="<?php echo TOOLTIP_H_ANSWER ?>">Answer:</label></td><td>
+<input tabindex="1" type="text" maxlength="255" id="answer" name="security_a"
+ title="<?php echo TOOLTIP_H_ANSWER ?>"/>
 </td></tr>
 <tr><td colspan="2" ><center>
 <input type="submit" name="recover" value="Recover" tabindex="2" /></center>
@@ -51,7 +53,8 @@ else{
 <form action="" method="post">
 <table border="0" cellspacing="5">
 <tr><td>
-    <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength="255" tabindex= "1" />
+<label for="email" title="<?php echo TOOLTIP_EMAIL ?>">E-mail:</label></td><td>
+<input id="email" type="text" name="email" maxlength="255" tabindex= "1" title="<?php echo TOOLTIP_EMAIL ?>" />
     </td></tr><tr><td colspan="2" ><center>
 <input type="submit" name="proceed" value="Proceed" tabindex="2" /></center>
 </td></tr>
