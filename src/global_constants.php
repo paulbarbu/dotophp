@@ -67,7 +67,7 @@ const TOOLTIP_NAME = 'No longer than 20 chars, characters allowed: - _ and lower
 /**
  * Nick toolip
  */
-const TOOLTIP_NICK = 'No longer than 20 chars, alphanumeric characters allowed and - _';
+const TOOLTIP_NICK_CAT_EV = 'No longer than 20 chars, alphanumeric characters allowed and - _';
 /**
  * City tooltip
  */

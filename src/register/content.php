@@ -36,7 +36,7 @@ if($feedback['register']){
     <label for="l_n" title="<?php echo TOOLTIP_NAME ?>">Last name:</label></td><td><input title="<?php echo TOOLTIP_NAME ?>" id="l_n" type="text" name="last_name" maxlength="10"
  <?php echo isset($_POST['last_name']) ? 'value="' . $_POST['last_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="nick" title="<?php echo TOOLTIP_NICK ?>">Nickname:</label></td><td><input title="<?php echo TOOLTIP_NICK ?>" id="nick" type="text" name="nick" maxlength="20"
+    <label for="nick" title="<?php echo TOOLTIP_NICK_CAT_EV ?>">Nickname:</label></td><td><input title="<?php echo TOOLTIP_NICK_CAT_EV ?>" id="nick" type="text" name="nick" maxlength="20"
  <?php echo isset($_POST['nick']) ? 'value="' . $_POST['nick'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="email" title="<?php echo TOOLTIP_EMAIL ?>">E-mail:</label></td><td><input title="<?php echo TOOLTIP_EMAIL ?>" id="email" type="text" name="email" maxlength="255"

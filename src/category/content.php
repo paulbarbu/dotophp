@@ -13,10 +13,10 @@ require 'constants.php';
 <form action="" method="post">
 <table border="0" cellspacing="5">
 <tr><td>
-<label for="name">Name:</label></td><td><input type="text" maxlength="20" name="name" id="name" tabindex="1"
+<label for="name" title="<?php echo TOOLTIP_NICK_CAT_EV ?>">Name:</label></td><td><input title="<?php echo TOOLTIP_NICK_CAT_EV ?>" type="text" maxlength="20" name="name" id="name" tabindex="1"
  <?php echo isset($_POST['name']) ? 'value="' . $_POST['name'] . '"' : NULL ?> /></td><td>
 
-<label for="desc">Description:</label></td><td><textarea tabindex="2" rows="3" cols="23" name="description" id="desc">
+<label for="desc" title="<?php echo TOOLTIP_DESC ?>">Description:</label></td><td><textarea title="<?php echo TOOLTIP_DESC ?>" tabindex="2" rows="3" cols="23" name="description" id="desc">
 <?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea></td></tr>
 
 <tr><td>
