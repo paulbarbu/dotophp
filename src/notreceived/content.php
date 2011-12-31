@@ -16,7 +16,8 @@ if($feedback['notreceived']){
 Fill the form below so we can resend it.</p>
 
 <form action="" method="post">
-<label for="email">E-mail:</label><input id="email" type="text" name="email" maxlength="255" tabindex="1" />
+<label for="email" title="<?php echo TOOLTIP_EMAIL ?>">E-mail:</label><input id="email" type="text" name="email"
+ maxlength="255" tabindex="1" title="<?php echo TOOLTIP_EMAIL ?>" />
 <input type="submit" name="resend" value="Resend activation email" tabindex="2" />
 </form>
 <?php
