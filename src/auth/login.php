@@ -7,19 +7,6 @@
  * @ingroup authFiles
  */
 
-if(isLoggedIn()){
-    if(hasEvents($feedback_pre['connect'], $_SESSION['uid'])){
-        $module = 'upcoming';
-    }
-    else{
-        $module = 'event';
-    }
-
-    $reload = TRUE;
-
-    return ERR_NONE;
-}
-
 if(isset($_POST['login'])){
     list($nick, $_POST['pass']) = filterInput($_POST['nick'], $_POST['pass']);
     $remember = isset($_POST['remember']) ? TRUE : FALSE;

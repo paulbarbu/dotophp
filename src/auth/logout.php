@@ -7,14 +7,6 @@
  * @ingroup authFiles
  */
 
-if(!isLoggedIn()){
-    $module = 'home';
-
-    $reload = TRUE;
-
-    return ERR_NONE;
-}
-
 if(isset($_SESSION)){
     if($feedback_pre['connect'] == FALSE){
         writeLog($config['logger']['logout'], 'SESSID: ' . session_id() . ' - (' .
