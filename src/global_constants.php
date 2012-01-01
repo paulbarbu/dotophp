@@ -49,10 +49,6 @@ const COLOR_CODE = '#RRGGBB';
 const DEFAULT_COLOR = '#FFFFFF';
 
 /**
- * Duration of a one-time session
- */
-const ONETIME_SESS = 1440;
-/**
  * Email tooltip
  */
 const TOOLTIP_EMAIL = 'Only alphanumeric and _ - @ . characters allowed!';
