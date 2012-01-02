@@ -191,7 +191,7 @@ return array(
     ),
 
     /* Manage categories */
-    'category' => array(
+    'cat' => array(
         'pre-process' => array(
             'autologin' => 'auth',
             'db' => 'mysql',
