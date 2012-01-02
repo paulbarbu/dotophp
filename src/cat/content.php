@@ -31,10 +31,10 @@ require 'constants.php';
 </form>
 
 <?php
-if(is_array($feedback['category'])){
+if(is_array($feedback_pre['rcats'])){
     echo '<h3>';
 
-    foreach($feedback['category'] as $err){
+    foreach($feedback_pre['rcats'] as $err){
         switch($err){
             case C_ERR_NO_NAME: printf('The category must have a name! (#%d)<br />', C_ERR_NO_NAME);
                 break;
@@ -47,17 +47,23 @@ if(is_array($feedback['category'])){
 
     echo '</h3>';
 }
-else if(is_numeric($feedback['category'])){
+else if(is_numeric($feedback_pre['rcats'])){
     echo '<h3>';
 
-    switch($feedback['category']){
-        case C_ERR_DB: printf('A database error occured, please contact the admin! (#%d)', C_ERR_DB);
+    switch($feedback_pre['rcats']){
+        case ERR_DB: printf('A database error occured, please contact the admin! (#%d)', C_ERR_DB);
             break;
-        case C_ERR_DB_CONN: printf('A database connection error occured, please contact the admin! (#%d)', C_ERR_DB_CONN);
+        case ERR_DB_CONN: printf('A database connection error occured, please contact the admin! (#%d)', C_ERR_DB_CONN);
             break;
         case C_ERR_DUPLICATE: printf('No duplicates allowed! (#%d)', C_ERR_DUPLICATE);
             break;
         case ERR_NONE: printf('Added!');
+            break;
+        case C_ERR_NO_NAME: printf('The category must have a name! (#%d)<br />', C_ERR_NO_NAME);
+            break;
+        case C_ERR_DESC: printf('The description contains invalid characters! (#%d)<br />', C_ERR_DESC);
+            break;
+        case C_ERR_COLOR: printf('Invalid color code! (#%d)<br />', C_ERR_COLOR);
             break;
     }
 
