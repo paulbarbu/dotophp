@@ -243,5 +243,39 @@ return array(
             'profile' => 'profile.php',
         ),
     ),
+
+    /* Manage categories */
+    'cat' => array(
+        'pre-process' => array(
+            'autologin' => 'auth',
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'title' => 'Manage categories',
+            'login_need' => TRUE,
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'functions' => 'functions.php',
+            'category' => 'category.php',
+        ),
+        'post-process' => array(
+            'rcats' => 'rcats',
+        ),
+    ),
+
+    /* Reusable categorization system */
+    'rcats' => array(
+        'pre-process' => array(
+            'db' => 'mysql',
+        ),
+        'VL' => array(
+            'show_in_menu' => FALSE,
+        ),
+        'post-process' => array(
+            'rcats' => 'rcats.php',
+        ),
+    ),
 );
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
