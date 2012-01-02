@@ -8,6 +8,7 @@
  *
  * This meta module should be feed through $feedback with an array of the form:
  *
+ * @verbatim
 array(
     'variable11' => array(
         'value' => 42, //the value of the variable
@@ -15,24 +16,23 @@ array(
         //variable as parameter and must return TRUE or FALSE
 
             'cb11' => array(
-                'name' => 'isValidInput',
+                'name' => 'callback_name',
 
                 'assign' => TRUE, //if this entry is TRUE then the
                 //retval is not checked anymore insted is assigned back to
                 //the variable's value
 
-                'params' => array(42, 'foobar'), //as needed by the callback, also
-                //see: php.net/call-user-func-array
+                'params' => array(42, 'foobar'), //arguments needed by the callback
+                //order matters! also see: php.net/call-user-func-array
             ),
             'cb12' => array(
                 'assign' => 'FALSE',
-                'name' => 'hasNoDuplicates',
+                'name' => 'name_of_function',
 
                 'err' => ERR_if_the_callback_returns_FALSE, //this error
-                //applies only for this callback, which will ignore the
-                //more global 'err'
+                //applies only for this callback
 
-                'return_on_err' => TRUE, // if TRUE the error codes is returned
+                'return_on_err' => TRUE, // if TRUE the error code is returned
                 //right away, if FALSE the error code will be gathered in an array
                 //which will be returned at the end of the execution
             ),
@@ -52,8 +52,9 @@ array(
     'variable12' => array(
         //the same geometry
     ),
-    'table' => 'category', //the variables wil be inserted in this tabl
+    'table' => 'category', //the variables wil be inserted in this table
 );
+ * @endverbatim
  */
 
 foreach($feedback as $metamodule => $m){
