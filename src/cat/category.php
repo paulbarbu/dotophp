@@ -32,7 +32,7 @@ if(isset($_POST['add'])){
                     'err' => C_ERR_DUPLICATE,
                 ),
             ),
-            'err' => C_ERR_NO_NAME,
+            'err' => C_ERR_NAME,
             'return_on_err' => TRUE,
             'field' => 'name',
         ),
