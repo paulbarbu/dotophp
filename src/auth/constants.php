@@ -1,11 +1,24 @@
 <?php
 /**
- * @file src/login/constants.php
- * @brief Constants for the login module
+ * @file src/auth/constants.php
+ * @brief Constants for the authentication module
  * @author Paul Barbu
  *
- * @ingroup loginFiles
+ * @ingroup authFiles
  */
+
+/**
+ * Error deleting the session
+ */
+const LO_ERR_DEL = 1;
+/**
+ * Error destroying the session
+ */
+const LO_ERR_DESTROY = 2;
+/**
+ * Error starting the session
+ */
+const LO_ERR_INIT = 3;
 
 /**
  * Lifetime of the cookie
@@ -32,5 +45,8 @@ const L_ERR_SESS_START = 4;
  * Inactive accounts cannot login
  */
 const L_ERR_INACTIVE = 5;
+/**
+ * A database related error occured
+ */
 const L_ERR_DB = 6;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

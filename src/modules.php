@@ -12,7 +12,7 @@ return array(
     /* Home page */
     'home' => array(
         'pre-process' => array(
-            'autologin' => 'login',
+            'autologin' => 'auth',
         ),
         'VL' => array(
             'title' => 'Home',
@@ -100,43 +100,30 @@ return array(
     ),
 
     /* Authentify */
-    'login' => array(
+    'auth' => array(
         'pre-process' => array(
             'db' => 'mysql',
             'autologin' => 'autologin.php',
         ),
         'VL' => array(
-            'title' => 'Log in',
+            'title' => 'Auth',
             'content' => 'content.php',
             'show_in_menu' => FALSE,
         ),
         'BL' => array(
             'constants' => 'constants.php',
-            'login' => 'login.php',
+            'auth' => 'auth.php',
         ),
         'post-process' => array(
             'db' => 'mysql',
         ),
     ),
 
-    /* Log out */
-    'logout' => array(
-        'pre-process' => array(
-            'autologin' => 'login',
-        ),
-        'VL' => array(
-            'title' => 'Log out',
-            'content' => 'content.php',
-            'show_in_menu' => FALSE,
-        ),
-        'BL' => array(
-            'constants' => 'constants.php',
-            'logout' => 'logout.php',
-        ),
-    ),
-
     /* Inexistent page */
     '404' => array(
+        'pre-process' => array(
+            'autologin' => 'auth',
+        ),
         'VL' => array(
             'title' => 'Inexistent page',
             'content' => 'content.php',

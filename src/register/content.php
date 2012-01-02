@@ -30,16 +30,16 @@ if($feedback['register']){
     <table border="0">
     <tr><td>
 
-    <label for="f_n">First name:</label></td><td><input id="f_n" type="text" name="first_name" maxlength="10"
+    <label for="f_n" title="<?php echo TOOLTIP_NAME ?>">First name:</label></td><td><input title="<?php echo TOOLTIP_NAME ?>" id="f_n" type="text" name="first_name" maxlength="10"
  <?php echo isset($_POST['first_name']) ? 'value="' . $_POST['first_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="l_n">Last name:</label></td><td><input id="l_n" type="text" name="last_name" maxlength="10"
+    <label for="l_n" title="<?php echo TOOLTIP_NAME ?>">Last name:</label></td><td><input title="<?php echo TOOLTIP_NAME ?>" id="l_n" type="text" name="last_name" maxlength="10"
  <?php echo isset($_POST['last_name']) ? 'value="' . $_POST['last_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="nick">Nickname:</label></td><td><input id="nick" type="text" name="nick" maxlength="20"
+    <label for="nick" title="<?php echo TOOLTIP_NICK ?>">Nickname:</label></td><td><input title="<?php echo TOOLTIP_NICK ?>" id="nick" type="text" name="nick" maxlength="20"
  <?php echo isset($_POST['nick']) ? 'value="' . $_POST['nick'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="email">E-mail:</label></td><td><input id="email" type="text" name="email" maxlength="255"
+    <label for="email" title="<?php echo TOOLTIP_EMAIL ?>">E-mail:</label></td><td><input title="<?php echo TOOLTIP_EMAIL ?>" id="email" type="text" name="email" maxlength="255"
  <?php echo isset($_POST['email']) ? 'value="' . $_POST['email'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="tz">Timezone:</label></td><td><select id="tz" name="timezone">
@@ -50,7 +50,7 @@ if($feedback['register']){
         <?php arrayToOption(array_values($countries), array_keys($countries), isset($_POST['country']) ? $_POST['country'] : 'Please select your country!'); ?>
     </select>
     </td></tr><tr><td>
-    <label for="city">City:</label></td><td><input id="city" type="text" name="city" maxlength="30"
+    <label for="city" title="<?php echo TOOLTIP_CITY ?>">City:</label></td><td><input title="<?php echo TOOLTIP_CITY ?>" id="city" type="text" name="city" maxlength="30"
  <?php echo isset($_POST['city']) ? 'value="' . $_POST['city'] . '"' : NULL ?> />
     </td></tr>
     </table>
@@ -73,12 +73,12 @@ if($feedback['register']){
     <input type="radio" name="sex" value="F" id="sf"
  <?php echo isset($_POST['sex']) && $_POST['sex'] == 'F'? 'checked="checked"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="phone">Phone:</label></td><td><input id="phone" type="text" name="phone" maxlength="20"
+    <label for="phone" title="<?php echo TOOLTIP_PHONE ?>">Phone:</label></td><td><input title="<?php echo TOOLTIP_PHONE ?>" id="phone" type="text" name="phone" maxlength="20"
  <?php echo isset($_POST['phone']) ? 'value="' . $_POST['phone'] . '"' : NULL ?> />
     </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" name="birthday" maxlength="10"
  <?php echo isset($_POST['birthday']) ? 'value="' . $_POST['birthday'] . '"' : 'value="DD-MM-YYYY"' ?> />
     </td></tr><tr><td>
-    <label for="desc">Description:</label></td><td><textarea rows="3" cols="23" name="description" id="desc">
+    <label for="desc" title="<?php echo TOOLTIP_DESC ?>">Description:</label></td><td><textarea title="<?php echo TOOLTIP_DESC ?>" rows="3" cols="23" name="description" id="desc">
 <?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea>
     </td></tr>
 

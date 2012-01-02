@@ -1,10 +1,10 @@
 <?php
 /**
- * @file src/login/login.php
- * @brief Main file for the login part of the login module
+ * @file src/auth/login.php
+ * @brief Login part of the auth module
  * @author Paul Barbu
  *
- * @ingroup loginFiles
+ * @ingroup authFiles
  */
 
 if(isset($_POST['login'])){
@@ -79,7 +79,7 @@ if(isset($_POST['login'])){
                             setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
                         }
 
-                        $retval = ERR_NONE;
+                        $retval = array('reload' => TRUE, 'module' => 'event');
                     }
                 }
             }
