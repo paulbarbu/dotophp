@@ -26,7 +26,7 @@ if(isset($_COOKIE[session_name()])){
                 if(!$updated){
                     $config = require MODULES_ROOT . 'config.php';
 
-                    writeLog($config['logger']['autologin'], 'Connection error: ('
+                    writeLog('autologin', 'Connection error: ('
                         . mysqli_errno($result['connect']) . ') ' . mysqli_error($result['connect']) . PHP_EOL);
                 }
             }

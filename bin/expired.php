@@ -35,12 +35,12 @@ if($feedback_pre['connect']){
     mysqli_query($feedback_pre['connect'],
         "DELETE FROM user WHERE activated='0000-00-00 00:00:00' AND (UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(created))/604799 >= 1;");
 
-    writeLog($config['logger']['expired'], 'Expired accounts: ' . mysqli_affected_rows($feedback_pre['connect']) . PHP_EOL);
+    writeLog('expired', 'Expired accounts: ' . mysqli_affected_rows($feedback_pre['connect']) . PHP_EOL);
 
     require ROOT . 'src/mysql/disconnect.php';
 }
 else{
-    writeLog($config['logger']['expired'], 'Connection error: ('
+    writeLog('expired', 'Connection error: ('
         . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
