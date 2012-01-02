@@ -76,4 +76,14 @@ const TOOLTIP_PHONE = 'No longer than 20 chars, letters, parentheses, spaces and
  * Description tooltip
  */
 const TOOLTIP_DESC = 'Unicode letters, numbers and punctuation allowed, one hundred chars maximum!';
+
+/**
+ * DB connection error
+ */
+const ERR_DB_CONN = -1;
+
+/**
+ * DB error
+ */
+const ERR_DB = -2;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

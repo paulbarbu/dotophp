@@ -14,7 +14,18 @@
 /**
  * Filters the user's input(sanitizes it) to avoid building an attack vector
  *
- * This function accepts a variable number of arguments
+ * @param string $var the string to be sanitized
+ *
+ * @return the sanitized string
+ */
+function _filterVariable($var){/*{{{*/
+    return strip_tags($var);
+}/*}}}*/
+
+/**
+ * Filters the user's input(sanitizes it) to avoid building an attack vector
+ *
+ * This function accepts a variable number of arguments and if based on _filterVariable
  *
  * @return array $filteredInput the sanitized input on the same position in the
  * array as it's place in the args list
@@ -24,7 +35,7 @@ function filterInput(){/*{{{*/
     $args = func_get_args();
 
     foreach($args as $text){
-        $filteredInput[] = strip_tags($text);
+        $filteredInput[] = _filterVariable($text);
     }
 
     return $filteredInput;

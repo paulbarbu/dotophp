@@ -191,10 +191,11 @@ return array(
     ),
 
     /* Manage categories */
-    'category' => array(
+    'cat' => array(
         'pre-process' => array(
             'autologin' => 'auth',
             'db' => 'mysql',
+            'rcats' => 'rcats',
         ),
         'VL' => array(
             'title' => 'Manage categories',
@@ -241,6 +242,17 @@ return array(
             'constants' => 'constants.php',
             'functions' => 'functions.php',
             'profile' => 'profile.php',
+        ),
+    ),
+
+    /* Reusable categorization system */
+    'rcats' => array(
+        'pre-process' => array(
+            'db' => 'mysql',
+            'rcats' => 'rcats.php',
+        ),
+        'VL' => array(
+            'show_in_menu' => FALSE,
         ),
     ),
 );

@@ -20,7 +20,9 @@ if(isset($_COOKIE[session_name()])){
 
         if(1 == mysqli_num_rows($sessions)){
             session_set_cookie_params(0, app_path());
-            session_start();
+            if(!isset($_SESSION)){
+                session_start();
+            }
 
             $loggedin = TRUE;
 
