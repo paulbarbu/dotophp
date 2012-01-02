@@ -348,8 +348,6 @@ function writeLog($log_key, $data){/*{{{*/
 
     $path .= strpos($path, '.log') !== strlen($path)-4 ? '.log' : NULL;
 
-    var_dump($path);
-
     return error_log(date(DATE_FORMAT) . ' - ' . $data, 3, $path);
 }/*}}}*/
 
