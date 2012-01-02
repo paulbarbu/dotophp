@@ -47,11 +47,11 @@ if($mysql_link !== FALSE){
         }
     }
 
-    writeLog($config['logger']['sess_cleanup'], 'Deleted ' . $count . ' session files, '
+    writeLog('sess_cleanup', 'Deleted ' . $count . ' session files, '
             . $err . ' errors occured!' . PHP_EOL);
 }
 else{
-    writeLog($config['logger']['sess_cleanup'], 'Connection error: ('
+    writeLog('sess_cleanup', 'Connection error: ('
         . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
