@@ -12,7 +12,7 @@
  */
 
 if(isset($_POST['add'])){
-    return array(
+    return array('reload' => TRUE, 'module' => 'cat', 'rcats' => array(
         'name' => array(
             'value' => $_POST['name'],
             'cb' => array(
@@ -84,7 +84,7 @@ if(isset($_POST['add'])){
             'field' => 'user_id',
         ),
         'table' => 'category',
-    );
+    ));
 }
 
 return TRUE;

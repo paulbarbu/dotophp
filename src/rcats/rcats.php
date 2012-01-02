@@ -58,9 +58,10 @@ array(
 
 foreach($feedback as $metamodule => $m){
     if(is_array($m)){
-        foreach($m as $metavar => $v){ //iterate through all variables
+        $err = array();
+
+        foreach($m['rcats'] as $metavar => $v){ //iterate through all variables
             if(is_array($v)){
-                $err = array();
 
                 if(isset($v['cb']) && is_array($v['cb'])){
                     foreach($v['cb'] as $cb){
@@ -71,20 +72,19 @@ foreach($feedback as $metamodule => $m){
                             $retval = call_user_func($cb['name']);
                         }
 
+
                         if(!$retval){
                             if(isset($cb['return_on_err']) && $cb['return_on_err']){
-                                var_dump('cb_err');
                                 return $cb['err'];
                             }
                         }
 
                         if(isset($cb['assign']) && $cb['assign']){
-                            $feedback[$metamodule][$metavar]['value'] = $retval;
+                            $feedback[$metamodule]['rcats'][$metavar]['value'] = $retval;
                             $v['value'] = $retval;
                         }
                         else if(!$retval){
                             if(isset($v['return_on_err']) && $v['return_on_err']){
-                                var_dump('err');
                                 return $v['err'];
                             }
                             else{
@@ -96,11 +96,10 @@ foreach($feedback as $metamodule => $m){
             }
         }
 
-        var_dump('---', $err, '---');
-
         if(empty($err)){
-            foreach($feedback[$metamodule] as $mm => $value){
+            foreach($feedback[$metamodule]['rcats'] as $mm => $value){
                 if(is_array($value)){
+
                     $data[$value['field']] = $value['value'];
                 }
             }
@@ -113,14 +112,12 @@ foreach($feedback as $metamodule => $m){
                 ////TODO return errors and get them on VL
             }
 
-            var_dump('none');
-            var_dump($module);
             return ERR_NONE;
-            //return array('value' => ERR_NONE, 'reload' => TRUE, 'module' => $module);
         }
         else{
-            var_dump('errarray');
             return $err;
         }
     }
 }
+
+return TRUE;

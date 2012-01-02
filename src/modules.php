@@ -195,6 +195,7 @@ return array(
         'pre-process' => array(
             'autologin' => 'auth',
             'db' => 'mysql',
+            'rcats' => 'rcats',
         ),
         'VL' => array(
             'title' => 'Manage categories',
@@ -244,37 +245,14 @@ return array(
         ),
     ),
 
-    /* Manage categories */
-    'cat' => array(
-        'pre-process' => array(
-            'autologin' => 'auth',
-            'db' => 'mysql',
-        ),
-        'VL' => array(
-            'title' => 'Manage categories',
-            'login_need' => TRUE,
-            'content' => 'content.php',
-        ),
-        'BL' => array(
-            'constants' => 'constants.php',
-            'functions' => 'functions.php',
-            'category' => 'category.php',
-        ),
-        'post-process' => array(
-            'rcats' => 'rcats',
-        ),
-    ),
-
     /* Reusable categorization system */
     'rcats' => array(
         'pre-process' => array(
             'db' => 'mysql',
+            'rcats' => 'rcats.php',
         ),
         'VL' => array(
             'show_in_menu' => FALSE,
-        ),
-        'post-process' => array(
-            'rcats' => 'rcats.php',
         ),
     ),
 );
