@@ -121,6 +121,9 @@ return array(
 
     /* Inexistent page */
     '404' => array(
+        'pre-process' => array(
+            'autologin' => 'auth',
+        ),
         'VL' => array(
             'title' => 'Inexistent page',
             'content' => 'content.php',
