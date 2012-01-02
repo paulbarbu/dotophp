@@ -104,12 +104,17 @@ foreach($feedback as $metamodule => $m){
                 }
             }
 
-            if(!insertIntoDB($feedback_pre['connect'], $feedback[$metamodule]['table'], $data)){
-                var_dump('db');
-                return FALSE;
-                //TODO check the database errors including the connection ones
-                //and return the corresponding error
-                ////TODO return errors and get them on VL
+            if(!$result['connect']){
+                writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
+                         . ') ' . mysqli_connect_error() . PHP_EOL);
+                return ERR_DB_CONN;
+            }
+
+            if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
+
+                writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
+                         . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+                return ERR_DB;
             }
 
             return ERR_NONE;
