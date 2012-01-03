@@ -27,3 +27,8 @@ $PRIORITIES = array(
     '2' => 'High',
     '3' => 'Urgent',
 );
+
+defined('E_ERR_NAME') or define('E_ERR_NAME', 1);
+defined('E_ERR_DESC') or define('E_ERR_DESC', 2);
+defined('E_ERR_COLOR') or define('E_ERR_COLOR', 3);
+defined('E_ERR_DUPLICATE') or define('E_ERR_DUPLICATE', 4);
