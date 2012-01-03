@@ -13,6 +13,16 @@
 
 require 'constants.php';
 
+$cat = getDbData($feedback_pre['connect'], 'category', array('name', 'category_id'), array('user_id' => $_SESSION['uid']));
+
+$cat_names = array();
+$cat_ids = array();
+
+foreach($cat as $i){
+    $cat_names[] = $i['name'];
+    $cat_ids[] = $i['category_id'];
+}
+
 ?>
 <form action="" method="post">
 <fieldset id="q-add"> <legend>Quick add an event</legend>
@@ -35,8 +45,12 @@ value="<?php echo isset($_POST['color']) ? $_POST['color'] : '#RRGGBB' ?>" />
 </td><td>
 <label for="startdate">Start date:</label></td><td><input type="text" name="startdate" id="startdate" tabindex="8" maxlength="10"
  <?php echo isset($_POST['startdate']) ? 'value="' . $_POST['startdate'] . '"' : 'value="' . DATE_TOUSER . '"' ?> />
-</td></tr><tr><td>
-<label for="enddate">Due for:</label></td><td><input type="text" name="enddate" id="enddate" tabindex="9" maxlength="10"
+</td></tr><tr>
+<td><label for='cat'>Category: </label></td><td><select name="cat" id ="cat" tabindex="5" >
+<?php arrayToOption($cat_names, $cat_ids, isset($_POST['cat']) ? $_POST['cat'] : NULL ); ?>
+</select></td>
+<td>
+<label for="enddate">Due for:</label></td><td><input type="text" name="enddate" id="enddate" tabindex="10" maxlength="10"
  <?php echo isset($_POST['enddate']) ? 'value="' . $_POST['enddate'] . '"' : 'value="' . DATE_TOUSER . '"' ?> />
 </td></tr><tr><td>
 <label for="repeat">Repeat:</label></td><td><select tabindex="5" name="repeat" id="repeat">
