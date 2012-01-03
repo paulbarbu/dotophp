@@ -61,67 +61,69 @@ foreach($feedback as $metamodule => $m){
     if(is_array($m)){
         $err = array();
 
-        foreach($m['rcats'] as $metavar => $v){ //iterate through all variables
-            if(is_array($v)){
+        if(isset($m['rcats'])){
+            foreach($m['rcats'] as $metavar => $v){ //iterate through all variables
+                if(is_array($v)){
 
-                if(isset($v['cb']) && is_array($v['cb'])){
-                    foreach($v['cb'] as $cb){
-                        if(isset($cb['params']) && !empty($cb['params'])){
-                            $retval = call_user_func_array($cb['name'], $cb['params']);
-                        }
-                        else{
-                            $retval = call_user_func($cb['name']);
-                        }
-
-
-                        if(!$retval){
-                            if(isset($cb['return_on_err']) && $cb['return_on_err']){
-                                return $cb['err'];
-                            }
-                        }
-
-                        if(isset($cb['assign']) && $cb['assign']){
-                            $feedback[$metamodule]['rcats'][$metavar]['value'] = $retval;
-                            $v['value'] = $retval;
-                        }
-                        else if(!$retval){
-                            if(isset($v['return_on_err']) && $v['return_on_err']){
-                                return $v['err'];
+                    if(isset($v['cb']) && is_array($v['cb'])){
+                        foreach($v['cb'] as $cb){
+                            if(isset($cb['params']) && !empty($cb['params'])){
+                                $retval = call_user_func_array($cb['name'], $cb['params']);
                             }
                             else{
-                                $err[] = $v['err'];
+                                $retval = call_user_func($cb['name']);
+                            }
+
+
+                            if(!$retval){
+                                if(isset($cb['return_on_err']) && $cb['return_on_err']){
+                                    return $cb['err'];
+                                }
+                            }
+
+                            if(isset($cb['assign']) && $cb['assign']){
+                                $feedback[$metamodule]['rcats'][$metavar]['value'] = $retval;
+                                $v['value'] = $retval;
+                            }
+                            else if(!$retval){
+                                if(isset($v['return_on_err']) && $v['return_on_err']){
+                                    return $v['err'];
+                                }
+                                else{
+                                    $err[] = $v['err'];
+                                }
                             }
                         }
                     }
                 }
             }
-        }
 
-        if(empty($err)){
-            foreach($feedback[$metamodule]['rcats'] as $mm => $value){
-                if(is_array($value)){
+            if(empty($err)){
+                foreach($feedback[$metamodule]['rcats'] as $mm => $value){
+                    if(is_array($value)){
 
-                    $data[$value['field']] = $value['value'];
+                        $data[$value['field']] = $value['value'];
+                    }
                 }
+
+                if(!$result['connect']){
+                    writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
+                             . ') ' . mysqli_connect_error() . PHP_EOL);
+                    return ERR_DB_CONN;
+                }
+
+                if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
+
+                    writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
+                             . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+                    return ERR_DB;
+                }
+
+                return ERR_NONE;
             }
-
-            if(!$result['connect']){
-                writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
-                         . ') ' . mysqli_connect_error() . PHP_EOL);
-                return ERR_DB_CONN;
+            else{
+                return $err;
             }
-
-            if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
-
-                writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
-                         . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
-                return ERR_DB;
-            }
-
-            return ERR_NONE;
-        }
-        else{
-            return $err;
         }
     }
 }
