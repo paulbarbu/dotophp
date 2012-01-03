@@ -86,4 +86,19 @@ const ERR_DB_CONN = -1;
  * DB error
  */
 const ERR_DB = -2;
+
+/**
+ * Datetime default template
+ */
+const DATETIME_TOUSER = 'DD-MM-YYYY HH:MM';
+
+/**
+ * Tooltip for datetime fields
+ */
+const TOOLTIP_DATETIME = 'Date and time, must follow the format, day-month-year hours:minutes';
+
+/**
+ * Color tooltip
+ */
+const TOOLTIP_COLOR = 'Hexadecimal, 6 characters, color code';
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

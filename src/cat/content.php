@@ -20,7 +20,7 @@ require 'constants.php';
 <?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea></td></tr>
 
 <tr><td>
-<label for="color">Color:</label></td><td><input type="text" maxlength="7" tabindex="3" name="color" id="color"
+<label for="color" title="<?php echo TOOLTIP_COLOR ?>">Color:</label></td><td><input title="<?php echo TOOLTIP_COLOR ?>" type="text" maxlength="7" tabindex="3" name="color" id="color"
  value="<?php echo isset($_POST['color']) ? $_POST['color'] : COLOR_CODE ?>" /></td><td>
 
 <label for="repeat">Repeat:</label></td><td><select tabindex="4" name="repeat" id="repeat">

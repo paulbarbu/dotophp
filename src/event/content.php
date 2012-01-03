@@ -37,21 +37,21 @@ foreach($cat as $i){
 <label for="name" title="<?php echo TOOLTIP_NICK_CAT_EV ?>"> Name:</label></td><td><input title="<?php echo TOOLTIP_NICK_CAT_EV ?>" type="text" maxlength="20" name="name" id="name" tabindex="3"
  <?php echo isset($_POST['name']) ? 'value="' . $_POST['name'] . '"' : NULL ?> />
 </td><td>
-<label for="color">Color:</label></td><td><input type="text" maxlength="7" tabindex="8" name="color" id="color"
+<label for="color" title="<?php echo TOOLTIP_COLOR ?>">Color:</label></td><td><input title="<?php echo TOOLTIP_COLOR ?>" type="text" maxlength="7" tabindex="8" name="color" id="color"
 value="<?php echo isset($_POST['color']) ? $_POST['color'] : '#RRGGBB' ?>" />
 </td></tr><tr><td>
 <label for="desc" title="<?php echo TOOLTIP_DESC ?>">Description:</label></td><td><textarea title="<?php echo TOOLTIP_DESC ?>" tabindex="4" rows="2" cols="23" name="description" id="desc">
 <?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea>
 </td><td>
-<label for="startdate">Start date:</label></td><td><input type="text" name="startdate" id="startdate" tabindex="9" maxlength="10"
- <?php echo isset($_POST['startdate']) ? 'value="' . $_POST['startdate'] . '"' : 'value="' . DATE_TOUSER . '"' ?> />
+<label for="startdate" title="<?php echo TOOLTIP_DATETIME ?>">Start date:</label></td><td><input title="<?php echo TOOLTIP_DATETIME ?>" type="text" name="startdate" id="startdate" tabindex="9" maxlength="16"
+ <?php echo isset($_POST['startdate']) ? 'value="' . $_POST['startdate'] . '"' : 'value="' . DATETIME_TOUSER . '"' ?> />
 </td></tr><tr>
 <td><label for='cat'>Category: </label></td><td><select name="cat" id ="cat" tabindex="5" >
 <?php arrayToOption($cat_names, $cat_ids, isset($_POST['cat']) ? $_POST['cat'] : NULL ); ?>
 </select></td>
 <td>
-<label for="enddate">Due for:</label></td><td><input type="text" name="enddate" id="enddate" tabindex="10" maxlength="10"
- <?php echo isset($_POST['enddate']) ? 'value="' . $_POST['enddate'] . '"' : 'value="' . DATE_TOUSER . '"' ?> />
+<label for="enddate" title="<?php echo TOOLTIP_DATETIME ?>">Due for:</label></td><td><input title="<?php echo TOOLTIP_DATETIME ?>" type="text" name="enddate" id="enddate" tabindex="10" maxlength="16"
+ <?php echo isset($_POST['enddate']) ? 'value="' . $_POST['enddate'] . '"' : 'value="' . DATETIME_TOUSER . '"' ?> />
 </td></tr><tr><td>
 <label for="repeat">Repeat:</label></td><td><select tabindex="6" name="repeat" id="repeat">
  <?php arrayToOption(array_values($REPEATS), array_keys($REPEATS), isset($_POST['repeat']) ? $_POST['repeat'] : NULL); ?>
