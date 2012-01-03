@@ -36,7 +36,7 @@ if(is_array($feedback_pre['rcats'])){
 
     foreach($feedback_pre['rcats'] as $err){
         switch($err){
-            case C_ERR_NO_NAME: printf('The category must have a name! (#%d)<br />', C_ERR_NO_NAME);
+            case C_ERR_NAME: printf('Invalid name! (#%d)<br />', C_ERR_NAME);
                 break;
             case C_ERR_DESC: printf('The description contains invalid characters! (#%d)<br />', C_ERR_DESC);
                 break;
@@ -59,7 +59,7 @@ else if(is_numeric($feedback_pre['rcats'])){
             break;
         case ERR_NONE: printf('Added!');
             break;
-        case C_ERR_NO_NAME: printf('The category must have a name! (#%d)<br />', C_ERR_NO_NAME);
+        case C_ERR_NAME: printf('Invalid name! (#%d)<br />', C_ERR_NAME);
             break;
         case C_ERR_DESC: printf('The description contains invalid characters! (#%d)<br />', C_ERR_DESC);
             break;
@@ -72,4 +72,5 @@ else if(is_numeric($feedback_pre['rcats'])){
 
 echo '<hr /><h4>Your categories:</h4>';
 
-arrayToDiv(get_categories($feedback_pre['connect'], $_SESSION['uid']), 'format_cat', NULL, 'cat');
+arrayToDiv(getDbdata($feedback_pre['connect'], 'category', array('name', 'description', 'repeat_interval',
+            'color', 'category_id'), array('user_id' => 1)), 'format_cat', NULL, 'cat');

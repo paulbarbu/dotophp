@@ -214,6 +214,7 @@ return array(
         'pre-process' => array(
             'autologin' => 'auth',
             'db' => 'mysql',
+            'rcats' => 'rcats',
         ),
         'VL' => array(
             'title' => 'Manage events',
