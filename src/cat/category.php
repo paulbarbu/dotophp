@@ -22,7 +22,7 @@ if(isset($_POST['add'])){
                     'params' => array($_POST['name']),
                 ),
                 'isValid' => array(
-                    'name' => 'isValidCatName',
+                    'name' => 'isValidCatEvName',
                     'params' => array($_POST['name']),
                 ),
                 'isDuplicate' => array(
@@ -45,7 +45,7 @@ if(isset($_POST['add'])){
                     'params' => array($_POST['description']),
                 ),
                 'isValid' => array(
-                    'name' => 'isValidCatDesc',
+                    'name' => 'isValidCatEvDesc',
                     'params' => array($_POST['description']),
                 ),
             ),
@@ -62,7 +62,7 @@ if(isset($_POST['add'])){
                     'params' => array($_POST['color']),
                 ),
                 'isValid' => array(
-                    'name' => 'isValidCatColor',
+                    'name' => 'isValidCatEvColor',
                     'params' => array($_POST['color']),
                 ),
                 'transform' => array(

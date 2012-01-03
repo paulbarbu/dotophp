@@ -72,4 +72,5 @@ else if(is_numeric($feedback_pre['rcats'])){
 
 echo '<hr /><h4>Your categories:</h4>';
 
-arrayToDiv(get_categories($feedback_pre['connect'], $_SESSION['uid']), 'format_cat', NULL, 'cat');
+arrayToDiv(getDbdata($feedback_pre['connect'], 'category', array('name', 'description', 'repeat_interval',
+            'color', 'category_id'), array('user_id' => 1)), 'format_cat', NULL, 'cat');

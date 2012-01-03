@@ -538,4 +538,129 @@ function arrayToDiv($data, $format = NULL, $id = NULL, $class = NULL, $style = N
 function getContrastColor($color){/*{{{*/
     return (hexdec($color) > 0xFFFFFF/2) ? '000000' : 'FFFFFF';
 }/*}}}*/
+
+/**
+ * Callback for RCatS
+ *
+ * Checks the validity of a category or event's name
+ *
+ * @param string $name the string to be checked
+ *
+ * @return TRUE if the string is valid, else FALSE
+ */
+function isValidCatEvName($name){/*{{{*/
+    if(empty($name) || !isValidNick($name)){
+        return FALSE;
+    }
+
+    return TRUE;
+}/*}}}*/
+
+/**
+ * Retrieve data from the database
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $table the table from which the data should be retrieved
+ * @param array $fields list of the fields which should be selected, optional, if
+ * left empty all fields will be selected
+ * @param array $matching a dictionary to use on the WHERE clause of the SELECT,
+ * optional, if left empty no restriction will be applied, if specified between
+ * elements a 'condition' entry should be supplied:
+ * array('name' => 'foo', 'condition' => 'OR', 'last_name' => 'bar')
+ * @param const $resulttype optional parameter,(default: MYSQLI_ASSOC) a constant
+ * indicating what type of array should be produced by mysqli_fecth_all() the possible
+ * values for this parameter are the constants MYSQLI_ASSOC, MYSQLI_NUM, or MYSQLI_BOTH.
+ *
+ * @return FALSE on error, else an array as returned by
+ * mysqli_fetch_all($foo, MYSQLI_ASSOC)
+ */
+function getDbData($link, $table, $fields = array(), $matching = array(), $resulttype = MYSQLI_ASSOC){/*{{{*/
+    $query = 'SELECT ';
+
+    if(is_array($fields) && !empty($fields)){
+        $query .= implode(',', $fields);
+    }
+    else{
+        $query .= '*';
+    }
+
+    $query .= ' FROM ' . $table;
+
+    if(is_array($matching) && !empty($matching)){
+        $query .= ' WHERE';
+
+        while(list($name, $value) = each($matching)){
+            $query .= ' ' . $name . "='" . $value . "'";
+            list($key, $condition) = each($matching);
+
+            if(FALSE !== $condition){
+                $query .= ' ' . $condition;
+            }
+        }
+    }
+
+    $result = mysqli_query($link, $query);
+
+    if(!$result){
+        return FALSE;
+    }
+
+    return mysqli_fetch_all($result, $resulttype);
+}/*}}}*/
+
+/**
+ * Callback for RCatS
+ *
+ * Checks the validity of a category or event's description
+ *
+ * @param string $description the string to be checked
+ *
+ * @return TRUE if the string is valid, else FALSE
+ */
+function isValidCatEvDesc($description){/*{{{*/
+    if(!empty($description)){
+        if(!isValidDesc($description)){
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}/*}}}*/
+
+/**
+ * Callback for RCatS
+ *
+ * Checks the validity of a category or event's color
+ *
+ * @param string $color color code to be checked
+ *
+ * @return TRUE if the code is valid, else FALSE
+ */
+function isValidCatEvColor($color){/*{{{*/
+    if(!empty($color) && COLOR_CODE != $color){
+        if(!isValidColor($color)){
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}/*}}}*/
+
+/**
+ * Converts a hex color code to integer
+ *
+ * If the color code is the default color code shwn to the user that means he
+ * didn't change the color so we must fill in the defaults
+ *
+ * @param string $color the color code to be converted
+ *
+ * @return int the color code in integer representation
+ */
+function colorCodeToInt($color){/*{{{*/
+    if(COLOR_CODE == $color){
+        $color = str_replace('#', '', DEFAULT_COLOR);
+    }
+
+    return base_convert(str_replace('#', '', $color), 16, 10);
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
