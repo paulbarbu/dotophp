@@ -37,6 +37,17 @@ array(
                 'return_on_err' => TRUE, // if TRUE the error code is returned
                 //right away, if FALSE the error code will be gathered in an array
                 //which will be returned at the end of the execution
+
+                'params' => array(42, '_getRcatsVal' => 'variable11', 'foo'),
+                //if the array parameter contains an element with the key
+                //'_getRcatsVal' then this will call the actual function and get
+                //the value of the variable associated to the key('variable11'
+                //in this case), this is mainly used for passing the actual
+                //value of a variable to the callback if that value changed
+                //since the array took form
+                //in other words any element of the form:
+                //'_getRcatsVal' => 'variable_name' will be replaced by the
+                //variable's value and sent as it is to the callback
             ),
         ),
 
@@ -59,6 +70,8 @@ array(
  * @endverbatim
  */
 
+require_once 'functions.php';
+
 foreach($feedback as $metamodule => $m){
     if(is_array($m)){
         $err = array();
@@ -70,7 +83,14 @@ foreach($feedback as $metamodule => $m){
                     if(isset($v['cb']) && is_array($v['cb'])){
                         foreach($v['cb'] as $cb){
                             if(isset($cb['params']) && !empty($cb['params'])){
-                                $retval = call_user_func_array($cb['name'], $cb['params']);
+                                foreach($cb['params'] as $k => $p){
+                                    if(0 == strcmp($k, '_getRcatsVal')){
+                                        $cb['params'][$k] = $k($p, $feedback);
+                                    }
+                                }
+
+                                $retval = call_user_func_array($cb['name'],
+                                            array_values($cb['params']));
                             }
                             else{
                                 $retval = call_user_func($cb['name']);
@@ -115,6 +135,7 @@ foreach($feedback as $metamodule => $m){
                 if(!$result['connect']){
                     writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
                              . ') ' . mysqli_connect_error() . PHP_EOL);
+
                     return ERR_DB_CONN;
                 }
 
@@ -122,6 +143,7 @@ foreach($feedback as $metamodule => $m){
 
                     writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
                              . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+
                     return ERR_DB;
                 }
 
