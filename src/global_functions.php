@@ -703,6 +703,10 @@ function _defaultDateTime($dt){/*{{{*/
  * to: http://www.php.net/manual/en/function.date.php
  */
 function dateTimeChangeFormat($datetime, $to_format){/*{{{*/
+    if($datetime == DEFAULT_DATETIME && $to_format == MYSQL_TS){
+        return '0000-00-00 00:00';
+    }
+
     return date($to_format, strtotime($datetime));
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
