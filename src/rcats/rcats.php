@@ -28,6 +28,8 @@ array(
             'cb12' => array(
                 'assign' => 'FALSE',
                 'name' => 'name_of_function',
+                'inverse' => TRUE, //if this directive is TRUE then the condition
+                //when checking the callback's retval is negated
 
                 'err' => ERR_if_the_callback_returns_FALSE, //this error
                 //applies only for this callback
@@ -72,6 +74,10 @@ foreach($feedback as $metamodule => $m){
                             }
                             else{
                                 $retval = call_user_func($cb['name']);
+                            }
+
+                            if(isset($cb['inverse']) && $cb['inverse']){
+                                $retval = !$retval;
                             }
 
 

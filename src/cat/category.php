@@ -27,6 +27,7 @@ if(isset($_POST['add'])){
                 ),
                 'isDuplicate' => array(
                     'name' => 'isDuplicate',
+                    'inverse' => TRUE,
                     'params' => array($feedback_pre['connect'], $_SESSION['uid'], $_POST['name']),
                     'return_on_err' => TRUE,
                     'err' => C_ERR_DUPLICATE,

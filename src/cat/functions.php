@@ -18,7 +18,7 @@
  * @return TRUE if the category name is found in the DB, else FALSE
  */
 function isDuplicate($link, $id, $name){/*{{{*/
-    return !(bool) count(getDbdata($link, 'category', array('name', 'description',
+    return (bool) count(getDbdata($link, 'category', array('name', 'description',
                             'repeat_interval', 'color', 'category_id'),
                             array('user_id' => $id, 'condition' => 'AND', 'name' => $name)));
 }/*}}}*/
