@@ -10,10 +10,9 @@
 /**
  * Check if the specified category name already exists
  *
- * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init(),
- * needed by get_categories()
- * @param int $id user's ID that owns the categories, needed by get_categories()
- * @param string $name the string to be checked, needed by get_categories()
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param int $id user's ID that owns the categories
+ * @param string $name category's name to be checked
  *
  * @return TRUE if the category name is found in the DB, else FALSE
  */
