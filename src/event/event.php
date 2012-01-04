@@ -20,16 +20,16 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'name'),
+                    'params' => array('name' => '_getRcatsVal'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvName',
-                    'params' => array('_getRcatsVal' => 'name'),
+                    'params' => array('name' => '_getRcatsVal'),
                 ),
                 'isDuplicate' => array(
                     'name' => 'isDuplicate',
                     'inverse' => TRUE,
-                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], '_getRcatsVal' => 'name'),
+                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], 'name' => '_getRcatsVal'),
                     'return_on_err' => TRUE,
                     'err' => E_ERR_DUPLICATE,
                 ),
@@ -44,11 +44,11 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'description'),
+                    'params' => array('description' => '_getRcatsVal'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvDesc',
-                    'params' => array('_getRcatsVal' => 'description'),
+                    'params' => array('description' => '_getRcatsVal'),
                 ),
             ),
             'err' => E_ERR_DESC,
@@ -61,16 +61,16 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'color'),
+                    'params' => array('color' => '_getRcatsVal'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvColor',
-                    'params' => array('_getRcatsVal' => 'color'),
+                    'params' => array('color' => '_getRcatsVal'),
                 ),
                 'transform' => array(
                     'assign' => TRUE,
                     'name' => 'colorCodeToInt',
-                    'params' => array('_getRcatsVal' => 'color'),
+                    'params' => array('color' => '_getRcatsVal'),
                 ),
             ),
             'err' => E_ERR_COLOR,
@@ -91,21 +91,21 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'startdate'),
+                    'params' => array('startdate' => '_getRcatsVal'),
                 ),
                 'default' => array(
                     'name' => '_defaultDateTime',
-                    'params' => array('_getRcatsVal' => 'startdate'),
+                    'params' => array('startdate' => '_getRcatsVal'),
                     'assign' => TRUE,
                 ),
                 'isValid' => array(
                     'name' => 'isValidDateTime',
-                    'params' => array('_getRcatsVal' => 'startdate'),
+                    'params' => array('startdate' => '_getRcatsVal'),
                 ),
                 'ts' => array(
                     'name' => 'dateTimeChangeFormat',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'startdate', MYSQL_TS),
+                    'params' => array('startdate' => '_getRcatsVal', MYSQL_TS),
                 ),
             ),
             'err' => E_ERR_DATETIME,
@@ -118,25 +118,25 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'enddate'),
+                    'params' => array('enddate' => '_getRcatsVal'),
                 ),
                 'default' => array(
                     'name' => '_defaultDateTime',
-                    'params' => array('_getRcatsVal' => 'enddate'),
+                    'params' => array('enddate' => '_getRcatsVal'),
                     'assign' => TRUE,
                 ),
                 'isValid' => array(
                     'name' => 'isValidDateTime',
-                    'params' => array('_getRcatsVal' => 'enddate'),
+                    'params' => array('enddate' => '_getRcatsVal'),
                 ),
                 'ts' => array(
                     'name' => 'dateTimeChangeFormat',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'enddate', MYSQL_TS),
+                    'params' => array('enddate' => '_getRcatsVal', MYSQL_TS),
                 ),
                 'isValidSuccession' => array(
                     'name' => 'isValidDateSuccession',
-                    'params' => array('_getRcatsVal' => 'startdate', '_getRcatsVal' => 'enddate'),
+                    'params' => array('startdate' => '_getRcatsVal', 'enddate' => '_getRcatsVal'),
                     'err' => E_ERR_INVALID_ENDDATE,
                 ),
             ),

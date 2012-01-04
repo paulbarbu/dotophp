@@ -19,16 +19,16 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'name'),
+                    'params' => array('name' => '_getRcatsVal'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvName',
-                    'params' => array('_getRcatsVal' => 'name'),
+                    'params' => array('name' => '_getRcatsVal'),
                 ),
                 'isDuplicate' => array(
                     'name' => 'isDuplicate',
                     'inverse' => TRUE,
-                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], '_getRcatsVal' => 'name'),
+                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], 'name' => '_getRcatsVal'),
                     'return_on_err' => TRUE,
                     'err' => C_ERR_DUPLICATE,
                 ),
@@ -43,11 +43,11 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'description'),
+                    'params' => array('description' => '_getRcatsVal'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvDesc',
-                    'params' => array('_getRcatsVal' => 'description'),
+                    'params' => array('description' => '_getRcatsVal'),
                 ),
             ),
             'err' => C_ERR_DESC,
@@ -60,16 +60,16 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array('_getRcatsVal' => 'color'),
+                    'params' => array('color' => '_getRcatsVal'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvColor',
-                    'params' => array('_getRcatsVal' => 'color'),
+                    'params' => array('color' => '_getRcatsVal'),
                 ),
                 'transform' => array(
                     'assign' => TRUE,
                     'name' => 'colorCodeToInt',
-                    'params' => array('_getRcatsVal' => 'color'),
+                    'params' => array('color' => '_getRcatsVal'),
                 ),
             ),
             'err' => C_ERR_COLOR,

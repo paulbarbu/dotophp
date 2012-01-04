@@ -38,16 +38,16 @@ array(
                 //right away, if FALSE the error code will be gathered in an array
                 //which will be returned at the end of the execution
 
-                'params' => array(42, '_getRcatsVal' => 'variable11', 'foo'),
-                //if the array parameter contains an element with the key
+                'params' => array(42, 'variable11' => '_getRcatsVal', 'foo'),
+                //if the array parameter contains an element with the value
                 //'_getRcatsVal' then this will call the actual function and get
-                //the value of the variable associated to the key('variable11'
+                //the value of the variable designated by the name in the key('variable11'
                 //in this case), this is mainly used for passing the actual
                 //value of a variable to the callback if that value changed
                 //since the array took form
                 //in other words any element of the form:
-                //'_getRcatsVal' => 'variable_name' will be replaced by the
-                //variable's value and sent as it is to the callback
+                //'variable11' => '_getRcatsVal' will be replaced by the
+                //variable's value and sent as is to the callback
             ),
         ),
 
@@ -84,8 +84,8 @@ foreach($feedback as $metamodule => $m){
                         foreach($v['cb'] as $cb){
                             if(isset($cb['params']) && !empty($cb['params'])){
                                 foreach($cb['params'] as $k => $p){
-                                    if(0 == strcmp($k, '_getRcatsVal')){
-                                        $cb['params'][$k] = $k($p, $feedback);
+                                    if(is_string($p) && 0 == strcmp($p, '_getRcatsVal')){
+                                        $cb['params'][$k] = $p($k, $feedback);
                                     }
                                 }
 
