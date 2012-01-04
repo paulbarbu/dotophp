@@ -19,16 +19,16 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array($_POST['name']),
+                    'params' => array('_getRcatsVal' => 'name'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvName',
-                    'params' => array($_POST['name']),
+                    'params' => array('_getRcatsVal' => 'name'),
                 ),
                 'isDuplicate' => array(
                     'name' => 'isDuplicate',
                     'inverse' => TRUE,
-                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], $_POST['name']),
+                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], '_getRcatsVal' => 'name'),
                     'return_on_err' => TRUE,
                     'err' => C_ERR_DUPLICATE,
                 ),

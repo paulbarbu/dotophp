@@ -679,6 +679,21 @@ function isValidDateTime($datetime){/*{{{*/
 }/*}}}*/
 
 /**
+ * Change a datetime variable to the default datetime
+ *
+ * @param string $dt the datetime
+ *
+ * @return string the default or $dt if it was different from DATETIME_TOUSER
+ */
+function _defaultDateTime($dt){/*{{{*/
+    if($dt == DATETIME_TOUSER){
+        return DEFAULT_DATETIME;
+    }
+
+    return $dt;
+}/*}}}*/
+
+/**
  * Modifies a datetime's format
  *
  * @param string $datetime the datetime string to be converted
