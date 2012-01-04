@@ -559,6 +559,9 @@ function isValidCatEvName($name){/*{{{*/
 /**
  * Retrieve data from the database
  *
+ * TODO: extend this to create JOIN queries
+ * TODO: be able to use operators like '<' or '>' or 'LIKE'
+ *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
  * @param string $table the table from which the data should be retrieved
  * @param array $fields list of the fields which should be selected, optional, if
@@ -662,5 +665,29 @@ function colorCodeToInt($color){/*{{{*/
     }
 
     return base_convert(str_replace('#', '', $color), 16, 10);
+}/*}}}*/
+
+/**
+ * Validates a datetime date format
+ *
+ * @param string $datetime the string to be validated
+ *
+ * @return TRUE if the string is valid, else FALSE
+ */
+function isValidDateTime($datetime){/*{{{*/
+    return (16 == strlen($datetime) && preg_match('/\d{2}-\d{2}-\d{4} \d{2}:\d{2}/', $datetime));
+}/*}}}*/
+
+/**
+ * Modifies a datetime's format
+ *
+ * @param string $datetime the datetime string to be converted
+ * @param string $to_format the format of $datetime that should be returned
+ *
+ * @return string $datetime formatted according to $to_format or FALSE according
+ * to: http://www.php.net/manual/en/function.date.php
+ */
+function dateTimeChangeFormat($datetime, $to_format){/*{{{*/
+    return date($to_format, strtotime($datetime));
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
