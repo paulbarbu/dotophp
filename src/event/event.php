@@ -7,10 +7,9 @@
  * @ingroup eventFiles
  */
 
-//TODO start and due
-
 if(isset($_POST['add'])){
-    return array('reload' => TRUE, 'module' => 'event', 'rcats' => array(
+
+    $retval = array('reload' => TRUE, 'module' => 'event', 'rcats' => array(
         'category' => array(
             'value' => $_POST['cat'],
             'field' => 'category_id',
@@ -29,6 +28,7 @@ if(isset($_POST['add'])){
                 ),
                 'isDuplicate' => array(
                     'name' => 'isDuplicate',
+                    'inverse' => TRUE,
                     'params' => array($feedback_pre['connect'], $_SESSION['uid'], $_POST['name']),
                     'return_on_err' => TRUE,
                     'err' => E_ERR_DUPLICATE,
@@ -85,16 +85,74 @@ if(isset($_POST['add'])){
             'value' => $_POST['priority'],
             'field' => 'priority',
         ),
-        'private' => array(
-            'value' => $_POST['private'],
-            'field' => 'private',
+        'startdate' => array(
+            'value' => $_POST['startdate'],
+            'cb' => array(
+                'filter' => array(
+                    'name' => '_filterVariable',
+                    'assign' => TRUE,
+                    'params' => array($_POST['startdate']),
+                ),
+                'isValid' => array(
+                    'name' => 'isValidDateTime',
+                    'params' => array($_POST['startdate']),
+                ),
+                'ts' => array(
+                    'name' => 'dateTimeChangeFormat',
+                    'assign' => TRUE,
+                    'params' => array($_POST['startdate'], MYSQL_TS),
+                ),
+            ),
+            'err' => E_ERR_DATETIME,
+            'return_on_err' => TRUE,
+            'field' => 'start',
         ),
-        'exception' => array(
-            'value' => $_POST['exception'],
-            'field' => 'exception',
+        'enddate' => array(
+            'value' => $_POST['enddate'],
+            'cb' => array(
+                'filter' => array(
+                    'name' => '_filterVariable',
+                    'assign' => TRUE,
+                    'params' => array($_POST['enddate']),
+                ),
+                'isValid' => array(
+                    'name' => 'isValidDateTime',
+                    'params' => array($_POST['enddate']),
+                ),
+                'ts' => array(
+                    'name' => 'dateTimeChangeFormat',
+                    'assign' => TRUE,
+                    'params' => array($_POST['enddate'], MYSQL_TS),
+                ),
+                'isValidSuccession' => array(
+                    'name' => 'isValidDateSucession',
+                    'params' => array($_POST['startdate'], $_POST['enddate']),
+                    'err' => E_ERR_INVALID_ENDDATE,
+                ),
+            ),
+            'err' => E_ERR_DATETIME,
+            'return_on_err' => FALSE,
+            'field' => 'end',
         ),
         'table' => 'event',
     ));
+
+    if(isset($_POST['private'])){
+        $retval['rcats']['private'] = array(
+            'value' => $_POST['private'],
+            'field' => 'private',
+        );
+    }
+
+    if(isset($_POST['exception'])){
+        $retval['rcats']['exception'] = array(
+            'value' => $_POST['exception'],
+            'field' => 'exception',
+        );
+    }
+
+    return $retval;
 }
 
 return TRUE;
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

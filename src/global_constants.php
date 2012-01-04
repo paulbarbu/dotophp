@@ -101,4 +101,9 @@ const TOOLTIP_DATETIME = 'Date and time, must follow the format, day-month-year 
  * Color tooltip
  */
 const TOOLTIP_COLOR = 'Hexadecimal, 6 characters, color code';
+
+/**
+ * MySQl timestamp format
+ */
+const MYSQL_TS = 'Y-m-d H:i:s';
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
