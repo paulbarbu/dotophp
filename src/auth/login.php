@@ -23,7 +23,7 @@ if(isset($_POST['login'])){
         $retval = L_ERR_NO_USER;
     }
     else{
-        $cols = array('id', 'password AS pass', 'activated');
+        $cols = array('id', 'password AS pass', 'activated', 'tz');
 
         $result = mysqli_query($feedback_pre['connect'], 'SELECT ' . implode(',', $cols)
             . " FROM user WHERE nick = '" . $nick . "';");
@@ -58,6 +58,7 @@ if(isset($_POST['login'])){
                 }
                 else{
                     $_SESSION['uid'] = $data['id'];
+                    $_SESSION['tz'] = $data['tz'];
 
                     if($remember){
                         $expiry_offset = LIFETIME;

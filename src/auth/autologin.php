@@ -26,6 +26,9 @@ if(isset($_COOKIE[session_name()])){
 
             $loggedin = TRUE;
 
+            date_default_timezone_set($_SESSION['tz']);
+            mysqli_query($result['connect'], "SET time_zone = '" . $_SESSION['tz'] . "'");
+
             if('auth' == $module){
                 $_GET['action'] = 'logout';
             }
