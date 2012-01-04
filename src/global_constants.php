@@ -106,4 +106,9 @@ const TOOLTIP_COLOR = 'Hexadecimal, 6 characters, color code';
  * MySQl timestamp format
  */
 const MYSQL_TS = 'Y-m-d H:i:s';
+
+/**
+ * Default datetime value
+ */
+const DEFAULT_DATETIME = '00-00-0000 00:00';
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
