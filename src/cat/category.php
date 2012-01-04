@@ -43,11 +43,11 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array($_POST['description']),
+                    'params' => array('_getRcatsVal' => 'description'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvDesc',
-                    'params' => array($_POST['description']),
+                    'params' => array('_getRcatsVal' => 'description'),
                 ),
             ),
             'err' => C_ERR_DESC,
@@ -60,16 +60,16 @@ if(isset($_POST['add'])){
                 'filter' => array(
                     'name' => '_filterVariable',
                     'assign' => TRUE,
-                    'params' => array($_POST['color']),
+                    'params' => array('_getRcatsVal' => 'color'),
                 ),
                 'isValid' => array(
                     'name' => 'isValidCatEvColor',
-                    'params' => array($_POST['color']),
+                    'params' => array('_getRcatsVal' => 'color'),
                 ),
                 'transform' => array(
                     'assign' => TRUE,
                     'name' => 'colorCodeToInt',
-                    'params' => array($_POST['color']),
+                    'params' => array('_getRcatsVal' => 'color'),
                 ),
             ),
             'err' => C_ERR_COLOR,
