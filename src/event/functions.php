@@ -10,6 +10,9 @@
 /**
  * Checks if a due date occurs later in time tahn a start date
  *
+ * Assumes a call to a validation function has been made already and the two
+ * dates are valid
+ *
  * @param string $start start date
  * @param string $end due date
  *
@@ -18,6 +21,10 @@
 function isValidDateSuccession($start, $end){/*{{{*/
     $start_ts = strtotime($start);
     $end_ts = strtotime($end);
+
+    if(!$start_ts || !$end_ts){
+        return TRUE;
+    }
 
     $delta = $end_ts - $start_ts;
 
