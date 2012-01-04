@@ -8,12 +8,12 @@
 `source ./schema.sql`
 6. `cd` into dotophp/src/mysql and edit `connect.php` according to your
 connection details
-7. You must edit the user's crontab under which LAMP will be run otherwise
+7. Fill the timezone tables in MySQL: http://dev.mysql.com/doc/refman/5.0/en/time-zone-support.html
+8. You must edit the user's crontab under which LAMP will be run otherwise
 permission errors will occur:
 `crontab -e -u http` add `@weekly ID=dotophp_expired_cleanup php -f dotophp/bin/expired.php` 
 and `@daily ID=dotophp_sess_cleanup php -f dotophp/bin/sess_cleanup.php`
-8. For security change your `session.save_path` setting in php.ini to a directory
+9. For security change your `session.save_path` setting in php.ini to a directory
 where only the LAMP user will have privileges.
-9. You must install the GD extension for PHP otherwise the captcha won't be
-created
-10. That's it, access it through the web browser
+10. You must install the GD extension for PHP otherwise the captcha won't be created
+11. That's it, access it through the web browser
