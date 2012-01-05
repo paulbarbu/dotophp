@@ -14,4 +14,6 @@ permission errors will occur:
 and `@daily ID=dotophp_sess_cleanup php -f dotophp/bin/sess_cleanup.php`
 8. For security change your `session.save_path` setting in php.ini to a directory
 where only the LAMP user will have privileges.
-9. That's it, access it through the web browser
+9. You must install the GD extension for PHP otherwise the captcha won't be
+created
+10. That's it, access it through the web browser
