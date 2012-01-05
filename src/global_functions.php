@@ -709,4 +709,23 @@ function dateTimeChangeFormat($datetime, $to_format){/*{{{*/
 
     return date($to_format, strtotime($datetime));
 }/*}}}*/
+
+/**
+ * Represents a color in hex from int
+ * @param int $color the color's value in decimal representation
+ * @param bool $hash if TRUE a hash(#) sign will be prepended to the hex code,
+ * optional argument, if omitted defaults to FALSE
+ *
+ * @return string the color code in hex, optionally with a hash sign prepended
+ */
+function colorCodeFromInt($color, $hash = FALSE){/*{{{*/
+
+    $color = str_pad(dechex($color), 6, '0', STR_PAD_LEFT);
+
+    if($hash){
+        $color = '#' . $color;
+    }
+
+    return $color;
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

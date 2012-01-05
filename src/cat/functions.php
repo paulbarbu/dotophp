@@ -32,7 +32,7 @@ function isDuplicate($link, $id, $name){/*{{{*/
 function format_cat($element){/*{{{*/
     require 'constants.php';
 
-    $hexcolor = str_pad(dechex($element['color']), 6, '0', STR_PAD_LEFT);
+    $hexcolor = colorCodeFromInt($element['color']);
 
     $out = '<div style="background-color:#' . $hexcolor . ';color:#' .
         getContrastColor($hexcolor) . '">' . $element['name'];
