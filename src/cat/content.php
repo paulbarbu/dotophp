@@ -51,9 +51,9 @@ else if(is_numeric($feedback_pre['rcats'])){
     echo '<h3>';
 
     switch($feedback_pre['rcats']){
-        case ERR_DB: printf('A database error occured, please contact the admin! (#%d)', C_ERR_DB);
+        case ERR_DB: printf('A database error occured, please contact the admin! (#%d)', ERR_DB);
             break;
-        case ERR_DB_CONN: printf('A database connection error occured, please contact the admin! (#%d)', C_ERR_DB_CONN);
+        case ERR_DB_CONN: printf('A database connection error occured, please contact the admin! (#%d)', ERR_DB_CONN);
             break;
         case C_ERR_DUPLICATE: printf('No duplicates allowed! (#%d)', C_ERR_DUPLICATE);
             break;

@@ -71,3 +71,48 @@ foreach($cat as $i){
 </center></td></tr></table>
 </fieldset>
 </form>
+<?php
+if(is_array($feedback_pre['rcats'])){
+    echo '<h3>';
+
+    foreach($feedback_pre['rcats'] as $err){
+        switch($err){
+            case E_ERR_DESC: printf('Invalid description! (#%d)', E_ERR_DESC);
+                break;
+            case E_ERR_COLOR: printf('Invalid color! (#%d)', E_ERR_COLOR);
+                break;
+            case E_ERR_DATETIME: printf('Invalid date! (#%d)', E_ERR_DATETIME);
+                break;
+        }
+    }
+
+    echo '</h3>';
+}
+else if(is_numeric($feedback_pre['rcats'])){
+    echo '<h3>';
+
+    switch($feedback_pre['rcats']){
+        case E_ERR_DESC: printf('Invalid description! (#%d)', E_ERR_DESC);
+            break;
+        case E_ERR_COLOR: printf('Invalid color! (#%d)', E_ERR_COLOR);
+            break;
+        case E_ERR_DATETIME: printf('Invalid date! (#%d)', E_ERR_DATETIME);
+            break;
+        case E_ERR_INVALID_ENDDATE: printf('Due date must occur later in time than the start date! (#%d)', E_ERR_INVALID_ENDDATE);
+            break;
+        case ERR_NONE: printf('Added!');
+            break;
+        case E_ERR_NAME: printf('Invalid name! (#%d)', E_ERR_NAME);
+            break;
+        case E_ERR_DUPLICATE: printf('Duplicate name inside category! (#%d)', E_ERR_DUPLICATE);
+            break;
+        case ERR_DB: printf('A database error occured, please contact the admin! (#%d)', ERR_DB);
+            break;
+        case ERR_DB_CONN: printf('A database connection error occured, please contact the admin! (#%d)', ERR_DB_CONN);
+            break;
+    }
+
+    echo '</h3>';
+}
+
+echo '<hr /><h4>Your categories:</h4>';

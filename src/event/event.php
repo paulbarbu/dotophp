@@ -138,6 +138,7 @@ if(isset($_POST['add'])){
                     'name' => 'isValidDateSuccession',
                     'params' => array('startdate' => '_getRcatsVal', 'enddate' => '_getRcatsVal'),
                     'err' => E_ERR_INVALID_ENDDATE,
+                    'return_on_err' => TRUE,
                 ),
             ),
             'err' => E_ERR_DATETIME,
