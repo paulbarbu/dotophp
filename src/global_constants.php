@@ -103,9 +103,14 @@ const TOOLTIP_DATETIME = 'Date and time, must follow the format, day-month-year 
 const TOOLTIP_COLOR = 'Hexadecimal, 6 characters, color code';
 
 /**
- * MySQl timestamp format
+ * MySQL timestamp format
  */
 const MYSQL_TS = 'Y-m-d H:i:s';
+
+/**
+ * Timestamp format as presented to user
+ */
+const USER_TS = 'm-d-Y H:i';
 
 /**
  * Default datetime value

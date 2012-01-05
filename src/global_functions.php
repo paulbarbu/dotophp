@@ -707,6 +707,10 @@ function dateTimeChangeFormat($datetime, $to_format){/*{{{*/
         return '0000-00-00 00:00';
     }
 
+    if(USER_TS == $to_format && $datetime == '0000-00-00 00:00:00'){
+        return '00-00-0000 00:00';
+    }
+
     return date($to_format, strtotime($datetime));
 }/*}}}*/
 
