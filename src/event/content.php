@@ -13,6 +13,12 @@
 
 require 'constants.php';
 
+$result = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname, c.color AS ccolor, event_id, e.category_id, e.name AS ename,
+    e.description, e.repeat_interval, e.color, priority, private, exception,
+    start, end  FROM event AS e JOIN category AS c USING (category_id) WHERE user_id = 1');
+
+$events = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 $cat = getDbData($feedback_pre['connect'], 'category', array('name', 'category_id'), array('user_id' => $_SESSION['uid']));
 
 $cat_names = array();
@@ -54,7 +60,7 @@ foreach($cat as $i){
  <?php echo isset($_POST['enddate']) ? 'value="' . $_POST['enddate'] . '"' : 'value="' . DATETIME_TOUSER . '"' ?> />
 </td></tr><tr><td>
 <label for="repeat">Repeat:</label></td><td><select tabindex="6" name="repeat" id="repeat">
- <?php arrayToOption(array_values($REPEATS), array_keys($REPEATS), isset($_POST['repeat']) ? $_POST['repeat'] : NULL); ?>
+ <?php arrayToOption(array_values($REPEATS), array_keys($REPEATS), isset($_POST['repeat']) ? $_POST['repeat'] : '-1'); ?>
 </select>
 </td><td>
 <label for="priv">Private event:</label></td><td><input id="priv" type="checkbox" name="private" tabindex="11" value="1"
@@ -115,4 +121,30 @@ else if(is_numeric($feedback_pre['rcats'])){
     echo '</h3>';
 }
 
-echo '<hr /><h4>Your categories:</h4>';
+echo '<hr /><h4>Your events:</h4>';
+
+echo '<form action="" method="post">';
+
+foreach($cat_ids as $cat_id){
+
+    $cat_events = array();
+
+    foreach($events as $ev){
+        if($ev['category_id'] == $cat_id){
+            $cat_events[] = $ev;
+        }
+    }
+
+    if(!empty($cat_events)){
+        $catColor = colorCodeFromInt($cat_events[0]['ccolor']);
+
+        echo '<div class="cat"><div style="background-color:#' , $catColor , ';color:#' ,
+            getContrastColor($catColor) , '">&#9698;&nbsp;' , $cat_events[0]['cname'] , '</div>';
+
+        arrayToDiv($cat_events, 'formatEvent', NULL, 'cat');
+
+        echo '</div>';
+    }
+}
+
+echo '</form>';
