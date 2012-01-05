@@ -29,7 +29,7 @@ if(isset($_POST['add'])){
                 'isDuplicate' => array(
                     'name' => 'isDuplicate',
                     'inverse' => TRUE,
-                    'params' => array($feedback_pre['connect'], $_SESSION['uid'], 'name' => '_getRcatsVal'),
+                    'params' => array($feedback_pre['connect'], $_POST['cat'], 'name' => '_getRcatsVal'),
                     'return_on_err' => TRUE,
                     'err' => E_ERR_DUPLICATE,
                 ),
