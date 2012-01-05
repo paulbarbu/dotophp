@@ -154,11 +154,21 @@ if(isset($_POST['add'])){
         );
     }
 
-    if(isset($_POST['exception'])){
+    if(isset($_POST['exception']) && $_POST['exception']){
         $retval['rcats']['exception'] = array(
             'value' => $_POST['exception'],
             'field' => 'exception',
         );
+    }
+    else{
+        $cat_data = getDbData($feedback_pre['connect'], 'category',
+            array('repeat_interval', 'color'), array('category_id' => $_POST['cat']));
+
+        if(COLOR_CODE == $retval['rcats']['color']['value']){
+            $retval['rcats']['color']['value'] = colorCodeFromInt($cat_data[0]['color'], TRUE);
+        }
+
+        $retval['rcats']['repeat']['value'] = $cat_data[0]['repeat_interval'];
     }
 
     return $retval;
