@@ -38,7 +38,7 @@ foreach($cat as $i){
  <?php echo isset($_POST['name']) ? 'value="' . $_POST['name'] . '"' : NULL ?> />
 </td><td>
 <label for="color" title="<?php echo TOOLTIP_COLOR ?>">Color:</label></td><td><input title="<?php echo TOOLTIP_COLOR ?>" type="text" maxlength="7" tabindex="8" name="color" id="color"
-value="<?php echo isset($_POST['color']) ? $_POST['color'] : '#RRGGBB' ?>" />
+ value="<?php echo isset($_POST['color']) ? $_POST['color'] : '#RRGGBB' ?>" />
 </td></tr><tr><td>
 <label for="desc" title="<?php echo TOOLTIP_DESC ?>">Description:</label></td><td><textarea title="<?php echo TOOLTIP_DESC ?>" tabindex="4" rows="2" cols="23" name="description" id="desc">
 <?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea>
