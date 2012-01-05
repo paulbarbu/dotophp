@@ -37,7 +37,9 @@ function format_cat($element){/*{{{*/
     $out = '<div style="background-color:#' . $hexcolor . ';color:#' .
         getContrastColor($hexcolor) . '">' . $element['name'];
 
-    $out .= '<span class="toRight">' . $REPEATS[$element['repeat_interval']] . '</span>';
+    if($element['repeat_interval']){
+        $out .= '<span class="toRight">' . $REPEATS[$element['repeat_interval']] . '</span>';
+    }
 
     $out .= '</div>' . PHP_EOL;
 
