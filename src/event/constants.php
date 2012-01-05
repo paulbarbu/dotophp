@@ -11,6 +11,7 @@
  * Repeat list
  */
 $REPEATS = array(
+    '-1' => 'No repeat',
     '0' => 'Never',
     '1' => 'Daily',
     '2' => 'Weekly',

@@ -169,7 +169,9 @@ if(isset($_POST['add'])){
             $retval['rcats']['color']['value'] = colorCodeFromInt($cat_data[0]['color'], TRUE);
         }
 
-        $retval['rcats']['repeat']['value'] = $cat_data[0]['repeat_interval'];
+        if('-1' == $_POST['repeat']){
+            $retval['rcats']['repeat']['value'] = $cat_data[0]['repeat_interval'];
+        }
     }
 
     return $retval;
