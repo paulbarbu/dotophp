@@ -347,7 +347,8 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * @return TRUE if the operation has succedded, else FALSE
  */
 function writeLog($log_key, $data){/*{{{*/
-    global $config;
+    $config = require 'config.php';
+
     $path = $config['logger'][$log_key];
 
     $path .= strpos($path, '.log') !== strlen($path)-4 ? '.log' : NULL;
