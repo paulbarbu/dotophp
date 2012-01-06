@@ -386,7 +386,7 @@ function insertIntoDB($link, $table, $data){/*{{{*/
  * @return TRUE if the user has events, else FALSE
  */
 function hasEvents($link, $id){/*{{{*/
-    $result = mysqli_query($link, "SELECT event_id FROM category LEFT JOIN event USING(category_id) WHERE user_id='" .
+    $result = mysqli_query($link, "SELECT event_id FROM category JOIN event USING(category_id) WHERE user_id='" .
                            $id . "';");
 
     $events = count(mysqli_fetch_array($result, MYSQLI_NUM));

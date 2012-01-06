@@ -80,7 +80,14 @@ if(isset($_POST['login'])){
                             setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
                         }
 
-                        $retval = array('reload' => TRUE, 'module' => 'event');
+                        if(hasEvents($feedback_pre['connect'], $_SESSION['uid'])){
+                            $m = 'event';
+                        }
+                        else{
+                            $m = 'cat';
+                        }
+
+                        $retval = array('reload' => TRUE, 'module' => $m);
                     }
                 }
             }
