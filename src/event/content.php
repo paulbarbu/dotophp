@@ -121,9 +121,7 @@ else if(is_numeric($feedback_pre['rcats'])){
     echo '</h3>';
 }
 
-echo '<hr /><h4>Your events:</h4>';
-
-echo '<form action="" method="post">';
+echo '<hr /><h4>Your events:</h4><form action="" method="post">';
 
 foreach($cat_ids as $cat_id){
 

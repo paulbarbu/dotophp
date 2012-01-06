@@ -31,9 +31,8 @@ function isValidDateSuccession($start, $end){/*{{{*/
     if($delta > 0){
         return TRUE;
     }
-    else{
-        return FALSE;
-    }
+
+    return FALSE;
 }/*}}}*/
 
 /**
@@ -63,25 +62,19 @@ function formatEvent($ev){/*{{{*/
 
     $evColor = colorCodeFromInt($ev['color']);
 
-    $content = '<div ';
+    $content = '<div title="';
 
-    if($ev['exception'] || $ev['private']){
-        $content .= 'title="';
+    $ep = array();
 
-        if($ev['exception']){
-            $content .= 'Exception';
-        }
-
-        if($ev['private']){
-            if($ev['exception']){
-                $content .= ', ';
-            }
-
-            $content .= 'Private';
-        }
-
-        $content .= '" ';
+    if($ev['exception']){
+        $ep[] = 'Exception';
     }
+
+    if($ev['private']){
+        $ep[] = 'Private';
+    }
+
+    $content .= implode(', ', $ep) . '" ';
 
     $content .= 'style="margin-left:10px;margin-top:5px;background-color:#' .
         $evColor . ';color:#' . getContrastColor($evColor) .
