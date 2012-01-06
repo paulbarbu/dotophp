@@ -30,8 +30,8 @@ if(isset($_POST['login'])){
 
         $data = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if(strcmp($data['activated'], '0000-00-00 00:00:00') != 0){
-            if(strcmp($data['pass'], sha1($_POST['pass'])) != 0){
+        if(0 != strcmp($data['activated'], '0000-00-00 00:00:00')){
+            if(0 != strcmp($data['pass'], sha1($_POST['pass']))){
                 unset($_POST['pass'], $data['pass']);
 
                 $retval = L_ERR_PASS;
