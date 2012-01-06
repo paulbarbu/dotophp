@@ -131,16 +131,17 @@ foreach($feedback as $metamodule => $m){
             }
 
             if(!$result['connect']){
-                writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
-                         . ') ' . mysqli_connect_error() . PHP_EOL);
+                writeLog('rcats', '(' . mysqli_connect_errno()
+                         . ') ' . $metamodule . ' - ' . mysqli_connect_error() . PHP_EOL);
 
                 return ERR_DB_CONN;
             }
 
             if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
 
-                writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
-                         . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+                writeLog('rcats', '(' . mysqli_errno($feedback_pre['connect'])
+                    . ') ' . $metamodule . ' - ' .
+                    mysqli_error($feedback_pre['connect']) . PHP_EOL);
 
                 return ERR_DB;
             }

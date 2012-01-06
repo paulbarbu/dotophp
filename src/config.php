@@ -21,6 +21,6 @@ return array(
         'notreceived' => LOG_DIR . 'notreceived.log',
         'recover' => LOG_DIR . 'recover.log',
         'register' => LOG_DIR . 'register.log',
-        'category' => LOG_DIR . 'category.log',
+        'rcats' => LOG_DIR . 'rcats.log',
     ),
 );

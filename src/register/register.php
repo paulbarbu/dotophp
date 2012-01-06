@@ -88,10 +88,14 @@ if(isset($_POST['register'])){
         $retval = R_ERR_CAPTCHA;
     }
 
-    if($retval == R_ERR_DB || $retval == R_ERR_DB_CONNECTION){
-        writeLog($config['logger']['register'], '(' . mysqli_errno($feedback_pre['connect'])
+    if(R_ERR_DB == $retval){
+        writeLog('register', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
+    }
+    else if(R_ERR_DB_CONNECTION == $retval){
+        writeLog('register', '(' . mysqli_connect_errno() . ') ' .
+            mysqli_connect_error() . PHP_EOL);
     }
 
     return $retval;

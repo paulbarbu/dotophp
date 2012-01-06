@@ -9,7 +9,7 @@
 
 if(isset($_SESSION)){
     if($feedback_pre['connect'] == FALSE){
-        writeLog($config['logger']['logout'], 'SESSID: ' . session_id() . ' - (' .
+        writeLog('logout', 'SESSID: ' . session_id() . ' - (' .
             mysqli_connect_errno() . ') ' . mysqli_connect_error()  . PHP_EOL);
     }
     else{

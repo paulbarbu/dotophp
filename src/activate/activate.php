@@ -58,10 +58,14 @@ if(isset($_POST['activate'])){
 
     unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
 
-    if($result == A_ERR_DB || $result == A_ERR_DB_CONNECTION){
-        writeLog($config['logger']['activate'], '(' . mysqli_errno($feedback_pre['connect'])
+    if(A_ERR_DB == $result){
+        writeLog('activate', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
+    }
+    else if(A_ERR_DB_CONNECTION == $result){
+        writeLog('activate', '(' . mysqli_connect_errno() . ') ' .
+            mysqli_connect_error() . PHP_EOL);
     }
 
     return $result;
