@@ -85,7 +85,7 @@ foreach($feedback as $metamodule => $m){
                             if(isset($cb['params']) && !empty($cb['params'])){
                                 foreach($cb['params'] as $k => $p){
                                     if(is_string($p) && 0 == strcmp($p, '_getRcatsVal')){
-                                        $cb['params'][$k] = $p($k, $feedback);
+                                        $cb['params'][$k] = $p($k, $feedback[$metamodule]['rcats']);
                                     }
                                 }
 
@@ -100,16 +100,12 @@ foreach($feedback as $metamodule => $m){
                                 $retval = !$retval;
                             }
 
-
-                            if(!$retval){
-                                if(isset($cb['return_on_err']) && $cb['return_on_err']){
-                                    return $cb['err'];
-                                }
+                            if(!$retval && isset($cb['return_on_err']) && $cb['return_on_err']){
+                                return $cb['err'];
                             }
 
                             if(isset($cb['assign']) && $cb['assign']){
                                 $feedback[$metamodule]['rcats'][$metavar]['value'] = $retval;
-                                $v['value'] = $retval;
                             }
                             else if(!$retval){
                                 if(isset($v['return_on_err']) && $v['return_on_err']){
@@ -124,34 +120,32 @@ foreach($feedback as $metamodule => $m){
                 }
             }
 
-            if(empty($err)){
-                foreach($feedback[$metamodule]['rcats'] as $mm => $value){
-                    if(is_array($value)){
-
-                        $data[$value['field']] = $value['value'];
-                    }
-                }
-
-                if(!$result['connect']){
-                    writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
-                             . ') ' . mysqli_connect_error() . PHP_EOL);
-
-                    return ERR_DB_CONN;
-                }
-
-                if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
-
-                    writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
-                             . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
-
-                    return ERR_DB;
-                }
-
-                return ERR_NONE;
-            }
-            else{
+            if(!empty($err)){
                 return $err;
             }
+
+            foreach($feedback[$metamodule]['rcats'] as $mm => $value){
+                if(is_array($value)){
+                    $data[$value['field']] = $value['value'];
+                }
+            }
+
+            if(!$result['connect']){
+                writeLog($config['logger']['category'], '(' . mysqli_connect_errno()
+                         . ') ' . mysqli_connect_error() . PHP_EOL);
+
+                return ERR_DB_CONN;
+            }
+
+            if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
+
+                writeLog($config['logger']['category'], '(' . mysqli_errno($feedback_pre['connect'])
+                         . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+
+                return ERR_DB;
+            }
+
+            return ERR_NONE;
         }
     }
 }
