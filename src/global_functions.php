@@ -307,27 +307,24 @@ function vsprintf_named($format, $args) {/*{{{*/
  */
 function arrayToOption($text, $values, $selectedValue = NULL, $template='<option value="%(value)s">%(text)s</option>',/*{{{*/
                        $selected_template='<option value="%(value)s" selected="selected" >%(text)s</option>'){
-    if(is_array($values) && is_array($text)){
+    if(!(is_array($values) && is_array($text))){
+        return FALSE;
+    }
 
-        $text_count = count($text);
-        if($text_count == count($values)){
-            for($i=0; $i<$text_count; $i++){
-                if($selectedValue == $values[$i]){
-                    echo vsprintf_named($selected_template, array('text' => $text[$i],
-                        'value' => $values[$i])) , PHP_EOL;
-                }
-                else{
-                    echo vsprintf_named($template, array('text' => $text[$i],
-                        'value' => $values[$i])) , PHP_EOL;
-                }
-            }
+    $text_count = count($text);
+    if($text_count != count($values)){
+        return FALSE;
+    }
+
+    for($i=0; $i<$text_count; $i++){
+        if($selectedValue == $values[$i]){
+            echo vsprintf_named($selected_template, array('text' => $text[$i],
+                'value' => $values[$i])) , PHP_EOL;
         }
         else{
-            return FALSE;
+            echo vsprintf_named($template, array('text' => $text[$i],
+                'value' => $values[$i])) , PHP_EOL;
         }
-    }
-    else{
-        return FALSE;
     }
 
     return TRUE;
@@ -422,7 +419,7 @@ function session_set_expiry_offset($link, $sessid, $offset, $userid){/*{{{*/
  *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
  *
- * @return number of cleaned sessions or FALSE on error
+ * @return FALSE on error, else TRUE
  */
 function clean_expired_sess($link){/*{{{*/
     return mysqli_query($link, "DELETE FROM session WHERE expiry_ts < CURRENT_TIMESTAMP;");
