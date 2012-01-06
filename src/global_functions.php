@@ -339,13 +339,16 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * A log file must have the 'log' extension
  * In front of every message the date will be appended.
  *
- * @param string $path path to the file to be written (relative to MODULES_ROOT)
+ * @param string $log_key key from $config['logger'], the entry form
+ * $config['logger'] with that key will be used as a path
  * @param mixed $data the exact message to be written (no new lines are added
  * automatically)
  *
  * @return TRUE if the operation has succedded, else FALSE
  */
-function writeLog($path, $data){/*{{{*/
+function writeLog($log_key, $data){/*{{{*/
+    global $config;
+    $path = $config['logger'][$log_key];
 
     $path .= strpos($path, '.log') !== strlen($path)-4 ? '.log' : NULL;
 
