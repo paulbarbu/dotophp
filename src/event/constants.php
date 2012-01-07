@@ -35,4 +35,6 @@ defined('E_ERR_COLOR') or define('E_ERR_COLOR', 3);
 defined('E_ERR_DUPLICATE') or define('E_ERR_DUPLICATE', 4);
 defined('E_ERR_DATETIME') or define('E_ERR_DATETIME', 5);
 defined('E_ERR_INVALID_ENDDATE') or define('E_ERR_INVALID_ENDDATE', 6);
+defined('DELETED') or define('DELETED', 7);
+defined('DONE') or define('DONE', 8);
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

@@ -55,7 +55,7 @@ function isDuplicate($link, $cat_id, $name){/*{{{*/
  *
  * $param array $ev the events in a category
  *
- * @reuturn a formatted string
+ * @return a formatted string
  */
 function formatEvent($ev){/*{{{*/
     require 'constants.php';
@@ -99,6 +99,27 @@ function formatEvent($ev){/*{{{*/
 
     if(!empty($ev['description'])){
         $content .= '<div style="margin-left:40px;">' . $ev['description'] . '</div>';
+    }
+
+    $content .= '</div>';
+
+    return $content;
+
+}/*}}}*/
+
+/**
+ * Formats a completed event
+ * Helper function used as callback for arrayToDiv()
+ *
+ * $param array $ev the event
+ *
+ * @return a formatted string
+ */
+function formatDoneEvent($ev){/*{{{*/
+    $content = '<div style="margin-top:5px;">&nbsp;' . $ev['name'];
+
+    if(!empty($ev['description'])){
+        $content .= '<div style="margin-left:20px;">' . $ev['description'] . '</div>';
     }
 
     $content .= '</div>';

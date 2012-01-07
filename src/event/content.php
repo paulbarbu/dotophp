@@ -15,7 +15,7 @@ require 'constants.php';
 
 $result = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname, c.color AS ccolor, event_id, e.category_id, e.name AS ename,
     e.description, e.repeat_interval, e.color, priority, private, exception,
-    start, end  FROM event AS e JOIN category AS c USING (category_id) WHERE user_id = 1');
+    start, end  FROM event AS e JOIN category AS c USING (category_id) WHERE done=0 AND user_id =' . $_SESSION['uid']);
 
 $events = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
@@ -120,8 +120,37 @@ else if(is_numeric($feedback_pre['rcats'])){
 
     echo '</h3>';
 }
+else if(is_numeric($feedback['event'])){
+    echo '<h3>';
 
-echo '<hr /><h4>Your events:</h4><form action="" method="post">';
+    switch($feedback['event']){
+        case ERR_DB: printf('A database error occured, please contact the admin! (#%d)', ERR_DB);
+            break;
+        case ERR_DB_CONN: printf('A database connection error occured, please contact the admin! (#%d)', ERR_DB_CONN);
+            break;
+    }
+
+    echo '</h3>';
+}
+else if(is_array($feedback['event'])){
+    echo '<h3>';
+
+    switch($feedback['event'][0]){
+        case DELETED: printf('Deleted %d events!', $feedback['event'][1]);
+            break;
+        case DONE: printf('Marked as done %d events!', $feedback['event'][1]);
+            break;
+    }
+
+    echo '</h3>';
+}
+
+echo <<<'PHP'
+<hr /><h4>Your events:</h4><form action="" method="post">
+<input type="submit" name="done" value="Mark as done" />
+<input type="submit" name="del" value="Delete" />
+<input type="submit" name="view-done" value="View the completed events" />
+PHP;
 
 foreach($cat_ids as $cat_id){
 
@@ -146,3 +175,15 @@ foreach($cat_ids as $cat_id){
 }
 
 echo '</form>';
+
+if(isset($_POST['view-done'])){
+    echo '<br /><hr /><h4>Your completed events:</h4>';
+
+    $result = mysqli_query($feedback_pre['connect'], 'SELECT event.name, event_id,
+        event.description FROM event JOIN category USING(category_id) WHERE done=1
+        AND user_id=' . $_SESSION['uid']);
+
+    $done_events = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    arrayToDiv($done_events, 'formatDoneEvent', NULL, 'cat');
+}
