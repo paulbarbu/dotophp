@@ -128,6 +128,7 @@ CREATE TABLE `event` (
   `exception` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `start` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `done` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`event_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `event_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`) ON DELETE CASCADE
