@@ -207,7 +207,8 @@ if(isset($_POST['add']) || isset($_POST['modify'])){
 
     return $retval;
 }
-else if(isset($_POST['del'])){
+
+if(isset($_POST['del'])){
     if(isset($_POST['s'])){
         $result = mysqli_query($feedback_pre['connect'], 'DELETE FROM event WHERE event_id IN (' .
             implode(',', $_POST['s']) . ');');
@@ -219,7 +220,8 @@ else if(isset($_POST['del'])){
         return array(DELETED, count($_POST['s']));
     }
 }
-else if(isset($_POST['done'])){
+
+if(isset($_POST['done'])){
     if(isset($_POST['s'])){
         $result = mysqli_query($feedback_pre['connect'], 'UPDATE event SET done=1 WHERE event_id IN (' .
             implode(',', $_POST['s']) . ');');
@@ -231,7 +233,8 @@ else if(isset($_POST['done'])){
         return array(DONE, count($_POST['s']));
     }
 }
-else if(isset($_POST['stop'])){
+
+if(isset($_POST['stop'])){
     unset($_SESSION['modify']);
 }
 
