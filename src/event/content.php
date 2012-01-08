@@ -32,6 +32,9 @@ foreach($cat as $i){
 if(isset($_POST['modify-sel']) && isset($_POST['s'])){
     $_SESSION['modify'] = $_POST['s'];
 }
+else if(MODIFIED == $feedback_pre['rcats'] && isset($_POST['modify'])){
+    array_shift($_SESSION['modify']);
+}
 
 if(!empty($_SESSION['modify'])){
     $action = 'modify';
@@ -68,10 +71,6 @@ if(!empty($_SESSION['modify'])){
 
     if((int)$event['private']){
         $_POST['private'] = $event['private'];
-    }
-
-    if(isset($_POST['modify'])){
-        array_shift($_SESSION['modify']);
     }
 }
 else{
@@ -124,12 +123,7 @@ else{
  <?php echo isset($_POST['exception']) ? 'checked="checked"' : NULL ?> />
 </td></tr><tr><td colspan="4"><center>
 <?php
-echo isset($_POST['event_id']) ? '<input type="hidden" name="event_id" value="' . $_POST['event_id'] . '" />' : NULL;
-
-if(!empty($_SESSION['modify'])){
-    echo '<input type="submit" name="stop" value="Finish editing" tabindex="13" />';
-}
-?>
+echo isset($_POST['event_id']) ? '<input type="hidden" name="event_id" value="' . $_POST['event_id'] . '" />' : NULL ?>
 <input type="submit" name="<?php echo $action ?>" value="<?php echo ucfirst($action) ?> event" tabindex="13"/>
 </center></td></tr></table>
 </fieldset>
@@ -206,11 +200,20 @@ else if(is_array($feedback['event'])){
 
 echo <<<'PHP'
 <hr /><h4>Your events:</h4><form action="" method="post">
-<input type="submit" name="done" value="Mark as done" />
-<input type="submit" name="del" value="Delete" />
-<input type="submit" name="view-done" value="View the completed events" />
-<input type="submit" name="modify-sel" value="Modify selected" />
+<input type="submit" name="done" value="Mark as done" tabindex="14" />
+<input type="submit" name="del" value="Delete" tabindex="15" />
+<input type="submit" name="view-done" value="View the completed events" tabindex="16" />
+
 PHP;
+
+$name = 'modify-sel';
+$value = 'Modify selected';
+
+if(isset($_POST['event_id'])){
+    $name = 'stop';
+    $value = 'Finish editing';
+}
+echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="17" />';
 
 foreach($cat_ids as $cat_id){
 
