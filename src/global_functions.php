@@ -360,11 +360,19 @@ function writeLog($log_key, $data){/*{{{*/
  * @param string $table the name of the table where the insert must be made
  * @param array $data associative array, the keys will be used for the column
  * names and the values will be used in VALUES()
+ * @param bool $replace if this parameter is TRUE a REPLACE query will be done,
+ * not an INSERT one
  *
  * @return TRUE is the insert was made successfully, else FALSE
  */
-function insertIntoDB($link, $table, $data){/*{{{*/
-    $result = mysqli_query($link, 'INSERT INTO ' . $table . '(' . implode(',',
+function insertIntoDB($link, $table, $data, $replace = FALSE){/*{{{*/
+    $query_type = 'INSERT';
+
+    if(TRUE === $replace){
+        $query_type = 'REPLACE';
+    }
+
+    $result = mysqli_query($link, $query_type . ' INTO ' . $table . '(' . implode(',',
                 array_keys($data)) . ') VALUES(\'' . implode("', '", $data) . '\');');
 
     if(!$result){
