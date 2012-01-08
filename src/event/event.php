@@ -6,6 +6,13 @@
  *
  * @ingroup eventFiles
  */
+
+if(!$feedback_pre['connect']){
+    writeLog('event', '(' . mysqli_connect_errno() . ') ' .
+        mysqli_connect_error() . PHP_EOL);
+    return ERR_DB_CONN;
+}
+
 $retval = array('reload' => TRUE, 'module' => 'event', 'rcats' => array(
     'category' => array(
         'value' => NULL,
@@ -201,14 +208,7 @@ if(isset($_POST['add']) || isset($_POST['modify'])){
 
     return $retval;
 }
-
-if(!$feedback_pre['connect']){
-    writeLog('event', '(' . mysqli_connect_errno() . ') ' .
-        mysqli_connect_error() . PHP_EOL);
-    return ERR_DB_CONN;
-}
-
-if(isset($_POST['del'])){
+else if(isset($_POST['del'])){
     if(isset($_POST['s'])){
         $result = mysqli_query($feedback_pre['connect'], 'DELETE FROM event WHERE event_id IN (' .
             implode(',', $_POST['s']) . ');');
@@ -220,8 +220,7 @@ if(isset($_POST['del'])){
         return array(DELETED, count($_POST['s']));
     }
 }
-
-if(isset($_POST['done'])){
+else if(isset($_POST['done'])){
     if(isset($_POST['s'])){
         $result = mysqli_query($feedback_pre['connect'], 'UPDATE event SET done=1 WHERE event_id IN (' .
             implode(',', $_POST['s']) . ');');
