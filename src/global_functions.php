@@ -699,6 +699,10 @@ function _defaultDateTime($dt){/*{{{*/
         return DEFAULT_DATETIME;
     }
 
+    if($dt == DEFAULT_DATETIME){
+        return DATETIME_TOUSER;
+    }
+
     return $dt;
 }/*}}}*/
 
