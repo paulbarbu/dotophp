@@ -29,6 +29,49 @@ foreach($cat as $i){
     $cat_ids[] = $i['category_id'];
 }
 
+if(isset($_POST['modify-sel'])){
+    $action = 'modify';
+
+    if(isset($_POST['s'])){
+        $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM event WHERE event_id=' . $_POST['s'][0]);
+        $event = mysqli_fetch_assoc($result);
+
+        var_dump($event);
+
+        $_POST['event_id'] = $event['event_id'];
+        $_POST['cat'] = $event['category_id'];
+        $_POST['name'] = $event['name'];
+        $_POST['description'] = $event['description'];
+        $_POST['priority'] = $event['priority'];
+        $_POST['startdate'] = _defaultDateTime(dateTimeChangeFormat($event['start'], USER_TS));
+        $_POST['enddate'] = _defaultDateTime(dateTimeChangeFormat($event['end'], USER_TS));
+
+
+        $color = colorCodeFromInt($event['color'], TRUE);
+        if(DEFAULT_COLOR == $color){
+            $_POST['color'] = COLOR_CODE;
+        }
+        else{
+            $_POST['color'] = $color;
+        }
+
+        if((int)$event['repeat_interval']){
+            $_POST['repeat'] = $event['repeat_interval'];
+        }
+
+        if((int)$event['exception']){
+            $_POST['exception'] = $event['exception'];
+        }
+
+        if((int)$event['private']){
+            $_POST['private'] = $event['private'];
+        }
+    }
+}
+else{
+    $action = 'add';
+}
+
 ?>
 <form action="" method="post">
 <fieldset id="q-add"> <legend>Quick add an event</legend>
@@ -37,7 +80,7 @@ foreach($cat as $i){
 <input type="submit" name="quick-add" value="Add" tabindex="2" />
 </fieldset>
 
-<fieldset id="d-add"> <legend>Add an event specifying details</legend>
+<fieldset id="d-add"> <legend><?php echo ucfirst($action) ?> an event specifying details</legend>
 <table  border="0" cellspacing="5"><tr><td>
 
 <label for="name" title="<?php echo TOOLTIP_NICK_CAT_EV ?>"> Name:</label></td><td><input title="<?php echo TOOLTIP_NICK_CAT_EV ?>" type="text" maxlength="20" name="name" id="name" tabindex="3"
@@ -73,7 +116,8 @@ foreach($cat as $i){
 <label for="exception">Exception:</label></td><td><input id="exception" type="checkbox" name="exception" tabindex="12" value="1"
  <?php echo isset($_POST['exception']) ? 'checked="checked"' : NULL ?> />
 </td></tr><tr><td colspan="4"><center>
-<input type="submit" name="add" value="Add event" tabindex="13"/>
+<?php echo isset($_POST['event_id']) ? '<input type="hidden" name="event_id" value="' . $_POST['event_id'] . '" />' : NULL ?>
+<input type="submit" name="<?php echo $action ?>" value="<?php echo ucfirst($action) ?> event" tabindex="13"/>
 </center></td></tr></table>
 </fieldset>
 </form>
@@ -107,6 +151,8 @@ else if(is_numeric($feedback_pre['rcats'])){
         case E_ERR_INVALID_ENDDATE: printf('Due date must occur later in time than the start date! (#%d)', E_ERR_INVALID_ENDDATE);
             break;
         case ERR_NONE: printf('Added!');
+            break;
+        case MODIFIED: printf('Modified!');
             break;
         case E_ERR_NAME: printf('Invalid name! (#%d)', E_ERR_NAME);
             break;
@@ -150,6 +196,7 @@ echo <<<'PHP'
 <input type="submit" name="done" value="Mark as done" />
 <input type="submit" name="del" value="Delete" />
 <input type="submit" name="view-done" value="View the completed events" />
+<input type="submit" name="modify-sel" value="Modify selected" />
 PHP;
 
 foreach($cat_ids as $cat_id){
