@@ -186,9 +186,9 @@ else if(is_array($feedback['event'])){
     echo '<h3>';
 
     switch($feedback['event'][0]){
-        case DELETED: printf('Deleted %d events!', $feedback['event'][1]);
+        case DELETED: printf('Deleted %d event(s)!', $feedback['event'][1]);
             break;
-        case DONE: printf('Marked as done %d events!', $feedback['event'][1]);
+        case DONE: printf('Marked as done %d event(s)!', $feedback['event'][1]);
             break;
     }
 
