@@ -29,11 +29,19 @@ foreach($cat as $i){
     $cat_ids[] = $i['category_id'];
 }
 
-if(isset($_POST['modify-sel'])){
+if(isset($_POST['modify-sel']) && isset($_POST['s']) || isset($_SESSION['modify'])){
     $action = 'modify';
 
     if(isset($_POST['s'])){
-        $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM event WHERE event_id=' . $_POST['s'][0]);
+        $_SESSION['modify'] = $_POST['s'];
+    }
+    else{
+        array_shift($_SESSION['modify']);
+    }
+
+    if(!empty($_SESSION['modify'])){
+        $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM event WHERE event_id=' .
+            $_SESSION['modify'][0]);
         $event = mysqli_fetch_assoc($result);
 
         var_dump($event);
@@ -66,6 +74,10 @@ if(isset($_POST['modify-sel'])){
         if((int)$event['private']){
             $_POST['private'] = $event['private'];
         }
+    }
+    else{
+        unset($_POST);
+        $action = 'add';
     }
 }
 else{
