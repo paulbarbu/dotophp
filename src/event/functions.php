@@ -79,7 +79,8 @@ function formatEvent($ev){/*{{{*/
     $content .= 'style="margin-left:10px;margin-top:5px;background-color:#' .
         $evColor . ';color:#' . getContrastColor($evColor) .
         '">&nbsp;<input type="checkbox" name="s[]" value="' . $ev['event_id'] .
-        '" id="id-' . $ev['event_id'] . '" />&nbsp;' . $ev['ename'];
+        '" id="id-' . $ev['event_id'] . '" /><label for="id-' . $ev['event_id'] .
+        '">&nbsp;' . $ev['ename'];
 
     $startDate = dateTimeChangeFormat($ev['start'], USER_TS);
     if(DEFAULT_DATETIME != $startDate){
@@ -98,10 +99,10 @@ function formatEvent($ev){/*{{{*/
     }
 
     if(!empty($ev['description'])){
-        $content .= '<div style="margin-left:40px;">' . $ev['description'] . '</div>';
+        $content .= '<br /><span style="margin-left:40px;">' . $ev['description'] . '</span>';
     }
 
-    $content .= '</div>';
+    $content .= '</label></div>';
 
     return $content;
 
