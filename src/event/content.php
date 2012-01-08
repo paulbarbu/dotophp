@@ -29,10 +29,7 @@ foreach($cat as $i){
     $cat_ids[] = $i['category_id'];
 }
 
-if(isset($_POST['modify-sel']) && isset($_POST['s'])){
-    $_SESSION['modify'] = $_POST['s'];
-}
-else if(MODIFIED == $feedback_pre['rcats'] && isset($_POST['modify'])){
+if(MODIFIED == $feedback_pre['rcats'] && isset($_POST['modify'])){
     array_shift($_SESSION['modify']);
 }
 

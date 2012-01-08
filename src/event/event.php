@@ -193,7 +193,6 @@ if(isset($_POST['add']) || isset($_POST['modify'])){
 
         $retval['rcats']['replace'] = TRUE;
         $retval['rcats']['retval'] = MODIFIED;
-
     }
     else{
         $retval['rcats']['name']['isDuplicate'] = array(
@@ -234,6 +233,10 @@ else if(isset($_POST['done'])){
 }
 else if(isset($_POST['stop'])){
     unset($_SESSION['modify']);
+}
+
+if(isset($_POST['modify-sel']) && isset($_POST['s'])){
+    $_SESSION['modify'] = $_POST['s'];
 }
 
 return TRUE;
