@@ -743,6 +743,6 @@ function colorCodeFromInt($color, $hash = FALSE){/*{{{*/
         $color = '#' . $color;
     }
 
-    return $color;
+    return strtoupper($color);
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
