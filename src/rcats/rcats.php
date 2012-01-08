@@ -66,6 +66,10 @@ array(
         //the same geometry
     ),
     'table' => 'category', //the variables wil be inserted in this table
+    'replace' => TRUE, //if this is set and TRUE then insted of an INSERT a REPLACE
+    //query will be made
+    'retval' => CHANGE_DONE, //if this key, value pair is set then the value will
+    //be returned upon a successful execution insted of ERR_NONE
 );
  * @endverbatim
  */
@@ -137,7 +141,9 @@ foreach($feedback as $metamodule => $m){
                 return ERR_DB_CONN;
             }
 
-            if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'], $data)){
+            if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'],
+                $data, isset($feedback[$metamodule]['rcats']['replace']) &&
+                        $feedback[$metamodule]['rcats']['replace'] ? TRUE : FALSE)){
 
                 writeLog('rcats', '(' . mysqli_errno($feedback_pre['connect'])
                     . ') ' . $metamodule . ' - ' .
@@ -146,6 +152,9 @@ foreach($feedback as $metamodule => $m){
                 return ERR_DB;
             }
 
+            if(isset($feedback[$metamodule]['rcats']['retval'])){
+                return $feedback[$metamodule]['rcats']['retval'];
+            }
             return ERR_NONE;
         }
     }
