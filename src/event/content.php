@@ -29,58 +29,53 @@ foreach($cat as $i){
     $cat_ids[] = $i['category_id'];
 }
 
-if(isset($_POST['modify-sel']) && isset($_POST['s']) || isset($_SESSION['modify'])){
+if(isset($_POST['modify-sel']) && isset($_POST['s'])){
+    $_SESSION['modify'] = $_POST['s'];
+}
+
+if(!empty($_SESSION['modify'])){
     $action = 'modify';
 
-    if(isset($_POST['s'])){
-        $_SESSION['modify'] = $_POST['s'];
+    $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM event WHERE event_id=' .
+                            $_SESSION['modify'][0]);
+
+    $event = mysqli_fetch_assoc($result);
+
+    $_POST['event_id'] = $event['event_id'];
+    $_POST['cat'] = $event['category_id'];
+    $_POST['name'] = $event['name'];
+    $_POST['description'] = $event['description'];
+    $_POST['priority'] = $event['priority'];
+    $_POST['startdate'] = _defaultDateTime(dateTimeChangeFormat($event['start'], USER_TS));
+    $_POST['enddate'] = _defaultDateTime(dateTimeChangeFormat($event['end'], USER_TS));
+
+
+    $color = colorCodeFromInt($event['color'], TRUE);
+    if(DEFAULT_COLOR == $color){
+        $_POST['color'] = COLOR_CODE;
     }
     else{
+        $_POST['color'] = $color;
+    }
+
+    if((int)$event['repeat_interval']){
+        $_POST['repeat'] = $event['repeat_interval'];
+    }
+
+    if((int)$event['exception']){
+        $_POST['exception'] = $event['exception'];
+    }
+
+    if((int)$event['private']){
+        $_POST['private'] = $event['private'];
+    }
+
+    if(isset($_POST['modify'])){
         array_shift($_SESSION['modify']);
-    }
-
-    if(!empty($_SESSION['modify'])){
-        $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM event WHERE event_id=' .
-            $_SESSION['modify'][0]);
-        $event = mysqli_fetch_assoc($result);
-
-        var_dump($event);
-
-        $_POST['event_id'] = $event['event_id'];
-        $_POST['cat'] = $event['category_id'];
-        $_POST['name'] = $event['name'];
-        $_POST['description'] = $event['description'];
-        $_POST['priority'] = $event['priority'];
-        $_POST['startdate'] = _defaultDateTime(dateTimeChangeFormat($event['start'], USER_TS));
-        $_POST['enddate'] = _defaultDateTime(dateTimeChangeFormat($event['end'], USER_TS));
-
-
-        $color = colorCodeFromInt($event['color'], TRUE);
-        if(DEFAULT_COLOR == $color){
-            $_POST['color'] = COLOR_CODE;
-        }
-        else{
-            $_POST['color'] = $color;
-        }
-
-        if((int)$event['repeat_interval']){
-            $_POST['repeat'] = $event['repeat_interval'];
-        }
-
-        if((int)$event['exception']){
-            $_POST['exception'] = $event['exception'];
-        }
-
-        if((int)$event['private']){
-            $_POST['private'] = $event['private'];
-        }
-    }
-    else{
-        unset($_POST);
-        $action = 'add';
     }
 }
 else{
+    unset($_POST);
     $action = 'add';
 }
 
