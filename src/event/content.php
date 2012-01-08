@@ -123,7 +123,13 @@ else{
 <label for="exception">Exception:</label></td><td><input id="exception" type="checkbox" name="exception" tabindex="12" value="1"
  <?php echo isset($_POST['exception']) ? 'checked="checked"' : NULL ?> />
 </td></tr><tr><td colspan="4"><center>
-<?php echo isset($_POST['event_id']) ? '<input type="hidden" name="event_id" value="' . $_POST['event_id'] . '" />' : NULL ?>
+<?php
+echo isset($_POST['event_id']) ? '<input type="hidden" name="event_id" value="' . $_POST['event_id'] . '" />' : NULL;
+
+if(!empty($_SESSION['modify'])){
+    echo '<input type="submit" name="stop" value="Finish editing" tabindex="13" />';
+}
+?>
 <input type="submit" name="<?php echo $action ?>" value="<?php echo ucfirst($action) ?> event" tabindex="13"/>
 </center></td></tr></table>
 </fieldset>
