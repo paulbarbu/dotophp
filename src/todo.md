@@ -16,11 +16,7 @@ check constants for having the same value
 
 design the ERD
 
-show the events and categories as formatted HTML lists
-show all event errors at once
 make a little quick-add syntax(start, due, color, priority, repeat)
-
-tooltips for explaining things
 
 maybe after login because of the $_GET['show'] remaining 'login'(considering
 that i'm redirected) I will have problems, please investigate this early
