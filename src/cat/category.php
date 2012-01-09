@@ -1,6 +1,6 @@
 <?php
 /**
- * @file src/category/category.php
+ * @file src/cat/category.php
  * @brief Category's main file
  * @author Paul Barbu
  *
@@ -11,8 +11,20 @@
  * @defgroup catFiles Category module
  */
 
+$retval = array(
+    'name' => isset($_POST['name']) ? $_POST['name'] : NULL,
+    'description' => isset($_POST['description']) ? $_POST['description'] : NULL,
+    'color' => isset($_POST['color']) ? $_POST['color'] : NULL,
+    'repeat' => isset($_POST['repeat']) ? $_POST['repeat'] : NULL,
+    'categories' => getDbdata($feedback_pre['connect'], 'category', array('name',
+                     'description', 'repeat_interval', 'color', 'category_id'),
+                     array('user_id' => $_SESSION['uid'])),
+);
+
 if(isset($_POST['add'])){
-    return array('reload' => TRUE, 'module' => 'cat', 'rcats' => array(
+    $retval['reload'] = TRUE;
+    $retval['module'] = 'cat';
+    $retval['rcats'] = array(
         'name' => array(
             'value' => $_POST['name'],
             'cb' => array(
@@ -85,7 +97,9 @@ if(isset($_POST['add'])){
             'field' => 'user_id',
         ),
         'table' => 'category',
-    ));
+    );
+
+    unset($_POST['add']);
 }
 
-return TRUE;
+return $retval;

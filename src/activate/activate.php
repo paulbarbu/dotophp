@@ -6,70 +6,71 @@
  *
  * @ingroup activateFiles
  */
+$result = array(
+    'activation_code' => isset($_GET['code']) ? _filterVariable($_GET['code']) : NULL,
+    'code' => TRUE,
+);
 
 if(isset($_POST['activate'])){
 
-    $result = NULL;
-
-    list($activationCode, $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']) =
+    list($activationCode, $pass, $passconfirm, $security_q, $security_a) =
         filterInput(isset($_POST['code']) ? $_POST['code'] : $_GET['code'],
             $_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
 
     if(!$feedback_pre['connect']){
-        $result = A_ERR_DB_CONNECTION;
+        $result['code'] = A_ERR_DB_CONNECTION;
     }
-    elseif(isValidPass($_POST['pass']) && $_POST['pass'] == $_POST['passconfirm']){
-        if(isValidSecurityData($_POST['security_q']) &&
-           isValidSecurityData($_POST['security_a'])){
+    elseif(isValidPass($pass) && $pass == $passconfirm){
+        if(isValidSecurityData($security_q) &&
+           isValidSecurityData($security_a)){
             $id = getPendingUser($feedback_pre['connect'], $activationCode);
 
             if($id !== NULL){
                 if(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
-                    $result = A_ERR_DB;
+                    $result['code'] = A_ERR_DB;
                 }
                 elseif(!mysqli_query($feedback_pre['connect'],
                        'DELETE FROM pending WHERE user_id = ' . $id . ';')){
-                    $result = A_ERR_DB;
+                    $result['code'] = A_ERR_DB;
                 }
                 elseif(!mysqli_query($feedback_pre['connect'],"UPDATE user SET password = SHA1('" .
-                    $_POST['pass'] . "'), security_q = '" . $_POST['security_q'] . "', security_a = '" .
-                    $_POST['security_a'] . "', activated = NOW() WHERE id = " . $id . ";"
+                    $pass . "'), security_q = '" . $security_q . "', security_a = '" .
+                    $security_a . "', activated = NOW() WHERE id = " . $id . ";"
                 )){
-                    $result = A_ERR_DB;
+                    $result['code'] = A_ERR_DB;
                 }
                 elseif(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
-                    $result = A_ERR_DB;
+                    $result['code'] = A_ERR_DB;
                 }
                 else{
-                    $result = ERR_NONE;
+                    $result['code'] = ERR_NONE;
                 }
             }
             else{
-                $result = A_ERR_CODE;
+                $result['code'] = A_ERR_CODE;
             }
         }
         else{
-            $result = A_ERR_SECURITY_DATA;
+            $result['code'] = A_ERR_SECURITY_DATA;
         }
     }
     else{
-        $result = A_ERR_PASS;
+        $result['code'] = A_ERR_PASS;
     }
 
-    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a']);
+    unset($_POST['pass'], $_POST['passconfirm'], $_POST['security_q'], $_POST['security_a'],
+            $pass, $passconfirm, $security_q, $security_a);
 
-    if(A_ERR_DB == $result){
+    if(A_ERR_DB == $result['code']){
         writeLog('activate', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
     }
-    else if(A_ERR_DB_CONNECTION == $result){
+    else if(A_ERR_DB_CONNECTION == $result['code']){
         writeLog('activate', '(' . mysqli_connect_errno() . ') ' .
             mysqli_connect_error() . PHP_EOL);
     }
-
-    return $result;
 }
 
-return TRUE;
+return $result;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

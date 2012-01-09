@@ -7,14 +7,14 @@
  * @ingroup activateFiles
  */
 
-if($feedback['activate']){
+if($feedback['activate']['code']){
 ?>
 <form method="post" action="" >
 <table border="0" cellspacing="5">
 <tr><td>
 <label for="code">Activation code:</label></td><td><input type="text" maxlength="10"
- name="code" id="code" <?php isset($_GET['code']) ? list($_GET['code']) = filterInput($_GET['code']) : NULL;
-echo isset($_GET['code']) && !empty($_GET['code']) ? 'value="' . $_GET['code'] . '" disabled' : 'tabindex="1"' ?> />
+ name="code" id="code" <?php isset($feedback['activate']['activation_code']) ? $feedback['activate']['activation_code'] : NULL;
+echo isset($feedback['activate']['activation_code']) && !empty($feedback['activate']['activation_code']) ? 'value="' . $feedback['activate']['activation_code'] . '" disabled' : 'tabindex="1"' ?> />
 </td></tr><tr><td>
 <label for="pass">Password:</label></td><td><input tabindex="2" type="password" maxlength="30" id="pass" name="pass" />
 </td></tr><tr><td>
@@ -30,10 +30,10 @@ echo isset($_GET['code']) && !empty($_GET['code']) ? 'value="' . $_GET['code'] .
 </table>
 </form>
 <?php
-    if(is_numeric($feedback['activate'])){
+    if(isset($feedback['activate']['code']) && is_numeric($feedback['activate']['code'])){
         echo '<h3>';
 
-        switch($feedback['activate']){
+        switch($feedback['activate']['code']){
             case A_ERR_PASS: printf('Passwords don\'t match or aren\'t between 6 and 30 valid characters! (#%d)', A_ERR_PASS);
                 break;
             case A_ERR_CODE: printf('Invalid activation code! (#%d)', A_ERR_CODE);
@@ -49,7 +49,7 @@ echo isset($_GET['code']) && !empty($_GET['code']) ? 'value="' . $_GET['code'] .
         echo '</h3>';
     }
 }
-elseif(!$feedback['activate']){
+elseif(ERR_NONE == $feedback['activate']['code']){
     echo '<h3>Account activated!</h3>';
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
