@@ -38,4 +38,6 @@ defined('E_ERR_INVALID_ENDDATE') or define('E_ERR_INVALID_ENDDATE', 6);
 defined('DELETED') or define('DELETED', 7);
 defined('DONE') or define('DONE', 8);
 defined('MODIFIED') or define('MODIFIED', 9);
+defined('ACTION_MODIFY') or define('ACTION_MODIFY', 'modify');
+defined('ACTION_ADD') or define('ACTION_ADD', 'add');
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
