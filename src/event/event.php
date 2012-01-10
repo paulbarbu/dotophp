@@ -237,7 +237,7 @@ if(isset($_POST['add'])){
         }
     }
 
-    $retval['rcats']['name']['isDuplicate'] = array(
+    $retval['rcats']['name']['cb']['isDuplicate'] = array(
         'name' => 'isDuplicate',
         'inverse' => TRUE,
         'params' => array($feedback_pre['connect'], 'category' => '_getRcatsVal',
