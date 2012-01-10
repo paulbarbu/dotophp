@@ -133,6 +133,7 @@ else if(is_array($feedback['event']['code'])){
     echo '</h3>';
 }
 
+if(isset($feedback['event']['events']) && !empty($feedback['event']['events'])){
 echo <<<'PHP'
 <hr /><h4>Your events:</h4><form action="" method="post">
 <input type="submit" name="done" value="Mark as done" tabindex="14" />
@@ -141,42 +142,43 @@ echo <<<'PHP'
 
 PHP;
 
-$name = 'modify-sel';
-$value = 'Modify selected';
+    $name = 'modify-sel';
+    $value = 'Modify selected';
 
-if(isset($feedback['event']['event_id'])){
-    $name = 'stop';
-    $value = 'Finish editing';
-}
-echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="17" />';
+    if(isset($feedback['event']['event_id'])){
+        $name = 'stop';
+        $value = 'Finish editing';
+    }
+    echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="17" />';
 
-foreach($feedback['event']['cat_ids'] as $cat_id){
+    foreach($feedback['event']['cat_ids'] as $cat_id){
 
-    $cat_events = array();
+        $cat_events = array();
 
-    foreach($feedback['event']['events'] as $ev){
-        if($ev['category_id'] == $cat_id){
-            $cat_events[] = $ev;
+        foreach($feedback['event']['events'] as $ev){
+            if($ev['category_id'] == $cat_id){
+                $cat_events[] = $ev;
+            }
+        }
+
+        if(!empty($cat_events)){
+            $catColor = colorCodeFromInt($cat_events[0]['ccolor']);
+
+            echo '<div class="cat"><div style="background-color:#' , $catColor , ';color:#' ,
+                getContrastColor($catColor) , '">&#9698;&nbsp;' , $cat_events[0]['cname'] , '</div>';
+
+            arrayToDiv($cat_events, 'formatEvent', NULL, 'cat');
+
+            echo '</div>';
         }
     }
 
-    if(!empty($cat_events)){
-        $catColor = colorCodeFromInt($cat_events[0]['ccolor']);
+    echo '</form>';
 
-        echo '<div class="cat"><div style="background-color:#' , $catColor , ';color:#' ,
-            getContrastColor($catColor) , '">&#9698;&nbsp;' , $cat_events[0]['cname'] , '</div>';
+    if(isset($feedback['event']['done_ev']) &&
+        !empty($feedback['event']['done_ev'])){
+        echo '<br /><hr /><h4>Your completed events:</h4>';
 
-        arrayToDiv($cat_events, 'formatEvent', NULL, 'cat');
-
-        echo '</div>';
+        arrayToDiv($feedback['event']['done_ev'], 'formatDoneEvent', NULL, 'cat');
     }
-}
-
-echo '</form>';
-
-if(isset($feedback['event']['done_ev']) &&
-    !empty($feedback['event']['done_ev'])){
-    echo '<br /><hr /><h4>Your completed events:</h4>';
-
-    arrayToDiv($feedback['event']['done_ev'], 'formatDoneEvent', NULL, 'cat');
 }
