@@ -190,46 +190,11 @@ if(isset($_SESSION['modify_list']) && !empty($_SESSION['modify_list'])){
 }
 
 if(isset($_POST['add'])){
-    $retval['reload'] = TRUE;
-    $retval['module'] = 'event';
-
-    $retval['rcats']['category']['value'] = $_POST['cat'];
-    $retval['rcats']['name']['value'] = $_POST['name'];
-    $retval['rcats']['description']['value'] = $_POST['description'];
-    $retval['rcats']['color']['value'] = $_POST['color'];
-    $retval['rcats']['repeat']['value'] = $_POST['repeat'];
-    $retval['rcats']['priority']['value'] = $_POST['priority'];
-    $retval['rcats']['startdate']['value'] = $_POST['startdate'];
-    $retval['rcats']['enddate']['value'] = $_POST['enddate'];
-
-    if(isset($_POST['private'])){
-        $retval['rcats']['private'] = array(
-            'value' => $_POST['private'],
-            'field' => 'private',
-        );
-    }
-
-    if(isset($_POST['exception'])){
-        $retval['rcats']['exception'] = array(
-            'value' => $_POST['exception'],
-            'field' => 'exception',
-        );
-    }
-    else{
-        if(COLOR_CODE == $retval['rcats']['color']['value']){
-            $cat_data = getDbData($feedback_pre['connect'], 'category',
-                array('color'), array('category_id' => $_POST['cat']));
-
-            $retval['rcats']['color']['value'] = colorCodeFromInt($cat_data[0]['color'], TRUE);
-        }
-
-        if('-1' == $_POST['repeat']){
-            $cat_data = getDbData($feedback_pre['connect'], 'category',
-                array('repeat_interval'), array('category_id' => $_POST['cat']));
-
-            $retval['rcats']['repeat']['value'] = $cat_data[0]['repeat_interval'];
-        }
-    }
+    assignRcatsVals($retval, $feedback_pre['connect'], $_POST['cat'], $_POST['name'],
+        $_POST['description'], $_POST['color'], $_POST['repeat'], $_POST['priority'],
+        $_POST['startdate'], $_POST['enddate'], TRUE, 'event',
+        isset($_POST['private']) ? $_POST['private'] : NULL,
+        isset($_POST['exception']) ? $_POST['exception'] : NULL);
 
     $retval['rcats']['name']['cb']['isDuplicate'] = array(
         'name' => 'isDuplicate',
@@ -317,53 +282,19 @@ else if(isset($_POST['stop'])){
     unset($_SESSION['modify_list']);
 }
 else if(isset($_POST['modify'])){
-    $retval['reload'] = TRUE;
-    $retval['module'] = 'event';
+    assignRcatsVals($retval, $feedback_pre['connect'], $_POST['cat'], $_POST['name'],
+        $_POST['description'], $_POST['color'], $_POST['repeat'], $_POST['priority'],
+        $_POST['startdate'], $_POST['enddate'], TRUE, 'event',
+        isset($_POST['private']) ? $_POST['private'] : NULL,
+        isset($_POST['exception']) ? $_POST['exception'] : NULL);
 
     $retval['rcats']['replace'] = TRUE;
     $retval['rcats']['retval'] = MODIFIED;
-    $retval['rcats']['category']['value'] = $_POST['cat'];
-    $retval['rcats']['name']['value'] = $_POST['name'];
-    $retval['rcats']['description']['value'] = $_POST['description'];
-    $retval['rcats']['color']['value'] = $_POST['color'];
-    $retval['rcats']['repeat']['value'] = $_POST['repeat'];
-    $retval['rcats']['priority']['value'] = $_POST['priority'];
-    $retval['rcats']['startdate']['value'] = $_POST['startdate'];
-    $retval['rcats']['enddate']['value'] = $_POST['enddate'];
 
     $retval['rcats']['event_id'] = array(
         'value' => $_POST['event_id'],
         'field' => 'event_id',
     );
-
-    if(isset($_POST['private'])){
-        $retval['rcats']['private'] = array(
-            'value' => $_POST['private'],
-            'field' => 'private',
-        );
-    }
-
-    if(isset($_POST['exception'])){
-        $retval['rcats']['exception'] = array(
-            'value' => $_POST['exception'],
-            'field' => 'exception',
-        );
-    }
-    else{
-        if(COLOR_CODE == $retval['rcats']['color']['value']){
-            $cat_data = getDbData($feedback_pre['connect'], 'category',
-                array('color'), array('category_id' => $_POST['cat']));
-
-            $retval['rcats']['color']['value'] = colorCodeFromInt($cat_data[0]['color'], TRUE);
-        }
-
-        if('-1' == $_POST['repeat']){
-            $cat_data = getDbData($feedback_pre['connect'], 'category',
-                array('repeat_interval'), array('category_id' => $_POST['cat']));
-
-            $retval['rcats']['repeat']['value'] = $cat_data[0]['repeat_interval'];
-        }
-    }
 
     unset($_POST['modify']);
 }

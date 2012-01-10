@@ -128,4 +128,73 @@ function formatDoneEvent($ev){/*{{{*/
     return $content;
 
 }/*}}}*/
+
+/**
+ * Sets some fields in an array in order to use it in rcats
+ *
+ * @param array $retval the referenced array to write in
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param int $cat the category id
+ * @param string $name event's name
+ * @param string $description event's description
+ * @param string $color event's color
+ * @param int $repeat event's repeat interval
+ * @param int $priority event's priority
+ * @param string $startdate datetime when the event starts
+ * @param string $enddate datetime when the event ends
+ * @param bool $reload flag variable, should be TRUE when sending data to rcats
+ * @param string $module the module to reload if $reload is set to TRUE
+ * @param mixed $private if this evaluates to bool FALSE by implicit conversion
+ * then the event will be public
+ * @param mixed $exception if this evaluates to bool FALSE by implicit conversion
+ * then the event inherits the caregory's repeat interval or color if they are
+ * left default by the user
+ *
+ * @return the return is made through the $retval parameter which should be an
+ * array
+ */
+function assignRcatsVals(&$retval, $link, $cat, $name, $description, $color, $repeat,/*{{{*/
+        $priority, $startdate, $enddate, $reload, $module, $private = NULL,
+        $exception = NULL){
+
+            var_dump($private);
+
+    $retval['reload'] = $reload;
+    $retval['module'] = $module;
+
+    $retval['rcats']['category']['value'] = $cat;
+    $retval['rcats']['name']['value'] = $name;
+    $retval['rcats']['description']['value'] = $description;
+    $retval['rcats']['color']['value'] = $color;
+    $retval['rcats']['repeat']['value'] = $repeat;
+    $retval['rcats']['priority']['value'] = $priority;
+    $retval['rcats']['startdate']['value'] = $startdate;
+    $retval['rcats']['enddate']['value'] = $enddate;
+
+    if(isset($private) && $private){
+        $retval['rcats']['private'] = array(
+            'value' => $private,
+            'field' => 'private',
+        );
+    }
+
+    if(isset($exception) && $exception){
+        $retval['rcats']['exception'] = array(
+            'value' => $exception,
+            'field' => 'exception',
+        );
+    }
+    else{
+        $cat_data = getDbData($link, 'category',
+            array('repeat_interval', 'color'), array('category_id' => $_POST['cat']));
+
+        if(COLOR_CODE == $retval['rcats']['color']['value']){
+            $retval['rcats']['color']['value'] = colorCodeFromInt($cat_data[0]['color'], TRUE);
+        }
+
+        if('-1' == $repeat){
+            $retval['rcats']['repeat']['value'] = $cat_data[0]['repeat_interval'];
+        }
+    }
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
