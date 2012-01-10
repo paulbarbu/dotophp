@@ -8,7 +8,7 @@
  */
 
 if(isset($_POST['login'])){
-    list($nick, $_POST['pass']) = filterInput($_POST['nick'], $_POST['pass']);
+    list($nick, $pass) = filterInput($_POST['nick'], $_POST['pass']);
     $remember = isset($_POST['remember']) ? TRUE : FALSE;
 
     /**
@@ -31,13 +31,13 @@ if(isset($_POST['login'])){
         $data = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         if(0 != strcmp($data['activated'], '0000-00-00 00:00:00')){
-            if(0 != strcmp($data['pass'], sha1($_POST['pass']))){
+            if(0 != strcmp($data['pass'], sha1($pass))){
                 unset($_POST['pass'], $data['pass']);
 
                 $retval = L_ERR_PASS;
             }
             else{
-                unset($_POST['pass'], $data['pass']);
+                unset($_POST['pass'], $data['pass'], $pass);
 
                 if($remember){
                     session_set_cookie_params(LIFETIME, app_path());
@@ -87,6 +87,7 @@ if(isset($_POST['login'])){
                             $m = 'cat';
                         }
 
+                        unset($_POST['login']);
                         $retval = array('reload' => TRUE, 'module' => $m);
                     }
                 }
