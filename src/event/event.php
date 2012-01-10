@@ -14,10 +14,6 @@ if(!$feedback_pre['connect']){
     return array('code' => ERR_DB_CONN);
 }
 
-$result_events = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname, c.color AS ccolor, event_id, e.category_id, e.name AS ename,
-    e.description, e.repeat_interval, e.color, priority, private, exception,
-    start, end  FROM event AS e JOIN category AS c USING (category_id) WHERE done=0 AND user_id =' . $_SESSION['uid']);
-
 $cat = getDbData($feedback_pre['connect'], 'category', array('name', 'category_id'), array('user_id' => $_SESSION['uid']));
 
 $cat_names = array();
@@ -42,7 +38,6 @@ $retval = array(
     'priority' => isset($_POST['priority']) ? $_POST['priority'] : NULL,
     'exception' => isset($_POST['exception']) ? $_POST['exception'] : NULL,
     'event_id' => isset($_POST['event_id']) ? $_POST['event_id'] : NULL,
-    'events' => mysqli_fetch_all($result_events, MYSQLI_ASSOC),
     'cat_names' => $cat_names,
     'cat_ids' => $cat_ids,
     'action' => ACTION_ADD,
@@ -186,14 +181,13 @@ if(isset($_SESSION['modify_list']) && !empty($_SESSION['modify_list'])){
 
         if(empty($_SESSION['modify_list'])){
             $retval['action'] = ACTION_ADD;
+            unset($retval['event_id']);
         }
         else{
             $continue = TRUE;
         }
     }
 }
-        var_dump($_SESSION);
-
 
 if(isset($_POST['add'])){
     $retval['reload'] = TRUE;
@@ -281,11 +275,6 @@ else if(isset($_POST['view-done'])){
 
     $retval['done_ev'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
-//else if(isset($_POST['modify-sel']) && !empty($_POST['s'])){
-    //$result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM event WHERE event_id IN (' .
-                            //implode(',', $_POST['s']) . ');');
-
-    //$_SESSION['modify_list'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
 else if(isset($_POST['modify-sel']) || isset($continue)){
 
     if(isset($_POST['s']) && !empty($_POST['s'])){
@@ -378,6 +367,12 @@ else if(isset($_POST['modify'])){
 
     unset($_POST['modify']);
 }
+
+$result_events = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname, c.color AS ccolor, event_id, e.category_id, e.name AS ename,
+    e.description, e.repeat_interval, e.color, priority, private, exception,
+    start, end  FROM event AS e JOIN category AS c USING (category_id) WHERE done=0 AND user_id =' . $_SESSION['uid']);
+
+$retval['events'] = mysqli_fetch_all($result_events, MYSQLI_ASSOC);
 
 return $retval;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
