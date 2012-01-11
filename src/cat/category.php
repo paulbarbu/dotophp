@@ -105,12 +105,12 @@ if(isset($_SESSION['modify_list_cat']) && !empty($_SESSION['modify_list_cat'])){
 }
 
 if(isset($_POST['add'])){
-    assignRcatsVals($retval, $_POST['name'], $_POST['description'], $_POST['color'],
+    assignRcatsValsCat($retval, $_POST['name'], $_POST['description'], $_POST['color'],
         $_POST['repeat'], TRUE, 'cat');
 
 
-    $retval['rcats']['name']['cb']['isDuplicate'] = array(
-        'name' => 'isDuplicate',
+    $retval['rcats']['name']['cb']['isDuplicateCat'] = array(
+        'name' => 'isDuplicateCat',
         'inverse' => TRUE,
         'params' => array($feedback_pre['connect'], $_SESSION['uid'], 'name' => '_getRcatsVal'),
         'return_on_err' => TRUE,
@@ -162,7 +162,7 @@ else if(isset($_POST['stop'])){
     unset($_SESSION['modify_list_cat']);
 }
 else if(isset($_POST['modify'])){
-    assignRcatsVals($retval, $_POST['name'], $_POST['description'], $_POST['color'],
+    assignRcatsValsCat($retval, $_POST['name'], $_POST['description'], $_POST['color'],
         $_POST['repeat'], TRUE, 'cat');
 
     $retval['rcats']['update'] = TRUE;

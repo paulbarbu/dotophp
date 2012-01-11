@@ -16,13 +16,20 @@ if(!$feedback_pre['connect']){
 
 $cat = getDbData($feedback_pre['connect'], 'category', array('name', 'category_id'), array('user_id' => $_SESSION['uid']));
 
-$cat_names = array();
-$cat_ids = array();
 
-foreach($cat as $i){
-    $cat_names[] = $i['name'];
-    $cat_ids[] = $i['category_id'];
+if(!empty($cat)){
+    $cat_names = array();
+    $cat_ids = array();
+
+    foreach($cat as $i){
+        $cat_names[] = $i['name'];
+        $cat_ids[] = $i['category_id'];
+    }
 }
+else{
+    return array('reload' => TRUE, 'module' => 'cat');
+}
+
 
 $retval = array(
     'code' => TRUE,
@@ -191,14 +198,14 @@ if(isset($_SESSION['modify_list']) && !empty($_SESSION['modify_list'])){
 }
 
 if(isset($_POST['add'])){
-    assignRcatsVals($retval, $feedback_pre['connect'], $_POST['cat'], $_POST['name'],
+    assignRcatsValsEv($retval, $feedback_pre['connect'], $_POST['cat'], $_POST['name'],
         $_POST['description'], $_POST['color'], $_POST['repeat'], $_POST['priority'],
         $_POST['startdate'], $_POST['enddate'], TRUE, 'event',
         isset($_POST['private']) ? $_POST['private'] : NULL,
         isset($_POST['exception']) ? $_POST['exception'] : NULL);
 
-    $retval['rcats']['name']['cb']['isDuplicate'] = array(
-        'name' => 'isDuplicate',
+    $retval['rcats']['name']['cb']['isDuplicateEv'] = array(
+        'name' => 'isDuplicateEv',
         'inverse' => TRUE,
         'params' => array($feedback_pre['connect'], 'category' => '_getRcatsVal',
                          'name' => '_getRcatsVal'),
@@ -283,7 +290,7 @@ else if(isset($_POST['stop'])){
     unset($_SESSION['modify_list']);
 }
 else if(isset($_POST['modify'])){
-    assignRcatsVals($retval, $feedback_pre['connect'], $_POST['cat'], $_POST['name'],
+    assignRcatsValsEv($retval, $feedback_pre['connect'], $_POST['cat'], $_POST['name'],
         $_POST['description'], $_POST['color'], $_POST['repeat'], $_POST['priority'],
         $_POST['startdate'], $_POST['enddate'], TRUE, 'event',
         isset($_POST['private']) ? $_POST['private'] : NULL,

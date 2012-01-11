@@ -16,7 +16,7 @@
  *
  * @return TRUE if the category name is found in the DB, else FALSE
  */
-function isDuplicate($link, $id, $name){/*{{{*/
+function isDuplicateCat($link, $id, $name){/*{{{*/
     return (bool) count(getDbdata($link, 'category', array('name', 'description',
                             'repeat_interval', 'color', 'category_id'),
                             array('user_id' => $id, 'condition' => 'AND', 'name' => $name)));
@@ -66,7 +66,7 @@ function format_cat($element){/*{{{*/
  * @return the return is made through the $retval parameter which should be an
  * array
  */
-function assignRcatsVals(&$retval, $name, $description, $color, $repeat, $reload, $module){/*{{{*/
+function assignRcatsValsCat(&$retval, $name, $description, $color, $repeat, $reload, $module){/*{{{*/
     $retval['reload'] = $reload;
     $retval['module'] = $module;
 

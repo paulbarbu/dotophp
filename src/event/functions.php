@@ -44,7 +44,7 @@ function isValidDateSuccession($start, $end){/*{{{*/
  *
  * @return TRUE is the event already exists, else FALSE
  */
-function isDuplicate($link, $cat_id, $name){/*{{{*/
+function isDuplicateEv($link, $cat_id, $name){/*{{{*/
     return (bool)count(getDbData($link, 'event', array('name'),
         array('category_id' => $cat_id, 'condition' => 'AND', 'name' => $name)));
 }/*}}}*/
@@ -153,7 +153,7 @@ function formatDoneEvent($ev){/*{{{*/
  * @return the return is made through the $retval parameter which should be an
  * array
  */
-function assignRcatsVals(&$retval, $link, $cat, $name, $description, $color, $repeat,/*{{{*/
+function assignRcatsValsEv(&$retval, $link, $cat, $name, $description, $color, $repeat,/*{{{*/
         $priority, $startdate, $enddate, $reload, $module, $private = NULL,
         $exception = NULL){
 

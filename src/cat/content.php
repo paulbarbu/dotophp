@@ -91,20 +91,23 @@ else if(isset($feedback['category']['code']) && is_array($feedback['category']['
     echo '</h3>';
 }
 
+if(!empty($feedback['category']['categories'])){
+
 echo<<<'mini_menu'
 <hr /><h4>Your categories:</h4><form action="" method="post">
 <input type="submit" name="del" value="Delete" tabindex="6" />
 mini_menu;
 
-$name = 'modify-sel';
-$value = 'Modify selected';
+    $name = 'modify-sel';
+    $value = 'Modify selected';
 
-if(isset($feedback['category']['category_id'])){
-    $name = 'stop';
-    $value = 'Finish editing';
+    if(isset($feedback['category']['category_id'])){
+        $name = 'stop';
+        $value = 'Finish editing';
+    }
+    echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="7" />';
+
+    arrayToDiv($feedback['category']['categories'], 'format_cat', NULL, 'cat');
+
+    echo '</form>';
 }
-echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="7" />';
-
-arrayToDiv($feedback['category']['categories'], 'format_cat', NULL, 'cat');
-
-echo '</form>';
