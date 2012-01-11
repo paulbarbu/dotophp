@@ -171,7 +171,8 @@ $retval = array(
             'field' => 'end',
         ),
         'table' => 'event',
-));
+    ),
+);
 
 if(isset($_SESSION['modify_list']) && !empty($_SESSION['modify_list'])){
     $retval['action'] = ACTION_MODIFY;
@@ -247,33 +248,35 @@ else if(isset($_POST['modify-sel']) || isset($continue)){
         $_SESSION['modify_list'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
-    $retval['event_id'] = $_SESSION['modify_list'][0]['event_id'];
-    $retval['cat'] = $_SESSION['modify_list'][0]['category_id'];
-    $retval['name'] = $_SESSION['modify_list'][0]['name'];
-    $retval['description'] = $_SESSION['modify_list'][0]['description'];
-    $retval['priority'] = $_SESSION['modify_list'][0]['priority'];
-    $retval['startdate'] = _defaultDateTime(dateTimeChangeFormat($_SESSION['modify_list'][0]['start'], USER_TS));
-    $retval['enddate'] = _defaultDateTime(dateTimeChangeFormat($_SESSION['modify_list'][0]['end'], USER_TS));
-    $retval['action'] = ACTION_MODIFY;
+    if(isset($continue) || !empty($_POST['s'])){
+        $retval['event_id'] = $_SESSION['modify_list'][0]['event_id'];
+        $retval['cat'] = $_SESSION['modify_list'][0]['category_id'];
+        $retval['name'] = $_SESSION['modify_list'][0]['name'];
+        $retval['description'] = $_SESSION['modify_list'][0]['description'];
+        $retval['priority'] = $_SESSION['modify_list'][0]['priority'];
+        $retval['startdate'] = _defaultDateTime(dateTimeChangeFormat($_SESSION['modify_list'][0]['start'], USER_TS));
+        $retval['enddate'] = _defaultDateTime(dateTimeChangeFormat($_SESSION['modify_list'][0]['end'], USER_TS));
+        $retval['action'] = ACTION_MODIFY;
 
-    $color = colorCodeFromInt($_SESSION['modify_list'][0]['color'], TRUE);
-    if(DEFAULT_COLOR == $color){
-        $retval['color'] = COLOR_CODE;
-    }
-    else{
-        $retval['color'] = $color;
-    }
+        $color = colorCodeFromInt($_SESSION['modify_list'][0]['color'], TRUE);
+        if(DEFAULT_COLOR == $color){
+            $retval['color'] = COLOR_CODE;
+        }
+        else{
+            $retval['color'] = $color;
+        }
 
-    if((int)$_SESSION['modify_list'][0]['repeat_interval']){
-        $retval['repeat'] = $_SESSION['modify_list'][0]['repeat_interval'];
-    }
+        if((int)$_SESSION['modify_list'][0]['repeat_interval']){
+            $retval['repeat'] = $_SESSION['modify_list'][0]['repeat_interval'];
+        }
 
-    if((int)$_SESSION['modify_list'][0]['exception']){
-        $retval['exception'] = $_SESSION['modify_list'][0]['exception'];
-    }
+        if((int)$_SESSION['modify_list'][0]['exception']){
+            $retval['exception'] = $_SESSION['modify_list'][0]['exception'];
+        }
 
-    if((int)$_SESSION['modify_list'][0]['private']){
-        $retval['private'] = $_SESSION['modify_list'][0]['private'];
+        if((int)$_SESSION['modify_list'][0]['private']){
+            $retval['private'] = $_SESSION['modify_list'][0]['private'];
+        }
     }
 }
 else if(isset($_POST['stop'])){

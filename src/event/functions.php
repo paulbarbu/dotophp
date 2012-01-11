@@ -157,8 +157,6 @@ function assignRcatsVals(&$retval, $link, $cat, $name, $description, $color, $re
         $priority, $startdate, $enddate, $reload, $module, $private = NULL,
         $exception = NULL){
 
-            var_dump($private);
-
     $retval['reload'] = $reload;
     $retval['module'] = $module;
 
