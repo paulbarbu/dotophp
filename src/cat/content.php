@@ -69,7 +69,29 @@ else if(is_numeric($feedback_pre['rcats'])){
 
     echo '</h3>';
 }
+else if(isset($feedback['category']['code']) && is_array($feedback['category']['code'])){
+    echo '<h3>';
 
-echo '<hr /><h4>Your categories:</h4>';
+    switch($feedback['category']['code'][0]){
+        case DELETED:
+            $category = 'category';
+            if($feedback['category']['code'][1] > 1){
+                $category = 'categories';
+            }
+
+            printf('Deleted %d %s!', $feedback['category']['code'][1], $category);
+            break;
+    }
+
+    echo '</h3>';
+}
+
+echo<<<'mini_menu'
+<hr /><h4>Your categories:</h4><form action="" method="post">
+<input type="submit" name="del" value="Delete" tabindex="6" />
+mini_menu;
+
 
 arrayToDiv($feedback['category']['categories'], 'format_cat', NULL, 'cat');
+
+echo '</form>';

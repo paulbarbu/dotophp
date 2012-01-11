@@ -35,13 +35,15 @@ function format_cat($element){/*{{{*/
     $hexcolor = colorCodeFromInt($element['color']);
 
     $out = '<div style="background-color:#' . $hexcolor . ';color:#' .
-        getContrastColor($hexcolor) . '">' . $element['name'];
+        getContrastColor($hexcolor) . '"><input type="checkbox" name="s[]" id="id-' .
+         $element['category_id'] . '" value="' . $element['category_id'] . '" /><label for="id-' .
+         $element['category_id'] . '" >' . $element['name'];
 
     if($element['repeat_interval']){
         $out .= '<span class="toRight">' . $REPEATS[$element['repeat_interval']] . '</span>';
     }
 
-    $out .= '</div>' . PHP_EOL;
+    $out .= '</label></div>' . PHP_EOL;
 
     if(!empty($element['description'])){
         $out .= '&nbsp; ' . $element['description'];

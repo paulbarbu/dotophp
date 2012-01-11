@@ -16,9 +16,6 @@ $retval = array(
     'description' => isset($_POST['description']) ? $_POST['description'] : NULL,
     'color' => isset($_POST['color']) ? $_POST['color'] : NULL,
     'repeat' => isset($_POST['repeat']) ? $_POST['repeat'] : NULL,
-    'categories' => getDbdata($feedback_pre['connect'], 'category', array('name',
-                     'description', 'repeat_interval', 'color', 'category_id'),
-                     array('user_id' => $_SESSION['uid'])),
 );
 
 if(isset($_POST['add'])){
@@ -101,5 +98,20 @@ if(isset($_POST['add'])){
 
     unset($_POST['add']);
 }
+else if(isset($_POST['del']) && isset($_POST['s'])){
+    $result = mysqli_query($feedback_pre['connect'], 'DELETE FROM category WHERE category_id IN (' .
+        implode(',', $_POST['s']) . ');');
+
+    if(!$result){
+        $retval['code'] = ERR_DB;
+    }
+    else{
+        $retval['code'] = array(DELETED, count($_POST['s']));
+    }
+}
+
+$retval['categories'] = getDbdata($feedback_pre['connect'], 'category', array('name',
+                 'description', 'repeat_interval', 'color', 'category_id'),
+                 array('user_id' => $_SESSION['uid']));
 
 return $retval;
