@@ -88,13 +88,13 @@ $retval = array(
 
 );
 
-if(isset($_SESSION['modify_list']) && !empty($_SESSION['modify_list'])){
+if(isset($_SESSION['modify_list_cat']) && !empty($_SESSION['modify_list_cat'])){
     $retval['action'] = ACTION_MODIFY;
 
     if(MODIFIED === $feedback_pre['rcats']){
-        array_shift($_SESSION['modify_list']);
+        array_shift($_SESSION['modify_list_cat']);
 
-        if(empty($_SESSION['modify_list'])){
+        if(empty($_SESSION['modify_list_cat'])){
             $retval['action'] = ACTION_ADD;
             unset($retval['category_id']);
         }
@@ -136,16 +136,16 @@ else if(isset($_POST['modify-sel']) || isset($continue)){
         $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM category WHERE category_id IN (' .
                                 implode(',', $_POST['s']) . ');');
 
-        $_SESSION['modify_list'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+        $_SESSION['modify_list_cat'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
     }
 
     if(isset($continue) || !empty($_POST['s'])){
-        $retval['category_id'] = $_SESSION['modify_list'][0]['category_id'];
-        $retval['name'] = $_SESSION['modify_list'][0]['name'];
-        $retval['description'] = $_SESSION['modify_list'][0]['description'];
+        $retval['category_id'] = $_SESSION['modify_list_cat'][0]['category_id'];
+        $retval['name'] = $_SESSION['modify_list_cat'][0]['name'];
+        $retval['description'] = $_SESSION['modify_list_cat'][0]['description'];
         $retval['action'] = ACTION_MODIFY;
 
-        $color = colorCodeFromInt($_SESSION['modify_list'][0]['color'], TRUE);
+        $color = colorCodeFromInt($_SESSION['modify_list_cat'][0]['color'], TRUE);
         if(DEFAULT_COLOR == $color){
             $retval['color'] = COLOR_CODE;
         }
@@ -153,13 +153,13 @@ else if(isset($_POST['modify-sel']) || isset($continue)){
             $retval['color'] = $color;
         }
 
-        if((int)$_SESSION['modify_list'][0]['repeat_interval']){
-            $retval['repeat'] = $_SESSION['modify_list'][0]['repeat_interval'];
+        if((int)$_SESSION['modify_list_cat'][0]['repeat_interval']){
+            $retval['repeat'] = $_SESSION['modify_list_cat'][0]['repeat_interval'];
         }
     }
 }
 else if(isset($_POST['stop'])){
-    unset($_SESSION['modify_list']);
+    unset($_SESSION['modify_list_cat']);
 }
 else if(isset($_POST['modify'])){
     assignRcatsVals($retval, $_POST['name'], $_POST['description'], $_POST['color'],
