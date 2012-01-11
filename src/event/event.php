@@ -289,7 +289,8 @@ else if(isset($_POST['modify'])){
         isset($_POST['private']) ? $_POST['private'] : NULL,
         isset($_POST['exception']) ? $_POST['exception'] : NULL);
 
-    $retval['rcats']['replace'] = TRUE;
+    $retval['rcats']['update'] = TRUE;
+    $retval['rcats']['update_condition'] = array('event_id' => $_POST['event_id']);
     $retval['rcats']['retval'] = MODIFIED;
 
     $retval['rcats']['event_id'] = array(

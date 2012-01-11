@@ -70,6 +70,13 @@ array(
     //query will be made
     'retval' => CHANGE_DONE, //if this key, value pair is set then the value will
     //be returned upon a successful execution insted of ERR_NONE
+
+    'update' = TRUE, // makes an update on the database, higher priority than
+    //insert or replace, if this is TRUE then the variables values and their
+    //fields will be used to update the DB, if no update_condition will be
+    //supplied then all the DB fields will be updated
+    'update_conditions' => array('filed1' => 'value1'), //the fields and their values which should be used in
+    //the WHERE condition in the UPDATE statement
 );
  * @endverbatim
  */
@@ -129,7 +136,7 @@ foreach($feedback as $metamodule => $m){
             }
 
             foreach($feedback[$metamodule]['rcats'] as $mm => $value){
-                if(is_array($value)){
+                if(is_array($value) && isset($value['field'], $value['value'])){
                     $data[$value['field']] = $value['value'];
                 }
             }
@@ -141,13 +148,21 @@ foreach($feedback as $metamodule => $m){
                 return ERR_DB_CONN;
             }
 
-            if(!insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'],
-                $data, isset($feedback[$metamodule]['rcats']['replace']) &&
-                        $feedback[$metamodule]['rcats']['replace'] ? TRUE : FALSE)){
+            if(isset($feedback[$metamodule]['rcats']['update']) && $feedback[$metamodule]['rcats']['update']){
+                $query_result = updateRow($result['connect'], $feedback[$metamodule]['rcats']['table'],
+                    $data, isset($feedback[$metamodule]['rcats']['update_condition']) ?
+                    $feedback[$metamodule]['rcats']['update_condition'] : NULL);
+            }
+            else{
+                $query_result = insertIntoDB($result['connect'], $feedback[$metamodule]['rcats']['table'],
+                    $data, isset($feedback[$metamodule]['rcats']['replace']) &&
+                        $feedback[$metamodule]['rcats']['replace'] ? TRUE : FALSE);
+            }
 
-                writeLog('rcats', '(' . mysqli_errno($feedback_pre['connect'])
+            if(!$query_result){
+                writeLog('rcats', '(' . mysqli_errno($result['connect'])
                     . ') ' . $metamodule . ' - ' .
-                    mysqli_error($feedback_pre['connect']) . PHP_EOL);
+                    mysqli_error($result['connect']) . PHP_EOL);
 
                 return ERR_DB;
             }

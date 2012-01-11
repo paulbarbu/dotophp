@@ -165,7 +165,8 @@ else if(isset($_POST['modify'])){
     assignRcatsVals($retval, $_POST['name'], $_POST['description'], $_POST['color'],
         $_POST['repeat'], TRUE, 'cat');
 
-    $retval['rcats']['replace'] = TRUE;
+    $retval['rcats']['update'] = TRUE;
+    $retval['rcats']['update_condition'] = array('category_id' => $_POST['category_id']);
     $retval['rcats']['retval'] = MODIFIED;
 
     $retval['rcats']['category_id'] = array(

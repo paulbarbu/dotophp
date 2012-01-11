@@ -745,4 +745,53 @@ function colorCodeFromInt($color, $hash = FALSE){/*{{{*/
 
     return strtoupper($color);
 }/*}}}*/
+
+/**
+ * Update a row in a database
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $table the table where the data should be updated
+ * @param array $field_values an associative array where the keys are the fileds
+ * and the values are the actual values that should be updated
+ * @param array $matching a dictionary to use on the WHERE clause of the SELECT,
+ * optional, if left empty no restriction will be applied, if specified between
+ * elements a 'condition' entry should be supplied:
+ * array('name' => 'foo', 'condition' => 'OR', 'last_name' => 'bar')
+ *
+ * @return FALSE on error, else TRUE
+ */
+function updateRow($link, $table, $field_values, $matching = array()){/*{{{*/
+    $query = 'UPDATE ' . $table . ' SET ';
+
+    $num_fields = count($field_values);
+
+    for($i=0; $i<$num_fields-1; $i++){
+        list($field, $val) = each($field_values);
+        $query .= $field . "='" . $val . "',";
+    }
+
+    list($field, $val) = each($field_values);
+    $query .= $field . "='" . $val . "'";
+
+    if(is_array($matching) && !empty($matching)){
+        $query .= ' WHERE';
+
+        while(list($name, $value) = each($matching)){
+            $query .= ' ' . $name . "='" . $value . "'";
+            list($key, $condition) = each($matching);
+
+            if(FALSE !== $condition){
+                $query .= ' ' . $condition;
+            }
+        }
+    }
+
+    $result = mysqli_query($link, $query);
+
+    if(!$result){
+        return FALSE;
+    }
+
+    return TRUE;
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
