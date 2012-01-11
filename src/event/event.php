@@ -207,17 +207,15 @@ if(isset($_POST['add'])){
 
     unset($_POST['add']);
 }
-else if(isset($_POST['del'])){
-    if(isset($_POST['s'])){
-        $result = mysqli_query($feedback_pre['connect'], 'DELETE FROM event WHERE event_id IN (' .
-            implode(',', $_POST['s']) . ');');
+else if(isset($_POST['del']) && isset($_POST['s'])){
+    $result = mysqli_query($feedback_pre['connect'], 'DELETE FROM event WHERE event_id IN (' .
+        implode(',', $_POST['s']) . ');');
 
-        if(!$result){
-            $retval['code'] = ERR_DB;
-        }
-        else{
-            $retval['code'] = array(DELETED, count($_POST['s']));
-        }
+    if(!$result){
+        $retval['code'] = ERR_DB;
+    }
+    else{
+        $retval['code'] = array(DELETED, count($_POST['s']));
     }
 }
 else if(isset($_POST['done'])){
