@@ -26,7 +26,10 @@ require 'constants.php';
 <label for="repeat">Repeat:</label></td><td><select tabindex="4" name="repeat" id="repeat">
  <?php arrayToOption(array_values($REPEATS), array_keys($REPEATS), isset($feedback['category']['repeat']) ? $feedback['category']['repeat'] : NULL); ?>
 </select></td></tr><tr><td colspan="4"><center>
-<input type="submit" name="add" value="Add" tabindex="5" /></center></td></tr>
+<?php
+echo isset($feedback['category']['category_id']) ? '<input type="hidden" name="category_id" value="' .
+            $feedback['category']['category_id'] . '" />' : NULL ?>
+<input type="submit" name="<?php echo $feedback['category']['action'] ?>" value="<?php echo ucfirst($feedback['category']['action']) ?>" tabindex="5" /></center></td></tr>
 </table>
 </form>
 
@@ -58,6 +61,8 @@ else if(is_numeric($feedback_pre['rcats'])){
         case C_ERR_DUPLICATE: printf('No duplicates allowed! (#%d)', C_ERR_DUPLICATE);
             break;
         case ERR_NONE: printf('Added!');
+            break;
+        case MODIFIED: printf('Modified!');
             break;
         case C_ERR_NAME: printf('Invalid name! (#%d)<br />', C_ERR_NAME);
             break;
@@ -91,6 +96,14 @@ echo<<<'mini_menu'
 <input type="submit" name="del" value="Delete" tabindex="6" />
 mini_menu;
 
+$name = 'modify-sel';
+$value = 'Modify selected';
+
+if(isset($feedback['category']['category_id'])){
+    $name = 'stop';
+    $value = 'Finish editing';
+}
+echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="7" />';
 
 arrayToDiv($feedback['category']['categories'], 'format_cat', NULL, 'cat');
 

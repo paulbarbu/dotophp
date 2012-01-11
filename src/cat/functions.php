@@ -51,4 +51,28 @@ function format_cat($element){/*{{{*/
 
     return $out;
 }/*}}}*/
+
+/**
+ * Sets some fields in an array in order to use it in rcats
+ *
+ * @param array $retval the referenced array to write in
+ * @param string $name category's name
+ * @param string $description category's description
+ * @param string $color category's color
+ * @param int $repeat category's repeat interval
+ * @param bool $reload flag variable, should be TRUE when sending data to rcats
+ * @param string $module the module to reload if $reload is set to TRUE
+ *
+ * @return the return is made through the $retval parameter which should be an
+ * array
+ */
+function assignRcatsVals(&$retval, $name, $description, $color, $repeat, $reload, $module){/*{{{*/
+    $retval['reload'] = $reload;
+    $retval['module'] = $module;
+
+    $retval['rcats']['name']['value'] = $name;
+    $retval['rcats']['description']['value'] = $description;
+    $retval['rcats']['color']['value'] = $color;
+    $retval['rcats']['repeat']['value'] = $repeat;
+}/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

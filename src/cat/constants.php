@@ -23,3 +23,6 @@ defined('C_ERR_DESC') or define('C_ERR_DESC', 2);
 defined('C_ERR_COLOR') or define('C_ERR_COLOR', 3);
 defined('C_ERR_DUPLICATE') or define('C_ERR_DUPLICATE', 4);
 defined('DELETED') or define('DELETED', 5);
+defined('MODIFIED') or define('MODIFIED', 6);
+defined('ACTION_ADD') or define('ACTION_ADD', 'add');
+defined('ACTION_MODIFY') or define('ACTION_MODIFY', 'modify');
