@@ -842,6 +842,10 @@ function pag($output, $href, $current_page = 1, $shown_pages = 5, $el_per_page =
         }
     }
 
+    if($number_of_pages <= 1){
+        return;
+    }
+
     $prev = $current_page - 1;
     $next = $current_page + 1;
 
@@ -870,13 +874,14 @@ function pag($output, $href, $current_page = 1, $shown_pages = 5, $el_per_page =
         $last_page = $current_page + $delta;
     }
 
-    echo <<<sts
-<center>
-<form action="" method="get">
-<table border="0">
+    echo '<center><table border="0">';
+
+    if($current_page > 1){
+        echo <<<sts
 <tr><td><a href="$href&$get_key=1" target="_self" title="First page">&#171;</a></td>
 <td><a href="$href&$get_key=$prev" target="_self" title="Previous">&lt;</a></td>
 sts;
+    }
 
     for($i=$first_page; $i<=$last_page; $i++){
         echo '<td>';
@@ -895,13 +900,13 @@ sts;
         echo '</td>';
     }
 
-    echo <<<sts
+    if($current_page != $number_of_pages){
+        echo <<<sts
 <td><a href="$href&$get_key=$next" target="_self" title="Next">&gt;</a></td>
 <td><a href="$href&$get_key=$number_of_pages" target="_self" title="Last page">&#187;</a></td></tr>
-</table>
-</form>
-</center>
 sts;
+    }
+    echo '</table></center>';
 
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
