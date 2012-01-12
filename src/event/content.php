@@ -167,7 +167,8 @@ PHP;
             echo '<div class="cat"><div style="background-color:#' , $catColor , ';color:#' ,
                 getContrastColor($catColor) , '">&#9698;&nbsp;' , $cat_events[0]['cname'] , '</div>';
 
-            arrayToDiv($cat_events, 'formatEvent', NULL, 'cat');
+            pag(arrayToDiv($cat_events, 'formatEvent', NULL, 'cat'), '?show=event',
+                isset($_GET['p']) ? (int)$_GET['p'] : 1, 2, 3);
 
             echo '</div>';
         }
