@@ -492,7 +492,7 @@ function isValidColor($color){/*{{{*/
 }/*}}}*/
 
 /**
- * Helper function to echo divs from an array
+ * Helper function to create divs from an array
  *
  * @param array $data the data to be displayed as divs
  * @param callback $format a callback to format the contents of the div,
@@ -502,9 +502,11 @@ function isValidColor($color){/*{{{*/
  * @param string $class div's class, optional
  * @param string $id div's id, optional
  *
- * @return void
+ * @return array $output an array containing the supposed output
  */
 function arrayToDiv($data, $format = NULL, $id = NULL, $class = NULL, $style = NULL){/*{{{*/
+    $output = array();
+
     $start_str = '<div';
 
     if(isset($id)){
@@ -524,17 +526,21 @@ function arrayToDiv($data, $format = NULL, $id = NULL, $class = NULL, $style = N
     $end_str = '</div>' . PHP_EOL;
 
     foreach($data as $meta => $element){
-        echo $start_str;
+        $out = $start_str;
 
         if(isset($format)){
-            echo $format($element);
+            $out .= $format($element);
         }
         else{
-            echo $element;
+            $out .= $element;
         }
 
-        echo $end_str;
+        $out .= $end_str;
+
+        $output[] = $out;
     }
+
+    return $output;
 }/*}}}*/
 
 /**
@@ -793,5 +799,109 @@ function updateRow($link, $table, $field_values, $matching = array()){/*{{{*/
     }
 
     return TRUE;
+}/*}}}*/
+
+/**
+ * Paginate an array that contains output
+ *
+ * @param array $output the array containing the output that will be echo-ed
+ * @param string $href the hyper reference for the <a> tags
+ * @param int $current_page the page to be shown by default, optional, defaults
+ * to the first page, if supplied it must be a valid page number
+ * @param int $shown_pages the number of pages shown on the bottom of the page
+ * on which a user can click, optional, defaults to 5
+ * @param int $el_per_page number of elements to be displayed on a page,
+ * optional, defaults to two elements per page
+ * @param string $get_key the key to be used in the $_GET superglobal, the entry
+ * will contain the page number the user clicked
+ *
+ * @return void
+ */
+function pag($output, $href, $current_page = 1, $shown_pages = 5, $el_per_page = 5, $get_key = 'p'){/*{{{*/
+    $total_el = count($output);
+    $number_of_pages = (int)ceil($total_el / $el_per_page);
+
+    if(!(is_int($current_page) && $current_page >=1 && $current_page <= $number_of_pages)){
+        $current_page = 1;
+    }
+
+    if(!(is_int($el_per_page) && $el_per_page <= $total_el)){
+        $el_per_page = (int)ceil($total_el / 3);
+    }
+
+    $first_el = ($current_page - 1) * $el_per_page;
+    $last_el = $first_el + $el_per_page;
+
+    if(0 == $last_el){
+        $last_el = $total_el;
+    }
+
+    for($i=$first_el; $i<$last_el; $i++){
+        if(isset($output[$i])){
+            echo $output[$i];
+        }
+    }
+
+    $prev = $current_page - 1;
+    $next = $current_page + 1;
+
+    if($number_of_pages + 1 == $next){
+        $next = $number_of_pages;
+    }
+    else if(0 == $prev){
+        $prev = 1;
+    }
+
+    if(!(is_int($shown_pages) && $shown_pages >= 1 && $shown_pages <= $number_of_pages)){
+        $shown_pages = (int)ceil($number_of_pages / 3);
+    }
+
+    if($current_page < $shown_pages){
+        $first_page = 1;
+        $last_page = $shown_pages;
+    }
+    else if($current_page > $number_of_pages - $shown_pages){
+        $first_page = $number_of_pages - $shown_pages+1;
+        $last_page = $number_of_pages;
+    }
+    else{
+        $delta = (int)floor($shown_pages / 2);
+        $first_page = $current_page - $delta;
+        $last_page = $current_page + $delta;
+    }
+
+    echo <<<sts
+<center>
+<form action="" method="get">
+<table border="0">
+<tr><td><a href="$href&$get_key=1" target="_self" title="First page">&#171;</a></td>
+<td><a href="$href&$get_key=$prev" target="_self" title="Previous">&lt;</a></td>
+sts;
+
+    for($i=$first_page; $i<=$last_page; $i++){
+        echo '<td>';
+
+        if($i == $current_page){
+            echo '<b>';
+        }
+
+        echo <<<sts
+<a href="$href&$get_key=$i" target="_self" title="Go to page $i">$i</a>
+sts;
+        if($i == $current_page){
+            echo '</b>';
+        }
+
+        echo '</td>';
+    }
+
+    echo <<<sts
+<td><a href="$href&$get_key=$next" target="_self" title="Next">&gt;</a></td>
+<td><a href="$href&$get_key=$number_of_pages" target="_self" title="Last page">&#187;</a></td></tr>
+</table>
+</form>
+</center>
+sts;
+
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

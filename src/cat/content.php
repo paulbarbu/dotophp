@@ -107,7 +107,8 @@ mini_menu;
     }
     echo '<input type="submit" name="' . $name . '" value="' . $value . '" tabindex="7" />';
 
-    arrayToDiv($feedback['category']['categories'], 'format_cat', NULL, 'cat');
+    pag(arrayToDiv($feedback['category']['categories'], 'format_cat', NULL, 'cat'),
+        '?show=cat', isset($_GET['p']) ? (int)$_GET['p'] : 1);
 
     echo '</form>';
 }
