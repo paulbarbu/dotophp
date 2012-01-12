@@ -9,7 +9,7 @@
 
 if(isset($_SESSION)){
     if($feedback_pre['connect'] == FALSE){
-        writeLog($config['logger']['logout'], 'SESSID: ' . session_id() . ' - (' .
+        writeLog('logout', 'SESSID: ' . session_id() . ' - (' .
             mysqli_connect_errno() . ') ' . mysqli_connect_error()  . PHP_EOL);
     }
     else{
@@ -21,8 +21,8 @@ if(isset($_SESSION)){
     if(ini_get("session.use_cookies")){
         $params = session_get_cookie_params();
 
-        if(!setcookie(session_name(), '', time() - 42000, $params["path"], $params["domain"],
-                $params["secure"], $params["httponly"])){
+        if(!setcookie(session_name(), '', time() - 42000, $params['path'], $params['domain'],
+                $params['secure'], $params['httponly'])){
             return LO_ERR_DEL;
         }
     }

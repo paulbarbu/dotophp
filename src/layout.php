@@ -28,13 +28,9 @@ else{
 
 </head>
 <body>
-    <div id="header">
-
-    </div>
-    <div id="menu">
-        <?php echo build_menu_from_modules($modules, $module)?>
-    </div>
-
+<div id="menu">
+<?php echo build_menu_from_modules($modules, $module, 'isLoggedIn')?>
+</div>
     <div id="content">
         <h3><?php echo $proceed ? $modules[$module]['VL']['title'] : NULL?></h3>
         <?php

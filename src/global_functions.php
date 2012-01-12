@@ -14,7 +14,18 @@
 /**
  * Filters the user's input(sanitizes it) to avoid building an attack vector
  *
- * This function accepts a variable number of arguments
+ * @param string $var the string to be sanitized
+ *
+ * @return the sanitized string
+ */
+function _filterVariable($var){/*{{{*/
+    return strip_tags($var);
+}/*}}}*/
+
+/**
+ * Filters the user's input(sanitizes it) to avoid building an attack vector
+ *
+ * This function accepts a variable number of arguments and if based on _filterVariable
  *
  * @return array $filteredInput the sanitized input on the same position in the
  * array as it's place in the args list
@@ -24,7 +35,7 @@ function filterInput(){/*{{{*/
     $args = func_get_args();
 
     foreach($args as $text){
-        $filteredInput[] = strip_tags($text);
+        $filteredInput[] = _filterVariable($text);
     }
 
     return $filteredInput;
@@ -239,23 +250,16 @@ function addPendingUser($link, $code){/*{{{*/
 }/*}}}*/
 
 /**
- * Choose a string depending on the state of an user
+ * Get the state of an user
  *
- * 'OUT' means not-logged in user \n
- * 'IN' means logged in user \n
- * This function should be useed in the configuration file \n
- *
- * @param string $in_str this string will be returned if the user's state is IN
- * @param string $out_str this string will be returned if the user's state is OUT
- *
- * @return string $in_str or $out_str
+ * @return TRUE if the user is logged in, else FALSE
  */
-function getStrByState($in_str, $out_str){/*{{{*/
+function isLoggedIn(){/*{{{*/
     if(isset($_SESSION['uid'])){
-        return $in_str;
+        return TRUE;
     }
 
-    return $out_str;
+    return FALSE;
 }/*}}}*/
 
 /**
@@ -303,27 +307,24 @@ function vsprintf_named($format, $args) {/*{{{*/
  */
 function arrayToOption($text, $values, $selectedValue = NULL, $template='<option value="%(value)s">%(text)s</option>',/*{{{*/
                        $selected_template='<option value="%(value)s" selected="selected" >%(text)s</option>'){
-    if(is_array($values) && is_array($text)){
+    if(!(is_array($values) && is_array($text))){
+        return FALSE;
+    }
 
-        $text_count = count($text);
-        if($text_count == count($values)){
-            for($i=0; $i<$text_count; $i++){
-                if($selectedValue == $values[$i]){
-                    echo vsprintf_named($selected_template, array('text' => $text[$i],
-                        'value' => $values[$i])) , PHP_EOL;
-                }
-                else{
-                    echo vsprintf_named($template, array('text' => $text[$i],
-                        'value' => $values[$i])) , PHP_EOL;
-                }
-            }
+    $text_count = count($text);
+    if($text_count != count($values)){
+        return FALSE;
+    }
+
+    for($i=0; $i<$text_count; $i++){
+        if($selectedValue == $values[$i]){
+            echo vsprintf_named($selected_template, array('text' => $text[$i],
+                'value' => $values[$i])) , PHP_EOL;
         }
         else{
-            return FALSE;
+            echo vsprintf_named($template, array('text' => $text[$i],
+                'value' => $values[$i])) , PHP_EOL;
         }
-    }
-    else{
-        return FALSE;
     }
 
     return TRUE;
@@ -343,7 +344,8 @@ function arrayToOption($text, $values, $selectedValue = NULL, $template='<option
  * @return TRUE if the operation has succedded, else FALSE
  */
 function writeLog($log_key, $data){/*{{{*/
-    global $config;
+    $config = require 'config.php';
+
     $path = $config['logger'][$log_key];
 
     $path .= strpos($path, '.log') !== strlen($path)-4 ? '.log' : NULL;
@@ -358,11 +360,19 @@ function writeLog($log_key, $data){/*{{{*/
  * @param string $table the name of the table where the insert must be made
  * @param array $data associative array, the keys will be used for the column
  * names and the values will be used in VALUES()
+ * @param bool $replace if this parameter is TRUE a REPLACE query will be done,
+ * not an INSERT one
  *
  * @return TRUE is the insert was made successfully, else FALSE
  */
-function insertIntoDB($link, $table, $data){/*{{{*/
-    $result = mysqli_query($link, 'INSERT INTO ' . $table . '(' . implode(',',
+function insertIntoDB($link, $table, $data, $replace = FALSE){/*{{{*/
+    $query_type = 'INSERT';
+
+    if(TRUE === $replace){
+        $query_type = 'REPLACE';
+    }
+
+    $result = mysqli_query($link, $query_type . ' INTO ' . $table . '(' . implode(',',
                 array_keys($data)) . ') VALUES(\'' . implode("', '", $data) . '\');');
 
     if(!$result){
@@ -370,6 +380,27 @@ function insertIntoDB($link, $table, $data){/*{{{*/
     }
 
     return TRUE;
+}/*}}}*/
+
+/**
+ * Check if the user has created any events
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param int $id user's id
+ *
+ * @return TRUE if the user has events, else FALSE
+ */
+function hasEvents($link, $id){/*{{{*/
+    $result = mysqli_query($link, "SELECT event_id FROM category JOIN event USING(category_id) WHERE user_id='" .
+                           $id . "';");
+
+    $events = count(mysqli_fetch_array($result, MYSQLI_NUM));
+
+    if($events > 0){
+        return TRUE;
+    }
+
+    return FALSE;
 }/*}}}*/
 
 /**
@@ -396,7 +427,7 @@ function session_set_expiry_offset($link, $sessid, $offset, $userid){/*{{{*/
  *
  * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
  *
- * @return number of cleaned sessions or FALSE on error
+ * @return FALSE on error, else TRUE
  */
 function clean_expired_sess($link){/*{{{*/
     return mysqli_query($link, "DELETE FROM session WHERE expiry_ts < CURRENT_TIMESTAMP;");
@@ -447,5 +478,320 @@ function find_files_by_name($path, $name, $recursive = TRUE, $flags = GLOB_MARK)
     }
 
     return $files;
+}/*}}}*/
+
+/**
+ * Check whether a color is in #RRGGBB format
+ *
+ * @param $color the color code
+ *
+ * @return TRUE if the code is valid, else FALSE
+ */
+function isValidColor($color){/*{{{*/
+    return (bool)preg_match('/^#[a-f0-9]{6}$/i', $color);
+}/*}}}*/
+
+/**
+ * Helper function to echo divs from an array
+ *
+ * @param array $data the data to be displayed as divs
+ * @param callback $format a callback to format the contents of the div,
+ * optional, if not provided the elements will be displayed as text, the
+ * callback must accept as argument the contents of an element in $data and to
+ * return a string
+ * @param string $class div's class, optional
+ * @param string $id div's id, optional
+ *
+ * @return void
+ */
+function arrayToDiv($data, $format = NULL, $id = NULL, $class = NULL, $style = NULL){/*{{{*/
+    $start_str = '<div';
+
+    if(isset($id)){
+        $start_str .= ' id="' . $id . '"';
+    }
+
+    if(isset($class)){
+        $start_str .= ' class="' . $class . '"';
+    }
+
+    if(isset($style)){
+        $start_str .= ' style="' . $style . '"';
+    }
+
+    $start_str .= '>' . PHP_EOL;
+
+    $end_str = '</div>' . PHP_EOL;
+
+    foreach($data as $meta => $element){
+        echo $start_str;
+
+        if(isset($format)){
+            echo $format($element);
+        }
+        else{
+            echo $element;
+        }
+
+        echo $end_str;
+    }
+}/*}}}*/
+
+/**
+ * Get the contrast color
+ *
+ * @param string $color the color code in hex representation as needed by hexdec()
+ *
+ * @return '000000' if the color is light, else 'FFFFFF' is the color is dark
+ */
+function getContrastColor($color){/*{{{*/
+    return (hexdec($color) > 0xFFFFFF/2) ? '000000' : 'FFFFFF';
+}/*}}}*/
+
+/**
+ * Callback for RCatS
+ *
+ * Checks the validity of a category or event's name
+ *
+ * @param string $name the string to be checked
+ *
+ * @return TRUE if the string is valid, else FALSE
+ */
+function isValidCatEvName($name){/*{{{*/
+    if(empty($name) || !isValidNick($name)){
+        return FALSE;
+    }
+
+    return TRUE;
+}/*}}}*/
+
+/**
+ * Retrieve data from the database
+ *
+ * TODO: extend this to create JOIN queries
+ * TODO: be able to use operators like '<' or '>' or 'LIKE'
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $table the table from which the data should be retrieved
+ * @param array $fields list of the fields which should be selected, optional, if
+ * left empty all fields will be selected
+ * @param array $matching a dictionary to use on the WHERE clause of the SELECT,
+ * optional, if left empty no restriction will be applied, if specified between
+ * elements a 'condition' entry should be supplied:
+ * array('name' => 'foo', 'condition' => 'OR', 'last_name' => 'bar')
+ * @param const $resulttype optional parameter,(default: MYSQLI_ASSOC) a constant
+ * indicating what type of array should be produced by mysqli_fecth_all() the possible
+ * values for this parameter are the constants MYSQLI_ASSOC, MYSQLI_NUM, or MYSQLI_BOTH.
+ *
+ * @return FALSE on error, else an array as returned by
+ * mysqli_fetch_all($foo, MYSQLI_ASSOC)
+ */
+function getDbData($link, $table, $fields = array(), $matching = array(), $resulttype = MYSQLI_ASSOC){/*{{{*/
+    $query = 'SELECT ';
+
+    if(is_array($fields) && !empty($fields)){
+        $query .= implode(',', $fields);
+    }
+    else{
+        $query .= '*';
+    }
+
+    $query .= ' FROM ' . $table;
+
+    if(is_array($matching) && !empty($matching)){
+        $query .= ' WHERE';
+
+        while(list($name, $value) = each($matching)){
+            $query .= ' ' . $name . "='" . $value . "'";
+            list($key, $condition) = each($matching);
+
+            if(FALSE !== $condition){
+                $query .= ' ' . $condition;
+            }
+        }
+    }
+
+    $result = mysqli_query($link, $query);
+
+    if(!$result){
+        return FALSE;
+    }
+
+    return mysqli_fetch_all($result, $resulttype);
+}/*}}}*/
+
+/**
+ * Callback for RCatS
+ *
+ * Checks the validity of a category or event's description
+ *
+ * @param string $description the string to be checked
+ *
+ * @return TRUE if the string is valid, else FALSE
+ */
+function isValidCatEvDesc($description){/*{{{*/
+    if(!empty($description)){
+        if(!isValidDesc($description)){
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}/*}}}*/
+
+/**
+ * Callback for RCatS
+ *
+ * Checks the validity of a category or event's color
+ *
+ * @param string $color color code to be checked
+ *
+ * @return TRUE if the code is valid, else FALSE
+ */
+function isValidCatEvColor($color){/*{{{*/
+    if(!empty($color) && COLOR_CODE != $color){
+        if(!isValidColor($color)){
+            return FALSE;
+        }
+    }
+
+    return TRUE;
+}/*}}}*/
+
+/**
+ * Converts a hex color code to integer
+ *
+ * If the color code is the default color code shwn to the user that means he
+ * didn't change the color so we must fill in the defaults
+ *
+ * @param string $color the color code to be converted
+ *
+ * @return int the color code in integer representation
+ */
+function colorCodeToInt($color){/*{{{*/
+    if(COLOR_CODE == $color){
+        $color = str_replace('#', '', DEFAULT_COLOR);
+    }
+
+    return base_convert(str_replace('#', '', $color), 16, 10);
+}/*}}}*/
+
+/**
+ * Validates a datetime date format
+ *
+ * @param string $datetime the string to be validated
+ *
+ * @return TRUE if the string is valid, else FALSE
+ */
+function isValidDateTime($datetime){/*{{{*/
+    return (16 == strlen($datetime) && preg_match('/\d{2}-\d{2}-\d{4} \d{2}:\d{2}/', $datetime));
+}/*}}}*/
+
+/**
+ * Change a datetime variable to the default datetime
+ *
+ * @param string $dt the datetime
+ *
+ * @return string the default or $dt if it was different from DATETIME_TOUSER
+ */
+function _defaultDateTime($dt){/*{{{*/
+    if($dt == DATETIME_TOUSER){
+        return DEFAULT_DATETIME;
+    }
+
+    if($dt == DEFAULT_DATETIME){
+        return DATETIME_TOUSER;
+    }
+
+    return $dt;
+}/*}}}*/
+
+/**
+ * Modifies a datetime's format
+ *
+ * @param string $datetime the datetime string to be converted
+ * @param string $to_format the format of $datetime that should be returned
+ *
+ * @return string $datetime formatted according to $to_format or FALSE according
+ * to: http://www.php.net/manual/en/function.date.php
+ */
+function dateTimeChangeFormat($datetime, $to_format){/*{{{*/
+    if($datetime == DEFAULT_DATETIME && $to_format == MYSQL_TS){
+        return '0000-00-00 00:00';
+    }
+
+    if(USER_TS == $to_format && $datetime == '0000-00-00 00:00:00'){
+        return '00-00-0000 00:00';
+    }
+
+    return date($to_format, strtotime($datetime));
+}/*}}}*/
+
+/**
+ * Represents a color in hex from int
+ * @param int $color the color's value in decimal representation
+ * @param bool $hash if TRUE a hash(#) sign will be prepended to the hex code,
+ * optional argument, if omitted defaults to FALSE
+ *
+ * @return string the color code in hex, optionally with a hash sign prepended
+ */
+function colorCodeFromInt($color, $hash = FALSE){/*{{{*/
+
+    $color = str_pad(dechex($color), 6, '0', STR_PAD_LEFT);
+
+    if($hash){
+        $color = '#' . $color;
+    }
+
+    return strtoupper($color);
+}/*}}}*/
+
+/**
+ * Update a row in a database
+ *
+ * @param mysqli $link a link identifier returned by mysqli_connect() or mysqli_init()
+ * @param string $table the table where the data should be updated
+ * @param array $field_values an associative array where the keys are the fileds
+ * and the values are the actual values that should be updated
+ * @param array $matching a dictionary to use on the WHERE clause of the SELECT,
+ * optional, if left empty no restriction will be applied, if specified between
+ * elements a 'condition' entry should be supplied:
+ * array('name' => 'foo', 'condition' => 'OR', 'last_name' => 'bar')
+ *
+ * @return FALSE on error, else TRUE
+ */
+function updateRow($link, $table, $field_values, $matching = array()){/*{{{*/
+    $query = 'UPDATE ' . $table . ' SET ';
+
+    $num_fields = count($field_values);
+
+    for($i=0; $i<$num_fields-1; $i++){
+        list($field, $val) = each($field_values);
+        $query .= $field . "='" . $val . "',";
+    }
+
+    list($field, $val) = each($field_values);
+    $query .= $field . "='" . $val . "'";
+
+    if(is_array($matching) && !empty($matching)){
+        $query .= ' WHERE';
+
+        while(list($name, $value) = each($matching)){
+            $query .= ' ' . $name . "='" . $value . "'";
+            list($key, $condition) = each($matching);
+
+            if(FALSE !== $condition){
+                $query .= ' ' . $condition;
+            }
+        }
+    }
+
+    $result = mysqli_query($link, $query);
+
+    if(!$result){
+        return FALSE;
+    }
+
+    return TRUE;
 }/*}}}*/
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

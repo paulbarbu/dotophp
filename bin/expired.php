@@ -24,8 +24,6 @@ const ROOT = '';
 require ROOT . 'src/global_constants.php';
 require ROOT . 'src/global_functions.php';
 
-$config = require ROOT . 'src/config.php';
-
 /**
  * MySQL link
  */

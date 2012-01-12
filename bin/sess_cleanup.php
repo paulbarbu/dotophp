@@ -19,8 +19,6 @@ require ROOT . 'src/global_functions.php';
 
 $mysql_link = require ROOT . 'src/mysql/connect.php';
 
-$config = require ROOT . 'src/config.php';
-
 if($mysql_link !== FALSE){
     $count = 0;
     $err = 0;

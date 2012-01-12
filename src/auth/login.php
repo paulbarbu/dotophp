@@ -8,7 +8,7 @@
  */
 
 if(isset($_POST['login'])){
-    list($nick, $_POST['pass']) = filterInput($_POST['nick'], $_POST['pass']);
+    list($nick, $pass) = filterInput($_POST['nick'], $_POST['pass']);
     $remember = isset($_POST['remember']) ? TRUE : FALSE;
 
     /**
@@ -23,21 +23,21 @@ if(isset($_POST['login'])){
         $retval = L_ERR_NO_USER;
     }
     else{
-        $cols = array('id', 'password AS pass', 'activated');
+        $cols = array('id', 'password AS pass', 'activated', 'tz');
 
         $result = mysqli_query($feedback_pre['connect'], 'SELECT ' . implode(',', $cols)
             . " FROM user WHERE nick = '" . $nick . "';");
 
         $data = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
-        if(strcmp($data['activated'], '0000-00-00 00:00:00') != 0){
-            if(strcmp($data['pass'], sha1($_POST['pass'])) != 0){
+        if(0 != strcmp($data['activated'], '0000-00-00 00:00:00')){
+            if(0 != strcmp($data['pass'], sha1($pass))){
                 unset($_POST['pass'], $data['pass']);
 
                 $retval = L_ERR_PASS;
             }
             else{
-                unset($_POST['pass'], $data['pass']);
+                unset($_POST['pass'], $data['pass'], $pass);
 
                 if($remember){
                     session_set_cookie_params(LIFETIME, app_path());
@@ -58,6 +58,7 @@ if(isset($_POST['login'])){
                 }
                 else{
                     $_SESSION['uid'] = $data['id'];
+                    $_SESSION['tz'] = $data['tz'];
 
                     if($remember){
                         $expiry_offset = LIFETIME;
@@ -79,7 +80,15 @@ if(isset($_POST['login'])){
                             setcookie(session_name(), session_id(), time() + LIFETIME, app_path());
                         }
 
-                        $retval = array('reload' => TRUE, 'module' => 'event');
+                        if(hasEvents($feedback_pre['connect'], $_SESSION['uid'])){
+                            $m = 'event';
+                        }
+                        else{
+                            $m = 'cat';
+                        }
+
+                        unset($_POST['login']);
+                        $retval = array('reload' => TRUE, 'module' => $m);
                     }
                 }
             }
@@ -89,9 +98,13 @@ if(isset($_POST['login'])){
         }
     }
 
-    if($retval == L_ERR_DB_CONNECTION || $retval == L_ERR_DB){
+    if(L_ERR_DB == $retval){
         writeLog('login', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+    }
+    else if(L_ERR_DB_CONNECTION == $retval){
+        writeLog('login', '(' . mysqli_connect_errno() . ') ' .
+            mysqli_connect_error() . PHP_EOL);
     }
 
     return $retval;

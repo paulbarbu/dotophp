@@ -11,12 +11,20 @@
  * @defgroup recoverFiles Recover module
  */
 
-if(isset($feedback['recover']['recover']) || $feedback['recover'] === RECOVER_PROCESSED){
+if(isset($feedback['recover']['recover']) || isset($feedback['recover']['proceed']['code'])
+    && $feedback['recover']['proceed']['code'] === RECOVER_PROCESSED){
+
+        if(isset($feedback['recover']['proceed']['security_q'])){
+            $security_q = $feedback['recover']['proceed']['security_q'];
+        }
+        else{
+            $security_q = $feedback['recover']['recover']['security_q'];
+        }
 ?>
 
 <form action="" method="post">
 <table border="0" cellspacing="5">
-<tr><td colspan="2"><center><h4><?php echo $_SESSION['security_q']; ?></h4></center></td></tr>
+<tr><td colspan="2"><center><h4><?php echo $security_q; ?></h4></center></td></tr>
 <tr><td><label for="answer" title="<?php echo TOOLTIP_H_ANSWER ?>">Answer:</label></td><td>
 <input tabindex="1" type="text" maxlength="255" id="answer" name="security_a"
  title="<?php echo TOOLTIP_H_ANSWER ?>"/>
@@ -28,10 +36,10 @@ if(isset($feedback['recover']['recover']) || $feedback['recover'] === RECOVER_PR
 </form>
 
 <?php
-    if(is_numeric($feedback['recover']['recover'])){
+    if(isset($feedback['recover']['recover']) && is_numeric($feedback['recover']['recover']['code'])){
         echo '<h3>';
 
-        switch($feedback['recover']['recover']){
+        switch($feedback['recover']['recover']['code']){
             case RECOVER_ERR_ANSWER: printf("Invalid answer! (#%d)", RECOVER_ERR_ANSWER);
                 break;
             case RECOVER_ERR_NOT_SENT: printf('An error occurred while sending the email! (#%d)
@@ -62,10 +70,10 @@ else{
 </form>
 
 <?php
-    if(is_numeric($feedback['recover'])){
+    if(isset($feedback['recover']['proceed']) && is_numeric($feedback['recover']['proceed']['code'])){
         echo '<h3>';
 
-        switch($feedback['recover']){
+        switch($feedback['recover']['proceed']['code']){
             case RECOVER_ERR_NOUSER: printf("This email is not associated to any account! (#%d)", RECOVER_ERR_NOUSER);
                 break;
             case RECOVER_ERR_INACTIVE: printf("The account you're trying to recover has not been activated yet! (#%d)", RECOVER_ERR_INACTIVE);

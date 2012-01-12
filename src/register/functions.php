@@ -106,7 +106,7 @@ function validateUserData($first_name, $last_name, $nickname, $email, $private, 
         $values['phone'] = 'NULL';
     }
 
-    if($birthday && $birthday != 'DD-MM-YYYY'){
+    if($birthday && $birthday != DATE_TOUSER){
         if(isValidBDate($birthday)){
             $values['birthday'] = $birthday;
         }

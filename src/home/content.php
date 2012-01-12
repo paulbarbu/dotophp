@@ -1,8 +1,6 @@
 <?php
 
-$state = getStrByState('logout', 'login');
-
-if(strcmp($state, 'login') == 0){
+if(!isLoggedIn()){
     echo '<a href="index.php?show=register">Register</a> or
         <a href="index.php?show=auth">Log in</a><br />
         Activation email not received? <a href="index.php?show=notreceived" >Click here</a> to have it resent!';

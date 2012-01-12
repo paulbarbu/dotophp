@@ -19,7 +19,7 @@ $countries = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
 $tz = require_once __DIR__ . DIRECTORY_SEPARATOR .  '..'
             . DIRECTORY_SEPARATOR . 'tz.php';
 
-if($feedback['register']){
+if($feedback['register']['code']){
 ?>
 
 <form action="" method="post">
@@ -31,27 +31,27 @@ if($feedback['register']){
     <tr><td>
 
     <label for="f_n" title="<?php echo TOOLTIP_NAME ?>">First name:</label></td><td><input title="<?php echo TOOLTIP_NAME ?>" id="f_n" type="text" name="first_name" maxlength="10"
- <?php echo isset($_POST['first_name']) ? 'value="' . $_POST['first_name'] . '"' : NULL ?> />
+ <?php echo isset($feedback['register']['first_name']) ? 'value="' . $feedback['register']['first_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="l_n" title="<?php echo TOOLTIP_NAME ?>">Last name:</label></td><td><input title="<?php echo TOOLTIP_NAME ?>" id="l_n" type="text" name="last_name" maxlength="10"
- <?php echo isset($_POST['last_name']) ? 'value="' . $_POST['last_name'] . '"' : NULL ?> />
+ <?php echo isset($feedback['register']['last_name']) ? 'value="' . $feedback['register']['last_name'] . '"' : NULL ?> />
     </td></tr><tr><td>
-    <label for="nick" title="<?php echo TOOLTIP_NICK ?>">Nickname:</label></td><td><input title="<?php echo TOOLTIP_NICK ?>" id="nick" type="text" name="nick" maxlength="20"
- <?php echo isset($_POST['nick']) ? 'value="' . $_POST['nick'] . '"' : NULL ?> />
+    <label for="nick" title="<?php echo TOOLTIP_NICK_CAT_EV ?>">Nickname:</label></td><td><input title="<?php echo TOOLTIP_NICK_CAT_EV ?>" id="nick" type="text" name="nick" maxlength="20"
+ <?php echo isset($feedback['register']['nick']) ? 'value="' . $feedback['register']['nick'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="email" title="<?php echo TOOLTIP_EMAIL ?>">E-mail:</label></td><td><input title="<?php echo TOOLTIP_EMAIL ?>" id="email" type="text" name="email" maxlength="255"
- <?php echo isset($_POST['email']) ? 'value="' . $_POST['email'] . '"' : NULL ?> />
+ <?php echo isset($feedback['register']['email']) ? 'value="' . $feedback['register']['email'] . '"' : NULL ?> />
     </td></tr><tr><td>
     <label for="tz">Timezone:</label></td><td><select id="tz" name="timezone">
-        <?php arrayToOption(array_values($tz), array_values($tz), isset($_POST['timezone']) ? $_POST['timezone'] : 'Please select your timezone!'); ?>
+        <?php arrayToOption(array_values($tz), array_values($tz), isset($feedback['register']['timezone']) ? $feedback['register']['timezone'] : 'Please select your timezone!'); ?>
     </select>
     </td></tr><tr><td>
     <label for="country">Country:</label></td><td><select id="country" name="country">
-        <?php arrayToOption(array_values($countries), array_keys($countries), isset($_POST['country']) ? $_POST['country'] : 'Please select your country!'); ?>
+        <?php arrayToOption(array_values($countries), array_keys($countries), isset($feedback['register']['country']) ? $feedback['register']['country'] : 'Please select your country!'); ?>
     </select>
     </td></tr><tr><td>
     <label for="city" title="<?php echo TOOLTIP_CITY ?>">City:</label></td><td><input title="<?php echo TOOLTIP_CITY ?>" id="city" type="text" name="city" maxlength="30"
- <?php echo isset($_POST['city']) ? 'value="' . $_POST['city'] . '"' : NULL ?> />
+ <?php echo isset($feedback['register']['city']) ? 'value="' . $feedback['register']['city'] . '"' : NULL ?> />
     </td></tr>
     </table>
     </fieldset>
@@ -64,22 +64,22 @@ if($feedback['register']){
     <tr><td>
 
     <label for="priv">Private account:</label></td><td><input id="priv" type="checkbox" name="private" value="1"
- <?php echo isset($_POST['private']) ? 'checked="checked"' : NULL ?> />
+ <?php echo isset($feedback['register']['private']) ? 'checked="checked"' : NULL ?> />
     </td></tr><tr><td>
     <label for="sm">Male</label><br />
     <label for="sf"> Female</label></td><td>
     <input type="radio" name="sex" value="M" id="sm"
- <?php echo isset($_POST['sex']) && $_POST['sex'] == 'M'? 'checked="checked"' : NULL ?> /><br />
+ <?php echo isset($feedback['register']['sex']) && $feedback['register']['sex'] == 'M'? 'checked="checked"' : NULL ?> /><br />
     <input type="radio" name="sex" value="F" id="sf"
- <?php echo isset($_POST['sex']) && $_POST['sex'] == 'F'? 'checked="checked"' : NULL ?> />
+ <?php echo isset($feedback['register']['sex']) && $feedback['register']['sex'] == 'F'? 'checked="checked"' : NULL ?> />
     </td></tr><tr><td>
     <label for="phone" title="<?php echo TOOLTIP_PHONE ?>">Phone:</label></td><td><input title="<?php echo TOOLTIP_PHONE ?>" id="phone" type="text" name="phone" maxlength="20"
- <?php echo isset($_POST['phone']) ? 'value="' . $_POST['phone'] . '"' : NULL ?> />
+ <?php echo isset($feedback['register']['phone']) ? 'value="' . $feedback['register']['phone'] . '"' : NULL ?> />
     </td></tr><tr><td><label for="bday">Birth date:</label></td><td><input type="text" id="bday" name="birthday" maxlength="10"
- <?php echo isset($_POST['birthday']) ? 'value="' . $_POST['birthday'] . '"' : 'value="DD-MM-YYYY"' ?> />
+ <?php echo isset($feedback['register']['birthday']) ? 'value="' . $feedback['register']['birthday'] . '"' : 'value="' . DATE_TOUSER . '"' ?> />
     </td></tr><tr><td>
     <label for="desc" title="<?php echo TOOLTIP_DESC ?>">Description:</label></td><td><textarea title="<?php echo TOOLTIP_DESC ?>" rows="3" cols="23" name="description" id="desc">
-<?php echo isset($_POST['description']) ? $_POST['description'] : NULL ?></textarea>
+<?php echo isset($feedback['register']['description']) ? $feedback['register']['description'] : NULL ?></textarea>
     </td></tr>
 
     </table>
@@ -100,10 +100,10 @@ if($feedback['register']){
 </center>
 </form>
 <?php
-    if(is_numeric($feedback['register'])){
+    if(isset($feedback['register']['code']) && is_numeric($feedback['register']['code'])){
         echo '<h3>';
 
-        switch($feedback['register']){
+        switch($feedback['register']['code']){
             case R_ERR_CAPTCHA: printf('Captcha code entered is invalid! (#%d)', R_ERR_CAPTCHA);
                 break;
             case R_ERR_DB_CONNECTION: printf('Error connecting to the database! (#%d)', R_ERR_DB_CONNECTION);
@@ -140,7 +140,7 @@ if($feedback['register']){
         echo '</h3>';
     }
 }
-elseif(!$feedback['register']){
+elseif(ERR_NONE == $feedback['register']['code']){
     echo '<h3>Registration complete, an activation email was sent to the submitted e-mail address!</h3>';
 }
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

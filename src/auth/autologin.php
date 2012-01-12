@@ -26,6 +26,9 @@ if(isset($_COOKIE[session_name()])){
 
             $loggedin = TRUE;
 
+            date_default_timezone_set($_SESSION['tz']);
+            mysqli_query($result['connect'], "SET time_zone = '" . $_SESSION['tz'] . "'");
+
             if('auth' == $module){
                 $_GET['action'] = 'logout';
             }
@@ -34,10 +37,8 @@ if(isset($_COOKIE[session_name()])){
                 $updated = session_set_expiry_offset($result['connect'], session_id(), ONETIME_SESS, $_SESSION['uid']);
 
                 if(!$updated){
-                    $config = require MODULES_ROOT . 'config.php';
-
                     writeLog('autologin', 'Connection error: ('
-                        . mysqli_errno($result['connect']) . ') ' . mysqli_error($result['connect']) . PHP_EOL);
+                        . mysqli_connect_errno() . ') ' . mysqli_connect_error() . PHP_EOL);
                 }
             }
         }

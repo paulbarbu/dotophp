@@ -11,8 +11,12 @@ mysqli_real_escape_string()
 starlays | am gasit pe wiki cica ar fi ssmtp pentru arch                                                                             │ flavius  
 22:36:56 +misterjinx | după ce-l instalezi încearcă un simplu echo "test mail" | sendmail mailultău@domain.com
 
-when the view content is too large an alignment problem occurs
-
-steal my own cookie
-
 recursive dependency function - think about circular deps
+check constants for having the same value
+
+design the ERD
+
+make a little quick-add syntax(start, due, color, priority, repeat)
+
+maybe after login because of the $_GET['show'] remaining 'login'(considering
+that i'm redirected) I will have problems, please investigate this early

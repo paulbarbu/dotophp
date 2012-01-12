@@ -1,36 +1,29 @@
 #content{
     text-align: left;
 
-    width: 90%;
+    width: 89%;
 
     position: relative;
-    left:10.1%;
+    left:11%;
 
     border: #FBF9E2;
     border-style: solid;
-    border-width: 1px;
+    border-width: 0px;
 
-    background-color: #FBF9E2;
+    background-color: #ffffff;
 }
 
 #menu{
     width: 10%;
+    height: 98%;
 
-    float: left;
+    position: absolute;
 
-    border: #E6E6FA;
-    border-style: solid;
-    border-width: 1px;
-
-    background-color: #E6E6FA;
+    background-color: #7cc0d5;
+    font-size:15px;
 }
 
-#login{
-    width: 99%;
-    float: right;
-}
-
-#post{
+div.cat{
     margin-top: 5px;
 
     border: #E6E6FA;
@@ -38,17 +31,7 @@
     border-width: 1px;
 }
 
-#headpost{
-    background-color: #E6E6FA;
-}
-
-#date{
-    position: relative;
-    float:right;
-    text-align: right;
-}
-
-#adminlogin{
+.toRight{
     position: relative;
     float:right;
     text-align: right;

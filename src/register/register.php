@@ -7,9 +7,24 @@
  * @ingroup registerFiles
  */
 
+$retval = array(
+    'first_name' => isset($_POST['first_name']) ? $_POST['first_name'] : NULL,
+    'last_name' => isset($_POST['last_name']) ? $_POST['last_name'] : NULL,
+    'nick' => isset($_POST['nick']) ? $_POST['nick'] : NULL,
+    'email' => isset($_POST['email']) ? $_POST['email'] : NULL,
+    'description' => isset($_POST['description']) ? $_POST['description'] : NULL,
+    'phone' => isset($_POST['phone']) ? $_POST['phone'] : NULL,
+    'birthday' => isset($_POST['birthday']) ? $_POST['birthday'] : NULL,
+    'timezone' => isset($_POST['timezone']) ? $_POST['timezone'] : NULL,
+    'country' => isset($_POST['country']) ? $_POST['country'] : NULL,
+    'private' => isset($_POST['private']) ? $_POST['private'] : NULL,
+    'sex' => isset($_POST['sex']) ? $_POST['sex'] : NULL,
+    'city' => isset($_POST['city']) ? $_POST['city'] : NULL,
+    'code' => TRUE,
+);
+
 if(isset($_POST['register'])){
     $result = array();
-    $retval = NULL;
 
     list($captcha, $first_name, $last_name, $nick, $email, $city, $description,
         $phone, $birthday) = filterInput($_POST['captcha'], $_POST['first_name'],
@@ -20,15 +35,15 @@ if(isset($_POST['register'])){
     if(isValidCaptcha($_SESSION['last_captcha'], $captcha)){
 
         if(!$feedback_pre['connect']){
-            $retval = R_ERR_DB_CONNECTION;
+            $retval['code'] = R_ERR_DB_CONNECTION;
         }
         else{
             $existing_user = isUser($feedback_pre['connect'], $nick, $email);
             if($existing_user == MATCHING_NICK){
-                $retval = R_ERR_USED_NICK;
+                $retval['code'] = R_ERR_USED_NICK;
             }
             elseif($existing_user == MATCHING_MAIL){
-                $retval = R_ERR_USED_MAIL;
+                $retval['code'] = R_ERR_USED_MAIL;
             }
             else{
                 isset($_POST['sex']) ? $sex = $_POST['sex'] : $sex = NULL;
@@ -38,17 +53,17 @@ if(isset($_POST['register'])){
                     $city, $sex, $description, $phone, $birthday);
 
                 if(isset($result[0]) && $result[0] === FALSE){
-                    $retval = $result[1];
+                    $retval['code'] = $result[1];
                 }
                 elseif(!mysqli_query($feedback_pre['connect'], 'BEGIN;')){
-                    $retval = R_ERR_DB;
+                    $retval['code'] = R_ERR_DB;
                 }
                 elseif(insertIntoDB($feedback_pre['connect'], 'user', $result)){
 
                     $activation_code = genActivationCode($nick);
 
                     if(!addPendingUser($feedback_pre['connect'], $activation_code)){
-                        $retval = R_ERR_DB;
+                        $retval['code'] = R_ERR_DB;
                     }
                     else{
 
@@ -67,35 +82,37 @@ if(isset($_POST['register'])){
                                  array('nick' => $nick)), vsprintf_named($mail_data['msg'],
                                  $msg_specifiers), $mail_data['header'])){
 
-                            $retval = R_ERR_NOT_SENT;
+                            $retval['code'] = R_ERR_NOT_SENT;
                         }
                         else{
-                            $retval = ERR_NONE;
+                            $retval['code'] = ERR_NONE;
                         }
 
                         if(!mysqli_query($feedback_pre['connect'], 'COMMIT;')){
-                            $retval = R_ERR_DB;
+                            $retval['code'] = R_ERR_DB;
                         }
                     }
                 }
                 else{
-                    $retval = R_ERR_DB;
+                    $retval['code'] = R_ERR_DB;
                 }
             }
         }
     }
     else{
-        $retval = R_ERR_CAPTCHA;
+        $retval['code'] = R_ERR_CAPTCHA;
     }
 
-    if($retval == R_ERR_DB || $retval == R_ERR_DB_CONNECTION){
+    if(R_ERR_DB == $retval['code']){
         writeLog('register', '(' . mysqli_errno($feedback_pre['connect'])
                  . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
         mysqli_query($feedback_pre['connect'], 'ROLLBACK;');
     }
-
-    return $retval;
+    else if(R_ERR_DB_CONNECTION == $retval['code']){
+        writeLog('register', '(' . mysqli_connect_errno() . ') ' .
+            mysqli_connect_error() . PHP_EOL);
+    }
 }
 
-return TRUE;
+return $retval;
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/

@@ -34,7 +34,7 @@ $modules = require MODULES_ROOT . 'modules.php';
 /**
  * Configuration directives
  */
-$config = require MODULES_ROOT . 'config.php';
+//$config = require MODULES_ROOT . 'config.php';
 
 require_once YACMS_PATH . 'index.php';
 /* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
