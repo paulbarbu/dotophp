@@ -48,11 +48,49 @@ $retval = array(
     'ev_names' => $ev_names,
     'ev_ids' => $ev_ids,
     'rcats' => array(
+        'event_id' => array(
+            'value' => NULL,
+            'field' => 'event_id',
+        ),
+        'date' => array(
+            'value' => NULL,
+            'cb' => array(
+                'filter' => array(
+                    'name' => '_filterVariable',
+                    'assign' => TRUE,
+                    'params' => array('date' => '_getRcatsVal'),
+                ),
+                'isUserInput' => array(
+                    'name' => 'isDateTimeInput',
+                    'params' => array('date' => '_getRcatsVal'),
+                ),
+                'isValid' => array(
+                    'name' => 'isValidDateTime',
+                    'params' => array('date' => '_getRcatsVal'),
+                ),
+                'ts' => array(
+                    'name' => 'dateTimeChangeFormat',
+                    'assign' => TRUE,
+                    'params' => array('date' => '_getRcatsVal', MYSQL_TS),
+                ),
+                'isValidAlarm' => array(
+                    'name' => 'isValidAlarmDate',
+                    'params' => array($feedback_pre['connect'], 'date' => '_getRcatsVal',
+                                 'event_id' => '_getRcatsVal'),
+                    'err' => A_ERR_ALARM_DATE,
+                    'return_on_err' => TRUE,
+                ),
+            ),
+            'err' => A_ERR_DATETIME,
+            'return_on_err' => TRUE,
+            'field' => 'date',
+        ),
+        'table' => 'alarm',
     ),
 );
 
 if(isset($_POST['add'])){
-    //TODO
+    assignRcatsValsAlarm($retval, $_POST['event_id'], $_POST['date'], TRUE, 'alarm');
     unset($_POST['add']);
 }
 else if(isset($_POST['del'])){

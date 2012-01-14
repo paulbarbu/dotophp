@@ -35,7 +35,9 @@ if(is_numeric($feedback_pre['rcats'])){
     echo '<h3>';
 
     switch($feedback_pre['rcats']){
-        case A_ERR_DATETIME: printf('Invalid date! (#%d)', A_ERR_DATETIME);
+        case A_ERR_DATETIME: printf('You must specify a valid date! (#%d)', A_ERR_DATETIME);
+            break;
+        case A_ERR_ALARM_DATE: printf('The alarm date must occur earlier then the event\'s due date! (#%d)', A_ERR_ALARM_DATE);
             break;
         case ERR_NONE: printf('Added!');
             break;
