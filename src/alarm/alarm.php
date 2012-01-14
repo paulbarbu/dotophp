@@ -93,8 +93,19 @@ if(isset($_POST['add'])){
     assignRcatsValsAlarm($retval, $_POST['event_id'], $_POST['date'], TRUE, 'alarm');
     unset($_POST['add']);
 }
-else if(isset($_POST['del'])){
-    //TODO
+else if(isset($_POST['del']) && isset($_POST['s'])){
+    $del_result = mysqli_query($feedback_pre['connect'], 'DELETE FROM alarm WHERE alarm_id IN (' .
+        implode(',', $_POST['s']) . ')');
+
+    if(!$del_result){
+        writeLog('alarm', '(' . mysqli_errno($feedback_pre['connect'])
+                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+
+        return array('code' => ERR_DB);
+    }
+    else{
+        $retval['code'] = array(DELETED, count($_POST['s']));
+    }
 }
 else if(isset($_POST['modify'])){
     //TODO
