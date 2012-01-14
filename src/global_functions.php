@@ -142,6 +142,7 @@ function isValidPhone($phone){/*{{{*/
  * @return BOOL TRUE if the format is valid, else, FALSE
  */
 function isValidBDate($bdate){/*{{{*/
+    //TODO check this: 56-21-2012 (dd-mm-yyyy)
     return (10 == strlen($bdate) && preg_match('/\d{2}-\d{2}-\d{4}/', $bdate));
 }/*}}}*/
 
@@ -690,6 +691,7 @@ function colorCodeToInt($color){/*{{{*/
  * @return TRUE if the string is valid, else FALSE
  */
 function isValidDateTime($datetime){/*{{{*/
+    //TODO check this: 56-21-2012 25:65(dd-mm-yyyy hh:mm)
     return (16 == strlen($datetime) && preg_match('/\d{2}-\d{2}-\d{4} \d{2}:\d{2}/', $datetime));
 }/*}}}*/
 

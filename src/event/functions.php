@@ -82,6 +82,10 @@ function formatEvent($ev){/*{{{*/
         '" id="id-' . $ev['event_id'] . '" /><label for="id-' . $ev['event_id'] .
         '">&nbsp;' . $ev['ename'];
 
+    if(isset($ev['alarm'])){
+        $content .= '&nbsp;&#8986;';
+    }
+
     $startDate = dateTimeChangeFormat($ev['start'], USER_TS);
     if(DEFAULT_DATETIME != $startDate){
         $content .= '<span style="margin-left:20px;">&#9659; ' . $startDate . '</span>';

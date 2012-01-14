@@ -320,9 +320,12 @@ else if(isset($_POST['modify'])){
     unset($_POST['modify']);
 }
 
-$result_events = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname, c.color AS ccolor, event_id, e.category_id, e.name AS ename,
-    e.description, e.repeat_interval, e.color, priority, private, exception,
-    start, end  FROM event AS e JOIN category AS c USING (category_id) WHERE done=0 AND user_id =' . $_SESSION['uid']);
+$result_events = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname,
+    c.color AS ccolor, event_id, e.category_id, e.name AS ename, e.description,
+    e.repeat_interval, e.color, priority, private, exception, alarm.date as alarm,
+    start, end FROM event AS e JOIN category AS c USING (category_id) LEFT JOIN
+    alarm USING(event_id) WHERE done=0 AND user_id =' . $_SESSION['uid'] .
+    ' GROUP BY event_id');
 
 $retval['events'] = mysqli_fetch_all($result_events, MYSQLI_ASSOC);
 
