@@ -231,6 +231,25 @@ return array(
         ),
     ),
 
+    /* Set alarms for the events */
+    'alarm' => array(
+        'pre-process' => array(
+            'autologin' => 'auth',
+            'db' => 'mysql',
+            'rcats' => 'rcats',
+        ),
+        'VL' => array(
+            'title' => 'Manage alarms',
+            'login_need' => TRUE,
+            'content' => 'content.php',
+        ),
+        'BL' => array(
+            'constants' => 'constants.php',
+            'functions' => 'functions.php',
+            'alarm' => 'alarm.php',
+        ),
+    ),
+
     /* Manage user profile */
     'profile' => array(
         'pre-process' => array(

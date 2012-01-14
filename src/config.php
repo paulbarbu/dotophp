@@ -23,5 +23,6 @@ return array(
         'register' => LOG_DIR . 'register.log',
         'rcats' => LOG_DIR . 'rcats.log',
         'event' => LOG_DIR . 'event.log',
+        'alarm' => LOG_DIR . 'alarm.log',
     ),
 );
