@@ -828,7 +828,7 @@ function pag($output, $href, $current_page = 1, $shown_pages = 5, $el_per_page =
     }
 
     if(!(is_int($el_per_page) && $el_per_page <= $total_el)){
-        $el_per_page = (int)ceil($total_el / 3);
+        $el_per_page = (int)ceil($total_el / 3) + 1;
     }
 
     $first_el = ($current_page - 1) * $el_per_page;
