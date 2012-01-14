@@ -325,7 +325,7 @@ $result_events = mysqli_query($feedback_pre['connect'], 'SELECT c.name AS cname,
     e.repeat_interval, e.color, priority, private, exception, alarm.date as alarm,
     start, end FROM event AS e JOIN category AS c USING (category_id) LEFT JOIN
     alarm USING(event_id) WHERE done=0 AND user_id =' . $_SESSION['uid'] .
-    ' GROUP BY event_id');
+    ' GROUP BY event_id ORDER BY NULL');
 
 $retval['events'] = mysqli_fetch_all($result_events, MYSQLI_ASSOC);
 
