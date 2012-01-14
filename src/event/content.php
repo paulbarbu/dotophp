@@ -167,6 +167,7 @@ PHP;
             echo '<div class="cat"><div style="background-color:#' , $catColor , ';color:#' ,
                 getContrastColor($catColor) , '">&#9698;&nbsp;' , $cat_events[0]['cname'] , '</div>';
 
+            //TODO if an event has alarm(s) display a unicode bell
             pag(arrayToDiv($cat_events, 'formatEvent', NULL, 'cat'), '?show=event',
                 isset($_GET['p']) ? (int)$_GET['p'] : 1, 2, 3);
 
@@ -183,3 +184,4 @@ PHP;
         arrayToDiv($feedback['event']['done_ev'], 'formatDoneEvent', NULL, 'cat');
     }
 }
+/* vim: set ts=4 sw=4 tw=80 sts=4 fdm=marker nowrap et :*/
