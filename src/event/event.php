@@ -16,6 +16,12 @@ if(!$feedback_pre['connect']){
 
 $cat = getDbData($feedback_pre['connect'], 'category', array('name', 'category_id'), array('user_id' => $_SESSION['uid']));
 
+if(!$cat){
+    writeLog('event', '(' . mysqli_errno($feedback_pre['connect'])
+             . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+
+    return array('code' => ERR_DB);
+}
 
 if(!empty($cat)){
     $cat_names = array();
@@ -220,6 +226,9 @@ else if(isset($_POST['del']) && isset($_POST['s'])){
         implode(',', $_POST['s']) . ');');
 
     if(!$result){
+        writeLog('event', '(' . mysqli_errno($feedback_pre['connect'])
+                 . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+
         $retval['code'] = ERR_DB;
     }
     else{
@@ -232,6 +241,9 @@ else if(isset($_POST['done'])){
             implode(',', $_POST['s']) . ');');
 
         if(!$result){
+            writeLog('event', '(' . mysqli_errno($feedback_pre['connect'])
+                     . ') ' . mysqli_error($feedback_pre['connect']) . PHP_EOL);
+
             $retval['code'] = ERR_DB;
         }
         else{
