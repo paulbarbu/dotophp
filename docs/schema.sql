@@ -23,8 +23,10 @@ DROP TABLE IF EXISTS `alarm`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `alarm` (
+  `alarm_id` mediumint(8) unsigned NOT NULL,
   `event_id` int(10) unsigned NOT NULL,
   `date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`alarm_id`),
   KEY `event_id` (`event_id`),
   CONSTRAINT `alarm_ibfk_1` FOREIGN KEY (`event_id`) REFERENCES `event` (`event_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
