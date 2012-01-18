@@ -10,7 +10,7 @@
 /**
  * Mail header
  */
-$mail_data['header'] = 'From: noreply@dotophp.com';
+$mail_data['header'] = 'From: noreply@dotophp.dev';
 /**
  * Mail subject
  */
