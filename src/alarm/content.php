@@ -23,6 +23,8 @@
  <?php echo isset($feedback['alarm']['date']) ? 'value="' . $feedback['alarm']['date'] . '"' : 'value="' . DATETIME_TOUSER . '"' ?> />
 </td></tr>
 <tr><td colspan="2"><center>
+<?php
+echo isset($feedback['alarm']['alarm_id']) ? '<input type="hidden" name="alarm_id" value="' . $feedback['alarm']['alarm_id'] . '" />' : NULL ?>
 <input type="submit" name="<?php echo $feedback['alarm']['action'] ?>" value="<?php echo ucfirst($feedback['alarm']['action']) ?> alarm" tabindex="3"/>
 </center></td></tr>
 </table>

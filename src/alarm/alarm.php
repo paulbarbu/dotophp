@@ -26,7 +26,6 @@ if(!$result_events){
 
 $events = mysqli_fetch_all($result_events, MYSQLI_ASSOC);
 
-
 if(!empty($events)){
     $ev_names = array();
     $ev_ids = array();
@@ -43,6 +42,7 @@ else{
 $retval = array(
     'action' => ACTION_ADD,
     'event_id' => isset($_POST['event_id']) ? $_POST['event_id'] : NULL,
+    'alarm_id' => isset($_POST['alarm_id']) ? $_POST['alarm_id'] : NULL,
     'date' => isset($_POST['date']) ? $_POST['date'] : NULL,
     'code' => TRUE,
     'ev_names' => $ev_names,
@@ -89,6 +89,22 @@ $retval = array(
     ),
 );
 
+if(isset($_SESSION['modify_alarm_list']) && !empty($_SESSION['modify_alarm_list'])){
+    $retval['action'] = ACTION_MODIFY;
+
+    if(MODIFIED === $feedback_pre['rcats']){
+        array_shift($_SESSION['modify_alarm_list']);
+
+        if(empty($_SESSION['modify_alarm_list'])){
+            $retval['action'] = ACTION_ADD;
+            unset($retval['alarm_id']);
+        }
+        else{
+            $continue = TRUE;
+        }
+    }
+}
+
 if(isset($_POST['add'])){
     assignRcatsValsAlarm($retval, $_POST['event_id'], $_POST['date'], TRUE, 'alarm');
     unset($_POST['add']);
@@ -107,8 +123,38 @@ else if(isset($_POST['del']) && isset($_POST['s'])){
         $retval['code'] = array(DELETED, count($_POST['s']));
     }
 }
+else if(isset($_POST['modify-sel']) || isset($continue)){
+
+    if(isset($_POST['s']) && !empty($_POST['s'])){
+        $result = mysqli_query($feedback_pre['connect'], 'SELECT * FROM alarm WHERE alarm_id IN (' .
+                                implode(',', $_POST['s']) . ');');
+
+        $_SESSION['modify_alarm_list'] = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    }
+
+    if(isset($continue) || !empty($_POST['s'])){
+        $retval['alarm_id'] = $_SESSION['modify_alarm_list'][0]['alarm_id'];
+        $retval['event_id'] = $_SESSION['modify_alarm_list'][0]['event_id'];
+        $retval['date'] = _defaultDateTime(dateTimeChangeFormat($_SESSION['modify_alarm_list'][0]['date'], USER_TS));
+        $retval['action'] = ACTION_MODIFY;
+    }
+}
+else if(isset($_POST['stop'])){
+    unset($_SESSION['modify_alarm_list']);
+}
 else if(isset($_POST['modify'])){
-    //TODO
+    assignRcatsValsAlarm($retval, $_POST['event_id'], $_POST['date'], TRUE, 'alarm');
+
+    $retval['rcats']['update'] = TRUE;
+    $retval['rcats']['update_condition'] = array('alarm_id' => $_POST['alarm_id']);
+    $retval['rcats']['retval'] = MODIFIED;
+
+    $retval['rcats']['alarm_id'] = array(
+        'value' => $_POST['alarm_id'],
+        'field' => 'alarm_id',
+    );
+
+    unset($_POST['modify']);
 }
 
 $result_alarms = mysqli_query($feedback_pre['connect'], 'SELECT event.name, event.event_id, alarm.* FROM event JOIN alarm USING(event_id)');
