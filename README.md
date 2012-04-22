@@ -1,13 +1,16 @@
 DoToPHP
 =======
+For a list of features see FEATURES.md in `docs`.
+
 
 Installation
 ============
+Check INSTALL.md in `docs`.
 
 License
 =======
 
-(C) Copyright 2011 Paul Barbu Gheorghe
+(C) Copyright 2011, 2012 Barbu Paul - Gheorghe
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
